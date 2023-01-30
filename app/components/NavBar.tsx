@@ -7,10 +7,10 @@ import navicon from '../images/navicon.png';
 import Image from 'next/image';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Home', href: '#', current: true },
+  { name: 'About', href: '#', current: false },
+  { name: 'Contact', href: '#', current: false },
+
 ];
 
 function classNames(...classes: any) {
