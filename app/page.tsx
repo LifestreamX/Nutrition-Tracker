@@ -13,10 +13,10 @@ export default function Home() {
       <section className=' relative top-48 sm:top-80'>
         <HomeHero />
       </section>
-      <section className=' relative top-80'>
+      <section className=' relative top-80 '>
         <HomeContent />
       </section>
-      <section className=' relative top-80'>
+      <section className=' relative top-80 '>
         <HomeFooter />
       </section>
     </main>
