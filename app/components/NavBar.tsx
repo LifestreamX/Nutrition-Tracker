@@ -10,7 +10,6 @@ const navigation = [
   { name: 'Home', href: '#', current: true },
   { name: 'About', href: '#', current: false },
   { name: 'Contact', href: '#', current: false },
-
 ];
 
 function classNames(...classes: any) {
@@ -23,6 +22,11 @@ export default function NavBar() {
       {({ open }) => (
         <>
           <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
+            <div>
+              <h1 className='text-white text-bold text-xl absolute left-4 top-4 hidden md:block '>
+                nutritiontracker
+              </h1>
+            </div>
             <div className='relative flex h-16 items-center justify-between'>
               <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
                 {/* Mobile menu button*/}
@@ -35,12 +39,18 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
+
+              <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-star'>
                 <div className='flex flex-shrink-0 items-center'>
-                  <img
+                  {/* <img
                     className='block h-8 w-auto lg:hidden'
                     src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
                     alt='Your Company'
+                  /> */}
+                  <Image
+                    className='block h-8 w-auto lg:hidden '
+                    src={navicon}
+                    alt='Nutrition Image'
                   />
                   <Image
                     className='hidden h-8 w-auto lg:block'
