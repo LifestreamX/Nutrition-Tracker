@@ -8,6 +8,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.signup-button {
+  background-color: #ffffff;
+}
+
 /* .wrapper {
   display: flex;
   justify-content: center;

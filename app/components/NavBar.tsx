@@ -5,6 +5,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import navicon from '../images/navicon.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
@@ -47,16 +48,18 @@ export default function NavBar() {
                     src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
                     alt='Your Company'
                   /> */}
-                  <Image
-                    className='block h-8 w-auto lg:hidden '
-                    src={navicon}
-                    alt='Nutrition Image'
-                  />
-                  <Image
-                    className='hidden h-8 w-auto lg:block'
-                    src={navicon}
-                    alt='Nutrition Image'
-                  />
+                  <Link href='/'>
+                    <Image
+                      className='block h-8 w-auto lg:hidden '
+                      src={navicon}
+                      alt='Nutrition Image'
+                    />
+                    <Image
+                      className='hidden h-8 w-auto lg:block'
+                      src={navicon}
+                      alt='Nutrition Image'
+                    />
+                  </Link>
                 </div>
                 <div className='hidden sm:ml-6 sm:block'>
                   <div className='flex space-x-4'>
