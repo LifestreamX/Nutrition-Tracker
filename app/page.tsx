@@ -10,13 +10,13 @@ const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
   return (
     <main className='flex flex-col h-full'>
-      <section className='mt-40'>
+      <section className='mt-40 sm:mt-80'>
         <HomeHero />
       </section>
-      <section className='mt-32'>
+      <section className='mt-32 sm:mt-48'>
         <HomeContent />
       </section>
-      <section className='mt-16 flex justify-center align-middle '>
+      <section className='flex justify-center align-middle mt-52'>
         <HomeFooter />
       </section>
     </main>
