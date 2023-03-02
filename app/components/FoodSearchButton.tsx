@@ -79,23 +79,23 @@ const FoodSearch = () => {
         {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Search</h2> */}
         <button
           onClick={closeModal}
-          className='absolute right-2 top-2 shadow bg-red-700 hover:bg-red-800 focus:shadow-outline focus:outline-none text-white font-bold py-1 px-1 rounded  align-middle md:p-2 md:text-xs  '
+          className='absolute right-2 top-2 shadow bg-red-700 hover:bg-red-800 focus:shadow-outline focus:outline-none text-white font-bold  px-2 rounded-full align-middle   '
         >
-          close
+          X
         </button>
-        <form className='w-full flex justify-center items-center p-5'>
+        <div className='w-full flex flex-col md:flex-row justify-center items-center p-5 '>
           <input
             type='text'
             placeholder='Search...'
-            className='p-2 border-slate-800 border rounded '
+            className=' border-slate-800 border rounded w-full p-1 '
           />
           <button
-            type='submit'
-            className=' left-1 relative shadow bg-green-700 hover:bg-green-800 focus:shadow-outline focus:outline-none  text-white font-bold p-3 rounded  align-middle md:text-xs md:w-50 '
+            // type='submit'
+            className='w-full md:w-32 mt-2 md:mt-0 relative shadow bg-green-700 hover:bg-green-800 focus:shadow-outline focus:outline-none  text-white font-bold p-1 rounded  align-middle  md:ml-2'
           >
             Search
           </button>
-        </form>
+        </div>
 
         {/* Results */}
         <ul>
