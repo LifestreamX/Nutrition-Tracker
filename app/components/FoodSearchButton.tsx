@@ -5,6 +5,9 @@ import grapes from '../images/dashboard/grapes.png';
 import Image from 'next/image';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import fetchFood from './fetchData';
+import useFetch from '@/hooks/useFetch';
+import { useDebounce } from 'react-use';
 
 const customStyles = {
   content: {
@@ -25,6 +28,52 @@ Modal.setAppElement(document.getElementById('root'));
 const FoodSearch = () => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [searchData, setSearchData] = useState([]);
+  // const [userInput, setUserInput] = useState('');
+
+  const [val, setVal] = React.useState('');
+  const [debouncedValue, setDebouncedValue] = React.useState('');
+
+  const [, cancel] = useDebounce(
+    () => {
+      setDebouncedValue(val);
+
+      handleSearch();
+    },
+    2000,
+    [val]
+  );
+
+
+  
+  // const handleSearch = async () => {
+  //   let { hits } = await useFetch(val);
+
+  //   let data = [];
+
+  //   hits.map((e) => {
+  //     data = [...data, e];
+  //   });
+
+  //   setSearchData(data);
+  // };
+
+
+  // Second API Logic
+  const handleSearch = async () => {
+    let { hints } = await useFetch(val);
+
+    // console.log(hints);
+
+    let data = [];
+
+    hints.map((e) => {
+      console.log(e.food.label);
+      data = [...data, e.food.label];
+    });
+
+    setSearchData(data);
+  };
 
   function openModal() {
     setIsOpen(true);
@@ -88,24 +137,25 @@ const FoodSearch = () => {
             type='text'
             placeholder='Search...'
             className=' border-slate-800 border rounded w-full p-1 '
+            value={val}
+            onChange={(e) => {
+              setVal(e.target.value);
+            }}
           />
           <button
+            onClick={cancel}
             // type='submit'
             className='w-full md:w-32 mt-2 md:mt-0 relative shadow bg-green-700 hover:bg-green-800 focus:shadow-outline focus:outline-none  text-white font-bold p-1 rounded  align-middle  md:ml-2'
           >
             Search
           </button>
         </div>
-
         {/* Results */}
         <ul>
-          <li>fgvdfg</li>
-          <li>fgvdfg</li>
-          <li>fgvdfg</li>
-          <li>fgvdfg</li>
-          <li>fgvdfg</li>
-          <li>fgvdfg</li>
-          <li>fgvdfg</li>
+          {searchData.map((e) => {
+            // return <li>{e.fields.item_name}</li>;
+            return <li>{searchData}</li>;
+          })}
         </ul>
       </Modal>
     </main>
