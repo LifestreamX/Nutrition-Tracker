@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import FoodSearch from '../components/FoodSearchButton';
+import FoodSearch from './components/FoodSearchButton';
 
 const Dashboard = () => {
   // const [userInput, setUserInput] = useState('');
