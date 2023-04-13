@@ -6,12 +6,11 @@ import grapes from '../../images/dashboard/grapes.png';
 
 // import grapes from '.../images/dashboard/grapes.png';
 import Image from 'next/image';
-import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import fetchFood from './fetchData';
-import useFetch from '@/hooks/useFetch';
 import { useDebounce } from 'react-use';
-import { BsTypeH1 } from 'react-icons/bs';
+import { useWindowSize } from 'react-use';
+import fetchNutritionData from './FetchNutritionData';
+import { FoodTypeData } from '@/types/Food.types';
 
 const customStyles = {
   content: {
@@ -22,7 +21,20 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     height: '50%',
-    width: '50%',
+    width: '45%',
+  },
+};
+
+const mobileCustomStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    height: '50%',
+    width: '95%',
   },
 };
 
@@ -32,53 +44,51 @@ Modal.setAppElement(document.getElementById('root'));
 const FoodSearch = () => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [searchData, setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState<Object[]>([]);
 
-  const [val, setVal] = useState('');
-  const [debouncedValue, setDebouncedValue] = useState('');
+  console.log(searchData);
+
+  const [val, setVal] = useState<string | number>('');
+  const [debouncedValue, setDebouncedValue] = useState<string | number>('');
+
+  const { width } = useWindowSize();
 
   const [, cancel] = useDebounce(
     () => {
-      setDebouncedValue(debouncedValue);
-
-      val.length === 0 && setSearchData([]);
+      setDebouncedValue(val);
 
       if (val !== '') {
         handleSearch();
       }
     },
-    1000,
+    1200,
     [val]
   );
 
-  console.log(searchData);
-
-  // const handleSearch = async () => {
-  //   let { hits } = await useFetch(val);
-
-  //   let data = [];
-
-  //   hits.map((e) => {
-  //     data = [...data, e];
-  //   });
-
-  //   setSearchData(data);
-  // };
-
-  // Second API Logic
   const handleSearch = async () => {
-    let { hints } = await useFetch(val);
+    let { hits } = await fetchNutritionData(val);
+    console.log(hits);
 
-    // console.log(hints);
+    let data: Object[] = [];
 
-    let data = [];
-
-    hints.map((e) => {
-      data = [...data, e];
+    hits.map((e: Object[]) => {
+      data = [...data, e.fields];
+      console.log(data);
     });
 
     setSearchData(data);
   };
+
+  // Second API Logic
+  // const handleSearch = async () => {
+  //   let { hints } = await fetchNutritionData(debouncedValue);
+  //   console.log(hints);
+  //   let data = [];
+  //   hints.map((e) => {
+  //     data = [...data, e];
+  //   });
+  //   setSearchData(data);
+  // };
 
   function openModal() {
     setIsOpen(true);
@@ -90,12 +100,9 @@ const FoodSearch = () => {
 
   function closeModal() {
     setIsOpen(false);
+    setSearchData([]);
+    setVal('');
   }
-
-  console.log(searchData);
-  console.log(val.length);
-
-  // console.log(val.length);
 
   return (
     <main>
@@ -132,13 +139,14 @@ const FoodSearch = () => {
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={width < 768 ? mobileCustomStyles : customStyles}
+        // className={styles.modal}
         contentLabel='Example Modal'
       >
         {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Search</h2> */}
         <button
           onClick={closeModal}
-          className='absolute right-2 top-2 shadow bg-red-700 hover:bg-red-800 focus:shadow-outline focus:outline-none text-white font-bold  px-2 rounded-full align-middle   '
+          className='absolute right-4 top-2 shadow bg-red-700 hover:bg-red-800 focus:shadow-outline focus:outline-none text-white font-bold  px-2 rounded-full align-middle   '
         >
           X
         </button>
@@ -150,6 +158,7 @@ const FoodSearch = () => {
             value={val}
             onChange={(e) => {
               setVal(e.target.value);
+              val.length === 0 && setSearchData([]);
             }}
           />
           <button
@@ -162,33 +171,89 @@ const FoodSearch = () => {
         </div>
         {/* Results */}
 
-        {val.length !== 0 && searchData.length === 0 && (
-          <div className='absolute bg-black w-full justify-center items-center'>
-            {' '}
-            <svg
-              aria-hidden='true'
-              className='w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-green-600 '
-              viewBox='0 0 100 101'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
-                fill='currentColor'
-              />
-              <path
-                d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
-                fill='currentFill'
-              />
-            </svg>
-          </div>
+        {debouncedValue.length !== 0 && searchData.length === 0 && (
+          <section className='flex h-full justify-center'>
+            <div className='flex relative top-10 md:top-0 md:items-center '>
+              {' '}
+              <svg
+                aria-hidden='true'
+                className='w-8 h-8 lg:w-14 lg:h-14 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-green-600  '
+                viewBox='0 0 100 101'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
+                  fill='currentColor'
+                />
+                <path
+                  d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
+                  fill='currentFill'
+                />
+              </svg>
+            </div>
+          </section>
         )}
+
+        {/* const { item_id, item_name, ng_calories, nf_serving_size_qty } = searchData; */}
 
         {val !== '' && (
           <ul>
-            {searchData.map((e) => {
-              // return <li>{e.fields.item_name}</li>;
-              return <li>{e.food.label}</li>;
+            {searchData.map((e: FoodTypeData) => {
+              const {
+                old_api_id,
+                item_id,
+                item_name,
+                leg_loc_id,
+                brand_id,
+                brand_name,
+                item_description,
+                updated_at,
+                nf_ingredient_statement,
+                nf_water_grams,
+                nf_calories,
+                nf_calories_from_fat,
+                nf_total_fat,
+                nf_saturated_fat,
+                nf_trans_fatty_acid,
+                nf_polyunsaturated_fat,
+                nf_monounsaturated_fat,
+                nf_cholesterol,
+                nf_sodium,
+                nf_total_carbohydrate,
+                nf_dietary_fiber,
+                nf_sugars,
+                nf_protein,
+                nf_vitamin_a_dv,
+                nf_vitamin_c_dv,
+                nf_calcium_dv,
+                nf_iron_dv,
+                nf_refuse_pct,
+                nf_servings_per_container,
+                nf_serving_size_qty,
+                nf_serving_size_unit,
+                nf_serving_weight_grams,
+                allergen_contains_milk,
+                allergen_contains_eggs,
+                allergen_contains_fish,
+                allergen_contains_shellfish,
+                allergen_contains_tree_nuts,
+                allergen_contains_peanuts,
+                allergen_contains_wheat,
+                allergen_contains_soybeans,
+                allergen_contains_gluten,
+                usda_fields,
+              } = e;
+
+              return (
+                <ul>
+                  <li className='flex' key={item_id}>
+                    <div>
+                      <p>{item_name}</p>
+                    </div>
+                  </li>
+                </ul>
+              );
             })}
           </ul>
         )}
