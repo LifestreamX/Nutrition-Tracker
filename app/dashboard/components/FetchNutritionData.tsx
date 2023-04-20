@@ -18,4 +18,3 @@ export default async function fetchNutritionData(input: number | string) {
 
   return res.json();
 }
-

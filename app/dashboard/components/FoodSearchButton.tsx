@@ -11,6 +11,7 @@ import { useDebounce } from 'react-use';
 import { useWindowSize } from 'react-use';
 import fetchNutritionData from './FetchNutritionData';
 import { FoodTypeData } from '@/types/Food.types';
+import NutritionInfo from './NutritionInfo';
 
 const customStyles = {
   content: {
@@ -43,13 +44,14 @@ Modal.setAppElement(document.getElementById('root'));
 
 const FoodSearch = () => {
   let subtitle;
-  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
   const [searchData, setSearchData] = useState<Object[]>([]);
 
-  console.log(searchData);
+  // console.log(searchData);
 
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
+  const [nutritionSearchData, setnutritionSearchData] = useState<Object>({});
 
   const { width } = useWindowSize();
 
@@ -61,19 +63,19 @@ const FoodSearch = () => {
         handleSearch();
       }
     },
-    1200,
+    1000,
     [val]
   );
 
   const handleSearch = async () => {
     let { hits } = await fetchNutritionData(val);
-    console.log(hits);
+    // console.log(hits);
 
     let data: Object[] = [];
 
     hits.map((e: Object[]) => {
       data = [...data, e.fields];
-      console.log(data);
+      // console.log(data);
     });
 
     setSearchData(data);
@@ -90,6 +92,8 @@ const FoodSearch = () => {
   //   setSearchData(data);
   // };
 
+  console.log(nutritionSearchData);
+
   function openModal() {
     setIsOpen(true);
   }
@@ -103,6 +107,14 @@ const FoodSearch = () => {
     setSearchData([]);
     setVal('');
   }
+
+  const handleItemHighlightClick = (protein, carbs, fats) => {
+    setnutritionSearchData({
+      protein: protein,
+      carbs: carbs,
+      fats: fats,
+    });
+  };
 
   return (
     <main>
@@ -143,36 +155,41 @@ const FoodSearch = () => {
         // className={styles.modal}
         contentLabel='Example Modal'
       >
-        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Search</h2> */}
-        <button
-          onClick={closeModal}
-          className='absolute right-4 top-2 shadow bg-red-700 hover:bg-red-800 focus:shadow-outline focus:outline-none text-white font-bold  px-2 rounded-full align-middle   '
-        >
-          X
-        </button>
-        <div className='w-full flex flex-col md:flex-row justify-center items-center p-5 '>
-          <input
-            type='text'
-            placeholder='Search...'
-            className=' border-slate-800 border rounded w-full p-1 '
-            value={val}
-            onChange={(e) => {
-              setVal(e.target.value);
-              val.length === 0 && setSearchData([]);
-            }}
-          />
-          <button
-            onClick={handleSearch}
-            // type='submit'
-            className='w-full md:w-32 mt-2 md:mt-0 relative shadow bg-green-700 hover:bg-green-800 focus:shadow-outline focus:outline-none  text-white font-bold p-1 rounded  align-middle  md:ml-2'
-          >
-            Search
-          </button>
+        <div className='sticky top-0 bg-green-900'>
+          {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Search</h2> */}
+          <div className='w-full flex justify-end relative right-2'>
+            <button
+              onClick={closeModal}
+              className='text-2xl text-white hover:text-white-800 font-bold '
+            >
+              X
+            </button>
+          </div>
+
+          <div className='w-full flex flex-col md:flex-row justify-center items-center p-5 '>
+            <input
+              type='text'
+              placeholder='Search...'
+              className=' border-slate-800 border rounded w-full p-2 focus:outline-none '
+              value={val}
+              onChange={(e) => {
+                setVal(e.target.value);
+                val.length === 0 && setSearchData([]);
+              }}
+            />
+            <button
+              onClick={handleSearch}
+              // type='submit'
+              className='w-full md:w-32 mt-2 md:mt-0 relative shadow text-xl p-1  bg-white hover:bg-gray-100 focus:shadow-outline focus:outline-none  text-green font-bold  rounded  align-middle  md:ml-2'
+            >
+              Search
+            </button>
+          </div>
         </div>
         {/* Results */}
 
         {debouncedValue.length !== 0 && searchData.length === 0 && (
-          <section className='flex h-full justify-center'>
+          <section className='flex h-full justify-center '>
             <div className='flex relative top-10 md:top-0 md:items-center '>
               {' '}
               <svg
@@ -198,7 +215,7 @@ const FoodSearch = () => {
         {/* const { item_id, item_name, ng_calories, nf_serving_size_qty } = searchData; */}
 
         {val !== '' && (
-          <ul>
+          <main className='border'>
             {searchData.map((e: FoodTypeData) => {
               const {
                 old_api_id,
@@ -246,16 +263,34 @@ const FoodSearch = () => {
               } = e;
 
               return (
-                <ul>
-                  <li className='flex' key={item_id}>
-                    <div>
-                      <p>{item_name}</p>
-                    </div>
-                  </li>
-                </ul>
+                <>
+                  <ul>
+                    <li className='flex cursor-pointer m-2' key={item_id}>
+                      <button
+                        className='focus:bg-green-400 p-1 w-screen text-left flex justify-between '
+                        onClick={() =>
+                          handleItemHighlightClick(
+                            nf_protein,
+                            nf_total_carbohydrate,
+                            nf_total_fat
+                          )
+                        }
+                      >
+                        <p className='flex '>{item_name}</p>
+                        <p>kcal: {nf_calories}</p>
+                      </button>
+                    </li>
+                  </ul>
+                </>
               );
             })}
-          </ul>
+            {/* Load info for clicked item */}
+            <div>
+              {nutritionSearchData !== {} && (
+                <NutritionInfo nutritionSearchData={nutritionSearchData} />
+              )}
+            </div>
+          </main>
         )}
       </Modal>
     </main>
