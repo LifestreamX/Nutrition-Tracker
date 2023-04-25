@@ -52,6 +52,9 @@ const FoodSearch = () => {
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
   const [nutritionSearchData, setnutritionSearchData] = useState<Object>({});
+  const [openExtra, setOpenExtra] = useState(false);
+
+  // console.log(searchData)
 
   const { width } = useWindowSize();
 
@@ -69,16 +72,15 @@ const FoodSearch = () => {
 
   const handleSearch = async () => {
     let { hits } = await fetchNutritionData(val);
-    // console.log(hits);
+    console.log(hits);
 
     let data: Object[] = [];
 
     hits.map((e: Object[]) => {
       data = [...data, e.fields];
       // console.log(data);
+      setSearchData(data);
     });
-
-    setSearchData(data);
   };
 
   // Second API Logic
@@ -92,8 +94,6 @@ const FoodSearch = () => {
   //   setSearchData(data);
   // };
 
-  console.log(nutritionSearchData);
-
   function openModal() {
     setIsOpen(true);
   }
@@ -106,6 +106,7 @@ const FoodSearch = () => {
     setIsOpen(false);
     setSearchData([]);
     setVal('');
+    setOpenExtra(false);
   }
 
   const handleItemHighlightClick = (protein, carbs, fats) => {
@@ -114,6 +115,7 @@ const FoodSearch = () => {
       carbs: carbs,
       fats: fats,
     });
+    setOpenExtra(true);
   };
 
   return (
@@ -155,12 +157,12 @@ const FoodSearch = () => {
         // className={styles.modal}
         contentLabel='Example Modal'
       >
-        <div className='sticky top-0 bg-green-900'>
+        <div className='sticky top-0 mb-5 z-10 '>
           {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Search</h2> */}
           <div className='w-full flex justify-end relative right-2'>
             <button
               onClick={closeModal}
-              className='text-2xl text-white hover:text-white-800 font-bold '
+              className='text-2xl text-red-500 hover:text-white-900 font-bold '
             >
               X
             </button>
@@ -180,13 +182,20 @@ const FoodSearch = () => {
             <button
               onClick={handleSearch}
               // type='submit'
-              className='w-full md:w-32 mt-2 md:mt-0 relative shadow text-xl p-1  bg-white hover:bg-gray-100 focus:shadow-outline focus:outline-none  text-green font-bold  rounded  align-middle  md:ml-2'
+              className='w-full md:w-32 mt-2 md:mt-0 relative shadow text-xl p-1   bg-green-700 hover:bg-green-900 focus:shadow-outline focus:outline-none pb-2  text-white font-bold  rounded  align-middle  md:ml-2'
             >
               Search
             </button>
           </div>
+
+          {/* Results */}
+          {/* Load info for clicked item */}
+          <div className='z-40'>
+            {openExtra && (
+              <NutritionInfo nutritionSearchData={nutritionSearchData} />
+            )}
+          </div>
         </div>
-        {/* Results */}
 
         {debouncedValue.length !== 0 && searchData.length === 0 && (
           <section className='flex h-full justify-center '>
@@ -264,7 +273,7 @@ const FoodSearch = () => {
 
               return (
                 <>
-                  <ul>
+                  <ul className='z-0'>
                     <li className='flex cursor-pointer m-2' key={item_id}>
                       <button
                         className='focus:bg-green-400 p-1 w-screen text-left flex justify-between '
@@ -284,12 +293,6 @@ const FoodSearch = () => {
                 </>
               );
             })}
-            {/* Load info for clicked item */}
-            <div>
-              {nutritionSearchData !== {} && (
-                <NutritionInfo nutritionSearchData={nutritionSearchData} />
-              )}
-            </div>
           </main>
         )}
       </Modal>

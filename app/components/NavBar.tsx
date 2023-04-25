@@ -24,7 +24,7 @@ export default function NavBar() {
     <Disclosure as='nav' className='bg-gray-800 '>
       {({ open }) => (
         <>
-          <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 '>
+          <header className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 '>
             <Link href='/'>
               <div>
                 <h1 className='text-white text-bold text-xl absolute left-4 top-4 hidden md:block '>
@@ -173,7 +173,7 @@ export default function NavBar() {
                 )}
               </div>
             </div>
-          </div>
+          </header>
 
           <Disclosure.Panel className='sm:hidden'>
             <div className='space-y-1 px-2 pt-2 pb-3'>
