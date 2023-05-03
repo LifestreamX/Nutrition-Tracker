@@ -83,17 +83,6 @@ const FoodSearch = () => {
     });
   };
 
-  // Second API Logic
-  // const handleSearch = async () => {
-  //   let { hints } = await fetchNutritionData(debouncedValue);
-  //   console.log(hints);
-  //   let data = [];
-  //   hints.map((e) => {
-  //     data = [...data, e];
-  //   });
-  //   setSearchData(data);
-  // };
-
   function openModal() {
     setIsOpen(true);
   }
@@ -190,7 +179,7 @@ const FoodSearch = () => {
 
           {/* Results */}
           {/* Load info for clicked item */}
-          <div className='z-40'>
+          <div className='z-40 bg-white'>
             {openExtra && (
               <NutritionInfo nutritionSearchData={nutritionSearchData} />
             )}
