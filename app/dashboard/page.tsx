@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import FoodSearch from './components/FoodSearchButton';
 import FetchNutritionData from './components/FetchNutritionData';
+import MacroGoals from './components/MacroGoals';
 
 const Dashboard = () => {
   // const [userInput, setUserInput] = useState('');
   const [val, setVal] = useState<string | number>('');
+  // const { count, incrementCount } = useMyContext();
 
   return (
     <main>
@@ -15,6 +17,12 @@ const Dashboard = () => {
           {/* @ts-expect-error Server Component */}
           <FetchNutritionData />
         </FoodSearch>
+        {/* {count} */}
+      </section>
+
+      <section>
+        {' '}
+        <MacroGoals />
       </section>
 
       {/* Table for nutrition added added*/}

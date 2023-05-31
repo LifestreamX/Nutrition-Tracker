@@ -10,7 +10,11 @@ import Modal from 'react-modal';
 import { useDebounce } from 'react-use';
 import { useWindowSize } from 'react-use';
 import fetchNutritionData from './FetchNutritionData';
-import { FoodTypeData } from '@/types/Food.types';
+import {
+  FoodTypeData,
+  nutritionSearchDataType,
+  ServingsType,
+} from '@/types/Food.types';
 import NutritionInfo from './NutritionInfo';
 
 const customStyles = {
@@ -21,7 +25,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    height: '50%',
+    height: '75%',
     width: '45%',
   },
 };
@@ -34,7 +38,7 @@ const mobileCustomStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    height: '50%',
+    height: '95%',
     width: '95%',
   },
 };
@@ -45,13 +49,14 @@ Modal.setAppElement(document.getElementById('root'));
 const FoodSearch = () => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [searchData, setSearchData] = useState<Object[]>([]);
+  const [searchData, setSearchData] = useState<FoodTypeData[]>([]);
 
   // console.log(searchData);
 
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
-  const [nutritionSearchData, setnutritionSearchData] = useState<Object>({});
+  const [nutritionSearchData, setnutritionSearchData] =
+    useState<nutritionSearchDataType>();
   const [openExtra, setOpenExtra] = useState(false);
 
   // console.log(searchData)
@@ -71,14 +76,13 @@ const FoodSearch = () => {
   );
 
   const handleSearch = async () => {
-    let { hits } = await fetchNutritionData(val);
-    console.log(hits);
+    let { hints } = await fetchNutritionData(val);
+    console.log(hints);
 
     let data: Object[] = [];
 
-    hits.map((e: Object[]) => {
-      data = [...data, e.fields];
-      // console.log(data);
+    hints.map((e: Object[]) => {
+      data = [...data, e.food];
       setSearchData(data);
     });
   };
@@ -98,7 +102,17 @@ const FoodSearch = () => {
     setOpenExtra(false);
   }
 
-  const handleItemHighlightClick = (protein, carbs, fats) => {
+  let num = 3000;
+
+  let stringNum = '3000';
+
+  // console.log(stringNum);
+
+  const handleItemHighlightClick = (
+    protein: number,
+    carbs: number,
+    fats: number
+  ) => {
     setnutritionSearchData({
       protein: protein,
       carbs: carbs,
@@ -106,6 +120,8 @@ const FoodSearch = () => {
     });
     setOpenExtra(true);
   };
+
+  // console.log(searchData);
 
   return (
     <main>
@@ -210,72 +226,49 @@ const FoodSearch = () => {
           </section>
         )}
 
-        {/* const { item_id, item_name, ng_calories, nf_serving_size_qty } = searchData; */}
-
         {val !== '' && (
           <main className='border'>
             {searchData.map((e: FoodTypeData) => {
               const {
-                old_api_id,
-                item_id,
-                item_name,
-                leg_loc_id,
-                brand_id,
-                brand_name,
-                item_description,
-                updated_at,
-                nf_ingredient_statement,
-                nf_water_grams,
-                nf_calories,
-                nf_calories_from_fat,
-                nf_total_fat,
-                nf_saturated_fat,
-                nf_trans_fatty_acid,
-                nf_polyunsaturated_fat,
-                nf_monounsaturated_fat,
-                nf_cholesterol,
-                nf_sodium,
-                nf_total_carbohydrate,
-                nf_dietary_fiber,
-                nf_sugars,
-                nf_protein,
-                nf_vitamin_a_dv,
-                nf_vitamin_c_dv,
-                nf_calcium_dv,
-                nf_iron_dv,
-                nf_refuse_pct,
-                nf_servings_per_container,
-                nf_serving_size_qty,
-                nf_serving_size_unit,
-                nf_serving_weight_grams,
-                allergen_contains_milk,
-                allergen_contains_eggs,
-                allergen_contains_fish,
-                allergen_contains_shellfish,
-                allergen_contains_tree_nuts,
-                allergen_contains_peanuts,
-                allergen_contains_wheat,
-                allergen_contains_soybeans,
-                allergen_contains_gluten,
-                usda_fields,
+                category,
+                categoryLabel,
+                foodId,
+                image,
+                knownAs,
+                label,
+                nutrients,
+                servingSizes,
               } = e;
+
+              const {
+                CHOCDF: carbs,
+                ENERC_KCAL: calories,
+                FAT: fats,
+                FIBTG,
+                PROCNT: protein,
+              } = nutrients;
+
+              servingSizes?.forEach((e: ServingsType) => {
+                const {
+                  uri: servingsUri,
+                  label: servingsLabel,
+                  quantity: servingsQuantity,
+                } = e;
+              });
 
               return (
                 <>
                   <ul className='z-0'>
-                    <li className='flex cursor-pointer m-2' key={item_id}>
+                    <li className='flex cursor-pointer m-2' key={foodId}>
                       <button
                         className='focus:bg-green-400 p-1 w-screen text-left flex justify-between '
                         onClick={() =>
-                          handleItemHighlightClick(
-                            nf_protein,
-                            nf_total_carbohydrate,
-                            nf_total_fat
-                          )
+                          handleItemHighlightClick(protein, carbs, fats)
                         }
                       >
-                        <p className='flex '>{item_name}</p>
-                        <p>kcal: {nf_calories}</p>
+                        <p className='flex '>{label}</p>
+                        {/* {servingsData.label} */}
+                        <p>kcal: {calories.toFixed(0)}</p>
                       </button>
                     </li>
                   </ul>

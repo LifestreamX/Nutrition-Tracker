@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useWindowSize } from 'react-use';
+import { nutritionSearchDataType } from '@/types/Food.types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const NutritionInfo = ({ nutritionSearchData }) => {
+// type Props = {
+//   nutritionSearchData: {};
+// };
+
+const NutritionInfo = ({ nutritionSearchData }: any): any => {
+  const { width } = useWindowSize();
+
+  console.log(nutritionSearchData);
+
   useEffect(() => {
     getPercentages(
       nutritionSearchData.protein,
@@ -17,15 +27,14 @@ const NutritionInfo = ({ nutritionSearchData }) => {
     nutritionSearchData.fats,
   ]);
 
-  const [percentages, setPercentages] = useState<object>({
+  const [percentages, setPercentages] = useState({
     proteinPercentage: 0,
     carbsPercentage: 0,
     fatsPercent: 0,
   });
 
-  // console.log(nutritionSearchData);
-
-  const getPercentages = (p: number, c: number, f: number): any => {
+  // function to convert into percentages
+  const getPercentages = (p: number, c: number, f: number): void => {
     let total: number = p + c + f;
 
     let protein = p / total;
@@ -35,32 +44,40 @@ const NutritionInfo = ({ nutritionSearchData }) => {
     // Protein
     let proteinConvert = protein.toFixed(4).slice(2).split('');
     proteinConvert.splice(2, 0, '.');
-    if (proteinConvert[0] == 0) {
+    if (proteinConvert[0] === '0') {
       proteinConvert.shift();
     }
-    const proteinPercentage = proteinConvert.join('');
+
+    const proteinP = +proteinConvert.join('');
+    const proteinPercentage = proteinP.toFixed(1);
+    const proteinNumberConvert = Number(proteinPercentage);
+
     // Carbs
     let carbsConvert = carbs.toFixed(4).slice(2).split('');
     carbsConvert.splice(2, 0, '.');
-    if (carbsConvert[0] == 0) {
+    if (carbsConvert[0] === '0') {
       carbsConvert.shift();
     }
-    const carbsPercentage = carbsConvert.join('');
+    const carbP = +carbsConvert.join('');
+    const carbsPercentage = carbP.toFixed(1);
+    const carbsNumberConvert = Number(carbsPercentage);
+
     // Fats
     let fatsConvert = fat.toFixed(4).slice(2).split('');
     fatsConvert.splice(2, 0, '.');
-    if (fatsConvert[0] == 0) {
+    if (fatsConvert[0] === '0') {
       fatsConvert.shift();
     }
-    const fatsPercentage = fatsConvert.join('');
+    const fatP = +fatsConvert.join('');
+    const fatsPercentage = fatP.toFixed(1);
+    const fatNumberConvert = Number(fatsPercentage);
 
+    // setting the state
     setPercentages({
-      proteinPercentage: proteinPercentage,
-      carbsPercentage: carbsPercentage,
-      fatsPercent: fats,
+      proteinPercentage: proteinNumberConvert,
+      carbsPercentage: carbsNumberConvert,
+      fatsPercent: fatNumberConvert,
     });
-
-    console.log(percentages);
   };
 
   const { protein, carbs, fats } = nutritionSearchData;
@@ -84,27 +101,32 @@ const NutritionInfo = ({ nutritionSearchData }) => {
 
   return (
     <>
-      <section className='border p-5 flex justify-evenly '>
-        <div>
+      <section className='border p-5 flex flex-col  items-center  md:flex-row md:justify-evenly  '>
+        <div className='mb-5 justify-center items-center h-full'>
           <Doughnut
             data={data}
-            // width={100}
+            // width={width < 480 ? 180 : 200}
+            width={200}
+
             // options={{ maintainAspectRatio: false }}
           />
         </div>
-        <ul className='flex flex-col justify-center'>
-          <li className='m-1'>
-            Protein: {protein} g{' '}
+        <ul className='flex flex-col justify-center '>
+          <li className='m-1 text-sm md:text-lg'>
+            Protein: {protein.toFixed(1)} g{' '}
             <span style={{ color: '#44D07B' }}>({proteinPercentage}%)</span>
           </li>
-          <li className='m-1'>
-            Net Carbs: {carbs} g{' '}
+          <li className='m-1 text-sm md:text-lg'>
+            Net Carbs: {carbs.toFixed(1)} g{' '}
             <span style={{ color: '#1CCAD7' }}>({carbsPercentage}%)</span>
           </li>
-          <li className='m-1'>
-            Fat: {fats} g{' '}
+          <li className='m-1 text-sm md:text-lg'>
+            Fat: {fats.toFixed(1)} g{' '}
             <span style={{ color: '#EA3B04' }}>({fatsPercent}%)</span>
           </li>
+          <button className=' w-40 mt-3 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded'>
+            ADD
+          </button>
         </ul>
       </section>
     </>

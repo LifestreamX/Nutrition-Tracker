@@ -1,3 +1,4 @@
+import { MyProvider } from '@/MyContext';
 import NavBar from './components/NavBar';
 import './globals.css';
 import './output.css';
@@ -18,12 +19,14 @@ export default function RootLayout({
     <html lang='en'>
       <head />
 
-      <body className={oswald.className}>
-        <main className='w-screen'>
-          <NavBar />
-          <Providers>{children}</Providers>
-        </main>
-      </body>
+      <MyProvider>
+        <body className={oswald.className}>
+          <main className='w-screen'>
+            <NavBar />
+            <Providers>{children}</Providers>
+          </main>
+        </body>
+      </MyProvider>
     </html>
   );
 }

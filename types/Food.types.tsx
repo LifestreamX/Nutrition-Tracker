@@ -1,42 +1,37 @@
 export interface FoodTypeData {
-  allergen_contains_eggs: any;
-  allergen_contains_fish: any;
-  allergen_contains_gluten: any;
-  allergen_contains_milk: any;
-  allergen_contains_peanuts: any;
-  allergen_contains_shellfish: any;
-  allergen_contains_soybeans: any;
-  allergen_contains_tree_nuts: any;
-  allergen_contains_wheat: any;
-  brand_id: string;
-  brand_name: string;
-  item_description: any;
-  item_id: string;
-  item_name: string;
-  leg_loc_id: number;
-  nf_calcium_dv: number;
-  nf_calories: number;
-  nf_calories_from_fat: number;
-  nf_cholesterol: number;
-  nf_dietary_fiber: number;
-  nf_ingredient_statement: any;
-  nf_iron_dv: number;
-  nf_monounsaturated_fat: number;
-  nf_polyunsaturated_fat: number;
-  nf_protein: number;
-  nf_refuse_pct: any;
-  nf_saturated_fat: number;
-  nf_serving_size_unit: string;
-  nf_serving_weight_grams: number;
-  nf_sodium: number;
-  nf_sugars: number;
-  nf_total_carbohydrate: number;
-  nf_total_fat: number;
-  nf_trans_fatty_acid: number;
-  nf_vitamin_a_dv: number;
-  nf_vitamin_c_dv: number;
-  nf_water_grams: number;
-  old_api_id: null | number;
-  updated_at: string;
-  usda_fields: any;
+  category: string;
+  categoryLabel: string;
+  foodId: string;
+  image: string;
+  knownAs: string;
+  label: string;
+
+  nutrients: {
+    CHOCDF: number;
+    ENERC_KCAL: number;
+    FAT: number;
+    FIBTG: number;
+    PROCNT: number;
+  };
+
+  servingSizes: {
+    forEach(arg0: (e: ServingsType) => void): unknown;
+    uri: string;
+    label: string;
+    quantity: number;
+  };
 }
+
+export interface ServingsType {
+  uri: string;
+  label: string;
+  quantity: number;
+}
+
+export interface nutritionSearchDataType {
+  carbs: number | string;
+  fats: number | string;
+  protein: number | string;
+}
+
+
