@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 
-import grapes from '../../images/dashboard/grapes.png';
+import grapes from '../../../images/dashboard/grapes.png';
 
-// import grapes from '.../images/dashboard/grapes.png';
 import Image from 'next/image';
 import Modal from 'react-modal';
 import { useDebounce } from 'react-use';
@@ -16,6 +15,7 @@ import {
   ServingsType,
 } from '@/types/Food.types';
 import NutritionInfo from './NutritionInfo';
+import Button from '@/app/components/Button';
 
 const customStyles = {
   content: {
@@ -132,7 +132,7 @@ const FoodSearch = () => {
 
     '
       >
-        <Image src={grapes} alt='grapes' className='w-5' />
+        <Image src={grapes} alt='grapes' className='w-6' />
 
         <p className='text-bolder text-1xl font-bold mx-1'>FOOD</p>
         <span className='relative'>
@@ -142,7 +142,7 @@ const FoodSearch = () => {
             viewBox='0 0 24 24'
             strokeWidth={1.5}
             stroke='currentColor'
-            className='w-5 h-5'
+            className='w-6 h-6'
           >
             <path
               strokeLinecap='round'
@@ -177,20 +177,24 @@ const FoodSearch = () => {
             <input
               type='text'
               placeholder='Search...'
-              className=' border-slate-800 border rounded w-full p-2 focus:outline-none '
+              className=' border-slate-800 border rounded w-full p-2 focus:outline-none mr-3'
               value={val}
               onChange={(e) => {
                 setVal(e.target.value);
                 val.length === 0 && setSearchData([]);
               }}
             />
-            <button
-              onClick={handleSearch}
+
+            <Button color='purple' size='medium' onClick={handleSearch}>
+              Search
+            </Button>
+
+            {/* <button
               // type='submit'
               className='w-full md:w-32 mt-2 md:mt-0 relative shadow text-xl p-1   bg-green-700 hover:bg-green-900 focus:shadow-outline focus:outline-none pb-2  text-white font-bold  rounded  align-middle  md:ml-2'
             >
               Search
-            </button>
+            </button> */}
           </div>
 
           {/* Results */}

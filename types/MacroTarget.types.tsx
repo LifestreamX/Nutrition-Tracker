@@ -6,3 +6,7 @@ export interface MacroTargetTypes {
   fats: number | string;
   date: any;
 }
+
+export interface Goals {
+  [key: string]: number | string;
+}

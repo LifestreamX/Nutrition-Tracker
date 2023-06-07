@@ -5,12 +5,25 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap'); */
 
 :root {
-  /* font-family: 'Roboto', sans-serif; */
+  --calories-color: '#808080',
+  --protein-color: '#44D07B',
+  --carbs-color: '#1CCAD7',
+  --fats-color: '#EA3B04',
 }
 
 .signup-button {
   background-color: #ffffff;
 }
+
+
+
+
+
+
+
+
+
+
 
 /* .wrapper {
   display: flex;

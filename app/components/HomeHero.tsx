@@ -3,6 +3,7 @@ import Image from 'next/image';
 import heroimg from '../images/heroimg.png';
 import heroimg2 from '../images/heroimg2.png';
 import Link from 'next/link';
+import Button from './Button';
 
 const HomeHero = () => {
   return (
@@ -14,12 +15,9 @@ const HomeHero = () => {
         <h3 className='text-2xl mb-5 font-bold lg:text-3xl'>
           Track your nutriiton
         </h3>
-        <button
-          type='button'
-          className='text-1xl lg:text-3xl font-bold focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 rounded-lg  px-6 py-3 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
-        >
+        <Button color='purple' size='large'>
           <Link href='/signup'> Sign Up Now!</Link>
-        </button>
+        </Button>
       </div>
 
       {/* Rightside Hero */}

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useCallback, useContext, useState } from 'react';
-import FoodSearch from './components/FoodSearchButton';
-import FetchNutritionData from './components/FetchNutritionData';
-import MacroGoals from './components/MacroGoals';
+import FetchNutritionData from './components/foodsearch/FetchNutritionData';
+import MacroGoals from './components/macrogoals/MacroGoals';
+import FoodSearch from './components/foodsearch/FoodSearchButton';
+import FoodLog from './components/foodlog/FoodLog';
 
 const Dashboard = () => {
   // const [userInput, setUserInput] = useState('');
@@ -11,7 +12,7 @@ const Dashboard = () => {
   // const { count, incrementCount } = useMyContext();
 
   return (
-    <main>
+    <main className=''>
       <section className=' flex justify-center items-middle mt-5'>
         <FoodSearch val={val} setVal={setVal}>
           {/* @ts-expect-error Server Component */}
@@ -25,9 +26,9 @@ const Dashboard = () => {
         <MacroGoals />
       </section>
 
-      {/* Table for nutrition added added*/}
-      {/* With caloies and sizes */}
-      <section></section>
+      <section className='w-full flex justify-center items-center relative top-44 '>
+        <FoodLog />
+      </section>
 
       {/* */}
       <section>

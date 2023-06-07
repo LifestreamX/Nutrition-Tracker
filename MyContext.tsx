@@ -33,16 +33,14 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     protein: '',
     carbs: '',
     fats: '',
-    // date: '',
   });
 
-  const [macroTargetInputs, setMacroTargesInputs] = useState({
-    calories: '',
-    protein: '',
-    carbs: '',
-    fats: '',
-    // date: '',
-  });
+  // const [macroTargetInputs, setMacroTargesInputs] = useState({
+  //   calories: '',
+  //   protein: '',
+  //   carbs: '',
+  //   fats: '',
+  // });
 
   // const [count, setCount] = useState(0);
 
@@ -55,8 +53,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     // incrementCount,
     macroTargets,
     setMacroTargets,
-    macroTargetInputs,
-    setMacroTargesInputs,
+    // macroTargetInputs,
+    // setMacroTargesInputs,
   };
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
