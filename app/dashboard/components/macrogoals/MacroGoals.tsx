@@ -83,7 +83,7 @@ const MacroGoals = () => {
       {/* Button for setting the target goals  */}
       <div className='flex items-center justify-center mt-20 flex-col mb-5'>
         {!showMacroForm && !showDateForm && (
-          <div>
+          <div className='flex flex-col justify-center items-center md:flex-row'>
             <Button
               color='purple'
               size='medium'
@@ -92,15 +92,9 @@ const MacroGoals = () => {
               Set Macro Goals
             </Button>
 
-            <button className='ml-5 mr-5'>
+            <button className='mt-2'>
               <MyDatePicker />
             </button>
-            {/* <button
-              onClick={() => setShowDateForm(true)}
-              className='bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded ml-2'
-            >
-              Set Date
-            </button> */}
           </div>
         )}
 
@@ -196,14 +190,14 @@ const MacroGoals = () => {
         {/* for Calories Burned / calories consumed  / calories remaining targets */}
 
         {!showMacroForm && (
-          <section className='w-screen h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-center md:top-20 md:justify-evenly '>
+          <section className='w-screen h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-evenly md:top-20 '>
             {/*  Left Side*/}
             <div className=' w-1/3 bg-white rounded-lg shadow-lg'>
               <MacroProgressBar />
             </div>
 
             {/* Right Ride */}
-            <div className=' w-1/3 bg-white rounded-lg shadow-lg flex justify-evenly items-center'>
+            <div className=' w-1/3 bg-white rounded-lg shadow-lg flex justify-evenly items-center mt-5 md:mt-0'>
               <CaloriesProgress />
             </div>
           </section>

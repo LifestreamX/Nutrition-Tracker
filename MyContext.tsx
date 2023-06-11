@@ -1,7 +1,11 @@
 'use client';
 
 import { createContext, useContext, useState } from 'react';
-import { MacroTargetTypes } from './types/MacroTarget.types';
+import {
+  MacroTargetTypes,
+  NutritionSearchDataType,
+} from './types/MacroTarget.types';
+import { FoodTypeData } from './types/Food.types';
 
 type MyContextType = {
   // count: number;
@@ -11,6 +15,13 @@ type MyContextType = {
   setMacroTargets: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
   macroTargetInputs: MacroTargetTypes;
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
+  nutritionSearchData: NutritionSearchDataType;
+  setnutritionSearchData: React.Dispatch<
+    React.SetStateAction<NutritionSearchDataType>
+  >;
+  foodLog: FoodTypeData;
+  setFoodLog: React.Dispatch<React.SetStateAction<FoodTypeData>>;
+ 
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -35,26 +46,20 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     fats: '',
   });
 
-  // const [macroTargetInputs, setMacroTargesInputs] = useState({
-  //   calories: '',
-  //   protein: '',
-  //   carbs: '',
-  //   fats: '',
-  // });
+  const [nutritionSearchData, setNutritionSearchData] = useState();
 
-  // const [count, setCount] = useState(0);
+  const [foodLog, setFoodLog] = useState([]);
 
-  // const incrementCount = () => {
-  //   setCount((prevCount) => prevCount + 1);
-  // };
+
 
   const value: MyContextType = {
-    // count,
-    // incrementCount,
     macroTargets,
     setMacroTargets,
-    // macroTargetInputs,
-    // setMacroTargesInputs,
+    nutritionSearchData,
+    setNutritionSearchData,
+    foodLog,
+    setFoodLog,
+   
   };
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;

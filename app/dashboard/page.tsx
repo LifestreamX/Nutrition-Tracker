@@ -21,12 +21,12 @@ const Dashboard = () => {
         {/* {count} */}
       </section>
 
-      <section>
+      <section className=''>
         {' '}
         <MacroGoals />
       </section>
 
-      <section className='w-full flex justify-center items-center relative top-44 '>
+      <section className='w-full flex justify-center items-center relative top-96 mt-40 md:mt-0  md:top-44 '>
         <FoodLog />
       </section>
 

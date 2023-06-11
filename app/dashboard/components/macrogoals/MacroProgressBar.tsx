@@ -54,7 +54,7 @@ export const MacroProgressBar = () => {
     fatsGoal: macroTargets.fats,
   };
 
-  console.log(macroTargets);
+  // console.log(macroTargets);
 
   return (
     <section className=' bg-white rounded-lg shadow-lg p-8'>
@@ -86,7 +86,7 @@ export const MacroProgressBar = () => {
 
 export const CaloriesProgress = () => {
   return (
-    <section className='flex flex-col justify-around w-full md:flex-row p-5'>
+    <section className='flex flex-col justify-around w-full p-5 items-center  md:flex-row  '>
       <div className='w-32 flex flex-col justify-center items-center'>
         {' '}
         <h1>Calories Remaining</h1>

@@ -16,6 +16,7 @@ import {
 } from '@/types/Food.types';
 import NutritionInfo from './NutritionInfo';
 import Button from '@/app/components/Button';
+import { useMyContext } from '@/MyContext';
 
 const customStyles = {
   content: {
@@ -51,17 +52,18 @@ const FoodSearch = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [searchData, setSearchData] = useState<FoodTypeData[]>([]);
 
-  // console.log(searchData);
-
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
-  const [nutritionSearchData, setnutritionSearchData] =
-    useState<nutritionSearchDataType>();
+
   const [openExtra, setOpenExtra] = useState(false);
 
-  // console.log(searchData)
+  const { nutritionSearchData, setNutritionSearchData } = useMyContext();
+
+  const [servData, setServData] = useState({});
 
   const { width } = useWindowSize();
+
+  // console.log(searchData);
 
   const [, cancel] = useDebounce(
     () => {
@@ -77,7 +79,6 @@ const FoodSearch = () => {
 
   const handleSearch = async () => {
     let { hints } = await fetchNutritionData(val);
-    console.log(hints);
 
     let data: Object[] = [];
 
@@ -106,22 +107,40 @@ const FoodSearch = () => {
 
   let stringNum = '3000';
 
-  // console.log(stringNum);
-
   const handleItemHighlightClick = (
     protein: number,
     carbs: number,
-    fats: number
+    fats: number,
+    calories: number,
+    FIBTG: number,
+    category: string,
+    categoryLabel: string,
+    foodId: string,
+    image: string,
+    knownAs: string,
+    label: string,
+    nutrients: {},
+    servingSizes: any
+
   ) => {
-    setnutritionSearchData({
+    setNutritionSearchData({
       protein: protein,
       carbs: carbs,
       fats: fats,
+      calories: calories,
+      FIBTG: FIBTG,
+      category: category,
+      categoryLabel: categoryLabel,
+      foodId: foodId,
+      image: image,
+      knownAs: knownAs,
+      label: label,
+      nutrients: nutrients,
+      servingSizes: { ...servingSizes },
+      quantity: 1
     });
     setOpenExtra(true);
   };
-
-  // console.log(searchData);
 
   return (
     <main>
@@ -173,7 +192,7 @@ const FoodSearch = () => {
             </button>
           </div>
 
-          <div className='w-full flex flex-col md:flex-row justify-center items-center p-5 '>
+          <div className='w-full flex  flex-row justify-center items-center p-5 '>
             <input
               type='text'
               placeholder='Search...'
@@ -185,9 +204,11 @@ const FoodSearch = () => {
               }}
             />
 
-            <Button color='purple' size='medium' onClick={handleSearch}>
-              Search
-            </Button>
+            <div>
+              <Button color='purple' size='medium' onClick={handleSearch}>
+                Search
+              </Button>
+            </div>
 
             {/* <button
               // type='submit'
@@ -199,11 +220,7 @@ const FoodSearch = () => {
 
           {/* Results */}
           {/* Load info for clicked item */}
-          <div className='z-40 bg-white'>
-            {openExtra && (
-              <NutritionInfo nutritionSearchData={nutritionSearchData} />
-            )}
-          </div>
+          <div className='z-40 bg-white'>{openExtra && <NutritionInfo />}</div>
         </div>
 
         {debouncedValue.length !== 0 && searchData.length === 0 && (
@@ -243,6 +260,7 @@ const FoodSearch = () => {
                 nutrients,
                 servingSizes,
               } = e;
+              // console.log(searchData)
 
               const {
                 CHOCDF: carbs,
@@ -252,22 +270,29 @@ const FoodSearch = () => {
                 PROCNT: protein,
               } = nutrients;
 
-              servingSizes?.forEach((e: ServingsType) => {
-                const {
-                  uri: servingsUri,
-                  label: servingsLabel,
-                  quantity: servingsQuantity,
-                } = e;
-              });
-
               return (
                 <>
                   <ul className='z-0'>
                     <li className='flex cursor-pointer m-2' key={foodId}>
                       <button
-                        className='focus:bg-green-400 p-1 w-screen text-left flex justify-between '
+                        className='focus:bg-purple-200 rounded p-2 w-screen text-left flex justify-between '
                         onClick={() =>
-                          handleItemHighlightClick(protein, carbs, fats)
+                          handleItemHighlightClick(
+                            protein,
+                            carbs,
+                            fats,
+                            calories,
+                            FIBTG,
+                            category,
+                            categoryLabel,
+                            foodId,
+                            image,
+                            knownAs,
+                            label,
+                            nutrients,
+                            servingSizes,
+                            
+                          )
                         }
                       >
                         <p className='flex '>{label}</p>

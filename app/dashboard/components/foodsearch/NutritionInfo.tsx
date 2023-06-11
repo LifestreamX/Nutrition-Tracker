@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useWindowSize } from 'react-use';
-import { nutritionSearchDataType } from '@/types/Food.types';
+import { FoodTypeData, nutritionSearchDataType } from '@/types/Food.types';
+import Button from '@/app/components/Button';
+import { useMyContext } from '@/MyContext';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -10,10 +12,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //   nutritionSearchData: {};
 // };
 
-const NutritionInfo = ({ nutritionSearchData }: any): any => {
-  const { width } = useWindowSize();
+const NutritionInfo = () => {
+  const { nutritionSearchData, setNutritionSearchData, foodLog, setFoodLog } =
+    useMyContext();
 
-  console.log(nutritionSearchData);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     getPercentages(
@@ -99,6 +102,27 @@ const NutritionInfo = ({ nutritionSearchData }: any): any => {
     ],
   };
 
+  // console.log(nutritionSearchData);
+
+  const handleAddToFoodLog = (id: string) => {
+    const alreadyHaveFood = foodLog.map((food) => {
+      if (food.foodId === id) {
+        return {
+          ...food,
+          quantity: 100,
+        };
+      }
+    });
+
+    const doesFoodExist = foodLog.find((food) => food.foodId === id);
+
+    if (doesFoodExist) {
+      setFoodLog(alreadyHaveFood);
+    } else {
+      setFoodLog([...foodLog, { ...nutritionSearchData }]);
+    }
+  };
+
   return (
     <>
       <section className='border p-5 flex flex-col  items-center  md:flex-row md:justify-evenly  '>
@@ -120,13 +144,17 @@ const NutritionInfo = ({ nutritionSearchData }: any): any => {
             Net Carbs: {carbs.toFixed(1)} g{' '}
             <span style={{ color: '#1CCAD7' }}>({carbsPercentage}%)</span>
           </li>
-          <li className='m-1 text-sm md:text-lg'>
+          <li className='m-1 text-sm md:text-lg mb-4'>
             Fat: {fats.toFixed(1)} g{' '}
             <span style={{ color: '#EA3B04' }}>({fatsPercent}%)</span>
           </li>
-          <button className=' w-40 mt-3 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded'>
+          <Button
+            color='purple'
+            size='medium'
+            onClick={() => handleAddToFoodLog(nutritionSearchData.foodId)}
+          >
             ADD
-          </button>
+          </Button>
         </ul>
       </section>
     </>

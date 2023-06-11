@@ -24,6 +24,8 @@ const MyDatePicker: React.FC = () => {
         onChange={handleDateChange}
         dateFormat="EEEE, d MMMM yyyy"
         placeholderText="Select a date"
+        className="text-center"
+
       />
       {/* <p>Selected Date: {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}</p> */}
     </div>
