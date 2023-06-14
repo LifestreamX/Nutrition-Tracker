@@ -21,7 +21,8 @@ type MyContextType = {
   >;
   foodLog: FoodTypeData;
   setFoodLog: React.Dispatch<React.SetStateAction<FoodTypeData>>;
- 
+  successAdded: Boolean;
+  setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean>>;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -50,7 +51,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [foodLog, setFoodLog] = useState([]);
 
-
+  const [successAdded, setSuccessAdded] = useState(false);
 
   const value: MyContextType = {
     macroTargets,
@@ -59,7 +60,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setNutritionSearchData,
     foodLog,
     setFoodLog,
-   
+    successAdded,
+    setSuccessAdded,
   };
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;

@@ -2,13 +2,17 @@ export interface FoodTypeData {
   length: number;
   find(arg0: (food: any) => boolean): unknown;
   filter(arg0: (food: any) => boolean): FoodTypeData;
-  map(arg0: (food: import("./FoodLog.types").FoodLogTypes) => JSX.Element): import("react").ReactNode;
+  map(
+    arg0: (food: import('./FoodLog.types').FoodLogTypes) => JSX.Element
+  ): import('react').ReactNode;
   category: string;
   categoryLabel: string;
   foodId: string;
   image: string;
   knownAs: string;
   label: string;
+  calories: number | string;
+  quantity: number;
 
   nutrients: {
     CHOCDF: number;
@@ -37,5 +41,3 @@ export interface NutritionSearchDataType {
   fats: number | string;
   protein: number | string;
 }
-
-

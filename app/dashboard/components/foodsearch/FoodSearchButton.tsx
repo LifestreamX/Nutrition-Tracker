@@ -51,19 +51,12 @@ const FoodSearch = () => {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [searchData, setSearchData] = useState<FoodTypeData[]>([]);
-
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
-
   const [openExtra, setOpenExtra] = useState(false);
-
-  const { nutritionSearchData, setNutritionSearchData } = useMyContext();
-
-  const [servData, setServData] = useState({});
-
+  const { nutritionSearchData, setNutritionSearchData, successAdded, setSuccessAdded } =
+    useMyContext();
   const { width } = useWindowSize();
-
-  // console.log(searchData);
 
   const [, cancel] = useDebounce(
     () => {
@@ -121,7 +114,6 @@ const FoodSearch = () => {
     label: string,
     nutrients: {},
     servingSizes: any
-
   ) => {
     setNutritionSearchData({
       protein: protein,
@@ -137,9 +129,10 @@ const FoodSearch = () => {
       label: label,
       nutrients: nutrients,
       servingSizes: { ...servingSizes },
-      quantity: 1
+      quantity: 1,
     });
     setOpenExtra(true);
+    setSuccessAdded(false);
   };
 
   return (
@@ -178,11 +171,9 @@ const FoodSearch = () => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={width < 768 ? mobileCustomStyles : customStyles}
-        // className={styles.modal}
         contentLabel='Example Modal'
       >
         <div className='sticky top-0 mb-5 z-10 '>
-          {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Search</h2> */}
           <div className='w-full flex justify-end relative right-2'>
             <button
               onClick={closeModal}
@@ -209,18 +200,41 @@ const FoodSearch = () => {
                 Search
               </Button>
             </div>
-
-            {/* <button
-              // type='submit'
-              className='w-full md:w-32 mt-2 md:mt-0 relative shadow text-xl p-1   bg-green-700 hover:bg-green-900 focus:shadow-outline focus:outline-none pb-2  text-white font-bold  rounded  align-middle  md:ml-2'
-            >
-              Search
-            </button> */}
           </div>
 
           {/* Results */}
           {/* Load info for clicked item */}
           <div className='z-40 bg-white'>{openExtra && <NutritionInfo />}</div>
+
+          {/* SUCCESS */}
+          {successAdded && (
+            <div className='relative w-full flex justify-center items-center top-16 '>
+              <div
+                className='absolute   flex  p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400'
+                role='alert'
+              >
+                <svg
+                  aria-hidden='true'
+                  className='flex-shrink-0 inline w-5 h-5 mr-3'
+                  fill='currentColor'
+                  viewBox='0 0 20 20'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    fill-rule='evenodd'
+                    d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z'
+                    clip-rule='evenodd'
+                  ></path>
+                </svg>
+                <span className='sr-only'>Info</span>
+                <div>
+                  <span className='text-md  md:text-lg '>
+                    {nutritionSearchData.label} Added
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {debouncedValue.length !== 0 && searchData.length === 0 && (
@@ -260,7 +274,6 @@ const FoodSearch = () => {
                 nutrients,
                 servingSizes,
               } = e;
-              // console.log(searchData)
 
               const {
                 CHOCDF: carbs,
@@ -275,7 +288,11 @@ const FoodSearch = () => {
                   <ul className='z-0'>
                     <li className='flex cursor-pointer m-2' key={foodId}>
                       <button
-                        className='focus:bg-purple-200 rounded p-2 w-screen text-left flex justify-between '
+                        className={`focus:bg-purple-200 ${
+                          nutritionSearchData?.foodId === foodId &&
+                          nutritionSearchData?.label === label &&
+                          'bg-purple-200'
+                        } rounded p-2 w-screen text-left flex justify-between`}
                         onClick={() =>
                           handleItemHighlightClick(
                             protein,
@@ -290,13 +307,11 @@ const FoodSearch = () => {
                             knownAs,
                             label,
                             nutrients,
-                            servingSizes,
-                            
+                            servingSizes
                           )
                         }
                       >
                         <p className='flex '>{label}</p>
-                        {/* {servingsData.label} */}
                         <p>kcal: {calories.toFixed(0)}</p>
                       </button>
                     </li>

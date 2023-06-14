@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 
 export type ButtonColor = 'purple' | 'red';
 
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonSize = 'extra-small' | 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
   color?: ButtonColor;

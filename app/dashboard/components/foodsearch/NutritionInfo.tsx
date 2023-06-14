@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -8,13 +9,17 @@ import { useMyContext } from '@/MyContext';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// type Props = {
-//   nutritionSearchData: {};
-// };
-
 const NutritionInfo = () => {
-  const { nutritionSearchData, setNutritionSearchData, foodLog, setFoodLog } =
-    useMyContext();
+  const {
+    nutritionSearchData,
+    setNutritionSearchData,
+    foodLog,
+    setFoodLog,
+    successAdded,
+    setSuccessAdded,
+  } = useMyContext();
+
+  const [added, setAdded] = useState(false);
 
   const { width } = useWindowSize();
 
@@ -102,50 +107,49 @@ const NutritionInfo = () => {
     ],
   };
 
-  // console.log(nutritionSearchData);
-
   const handleAddToFoodLog = (id: string) => {
-    const alreadyHaveFood = foodLog.map((food) => {
+    const alreadyHaveFood = foodLog?.map((food) => {
       if (food.foodId === id) {
         return {
           ...food,
-          quantity: 100,
+          quantity: food.quantity + 1,
         };
       }
+      return food;
     });
 
-    const doesFoodExist = foodLog.find((food) => food.foodId === id);
+    const doesFoodExist = foodLog?.find((food) => food.foodId === id);
 
     if (doesFoodExist) {
       setFoodLog(alreadyHaveFood);
     } else {
       setFoodLog([...foodLog, { ...nutritionSearchData }]);
     }
+
+    setSuccessAdded(true);
+
+    setTimeout(() => {
+      setSuccessAdded(false);
+    }, 1000);
   };
 
   return (
     <>
       <section className='border p-5 flex flex-col  items-center  md:flex-row md:justify-evenly  '>
         <div className='mb-5 justify-center items-center h-full'>
-          <Doughnut
-            data={data}
-            // width={width < 480 ? 180 : 200}
-            width={200}
-
-            // options={{ maintainAspectRatio: false }}
-          />
+          <Doughnut data={data} width={200} />
         </div>
         <ul className='flex flex-col justify-center '>
           <li className='m-1 text-sm md:text-lg'>
-            Protein: {protein.toFixed(1)} g{' '}
+            Protein: {protein?.toFixed(1)} g{' '}
             <span style={{ color: '#44D07B' }}>({proteinPercentage}%)</span>
           </li>
           <li className='m-1 text-sm md:text-lg'>
-            Net Carbs: {carbs.toFixed(1)} g{' '}
+            Net Carbs: {carbs?.toFixed(1)} g{' '}
             <span style={{ color: '#1CCAD7' }}>({carbsPercentage}%)</span>
           </li>
           <li className='m-1 text-sm md:text-lg mb-4'>
-            Fat: {fats.toFixed(1)} g{' '}
+            Fat: {fats?.toFixed(1)} g{' '}
             <span style={{ color: '#EA3B04' }}>({fatsPercent}%)</span>
           </li>
           <Button

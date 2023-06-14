@@ -16,8 +16,10 @@ const Button: React.FC<ButtonProps> = ({ color, size, onClick, children }) => {
 
   const sizeClasses = (): string => {
     switch (size) {
-      case 'small':
+      case 'extra-small':
         return 'py-1 px-2 text-sm';
+      case 'small':
+        return 'py-1 px-2 text-md';
       case 'medium':
         return 'py-2 px-2 text-xl';
       case 'large':

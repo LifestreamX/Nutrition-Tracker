@@ -1,7 +1,11 @@
 import React from 'react';
 import { useMyContext } from '@/MyContext';
 
-const ConfirmDelete = ({ onDelete }) => {
+interface ChildProps {
+  onDelete: (id: string) => void;
+}
+
+const ConfirmDelete = ({ onDelete }: ChildProps) => {
   const {} = useMyContext();
 
   const handleConfirmDeleteClick = () => {
