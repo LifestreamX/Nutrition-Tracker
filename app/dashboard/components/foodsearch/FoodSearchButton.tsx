@@ -1,19 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-
 import grapes from '../../../images/dashboard/grapes.png';
-
 import Image from 'next/image';
 import Modal from 'react-modal';
 import { useDebounce } from 'react-use';
 import { useWindowSize } from 'react-use';
 import fetchNutritionData from './FetchNutritionData';
-import {
-  FoodTypeData,
-  nutritionSearchDataType,
-  ServingsType,
-} from '@/types/Food.types';
+import { FoodTypeData } from '@/types/Food.types';
 import NutritionInfo from './NutritionInfo';
 import Button from '@/app/components/Button';
 import { useMyContext } from '@/MyContext';
@@ -48,14 +42,17 @@ const mobileCustomStyles = {
 Modal.setAppElement(document.getElementById('root'));
 
 const FoodSearch = () => {
-  let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [searchData, setSearchData] = useState<FoodTypeData[]>([]);
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
   const [openExtra, setOpenExtra] = useState(false);
-  const { nutritionSearchData, setNutritionSearchData, successAdded, setSuccessAdded } =
-    useMyContext();
+  const {
+    nutritionSearchData,
+    setNutritionSearchData,
+    successAdded,
+    setSuccessAdded,
+  } = useMyContext();
   const { width } = useWindowSize();
 
   const [, cancel] = useDebounce(

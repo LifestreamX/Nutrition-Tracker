@@ -5,25 +5,19 @@
 
 
 
-TODO: FIX Cancel delete button
-
-TODO: Work on Styles and responsiveness one above todos done
-
-
-
 TODO: food log hover shows charts of that food
+
+
+
+TODO:Charts above log need to work with numbers
 
 TODO: Submit log logic
 
-
-
-
-
-
-
             <!-- Hooks To Implement -->
+
 TODO: use useReducer Hook
 TODO: use useCallback Hook
+
 TODO: use useMemo / React Memo
 
 <!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

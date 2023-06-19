@@ -8,7 +8,6 @@ import {
 import { FoodTypeData } from './types/Food.types';
 
 type MyContextType = {
-  // count: number;
   // incrementCount: () => void;
 
   macroTargets: MacroTargetTypes;
@@ -23,6 +22,10 @@ type MyContextType = {
   setFoodLog: React.Dispatch<React.SetStateAction<FoodTypeData>>;
   successAdded: Boolean;
   setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean>>;
+  clikedEditId: string;
+  setClikedEditId: React.Dispatch<React.SetStateAction<string>>;
+  foodItem: any;
+  setFoodItem: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -53,6 +56,10 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [successAdded, setSuccessAdded] = useState(false);
 
+  const [clikedEditId, setClikedEditId] = useState('');
+
+  const [foodItem, setFoodItem] = useState(null);
+
   const value: MyContextType = {
     macroTargets,
     setMacroTargets,
@@ -62,6 +69,10 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setFoodLog,
     successAdded,
     setSuccessAdded,
+    clikedEditId,
+    setClikedEditId,
+    foodItem,
+    setFoodItem,
   };
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;

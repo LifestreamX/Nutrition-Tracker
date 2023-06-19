@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useWindowSize } from 'react-use';
-import { FoodTypeData, nutritionSearchDataType } from '@/types/Food.types';
 import Button from '@/app/components/Button';
 import { useMyContext } from '@/MyContext';
 

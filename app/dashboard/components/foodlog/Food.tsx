@@ -1,26 +1,54 @@
-import { useMyContext } from '@/MyContext';
-import React from 'react';
-import { useState } from 'react';
+'use client';
+
+import { useState, useEffect } from 'react';
 import ConfirmDelete from './ConfirmDelete';
 import { FoodTypeData } from '@/types/Food.types';
 import Button from '@/app/components/Button';
 import { FoodLogTypes } from '@/types/FoodLog.types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import HoverFoodLogItemData from './HoverFoodLogItemData';
+import { useMyContext } from '@/MyContext';
 
 interface FoodDataProps {
   food: FoodTypeData;
 }
 
 const Food = ({ food }: FoodDataProps) => {
-  const { foodLog, setFoodLog } = useMyContext();
+  const {
+    foodLog,
+    setFoodLog,
+    foodItem,
+    setFoodItem,
+    clikedEditId,
+    setClikedEditId,
+  } = useMyContext();
   const [hoverItemId, setHoverItemId] = useState<string | null>(null);
   const [deleteClicked, setDeleteClicked] = useState(false);
-  const [toggleInput, setToggleInput] = useState(false);
   const [newQuantity, setNewQuantity] = useState<
     number | ChangeEvent<HTMLInputElement> | null
   >(null);
   const [emptyQuantityWarning, setEmptyQuantityWarning] = useState(false);
+  const [delayRender, setDelayedRender] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {});
+    setFoodItem(food);
+
+    let timeoutId: NodeJS.Timeout;
+
+    if (hoverItemId) {
+      timeoutId = setTimeout(() => {
+        setDelayedRender(true);
+      }, 1000); // Delay of 2 seconds (2000 milliseconds)
+    } else {
+      setDelayedRender(false);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [hoverItemId]);
 
   const handleMouseEnterd = (foodId: string): void => {
     setHoverItemId(foodId);
@@ -35,7 +63,8 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleQuantity = (id: string): void => {
-    setToggleInput(true);
+    setNewQuantity(food.quantity);
+    setClikedEditId(id);
   };
 
   const handleQuantityChange = (
@@ -45,68 +74,74 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleQuantitySave = (id: string) => {
-    newQuantity == null || newQuantity.trim() === ''
-      ? (() => {
+    newQuantity == null ||
+      newQuantity.trim() === '' ||
+      (newQuantity <= 0 &&
+        (() => {
+          setNewQuantity(newQuantity);
           setEmptyQuantityWarning(true);
           setTimeout(() => {
             setEmptyQuantityWarning(false);
           }, 2000);
-        })()
-      : setToggleInput(false);
-    const updated = foodLog?.map((food: FoodLogTypes) => {
-      if (food.foodId === id) {
-        return { ...food, quantity: newQuantity };
-      }
-      return food;
-    });
+        })());
 
-    setFoodLog(updated);
+    if (newQuantity <= 0) {
+      return;
+    } else {
+      setClikedEditId(null);
+      const updated = foodLog?.map((food: FoodLogTypes) => {
+        if (food.foodId === id) {
+          return { ...food, quantity: newQuantity };
+        }
+        return food;
+      });
+      setFoodLog(updated);
+    }
   };
 
-  console.log(newQuantity);
+  const quantityCalories = food.calories * food.quantity;
 
   return (
     <div
       onMouseEnter={() => handleMouseEnterd(food.foodId)}
       onMouseLeave={handleMouseLeaving}
       key={food.foodId}
-      className={`grid grid-cols-3 justify-between items-center border border-gray-100 rounded-lg p-2 duration-300 ease-in-out  hover:bg-purple-200 `}
+      className={` relative  grid grid-cols-1 lg:grid-cols-3 border border-gray-100 rounded-lg p-2 duration-300 ease-in-out  hover:bg-purple-200 `}
     >
-      <span className='col-span-1'>{food.label}</span>
-      {/* <span className='col-span-1'>{food.serving}</span> */}
-      <span className='col-span-1 '>
-        {toggleInput ? (
-          <div>
-            {emptyQuantityWarning && (
-              <div
-                className='top-0 absolute flex p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300'
-                role='alert'
-              >
-                <svg
-                  aria-hidden='true'
-                  className='flex-shrink-0 inline w-5 h-5 mr-3'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fill-rule='evenodd'
-                    d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z'
-                    clip-rule='evenodd'
-                  ></path>
-                </svg>
+      {/* Food Name */}
+      <span className='col-span-1 mb-3 lg:mb-0'>{food.label}</span>
+      <span className='col-span-1 mx-2 '>
+        {/* Quantity Warning */}
+        {emptyQuantityWarning && (
+          <div
+            className='top-0 absolute flex p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300'
+            role='alert'
+          >
+            <svg
+              aria-hidden='true'
+              className='flex-shrink-0 inline w-5 h-5 mr-3'
+              fill='currentColor'
+              viewBox='0 0 20 20'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                fill-rule='evenodd'
+                d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
 
-                <div>
-                  <span className='font-medium'>
-                    Please Enter a Quantity 
-                  </span>
-                </div>
-              </div>
-            )}
+            <div>
+              <span className='font-medium'>Please Enter a Quantity</span>
+            </div>
+          </div>
+        )}
 
-            {/* Input and Save  */}
+        {/* Input and Save  */}
+        {clikedEditId === food.foodId ? (
+          <>
             <input
-              className='p-1 focus:outline-none mr-2 border-2'
+              className='p-1 focus:outline-none mr-2 border-2 '
               placeholder='Enter Quantity'
               type='number'
               value={newQuantity}
@@ -119,26 +154,31 @@ const Food = ({ food }: FoodDataProps) => {
             >
               Save
             </Button>
-          </div>
+          </>
         ) : (
-          <div>
+          <span className='relative'>
+            {hoverItemId && delayRender && (
+              <div className='relative bottom-52'>
+                <HoverFoodLogItemData foodL={food.label} />
+              </div>
+            )}
             <span className='mr-2'>{food.quantity}X</span>
-
             <FontAwesomeIcon
               icon={faEdit}
               className='text-gray-600 cursor-pointer'
               onClick={() => handleQuantity(food.foodId)}
             />
-          </div>
+          </span>
         )}
       </span>
-      <div className='flex justify-between'>
-        <span className='col-span-1'>
-          {food.calories * food.quantity} <span>kcal</span>
+
+      <span className='lg:flex lg:justify-between lg:col-span-1 mt-3 lg:mt-0 w-full relative'>
+        <span className=''>
+          {quantityCalories.toFixed(0)} <span>kcal</span>
         </span>
         {/* Delete */}
         {hoverItemId === food.foodId && (
-          <span className='ml-4 '>
+          <span className='absolute right-0 lg:relative '>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
@@ -158,9 +198,13 @@ const Food = ({ food }: FoodDataProps) => {
             </svg>
           </span>
         )}
-      </div>
+      </span>
+
       {deleteClicked && (
-        <ConfirmDelete onDelete={() => handleFoodItemDelete(food.foodId)} />
+        <ConfirmDelete
+          setDeleteClicked={setDeleteClicked}
+          onDelete={() => handleFoodItemDelete(food.foodId)}
+        />
       )}
     </div>
   );

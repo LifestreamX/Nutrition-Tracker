@@ -54,7 +54,6 @@ export const MacroProgressBar = () => {
     fatsGoal: macroTargets.fats,
   };
 
-  // console.log(macroTargets);
 
   return (
     <section className=' bg-white rounded-lg shadow-lg p-8'>
