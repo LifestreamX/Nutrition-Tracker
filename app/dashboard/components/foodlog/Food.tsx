@@ -40,7 +40,7 @@ const Food = ({ food }: FoodDataProps) => {
     if (hoverItemId) {
       timeoutId = setTimeout(() => {
         setDelayedRender(true);
-      }, 1000); // Delay of 2 seconds (2000 milliseconds)
+      }, 500); // Delay of 2 seconds (2000 milliseconds)
     } else {
       setDelayedRender(false);
     }
@@ -158,7 +158,7 @@ const Food = ({ food }: FoodDataProps) => {
         ) : (
           <span className='relative'>
             {hoverItemId && delayRender && (
-              <div className='relative bottom-52'>
+              <div className='relative z-40'>
                 <HoverFoodLogItemData foodL={food.label} />
               </div>
             )}

@@ -1,4 +1,5 @@
 export interface FoodTypeData {
+  reduce(arg0: (acc: any, cur: any) => any, arg1: number): unknown;
   length: number;
   find(arg0: (food: any) => boolean): unknown;
   filter(arg0: (food: any) => boolean): FoodTypeData;

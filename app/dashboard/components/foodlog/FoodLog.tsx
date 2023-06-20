@@ -8,7 +8,6 @@ import Food from './Food';
 const FoodLog = () => {
   const { foodLog } = useMyContext();
 
-  const [clickedId, setClickedId] = useState();
 
   return (
     <div className='bg-white rounded-lg shadow-lg w-5/6 p-10'>

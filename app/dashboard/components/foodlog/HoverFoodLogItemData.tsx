@@ -45,11 +45,10 @@ const HoverFoodLogItemData = () => {
   const pieCentered =
     image === undefined ? 'justify-center' : 'justify-between';
 
-  console.log(typeof protein);
 
   return (
-    <div className='absolute bg-white p-10 rounded shadow-md mt-2 z-10 w-full'>
-      <div className=''>
+    <div className='absolute w-full flex justify-center items-center bottom-36 md:bottom-0'>
+      <div className='bg-white shadow-md z-10 w-1/2 md:w-96 p-8 rounded-lg'>
         {/* Top Half */}
         <h1 className='mb-4 font-bold text-sm md:text-lg tracking-wide'>
           {label}
@@ -73,10 +72,7 @@ const HoverFoodLogItemData = () => {
               {' '}
               Carbs: {carbs.toFixed(1)}g
             </p>
-            <p className='mb-1 text-sm md:text-lg'>
-              {' '}
-              Fats: {fats.toFixed(1)}g
-            </p>
+            <p className='mb-1 text-sm md:text-lg'> Fats: {fats.toFixed(1)}g</p>
           </div>
         </div>
         <hr className='mt-5' />
