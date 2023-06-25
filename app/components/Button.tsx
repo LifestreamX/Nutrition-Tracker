@@ -2,7 +2,13 @@ import React from 'react';
 
 import { ButtonProps } from '@/types/Button.types';
 
-const Button: React.FC<ButtonProps> = ({ color, size, onClick, children }) => {
+const Button: React.FC<ButtonProps> = ({
+  color,
+  size,
+  onClick,
+  responsiveWidth,
+  children,
+}) => {
   const colorClass = () => {
     switch (color) {
       case 'purple':
@@ -29,7 +35,15 @@ const Button: React.FC<ButtonProps> = ({ color, size, onClick, children }) => {
     }
   };
 
-  const buttonClasses = ` ${colorClass()} ${sizeClasses()}`;
+  const widthClass = (): string => {
+    if (responsiveWidth) {
+      return 'w-full md:w-52 ';
+    }
+
+    return '';
+  };
+
+  const buttonClasses = ` ${colorClass()} ${sizeClasses()} ${widthClass()} `;
 
   return (
     <button type='button' className={buttonClasses} onClick={onClick}>

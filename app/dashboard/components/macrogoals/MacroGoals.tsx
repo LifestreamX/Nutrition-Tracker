@@ -9,12 +9,7 @@ import { CaloriesProgress, MacroProgressBar } from './MacroProgressBar';
 import Button from '@/app/components/Button';
 
 const MacroGoals = () => {
-  const {
-    macroTargets,
-    setMacroTargets,
-    // macroTargetInputs,
-    // setMacroTargesInputs,
-  } = useMyContext();
+  const { macroTargets, setMacroTargets } = useMyContext();
   const [showMacroForm, setShowMacroForm] = useState(false);
   const [showDateForm, setShowDateForm] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -28,6 +23,7 @@ const MacroGoals = () => {
   });
 
   const handleInputChange = (event) => {
+    setFillOutInputWarning(false);
     const { name, value } = event.target;
 
     const CustomInput = ({ value, onClick }) => (
@@ -104,7 +100,7 @@ const MacroGoals = () => {
               Set Macro Goals
             </Button>
 
-            <button className='mt-2'>
+            <button className='mt-2 md:ml-6'>
               <MyDatePicker />
             </button>
           </div>

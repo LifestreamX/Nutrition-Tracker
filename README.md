@@ -3,16 +3,17 @@
 
 
 
-TODO:Charts above log need to work with numbers
 
 TODO: Submit log logic
+TODO: page for submitted logs
+TODO: indiviual log page with id
 
             <!-- Hooks To Implement -->
 
 TODO: use useReducer Hook
 TODO: use useCallback Hook
-
 TODO: use useMemo / React Memo
+TODO: Other Data structures
 
 
 

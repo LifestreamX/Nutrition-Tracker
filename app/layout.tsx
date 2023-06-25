@@ -3,12 +3,18 @@ import NavBar from './components/NavBar';
 import './globals.css';
 import './output.css';
 import Providers from './Providers';
-import { Oswald } from '@next/font/google';
+import { Oswald, Kanit } from '@next/font/google';
 
 const oswald = Oswald({
   weight: ['400', '500'],
   subsets: ['latin'],
 });
+const kanit = Kanit({
+  weight: ['400', '500'],
+  subsets: ['latin'],
+});
+
+
 
 export default function RootLayout({
   children,
@@ -20,7 +26,7 @@ export default function RootLayout({
       <head />
 
       <MyProvider>
-        <body className={oswald.className}>
+        <body className={kanit.className}>
           <main className='w-screen'>
             <NavBar />
             <Providers>{children}</Providers>

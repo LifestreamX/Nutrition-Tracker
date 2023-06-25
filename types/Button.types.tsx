@@ -9,4 +9,5 @@ export interface ButtonProps {
   size?: ButtonSize;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
+  responsiveWidth: any;
 }

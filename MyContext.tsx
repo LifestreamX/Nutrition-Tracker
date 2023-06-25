@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
 import {
   MacroTargetTypes,
   NutritionSearchDataType,
@@ -26,6 +26,9 @@ type MyContextType = {
   setClikedEditId: React.Dispatch<React.SetStateAction<string>>;
   foodItem: any;
   setFoodItem: React.Dispatch<React.SetStateAction<any>>;
+  selectedDate: Date | null;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  dispatch: any;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -50,6 +53,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     fats: '',
   });
 
+
   const [nutritionSearchData, setNutritionSearchData] = useState();
 
   const [foodLog, setFoodLog] = useState([]);
@@ -59,6 +63,28 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   const [clikedEditId, setClikedEditId] = useState('');
 
   const [foodItem, setFoodItem] = useState(null);
+
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  type Action = {
+    type: 'SUBMIT_FOOD_LOGS';
+    payload: FoodTypeData[];
+  };
+
+  const reducer = (state: FoodTypeData[], action: Action) => {
+    switch (action.type) {
+      case 'SUBMIT_FOOD_LOGS':
+        return action.payload;
+      default:
+        return state;
+    }
+  };
+
+  const [submittedFoodLogs, dispatch] = useReducer(reducer, []);
+
+  // console.log(foodLog);
+
+  console.log(submittedFoodLogs);
 
   const value: MyContextType = {
     macroTargets,
@@ -73,6 +99,10 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setClikedEditId,
     foodItem,
     setFoodItem,
+    selectedDate,
+    setSelectedDate,
+    submittedFoodLogs,
+    dispatch,
   };
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
