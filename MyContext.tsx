@@ -1,6 +1,12 @@
 'use client';
 
-import { createContext, useContext, useReducer, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 import {
   MacroTargetTypes,
   NutritionSearchDataType,
@@ -29,6 +35,7 @@ type MyContextType = {
   selectedDate: Date | null;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
   dispatch: any;
+  submittedFoodLogs: any;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -46,17 +53,28 @@ type MyProviderProps = {
 };
 
 export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
-  const [macroTargets, setMacroTargets] = useState({
-    calories: '',
-    protein: '',
-    carbs: '',
-    fats: '',
-  });
+  // const [macroTargets, setMacroTargets] = useState({
+  //   calories: '',
+  //   protein: '',
+  //   carbs: '',
+  //   fats: '',
+  // });
 
+  const [macroTargets, setMacroTargets] = useState(() => {
+    const savedMacroTargets = localStorage.getItem('macroTargets');
+    return savedMacroTargets
+      ? JSON.parse(savedMacroTargets)
+      : {
+          calories: '',
+          protein: '',
+          carbs: '',
+          fats: '',
+        };
+  });
 
   const [nutritionSearchData, setNutritionSearchData] = useState();
 
-  const [foodLog, setFoodLog] = useState([]);
+  // const [foodLog, setFoodLog] = useState([]);
 
   const [successAdded, setSuccessAdded] = useState(false);
 
@@ -64,27 +82,37 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [foodItem, setFoodItem] = useState(null);
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+
+  const [foodLog, setFoodLog] = useState(() => {
+    const savedFoodLog = localStorage.getItem('foodLog');
+    return savedFoodLog ? JSON.parse(savedFoodLog) : [];
+  });
+
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const savedSelectedDate = localStorage.getItem('selectedDate');
+    return savedSelectedDate && savedSelectedDate !== undefined
+      ? JSON.parse(savedSelectedDate)?.toString()
+      : null;
+  });
+
 
   type Action = {
     type: 'SUBMIT_FOOD_LOGS';
     payload: FoodTypeData[];
   };
 
+
   const reducer = (state: FoodTypeData[], action: Action) => {
     switch (action.type) {
       case 'SUBMIT_FOOD_LOGS':
-        return action.payload;
+        return [...state, action.payload];
       default:
         return state;
     }
   };
 
   const [submittedFoodLogs, dispatch] = useReducer(reducer, []);
-
-  // console.log(foodLog);
-
-  console.log(submittedFoodLogs);
 
   const value: MyContextType = {
     macroTargets,
@@ -104,6 +132,16 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     submittedFoodLogs,
     dispatch,
   };
+
+  // Local Storage
+
+  useEffect(() => {
+    localStorage.setItem('foodLog', JSON.stringify(foodLog));
+  }, [foodLog]);
+
+  // useEffect(() => {
+  //   localStorage.setItem('selectedDate', JSON.stringify(selectedDate));
+  // }, [selectedDate]);
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 };

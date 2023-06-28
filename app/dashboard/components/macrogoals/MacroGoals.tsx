@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMyContext } from '../../../../MyContext';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -14,6 +14,8 @@ const MacroGoals = () => {
   const [showDateForm, setShowDateForm] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
+
+  // const [value, setValue, remove] = useLocalStorage('my-key', 'foo');
 
   const [macroTargetInputs, setMacroTargesInputs] = useState({
     calories: '',
@@ -50,13 +52,15 @@ const MacroGoals = () => {
     if (isAnyMacroInputsEmpty) {
       setFillOutInputWarning(true);
     } else {
-      setMacroTargets({
-        ...macroTargets,
+      const updateMacroTargets = {
         calories: macroTargetInputs.calories,
         protein: macroTargetInputs.protein,
         carbs: macroTargetInputs.carbs,
         fats: macroTargetInputs.fats,
-      });
+      };
+
+      setMacroTargets(updateMacroTargets);
+      localStorage.setItem('macroTargets', JSON.stringify(updateMacroTargets));
 
       setMacroTargesInputs({
         ...macroTargetInputs,
@@ -86,6 +90,11 @@ const MacroGoals = () => {
     setShowDateForm(false);
   };
 
+  const macroSetButtonMessage =
+    Object.keys(macroTargets).length === 0
+      ? 'Set Macro Targets'
+      : 'Change Macro Targets';
+
   return (
     <section>
       {/* Button for setting the target goals  */}
@@ -97,7 +106,7 @@ const MacroGoals = () => {
               size='medium'
               onClick={() => setShowMacroForm(true)}
             >
-              Set Macro Goals
+              {macroSetButtonMessage}
             </Button>
 
             <button className='mt-2 md:ml-6'>
@@ -214,7 +223,7 @@ const MacroGoals = () => {
                   handleCancel();
                 }}
               >
-                Cancel
+                Clear
               </Button>
             </div>
           </form>

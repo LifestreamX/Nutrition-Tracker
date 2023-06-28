@@ -8,7 +8,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const HoverFoodLogItemData = () => {
   const { foodItem } = useMyContext();
-  console.log(foodItem);
 
   const {
     protein,

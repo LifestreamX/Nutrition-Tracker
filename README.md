@@ -4,20 +4,29 @@
 
 
 
-TODO: Submit log logic
+TODO: Progress bar mess around with docs
+
+
+TODO: Set up all local storage states
+
+TODO: Add submitt to nac
+
 TODO: page for submitted logs
+TODO: page for specific log
+
 TODO: indiviual log page with id
+
+TODO: About Page
+TODO: Contact Page
 
             <!-- Hooks To Implement -->
 
-TODO: use useReducer Hook
 TODO: use useCallback Hook
 TODO: use useMemo / React Memo
 TODO: Other Data structures
 
-
-
-
+TODO: Lazy Loading
+TODO: smooth motion
 
 <!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

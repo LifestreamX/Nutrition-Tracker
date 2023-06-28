@@ -79,9 +79,8 @@ export const MacroProgressBar: React.FC = () => {
   const totalCarbsPercentage = (totalCarbs / goals.carbsGoal) * 100;
   const totalFatsPercentage = (totalFats / goals.fatsGoal) * 100;
 
-  const isMacroTargetsEmpty = Object.keys(goals).every(
-    (key) => goals[key] === ''
-  );
+  const isMacroTargetsEmpty =
+    foodLog.length === 0 && Object.keys(macroTargets).length === 0;
 
   return (
     <section className=' bg-white rounded-lg shadow-lg p-8'>
@@ -98,6 +97,7 @@ export const MacroProgressBar: React.FC = () => {
               completed={0}
               height='20px'
               className='flex items-center justify-center'
+              customLabel='Not there yet'
             />
           </div>
           <div>
@@ -116,38 +116,39 @@ export const MacroProgressBar: React.FC = () => {
       ) : (
         <div>
           <div className='mb-3'>
-            <h1 className=' xxs:text-md lg:text-lg'>Macro Goals</h1>
+            <h1 className=' xxs:text-md lg:text-lg'>Macro Goals </h1>
           </div>
           <div>
-            <h2>Calories</h2>
+            <h2>% Calories</h2>
             <ProgressBar
               bgColor='#808080'
-              completed={totalCaloriesPercentage.toFixed(1)}
+              completed={`${totalCaloriesPercentage.toFixed(1)}`}
               height='20px'
               className='flex items-center justify-center'
             />
           </div>
           <div>
-            <h2>Protein</h2>
+            <h2>% Protein </h2>
+
             <ProgressBar
               bgColor='#44D07B'
-              completed={totalProteinPercentage.toFixed(1)}
+              completed={`${totalProteinPercentage.toFixed(1)}`}
               height='20px'
             />
           </div>
           <div>
-            <h2>Carbs</h2>
+            <h2>% Carbs </h2>
             <ProgressBar
               bgColor='#1CCAD7'
-              completed={totalCarbsPercentage.toFixed(1)}
+              completed={`${totalCarbsPercentage.toFixed(1)}`}
               height='20px'
             />
           </div>
           <div>
-            <h2>Fats</h2>
+            <h2>% Fats</h2>
             <ProgressBar
               bgColor='#EA3B04'
-              completed={totalFatsPercentage.toFixed(1)}
+              completed={`${totalFatsPercentage.toFixed(1)}`}
               height='20px'
             />
           </div>
@@ -206,7 +207,9 @@ export const CaloriesProgress = () => {
     <section className='flex flex-col justify-around w-full p-5 items-center  md:flex-row  '>
       <div className='w-32 flex flex-col justify-center items-center'>
         {' '}
-        {caloriesRemain === 0 ? (
+        {caloriesRemain === 0 ||
+        caloriesRemain === null ||
+        Number.isNaN(caloriesRemain) ? (
           <>
             <h1>Set Calories Goal</h1>
             <Doughnut data={noCaloriesSet} options={options} />
@@ -220,8 +223,8 @@ export const CaloriesProgress = () => {
               </>
             ) : (
               <>
-                <h1>Calories Remaining</h1>
-                <h1>{caloriesRemain.toFixed(0)}</h1>
+                <h1 className='text-center'>Calories Remaining</h1>
+                <p className=''>{caloriesRemain.toFixed(0)}</p>
 
                 <Doughnut data={caloriesRemainData} options={options} />
               </>
@@ -232,9 +235,9 @@ export const CaloriesProgress = () => {
 
       <div className='w-32 flex flex-col justify-center items-center'>
         {' '}
-        <h1 className='relative md:bottom-6'>Calories Consumed</h1>
-        <div className='w-20 h-20 rounded-full bg-orange-500 flex items-center justify-center text-white text-2xl'>
-          {totalCalories}
+        <h1 className='relative md:bottom-6 text-center'>Calories Consumed</h1>
+        <div className='w-24 h-20 rounded-full bg-orange-500 flex items-center justify-center text-white text-2xl'>
+          {totalCalories.toFixed(0)}
         </div>
       </div>
     </section>

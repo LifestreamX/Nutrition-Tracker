@@ -7,6 +7,8 @@ const MyDatePicker: React.FC = () => {
   const { selectedDate, setSelectedDate } = useMyContext();
 
   const handleDateChange = (date: Date | null) => {
+    let currentDate;
+
     if (date) {
       const formattedDate = date.toLocaleDateString('en-US', {
         weekday: 'long',
@@ -14,12 +16,18 @@ const MyDatePicker: React.FC = () => {
         month: 'long',
         year: 'numeric',
       });
-      setSelectedDate({ dateObject: date, formattedDate: formattedDate });
+      currentDate = [formattedDate];
+      setSelectedDate(currentDate);
+
+      localStorage.setItem('selectedDate', JSON.stringify(currentDate));
     } else {
       setSelectedDate(null);
+      // localStorage.removeItem('selectedDate');
     }
   };
 
+
+  let dateChangeText = selectedDate === null ? 'Select a Date' : 'Change Date';
 
   return (
     <div>
@@ -27,10 +35,10 @@ const MyDatePicker: React.FC = () => {
         selected={selectedDate ? selectedDate.dateObject : null}
         onChange={handleDateChange}
         dateFormat='EEEE, d MMMM yyyy'
-        placeholderText='Select a date'
+        placeholderText={dateChangeText}
         className='text-center'
       />
-      
+
       {/* <p>Selected Date: {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}</p> */}
     </div>
   );
