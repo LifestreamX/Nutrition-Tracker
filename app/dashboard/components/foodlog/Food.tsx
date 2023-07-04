@@ -106,7 +106,7 @@ const Food = ({ food }: FoodDataProps) => {
       onMouseEnter={() => handleMouseEnterd(food.foodId)}
       onMouseLeave={handleMouseLeaving}
       key={food.foodId}
-      className={` mt-8 relative  grid grid-cols-1 lg:grid-cols-3 border border-gray-100 rounded-lg p-2 duration-300 ease-in-out  hover:bg-purple-200 `}
+      className={` mt-8 relative  grid grid-cols-1 lg:grid-cols-3 border border-gray-100 rounded-lg p-2 duration-300 ease-in-out  hover:bg-purple-400 `}
     >
       {/* Food Name */}
       <span className='col-span-1 mb-3 lg:mb-0'>{food.label}</span>

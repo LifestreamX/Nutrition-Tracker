@@ -62,6 +62,7 @@ const FoodLog = () => {
     macroTargets,
     setMacroTargets,
     submittedFoodLogs,
+    setMacroTargesInputs,
   } = useMyContext();
 
   const [state, dispatchState] = useReducer(reducer, initialState);
@@ -123,8 +124,19 @@ const FoodLog = () => {
       setSelectedDate(null);
       setMacroTargets({});
       setSelectedDate(null);
+
+      setTimeout(() => {
+        setMacroTargesInputs({
+          calories: '',
+          protein: '',
+          carbs: '',
+          fats: '',
+        });
+      })
+    
     }
   };
+
 
 
   return (

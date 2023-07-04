@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const MyDatePicker: React.FC = () => {
   const { selectedDate, setSelectedDate } = useMyContext();
+  const [isDateClicked, setIsDateClicked] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
     let currentDate;
@@ -26,21 +27,22 @@ const MyDatePicker: React.FC = () => {
     }
   };
 
-
   let dateChangeText = selectedDate === null ? 'Select a Date' : 'Change Date';
 
+  // const handleDateClick = () => {
+  //   console.log('fsdfg');
+  // };
+
   return (
-    <div>
+    <button>
       <DatePicker
         selected={selectedDate ? selectedDate.dateObject : null}
         onChange={handleDateChange}
         dateFormat='EEEE, d MMMM yyyy'
+        className='text-center  cursor-pointer text-purple-800 p-1 rounded-lg placeholder-purple-500 text-lg hover:placeholder-purple-800  font-semibold '
         placeholderText={dateChangeText}
-        className='text-center'
       />
-
-      {/* <p>Selected Date: {selectedDate ? selectedDate.toLocaleDateString() : 'No date selected'}</p> */}
-    </div>
+    </button>
   );
 };
 

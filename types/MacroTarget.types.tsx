@@ -4,7 +4,7 @@ export interface MacroTargetTypes {
   protein: number | string;
   carbs: number | string;
   fats: number | string;
-  date: any;
+  date?: any;
 }
 
 export interface Goals {

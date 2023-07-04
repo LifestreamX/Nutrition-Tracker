@@ -9,20 +9,16 @@ import { CaloriesProgress, MacroProgressBar } from './MacroProgressBar';
 import Button from '@/app/components/Button';
 
 const MacroGoals = () => {
-  const { macroTargets, setMacroTargets } = useMyContext();
+  const {
+    macroTargets,
+    setMacroTargets,
+    setMacroTargesInputs,
+    macroTargetInputs,
+  } = useMyContext();
   const [showMacroForm, setShowMacroForm] = useState(false);
   const [showDateForm, setShowDateForm] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
-
-  // const [value, setValue, remove] = useLocalStorage('my-key', 'foo');
-
-  const [macroTargetInputs, setMacroTargesInputs] = useState({
-    calories: '',
-    protein: '',
-    carbs: '',
-    fats: '',
-  });
 
   const handleInputChange = (event) => {
     setFillOutInputWarning(false);
@@ -62,13 +58,13 @@ const MacroGoals = () => {
       setMacroTargets(updateMacroTargets);
       localStorage.setItem('macroTargets', JSON.stringify(updateMacroTargets));
 
-      setMacroTargesInputs({
-        ...macroTargetInputs,
-        calories: '',
-        protein: '',
-        carbs: '',
-        fats: '',
-      });
+      // setMacroTargesInputs({
+      //   ...macroTargetInputs,
+      //   calories: '',
+      //   protein: '',
+      //   carbs: '',
+      //   fats: '',
+      // });
 
       setShowMacroForm(false);
       setFillOutInputWarning(false);
@@ -78,10 +74,6 @@ const MacroGoals = () => {
   const handleCancel = () => {
     setMacroTargesInputs({
       ...macroTargetInputs,
-      calories: '',
-      protein: '',
-      carbs: '',
-      fats: '',
     });
   };
 
@@ -109,7 +101,8 @@ const MacroGoals = () => {
               {macroSetButtonMessage}
             </Button>
 
-            <button className='mt-2 md:ml-6'>
+            <button className='mt-2 md:ml-6 0 '>
+             
               <MyDatePicker />
             </button>
           </div>
@@ -223,7 +216,7 @@ const MacroGoals = () => {
                   handleCancel();
                 }}
               >
-                Clear
+                Cancel
               </Button>
             </div>
           </form>

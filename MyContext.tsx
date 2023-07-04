@@ -72,6 +72,13 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
         };
   });
 
+  const [macroTargetInputs, setMacroTargesInputs] = useState({
+    calories: macroTargets.calories || '',
+    protein: macroTargets.protein || '',
+    carbs: macroTargets.carbs || '',
+    fats: macroTargets.fats || '',
+  });
+
   const [nutritionSearchData, setNutritionSearchData] = useState();
 
   // const [foodLog, setFoodLog] = useState([]);
@@ -96,12 +103,10 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       : null;
   });
 
-
   type Action = {
     type: 'SUBMIT_FOOD_LOGS';
     payload: FoodTypeData[];
   };
-
 
   const reducer = (state: FoodTypeData[], action: Action) => {
     switch (action.type) {
@@ -112,9 +117,23 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
   };
 
-  const [submittedFoodLogs, dispatch] = useReducer(reducer, []);
+  const [submittedFoodLogs, dispatch] = useReducer(
+    reducer,
+    JSON.parse(localStorage.getItem('submittedFoodLogs')) || []
+  );
+
+
+
+  useEffect(() => {
+    localStorage.setItem(
+      'submittedFoodLogs',
+      JSON.stringify(submittedFoodLogs)
+    );
+  }, [submittedFoodLogs]);
 
   const value: MyContextType = {
+    macroTargetInputs,
+    setMacroTargesInputs,
     macroTargets,
     setMacroTargets,
     nutritionSearchData,

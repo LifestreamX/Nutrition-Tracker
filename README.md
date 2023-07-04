@@ -4,20 +4,53 @@
 
 
 
-TODO: Progress bar mess around with docs
 
 
-TODO: Set up all local storage states
+TODO: picked Logs Page - Logic / Types / Responsiveness
 
-TODO: Add submitt to nac
 
-TODO: page for submitted logs
+
+
+
+TODO: specific log extra - Logic / Types / Responsiveness
+
+
+
+
+
+
+TODO: Search results if not found
+TODO: Impletement pagination where needed 
+
 TODO: page for specific log
 
 TODO: indiviual log page with id
 
 TODO: About Page
 TODO: Contact Page
+
+TODO: loading skeloton or other
+
+TODO: suspense - wrap components in suspense 
+TODO: Loading - set up loading files
+TODO: Error - Set up error files
+not-found set up file
+TODO: Meta Data - make is Dynamic
+TODO: update next project version to most recent
+
+ --- Server ---
+revailidate?
+Cache when fetching date?
+router.refresh? 
+
+
+SSG and SSR 
+
+
+
+
+
+
 
             <!-- Hooks To Implement -->
 
@@ -27,6 +60,9 @@ TODO: Other Data structures
 
 TODO: Lazy Loading
 TODO: smooth motion
+
+
+
 
 <!-- This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

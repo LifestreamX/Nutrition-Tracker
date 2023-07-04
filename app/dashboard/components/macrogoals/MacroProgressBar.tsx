@@ -97,7 +97,6 @@ export const MacroProgressBar: React.FC = () => {
               completed={0}
               height='20px'
               className='flex items-center justify-center'
-              customLabel='Not there yet'
             />
           </div>
           <div>
@@ -122,7 +121,7 @@ export const MacroProgressBar: React.FC = () => {
             <h2>% Calories</h2>
             <ProgressBar
               bgColor='#808080'
-              completed={`${totalCaloriesPercentage.toFixed(1)}`}
+              completed={`${totalCaloriesPercentage.toFixed(0)}`}
               height='20px'
               className='flex items-center justify-center'
             />
@@ -132,7 +131,7 @@ export const MacroProgressBar: React.FC = () => {
 
             <ProgressBar
               bgColor='#44D07B'
-              completed={`${totalProteinPercentage.toFixed(1)}`}
+              completed={`${totalProteinPercentage.toFixed(0)}`}
               height='20px'
             />
           </div>
@@ -140,7 +139,7 @@ export const MacroProgressBar: React.FC = () => {
             <h2>% Carbs </h2>
             <ProgressBar
               bgColor='#1CCAD7'
-              completed={`${totalCarbsPercentage.toFixed(1)}`}
+              completed={`${totalCarbsPercentage.toFixed(0)}`}
               height='20px'
             />
           </div>
@@ -148,7 +147,7 @@ export const MacroProgressBar: React.FC = () => {
             <h2>% Fats</h2>
             <ProgressBar
               bgColor='#EA3B04'
-              completed={`${totalFatsPercentage.toFixed(1)}`}
+              completed={`${totalFatsPercentage.toFixed(0)}`}
               height='20px'
             />
           </div>
@@ -172,9 +171,9 @@ export const CaloriesProgress = () => {
     datasets: [
       {
         data: [caloriesRemain, totalCalories],
-        backgroundColor: ['#581C87', '#fff'],
-        borderColor: ['gray', 'gray'],
-        borderWidth: 1,
+        backgroundColor: ['#581C87', '#E0E0DE'],
+        borderColor: 'transparent', // Set the border color to transparent
+
       },
     ],
   };
