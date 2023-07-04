@@ -29,9 +29,7 @@ const MyDatePicker: React.FC = () => {
 
   let dateChangeText = selectedDate === null ? 'Select a Date' : 'Change Date';
 
-  // const handleDateClick = () => {
-  //   console.log('fsdfg');
-  // };
+
 
   return (
     <button>

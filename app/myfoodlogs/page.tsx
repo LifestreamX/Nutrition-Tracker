@@ -1,40 +1,46 @@
 'use client';
 
 import { useMyContext } from '@/MyContext';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import MyFoodLog from './[foodLogId]/page';
 import { useRouter } from 'next/navigation';
-import FoodLog from '../dashboard/components/foodlog/FoodLog';
 import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
 import grapes from '.././images/dashboard/grapes.png';
 import Image from 'next/image';
 
-const MyFoodLogs = () => {
+const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const resultsPerPage: number = 10;
 
   const router = useRouter();
 
+  // Calculate the index range of the food logs to display on the current page
+  const indexOfLastResult: number = currentPage * resultsPerPage;
+  const indexOfFirstResult: number = indexOfLastResult - resultsPerPage;
+  const currentResults: SubmittedFoodLogsTypes[] = submittedFoodLogs.slice(
+    indexOfFirstResult,
+    indexOfLastResult
+  );
+
+  // Change the page
+  const handlePageChange = (pageNumber: number): void => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className='w-full flex justify-center items-middle relative top-20'>
-      <div className='bg-white rounded-lg shadow-2xl w-1/2 flex flex-col justify-center items-center p-10'>
+      <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10'>
         <div className='flex'>
-          <Image
-            src={grapes}
-            alt='grapes'
-            className=' w-4 h-4 md:w-6 md:h-6 '
-          />
-          <h1 className=' mx-4 text-lg md:text-2xl font-bold text-center mb-5 text-purple-800'>
+          <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
+          <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5 text-purple-800'>
             My Food Logs
           </h1>
-          <Image
-            src={grapes}
-            alt='grapes'
-            className=' w-4 h-4 md:w-6 md:h-6 '
-          />{' '}
+          <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
         </div>
-        <ul className='w-full'>
-          {submittedFoodLogs.map(
+        <ul className='w-full mb-6'>
+          {currentResults.map(
             ({ foodLogId, selectedDate, foodLog }: SubmittedFoodLogsTypes) => (
               <li
                 key={foodLogId}
@@ -47,6 +53,77 @@ const MyFoodLogs = () => {
             )
           )}
         </ul>
+
+        {/* pagination */}
+        <nav aria-label='Page navigation example '>
+          <ul className='flex items-center -space-x-px h-10 text-base'>
+            <li>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className='flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+              >
+                <span className='sr-only'>Previous</span>
+                <svg
+                  className='w-3 h-3'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 6 10'
+                >
+                  <path
+                    stroke='currentColor'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='M5 1 1 5l4 4'
+                  />
+                </svg>
+              </button>
+            </li>
+            {Array.from({
+              length: Math.ceil(submittedFoodLogs.length / resultsPerPage),
+            }).map((_, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                    currentPage === index + 1 ? 'text-blue-600 bg-blue-50' : ''
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={
+                  currentPage ===
+                  Math.ceil(submittedFoodLogs.length / resultsPerPage)
+                }
+                className='flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+              >
+                <span className='sr-only'>Next</span>
+                <svg
+                  className='w-3 h-3'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 6 10'
+                >
+                  <path
+                    stroke='currentColor'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    d='m1 9 4-4-4-4'
+                  />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

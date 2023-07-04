@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useReducer } from 'react';
+import React, { useReducer, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Params } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
+import { useStartTyping, useWindowSize } from 'react-use';
 
 const MyFoodLog = ({ params }: Params) => {
   const { submittedFoodLogs } = useMyContext();
@@ -12,6 +13,8 @@ const MyFoodLog = ({ params }: Params) => {
   let result = submittedFoodLogs.find((e) => {
     return e.foodLogId === params.foodLogId;
   });
+  const { width, height } = useWindowSize();
+  const [totalCalories, setTotalCalories] = useState(0);
 
   let { foodLog, foodLogId, selectedDate } = result;
 
@@ -30,15 +33,24 @@ const MyFoodLog = ({ params }: Params) => {
     });
   };
 
-  let currentFoodLog = submittedFoodLogs.find((e) => {
+  let currentFoodLog = submittedFoodLogs.find((e): boolean => {
     return e.foodLogId === params.foodLogId;
   });
 
-  // const imageSize = 3;
+  const imageSize = width > 768 ? 60 : 40;
+
+  useEffect(() => {
+    const totalCal = foodLog.reduce((acc, cur) => {
+      acc += cur.calories;
+      return acc;
+    }, 0);
+
+    setTotalCalories(totalCal);
+  }, []);
 
   return (
     <main className='w-full flex justify-center items-middle relative top-20'>
-      <div className='bg-white rounded-lg shadow-2xl w-1/2 flex flex-col justify-center items-center p-20 relative'>
+      <div className='bg-white m-5  w-full rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-20 relative'>
         <div className=' w-full '>
           {/* delete button */}
           <svg
@@ -75,24 +87,25 @@ const MyFoodLog = ({ params }: Params) => {
         </div>
         <div className='mb-10 flex flex-col lg:flex-row justify-center  '>
           <p className='mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center mb-4 lg:mb-0 '>
-            {selectedDate}
+            Date: <p className='text-purple-800'>{selectedDate}</p>
           </p>
           <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
-            Total Calories:{' '}
+            Total Calories: <p className='text-purple-800'>{totalCalories}</p>
           </p>
         </div>
 
         {foodLog.map((food) => {
-          console.log(food);
           return (
             <ul className='w-full'>
-              <div className='bg-white rounded-lg shadow-lg  justify-center items-center'>
-                <li className='flex justify-between items-center text-md md:text-2xl font-medium text-center mb-5 hover:bg-purple-400 cursor-pointer rounded-xl p-4 '>
-                  <p className='text-center  w-full'>{food.label}</p>
+              <div className='bg-white   w-full rounded-lg shadow-lg  justify-center items-center'>
+                <li className='flex w-full flex-col md:flex-row justify-center md:justify-between items-center text-md md:text-2xl font-medium text-center mb-5 hover:bg-purple-400 cursor-pointer rounded-xl p-4 '>
+                  <p className='text-center text-sm md:text-lg  md:w-full mb-3 md:mb-0'>
+                    {food.label}
+                  </p>
                   <Image
                     src={food.image}
-                    width={70}
-                    height={70}
+                    width={imageSize}
+                    height={imageSize}
                     alt={`Picture of ${food} `}
                     className='rounded-2xl'
                   />
