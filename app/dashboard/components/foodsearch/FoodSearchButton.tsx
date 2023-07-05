@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import grapes from '../../../images/dashboard/grapes.png';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Modal from 'react-modal';
 import { useDebounce } from 'react-use';
 import { useWindowSize } from 'react-use';

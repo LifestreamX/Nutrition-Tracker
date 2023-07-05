@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
 import grapes from '.././images/dashboard/grapes.png';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();

@@ -4,7 +4,7 @@ import React, { useReducer, useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Params } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useStartTyping, useWindowSize } from 'react-use';
 
 const MyFoodLog = ({ params }: Params) => {
