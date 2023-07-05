@@ -45,6 +45,7 @@ TODO: update next project version to most recent
 
 TODO: Testing
 
+TODO: server actions?
 
 TODO: Rendering Options SSG/ SSR / ISR etc...
 

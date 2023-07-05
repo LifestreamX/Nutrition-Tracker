@@ -12,9 +12,10 @@ const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();
 
   const [currentPage, setCurrentPage] = useState<number>(1);
+
   const resultsPerPage: number = 10;
 
-  const router = useRouter();
+  // const router = useRouter();
 
   // Calculate the index range of the food logs to display on the current page
   const indexOfLastResult: number = currentPage * resultsPerPage;
@@ -55,7 +56,7 @@ const MyFoodLogs: React.FC = () => {
         </ul>
 
         {/* pagination */}
-        <nav aria-label='Page navigation example '>
+        <nav aria-label='Page navigation  '>
           <ul className='flex items-center -space-x-px h-10 text-base'>
             <li>
               <button
@@ -88,7 +89,9 @@ const MyFoodLogs: React.FC = () => {
                 <button
                   onClick={() => handlePageChange(index + 1)}
                   className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                    currentPage === index + 1 ? 'text-blue-600 bg-blue-50' : ''
+                    currentPage === index + 1
+                      ? 'text-purple-600 bg-purple-50'
+                      : ''
                   }`}
                 >
                   {index + 1}
