@@ -112,6 +112,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     switch (action.type) {
       case 'SUBMIT_FOOD_LOGS':
         return [...state, action.payload];
+      case 'DELETE_FOOD_LOG':
+        return action.payload;
       default:
         return state;
     }
@@ -122,14 +124,15 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     JSON.parse(localStorage.getItem('submittedFoodLogs')) || []
   );
 
-
-
   useEffect(() => {
     localStorage.setItem(
       'submittedFoodLogs',
       JSON.stringify(submittedFoodLogs)
     );
+
+
   }, [submittedFoodLogs]);
+
 
   const value: MyContextType = {
     macroTargetInputs,

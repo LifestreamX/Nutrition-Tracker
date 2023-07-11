@@ -4,7 +4,7 @@ import { Fragment, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import navicon from '../images/navicon.png';
-import Image from "next/legacy/image";
+import Image from 'next/image';
 import Link from 'next/link';
 
 const navigation = [
@@ -25,9 +25,12 @@ export default function NavBar() {
       {({ open }) => (
         <>
           <header className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 '>
-            <Link href='/'>
+            <Link href='/' legacyBehavior>
               <div>
-                <h1 className='text-white text-bold text-xl absolute left-4 top-4 hidden md:block '>
+                <h1
+                  className='text-white text-bold text-xl absolute left-4 top-4 hidden md:block
+                cursor-pointer'
+                >
                   nutritiontracker
                 </h1>
               </div>
@@ -53,21 +56,24 @@ export default function NavBar() {
                     src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
                     alt='Your Company'
                   /> */}
-                  <Link href='/'>
-                    <Image
-                      className='block h-8 w-auto lg:hidden '
-                      src={navicon}
-                      alt='Nutrition Image'
-                    />
-                    <Image
-                      className='hidden h-8 w-auto lg:block'
-                      src={navicon}
-                      alt='Nutrition Image'
-                    />
+                  <Link href='/' legacyBehavior>
+                    <>
+                      <Image
+                        className='block h-8 w-auto lg:hidden '
+                        src={navicon}
+                        alt='Nutrition Image'
+                      />
+                      <Image
+                        className='hidden h-8 w-auto lg:block'
+                        src={navicon}
+                        alt='Nutrition Image'
+                      />
+                    </>
                   </Link>
                 </div>
+
                 <div className='hidden sm:ml-6 sm:block'>
-                  <div className='flex space-x-4'>
+                  <div className='flex space-x-4 text-white'>
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
@@ -79,6 +85,7 @@ export default function NavBar() {
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
+                        legacyBehavior
                       >
                         {item.name}
                       </Link>
@@ -178,7 +185,7 @@ export default function NavBar() {
                   </>
                 ) : (
                   // sign in button
-                  <Link href='/login'>
+                  <Link href='/login' legacyBehavior>
                     <button className='mr-6 bg-transparent text-1xl hover:bg-white text-white font-semibold hover:text-gray-800 py-1 px-2 border-2 border-white hover:border-transparent rounded'>
                       <p className='font-bolder text-md'>LOG IN</p>
                     </button>

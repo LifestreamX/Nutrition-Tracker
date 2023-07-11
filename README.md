@@ -4,13 +4,6 @@
 
 
 
-TODO: Submitted logs paginate 
-
-
-
-
-
-TODO: picked Logs Page - Logic / Types / Responsiveness
 
 
 
@@ -20,6 +13,32 @@ TODO: specific log extra - Logic / Types / Responsiveness
 
 
 
+
+
+
+TODO: DELETE FOOD LOG Types clean up
+
+
+
+
+
+TODO: Add filter by for my food logs page
+
+
+TODO: PROP types for delete food log modal component
+
+
+
+
+TODO: Title tab change text and image
+
+
+
+
+
+
+
+TODO: ADD CSS fade in or out?
 
 
 
@@ -39,10 +58,12 @@ TODO: suspense - wrap components in suspense
 TODO: Loading - set up loading files
 TODO: Error - Set up error files
 not-found set up file
-TODO: Meta Data - make is Dynamic
+TODO: Meta Data - static and dyanmic
 TODO: update next project version to most recent
 
 
+
+TODO: layouts for different pages?
 TODO: Testing
 
 TODO: server actions?
@@ -53,6 +74,7 @@ TODO: Rendering Options SSG/ SSR / ISR etc...
 revailidate?
 Cache when fetching date?
 router.refresh? 
+Auth - next / etc. role base?
 
 
 SSG and SSR 

@@ -61,7 +61,7 @@ const Login = () => {
       </form>
       <p className='mt-6'>
         Not a member?{' '}
-        <Link href='/signup'>
+        <Link href='/signup' legacyBehavior>
           <span className='text-green-800'>Sign up here!</span>
         </Link>
       </p>

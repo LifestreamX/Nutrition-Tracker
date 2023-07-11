@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from "next/legacy/image";
+import Image from 'next/image';
 import heroimg from '../images/heroimg.png';
 import heroimg2 from '../images/heroimg2.png';
 import Link from 'next/link';

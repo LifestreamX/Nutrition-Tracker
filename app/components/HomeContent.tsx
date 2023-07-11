@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import homecontent from '../images/homecontent.png';
 import homecontent2 from '../images/homecontent2.png';
 import homecontent3 from '../images/homecontent3.png';

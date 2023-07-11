@@ -7,10 +7,10 @@ export interface FoodLogTypes {
   categoryLabel: string;
   fats: number;
   foodId: string;
-  image: string;
+  image: string | undefined;
   knownAs: string;
   label: string;
-  quantity: number;
+  quantity: number | undefined;
   nutrients: {
     ENERC_KCAL: number;
     PROCNT: number;
@@ -19,5 +19,5 @@ export interface FoodLogTypes {
     FIBTG: number;
   };
   protein: number;
-  servingSizes: object;
+  servingSizes?: object | undefined;
 }
