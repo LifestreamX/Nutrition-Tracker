@@ -637,6 +637,10 @@ video {
   top: 4rem;
 }
 
+.top-1 {
+  top: 0.25rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -819,12 +823,8 @@ video {
   margin-right: 0.75rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.ml-16 {
-  margin-left: 4rem;
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .block {
@@ -1006,10 +1006,6 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-md {
-  max-width: 28rem;
 }
 
 .flex-1 {
@@ -1308,14 +1304,9 @@ video {
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
-.bg-black {
+.bg-purple-400 {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-slate-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+  background-color: rgb(192 132 252 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-75 {
@@ -1352,6 +1343,14 @@ video {
 
 .p-14 {
   padding: 3.5rem;
+}
+
+.p-0\.5 {
+  padding: 0.125rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .py-2 {
@@ -1474,10 +1473,6 @@ video {
 
 .font-semibold {
   font-weight: 600;
-}
-
-.font-extrabold {
-  font-weight: 800;
 }
 
 .leading-tight {
@@ -1656,11 +1651,6 @@ video {
 
 .ring-opacity-5 {
   --tw-ring-opacity: 0.05;
-}
-
-.blur {
-  --tw-blur: blur(8px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .drop-shadow-xl {
@@ -2061,13 +2051,32 @@ a {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+@media (min-width: 300px) {
+  .xxs\:items-center {
+    align-items: center;
+  }
+}
+
 @media (min-width: 480px) {
+  .xs\:mx-5 {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+
+  .xs\:mt-0 {
+    margin-top: 0px;
+  }
+
   .xs\:w-full {
     width: 100%;
   }
 
   .xs\:flex-row {
     flex-direction: row;
+  }
+
+  .xs\:items-start {
+    align-items: flex-start;
   }
 }
 
@@ -2093,6 +2102,10 @@ a {
 
   .sm\:top-24 {
     top: 6rem;
+  }
+
+  .sm\:top-4 {
+    top: 1rem;
   }
 
   .sm\:mx-0 {
@@ -2330,18 +2343,6 @@ a {
     max-width: 36rem;
   }
 
-  .md\:max-w-2xl {
-    max-width: 42rem;
-  }
-
-  .md\:max-w-3xl {
-    max-width: 48rem;
-  }
-
-  .md\:max-w-4xl {
-    max-width: 56rem;
-  }
-
   .md\:max-w-5xl {
     max-width: 64rem;
   }
@@ -2360,6 +2361,10 @@ a {
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:justify-around {
+    justify-content: space-around;
   }
 
   .md\:justify-evenly {

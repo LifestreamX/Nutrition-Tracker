@@ -3,19 +3,6 @@
 
 
 
-
-
-
-
-
-
-TODO: specific log extra - Logic / Types / Responsiveness
-
-
-
-
-
-
 TODO: DELETE FOOD LOG Types clean up
 
 

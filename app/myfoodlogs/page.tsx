@@ -1,9 +1,9 @@
 'use client';
 
 import { useMyContext } from '@/MyContext';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
 import grapes from '.././images/dashboard/grapes.png';
 import Image from 'next/image';
@@ -38,20 +38,31 @@ const MyFoodLogs: React.FC = () => {
         </div>
         <ul className='w-full mb-6'>
           {currentResults.map(
-            ({ foodLogId, selectedDate, foodLog }: SubmittedFoodLogsTypes) => (
-              <li
-                key={foodLogId}
-                className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
-              >
-                <Link
-                  key={submittedFoodLogs}
-                  href={`/myfoodlogs/${foodLogId}`}
-                  legacyBehavior
+            ({ foodLogId, selectedDate, foodLog }: SubmittedFoodLogsTypes) => {
+              let formattedDate = selectedDate
+                .toString()
+                .replaceAll(', ', '-')
+                .replaceAll(' ', '-');
+
+              return (
+                <li
+                  key={foodLogId}
+                  className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                 >
-                  <h1>{selectedDate}</h1>
-                </Link>
-              </li>
-            )
+                  <Link
+                    key={submittedFoodLogs}
+                    // href={`/myfoodlogs/${foodLogId}`}
+                    href={{
+                      pathname: `/myfoodlogs/${foodLogId}`,
+                      query: formattedDate,
+                    }}
+                    legacyBehavior
+                  >
+                    <h1>{selectedDate}</h1>
+                  </Link>
+                </li>
+              );
+            }
           )}
         </ul>
 

@@ -14,6 +14,9 @@ interface MyFoodLogProps {
 }
 
 const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
+
+
+
   const { submittedFoodLogs } = useMyContext();
 
   let logDetails: any;
