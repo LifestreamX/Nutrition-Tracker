@@ -7,6 +7,12 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
 import grapes from '.././images/dashboard/grapes.png';
 import Image from 'next/image';
+import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
+import {
+  PickDay,
+  PickMonth,
+  PickYear,
+} from './components/FilterFoodLogsByDate';
 
 const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();
@@ -26,6 +32,52 @@ const MyFoodLogs: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
+  const [selectMonth, setSelectMonth] = useState('');
+  const [selectDay, setSelectDay] = useState('');
+  const [selectYear, setSelectYear] = useState('');
+
+  let sortedByYear = currentResults.sort((a, b) => {
+    const dateA = a.selectedDate.toString().split(',').at(-1);
+    const dateB = b.selectedDate.toString().split(',').at(-1);
+
+    return dateA - dateB;
+  });
+
+  let sortByMonthAndYear = sortedByYear.sort((a, b) => {
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const monthA = a.selectedDate.toString().split(',').at(-2).split(' ')[1];
+    const monthB = b.selectedDate.toString().split(',').at(-2).split(' ')[1];
+
+    let indexA;
+    let indexB;
+
+    months.find((e, i) => {
+      if (e.toLocaleLowerCase() === monthA.toLowerCase()) {
+        indexA = i;
+      }
+
+      if (e.toLocaleLowerCase() === monthA.toLowerCase()) {
+        indexB = i;
+      }
+    });
+
+    return indexA - indexB;
+  });
+
   return (
     <section className='w-full flex justify-center items-middle relative top-20'>
       <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10'>
@@ -36,8 +88,22 @@ const MyFoodLogs: React.FC = () => {
           </h1>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
         </div>
+        <div>
+          {/* month picker */}
+          <PickMonth
+            selectMonth={selectMonth}
+            setSelectMonth={setSelectMonth}
+          />
+
+          {/* day picker */}
+          {/* <PickDay value={selectDay} onChange={handleDayPick} /> */}
+
+          {/* year picker */}
+          {/* <PickYear value={selectYear} onChange={handleYearPick} /> */}
+        </div>
+
         <ul className='w-full mb-6'>
-          {currentResults.map(
+          {sortedByYear.map(
             ({ foodLogId, selectedDate, foodLog }: SubmittedFoodLogsTypes) => {
               let formattedDate = selectedDate
                 .toString()

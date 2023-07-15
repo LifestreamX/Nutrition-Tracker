@@ -1,6 +1,16 @@
 import React from 'react';
 
-const DeleteFoodLogModal = ({ isOpen, onCancel, onConfirm }) => {
+interface DeleteFoodTypeProps {
+  isOpen: Boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}
+
+const DeleteFoodLogModal = ({
+  isOpen,
+  onCancel,
+  onConfirm,
+}: DeleteFoodTypeProps) => {
   return (
     <div
       className={`fixed z-10 inset-0 overflow-y-auto ${

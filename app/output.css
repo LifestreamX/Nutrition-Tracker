@@ -525,6 +525,10 @@ video {
   border-width: 0;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1317,6 +1321,10 @@ video {
   fill: #16a34a;
 }
 
+.fill-current {
+  fill: currentColor;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -1402,6 +1410,10 @@ video {
 
 .pr-4 {
   padding-right: 1rem;
+}
+
+.pr-8 {
+  padding-right: 2rem;
 }
 
 .pb-4 {
@@ -1846,6 +1858,11 @@ a {
 
 .hover\:border-transparent:hover {
   border-color: transparent;
+}
+
+.hover\:border-gray-500:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
 }
 
 .hover\:bg-purple-900:hover {

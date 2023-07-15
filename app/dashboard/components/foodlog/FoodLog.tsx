@@ -68,34 +68,9 @@ const FoodLog = () => {
   const [state, dispatchState] = useReducer(reducer, initialState);
   const [foodLogWrapper, setFoodLogWrapper] = useState({});
 
-  // const [foodLogSubmittedSuccess, setFoodLogSubmittedSuccess] = useState(false);
-  // const [isDateNotSelected, setIsDateNotSelected] = useState(false);
-  // const [isMacroTargetsSet, setIsMacroTargetsSet] = useState(false);
-  // const [macrosSet, setMacrosSet] = useState(false);
-
   const isMacroTargetsEmpty = (value: string) => {
     return value === '';
   };
-
-  // const handleFoodLogSubmit = (): void => {
-  //   if (selectedDate === null) {
-  //     setIsDateNotSelected(true);
-  //     setTimeout(() => {
-  //       setIsDateNotSelected(false);
-  //     }, 3000);
-  //   } else if (isMacroTargetsEmpty(macroTargets.calories)) {
-  //     setIsMacroTargetsSet(true);
-  //     setTimeout(() => {
-  //       setIsMacroTargetsSet(false);
-  //     }, 3000);
-  //   } else {
-  //     dispatch({ type: 'SUBMIT_FOOD_LOGS', payload: foodLog });
-  //     setFoodLogSubmittedSuccess(true);
-  //     setFoodLog([]);
-  //     setSelectedDate(null);
-  //     setMacrosSet(false);
-  //   }
-  // };
 
   const handleFoodLogSubmit = (): void => {
     if (selectedDate === null) {
@@ -103,7 +78,10 @@ const FoodLog = () => {
       setTimeout(() => {
         dispatchState({ type: 'SET_IS_DATE_NOT_SELECTED', payload: false });
       }, 3000);
-    } else if (isMacroTargetsEmpty(macroTargets.calories)) {
+    } else if (
+      isMacroTargetsEmpty(macroTargets.calories) ||
+      macroTargets.calories === undefined
+    ) {
       dispatchState({ type: 'SET_IS_MACRO_TARGETS_SET', payload: true });
       setTimeout(() => {
         dispatchState({ type: 'SET_IS_MACRO_TARGETS_SET', payload: false });
@@ -132,12 +110,11 @@ const FoodLog = () => {
           carbs: '',
           fats: '',
         });
-      })
-    
+      });
     }
   };
 
-
+  console.log(macroTargets.calories);
 
   return (
     <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 '>

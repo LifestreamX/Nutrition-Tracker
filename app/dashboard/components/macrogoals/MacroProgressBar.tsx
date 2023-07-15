@@ -80,7 +80,10 @@ export const MacroProgressBar: React.FC = () => {
   const totalFatsPercentage = (totalFats / goals.fatsGoal) * 100;
 
   const isMacroTargetsEmpty =
-    foodLog.length === 0 && Object.keys(macroTargets).length === 0;
+    (foodLog.length === 0 && Object.keys(macroTargets).length === 0) ||
+    macroTargets.calories === '';
+
+  console.log(macroTargets);
 
   return (
     <section className=' bg-white rounded-lg shadow-lg p-8'>
@@ -160,6 +163,8 @@ export const MacroProgressBar: React.FC = () => {
 export const CaloriesProgress = () => {
   const { macroTargets, setMacroTargets, foodLog } = useMyContext();
 
+  console.log(macroTargets);
+
   const totalCalories = foodLog.reduce((acc: number, cur: FoodLogTypes) => {
     return acc + cur.calories * cur.quantity;
   }, 0);
@@ -173,7 +178,6 @@ export const CaloriesProgress = () => {
         data: [caloriesRemain, totalCalories],
         backgroundColor: ['#581C87', '#E0E0DE'],
         borderColor: 'transparent', // Set the border color to transparent
-
       },
     ],
   };

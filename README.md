@@ -3,13 +3,19 @@
 
 
 
-TODO: DELETE FOOD LOG Types clean up
+TODO: myfoodLogs dates not filtered by date
+ 
+
+TODO: Delete log not working in my food logs
+
+
+
+TODO: Add filter by for my food logs page logic   / Types / responsive
 
 
 
 
 
-TODO: Add filter by for my food logs page
 
 
 TODO: PROP types for delete food log modal component
