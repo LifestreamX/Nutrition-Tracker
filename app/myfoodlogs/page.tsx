@@ -8,16 +8,13 @@ import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
 import grapes from '.././images/dashboard/grapes.png';
 import Image from 'next/image';
 import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
-import {
-  PickDay,
-  PickMonth,
-  PickYear,
-} from './components/FilterFoodLogsByDate';
+import { BsTypeH1 } from 'react-icons/bs';
 
 const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const resultsPerPage: number = 10;
+  const [noLogFound, setNoLogFound] = useState(false);
 
   // Calculate the index range of the food logs to display on the current page
   const indexOfLastResult: number = currentPage * resultsPerPage;
@@ -32,9 +29,9 @@ const MyFoodLogs: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  const [selectMonth, setSelectMonth] = useState('');
-  const [selectDay, setSelectDay] = useState('');
-  const [selectYear, setSelectYear] = useState('');
+  const [startDate, setStartDate] = useState<any | null>(null);
+
+  let selectedDate = startDate;
 
   let sortedByYear = currentResults.sort((a, b) => {
     const dateA = a.selectedDate.toString().split(',').at(-1);
@@ -43,40 +40,27 @@ const MyFoodLogs: React.FC = () => {
     return dateA - dateB;
   });
 
-  let sortByMonthAndYear = sortedByYear.sort((a, b) => {
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
+  let dateFilterResults = null;
+  let noLog = false;
 
-    const monthA = a.selectedDate.toString().split(',').at(-2).split(' ')[1];
-    const monthB = b.selectedDate.toString().split(',').at(-2).split(' ')[1];
+  sortedByYear.find((e) => {
+    let pickedDate = String(startDate)?.replaceAll(' ', '');
+    let listedDates = String(e?.selectedDate)?.replaceAll(' ', '');
 
-    let indexA;
-    let indexB;
-
-    months.find((e, i) => {
-      if (e.toLocaleLowerCase() === monthA.toLowerCase()) {
-        indexA = i;
+    if (selectedDate !== null) {
+      if (pickedDate === listedDates) {
+        return [(dateFilterResults = e), (noLog = false)];
+      } else {
+        noLog = true;
       }
-
-      if (e.toLocaleLowerCase() === monthA.toLowerCase()) {
-        indexB = i;
-      }
-    });
-
-    return indexA - indexB;
+    }
   });
+
+
+  let formattedFilteredDate = dateFilterResults?.selectedDate
+    ?.toString()
+    ?.replaceAll(', ', '-')
+    ?.replaceAll(' ', '-');
 
   return (
     <section className='w-full flex justify-center items-middle relative top-20'>
@@ -88,47 +72,72 @@ const MyFoodLogs: React.FC = () => {
           </h1>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
         </div>
-        <div>
-          {/* month picker */}
-          <PickMonth
-            selectMonth={selectMonth}
-            setSelectMonth={setSelectMonth}
-          />
-
-          {/* day picker */}
-          {/* <PickDay value={selectDay} onChange={handleDayPick} /> */}
-
-          {/* year picker */}
-          {/* <PickYear value={selectYear} onChange={handleYearPick} /> */}
-        </div>
+        {submittedFoodLogs.length > 0 && (
+          <div>
+            <FilterFoodLogsByDate
+              startDate={startDate}
+              setStartDate={setStartDate}
+            />
+          </div>
+        )}
 
         <ul className='w-full mb-6'>
-          {sortedByYear.map(
-            ({ foodLogId, selectedDate, foodLog }: SubmittedFoodLogsTypes) => {
-              let formattedDate = selectedDate
-                .toString()
-                .replaceAll(', ', '-')
-                .replaceAll(' ', '-');
-
-              return (
-                <li
-                  key={foodLogId}
-                  className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
-                >
+          {dateFilterResults !== null || noLog ? (
+            <>
+              <li
+                // key={foodLogId}
+                className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+              >
+                {noLog ? (
+                  <h1>No Food Log for {selectedDate}</h1>
+                ) : (
                   <Link
-                    key={submittedFoodLogs}
-                    // href={`/myfoodlogs/${foodLogId}`}
+                    // key={submittedFoodLogs}
                     href={{
-                      pathname: `/myfoodlogs/${foodLogId}`,
-                      query: formattedDate,
+                      pathname: `/myfoodlogs/${dateFilterResults?.foodLogId}`,
+                      query: formattedFilteredDate,
                     }}
                     legacyBehavior
                   >
-                    <h1>{selectedDate}</h1>
+                    <h1>{dateFilterResults?.selectedDate[0]}</h1>
                   </Link>
-                </li>
-              );
-            }
+                )}
+              </li>
+            </>
+          ) : (
+            <>
+              {sortedByYear.map(
+                ({
+                  foodLogId,
+                  selectedDate,
+                  foodLog,
+                }: SubmittedFoodLogsTypes) => {
+                  let formattedDate = selectedDate
+                    .toString()
+                    .replaceAll(', ', '-')
+                    .replaceAll(' ', '-');
+
+                  return (
+                    <li
+                      key={foodLogId}
+                      className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                    >
+                      <Link
+                        key={submittedFoodLogs}
+                        // href={`/myfoodlogs/${foodLogId}`}
+                        href={{
+                          pathname: `/myfoodlogs/${foodLogId}`,
+                          query: formattedDate,
+                        }}
+                        legacyBehavior
+                      >
+                        <h1>{selectedDate}</h1>
+                      </Link>
+                    </li>
+                  );
+                }
+              )}
+            </>
           )}
         </ul>
 

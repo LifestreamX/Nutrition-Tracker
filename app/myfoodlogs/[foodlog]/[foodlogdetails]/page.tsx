@@ -1,22 +1,18 @@
 'use client';
 
-import React, { useReducer, useState, useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Params } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
-import { useWindowSize } from 'react-use';
-import Link from 'next/link';
 import { FoodLogTypes } from '@/types/FoodLog.types';
+import { specificFoodLogDetailsTypes } from '@/types/MyFoodLog.types';
 
-interface MyFoodLogProps {
+type MyFoodLogProps = {
   params: Params;
-}
+};
 
 const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
-
-
-
   const { submittedFoodLogs } = useMyContext();
 
   let logDetails: any;
@@ -48,12 +44,13 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
     .toFixed(2)
     .split('.')[1];
 
-  let ounces: string | number =
+  let ounces: number =
     ouncesDecimalNumberAfter == '00'
       ? servingSizes[0]?.quantity.toFixed(0)
       : servingSizes[0]?.quantity.toFixed(2);
 
   let noImage = logDetails.image === undefined && 'hidden';
+
 
   return (
     <main className='w-full flex justify-center items-middle relative top-20 p-5'>

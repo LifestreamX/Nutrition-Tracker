@@ -1,12 +1,15 @@
 
 
 
+TODO: Delete log not working in my food logs
 
+TODO: Make no image icon if no image in specific food logs
 
-TODO: myfoodLogs dates not filtered by date
+TODO: food log pages typescript
  
 
-TODO: Delete log not working in my food logs
+
+
 
 
 
@@ -33,7 +36,7 @@ TODO: Title tab change text and image
 
 TODO: ADD CSS fade in or out?
 
-
+TODO: useOptimistic 
 
 TODO: Search results if not found
 TODO: Impletement pagination where needed 

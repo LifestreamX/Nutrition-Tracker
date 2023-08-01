@@ -114,7 +114,6 @@ const FoodLog = () => {
     }
   };
 
-  console.log(macroTargets.calories);
 
   return (
     <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 '>

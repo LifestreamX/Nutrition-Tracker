@@ -1,10 +1,11 @@
 import React from 'react';
+import { ConfirmDeleteHandler, CancelHandler } from '@/types/MyFoodLog.types';
 
-interface DeleteFoodTypeProps {
+type DeleteFoodTypeProps = {
   isOpen: Boolean;
-  onCancel: () => void;
-  onConfirm: () => void;
-}
+  onCancel: CancelHandler;
+  onConfirm: ConfirmDeleteHandler;
+};
 
 const DeleteFoodLogModal = ({
   isOpen,

@@ -1,50 +1,54 @@
 'use client';
 
-import React, { useReducer, useState, useEffect } from 'react';
-import { redirect, useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Params } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
 import { useWindowSize } from 'react-use';
-import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
+import {
+  specificFoodLogTypes,
+  CancelHandler,
+  ConfirmDeleteHandler,
+} from '@/types/MyFoodLog.types';
 import Link from 'next/link';
 import DeleteFoodLogModal from './components/DeleteFoodLogModal';
-import { useParams } from 'next/navigation';
+import { FoodLogTypes } from '@/types/FoodLog.types';
 
-interface MyFoodLogProps {
+type MyFoodLogProps = {
   params: Params;
-}
+};
+
+type DeleteHandler = (
+  event: React.MouseEvent<SVGSVGElement, MouseEvent>
+) => void;
 
 const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
   const { submittedFoodLogs, dispatch } = useMyContext();
-  let result = submittedFoodLogs.find((e) => {
+  let result = submittedFoodLogs.find((e: any) => {
     return e.foodLogId === params.foodlog?.toString();
   });
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
   const [totalCalories, setTotalCalories] = useState<number>(0);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleDeleteClick = (): void => {
+  const handleDeleteClick: DeleteHandler = () => {
     setIsModalOpen(true);
   };
 
-  const handleCancel = (): void => {
+  const handleCancel: CancelHandler = () => {
     setIsModalOpen(false);
   };
 
-  let { foodLog, foodLogId, selectedDate } = result as SubmittedFoodLogsTypes;
+  let { foodLog, foodLogId, selectedDate } = result as specificFoodLogTypes;
 
   const router = useRouter();
-
-  // let currentFoodLog = submittedFoodLogs.find((e: { foodLogId: string; }): boolean => {
-  //   return e.foodLogId === params.foodLogId;
-  // });
 
   const imageSize = width > 768 ? 70 : 50;
 
   useEffect(() => {
-    const totalCal = foodLog.reduce(
+    const totalCal: number | any = foodLog.reduce(
       (acc: number, cur: { calories: number }) => {
         acc += cur.calories;
         return acc;
@@ -55,9 +59,10 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
     setTotalCalories(totalCal);
   }, []);
 
-  const handleConfirm = (): void => {
+  const handleConfirm: ConfirmDeleteHandler = () => {
     const deleteLog = submittedFoodLogs?.filter((e: { foodLogId: string }) => {
-      return e.foodLogId !== params.foodLogId;
+    
+      return e.foodLogId !== params.foodlog;
     });
 
     dispatch({
@@ -124,7 +129,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
           onConfirm={handleConfirm}
         />
 
-        {foodLog.map((food: SubmittedFoodLogsTypes) => {
+        {foodLog.map((food: FoodLogTypes) => {
           let queryLabel = food.label.replaceAll(' ', '-').replaceAll(',', '');
 
           let queryDate = selectedDate
@@ -133,7 +138,6 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
             .replaceAll(' ', '-');
 
           let combinedQuery = queryDate + '/' + queryLabel;
-
 
           return (
             <ul className='w-full '>
