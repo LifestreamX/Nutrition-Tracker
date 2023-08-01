@@ -4,7 +4,7 @@ import { useMyContext } from '@/MyContext';
 import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { SubmittedFoodLogsTypes } from '@/types/MyFoodLog.types';
+import { specificFoodLogTypes } from '@/types/MyFoodLog.types';
 import grapes from '.././images/dashboard/grapes.png';
 import Image from 'next/image';
 import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
@@ -19,7 +19,7 @@ const MyFoodLogs: React.FC = () => {
   // Calculate the index range of the food logs to display on the current page
   const indexOfLastResult: number = currentPage * resultsPerPage;
   const indexOfFirstResult: number = indexOfLastResult - resultsPerPage;
-  const currentResults: SubmittedFoodLogsTypes[] = submittedFoodLogs.slice(
+  const currentResults: specificFoodLogTypes[] = submittedFoodLogs.slice(
     indexOfFirstResult,
     indexOfLastResult
   );
@@ -34,13 +34,14 @@ const MyFoodLogs: React.FC = () => {
   let selectedDate = startDate;
 
   let sortedByYear = currentResults.sort((a, b) => {
-    const dateA = a.selectedDate.toString().split(',').at(-1);
-    const dateB = b.selectedDate.toString().split(',').at(-1);
+    const dateA = parseInt(a.selectedDate?.toString().split(',').at(-1) || '0');
+
+    const dateB = parseInt(b.selectedDate?.toString().split(',').at(-1) || '0');
 
     return dateA - dateB;
   });
 
-  let dateFilterResults = null;
+  let dateFilterResults: any = null;
   let noLog = false;
 
   sortedByYear.find((e) => {
@@ -55,7 +56,6 @@ const MyFoodLogs: React.FC = () => {
       }
     }
   });
-
 
   let formattedFilteredDate = dateFilterResults?.selectedDate
     ?.toString()
@@ -111,7 +111,7 @@ const MyFoodLogs: React.FC = () => {
                   foodLogId,
                   selectedDate,
                   foodLog,
-                }: SubmittedFoodLogsTypes) => {
+                }: specificFoodLogTypes) => {
                   let formattedDate = selectedDate
                     .toString()
                     .replaceAll(', ', '-')

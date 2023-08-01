@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const MyDatePicker: React.FC = () => {
-  const { selectedDate, setSelectedDate } = useMyContext();
+  const { selectedDate, setSelectedDate }: any = useMyContext();
   const [isDateClicked, setIsDateClicked] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
@@ -29,12 +29,12 @@ const MyDatePicker: React.FC = () => {
 
   let dateChangeText = selectedDate === null ? 'Select a Date' : 'Change Date';
 
-
+  console.log(selectedDate);
 
   return (
     <button>
       <DatePicker
-        selected={selectedDate ? selectedDate.dateObject : null}
+        selected={selectedDate ? selectedDate?.dateObject : null}
         onChange={handleDateChange}
         dateFormat='EEEE, d MMMM yyyy'
         className='text-center  cursor-pointer text-purple-800 p-1 rounded-lg placeholder-purple-500 text-lg hover:placeholder-purple-800  font-semibold '

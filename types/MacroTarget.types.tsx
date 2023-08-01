@@ -1,6 +1,6 @@
 // Macro taget types
 export interface MacroTargetTypes {
-  calories: number | string;
+  calories: number | string ;
   protein: number | string;
   carbs: number | string;
   fats: number | string;

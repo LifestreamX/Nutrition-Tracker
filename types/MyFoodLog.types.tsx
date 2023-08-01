@@ -1,10 +1,10 @@
 import { FoodLogTypes } from './FoodLog.types';
 
-export interface Params {
+export type Params = {
   foodlog: string;
   foodLog: string;
   foodlogdetails: string;
-}
+};
 
 // specific Log types
 export type specificFoodLogTypes = {

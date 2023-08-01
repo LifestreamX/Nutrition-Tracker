@@ -6,6 +6,10 @@ import Image from "next/image";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+type ChildProps = {
+  
+}
+
 const HoverFoodLogItemData = () => {
   const { foodItem } = useMyContext();
 

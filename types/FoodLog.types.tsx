@@ -1,7 +1,11 @@
 // Macro taget types
 export interface FoodLogTypes {
-  map(arg0: (food: any) => JSX.Element): import("react").ReactNode;
-  reduce(arg0: (acc: number, cur: { calories: number; }) => number, arg1: number): unknown;
+  map(arg0: (food: any) => JSX.Element): import('react').ReactNode;
+  reduce(
+    arg0: (acc: number, cur: { calories: number }) => number,
+    arg1: number
+  ): unknown;
+
   FIBTG: number;
   calories: number;
   carbs: number;
@@ -22,4 +26,5 @@ export interface FoodLogTypes {
   };
   protein: number;
   servingSizes?: object | undefined;
+  
 }

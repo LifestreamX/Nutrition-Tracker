@@ -2,8 +2,8 @@ import React from 'react';
 import { useMyContext } from '@/MyContext';
 
 interface ChildProps {
-  onDelete: (id: string) => void;
-  setDeleteClicked: () => void;
+  onDelete: (id?: string) => void;
+  setDeleteClicked: (isClicked: boolean) => void;
 }
 
 const ConfirmDelete = ({ onDelete, setDeleteClicked }: ChildProps) => {

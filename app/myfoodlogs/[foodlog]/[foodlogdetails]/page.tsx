@@ -6,7 +6,6 @@ import { Params } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
 import { FoodLogTypes } from '@/types/FoodLog.types';
-import { specificFoodLogDetailsTypes } from '@/types/MyFoodLog.types';
 
 type MyFoodLogProps = {
   params: Params;

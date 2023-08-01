@@ -8,7 +8,7 @@ import uniqid from 'uniqid';
 interface State {
   foodLogSubmittedSuccess: boolean;
   isDateNotSelected: boolean;
-  isMacroTargetsSet: boolean;
+  isMacroTargetsSet: boolean | string;
   macrosSet: boolean;
 }
 
@@ -68,9 +68,11 @@ const FoodLog = () => {
   const [state, dispatchState] = useReducer(reducer, initialState);
   const [foodLogWrapper, setFoodLogWrapper] = useState({});
 
-  const isMacroTargetsEmpty = (value: string) => {
+  const isMacroTargetsEmpty = (value: string | number): boolean => {
     return value === '';
   };
+
+  console.log(macroTargets.calories);
 
   const handleFoodLogSubmit = (): void => {
     if (selectedDate === null) {
@@ -115,10 +117,13 @@ const FoodLog = () => {
   };
 
 
+
+
   return (
     <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 '>
-      <p className=''>{selectedDate}</p>
+      <p className=''>{selectedDate?.toString()}</p>
       {foodLog?.length === 0 ? (
+          
         state.foodLogSubmittedSuccess &&
         Object.keys(macroTargets).length === 0 &&
         selectedDate === null ? (
@@ -137,10 +142,7 @@ const FoodLog = () => {
                   d='M5 13l4 4L19 7'
                 />
               </svg>
-              <span className='text-green-500'>
-                {' '}
-                {selectedDate?.formattedDate} Food Log Submitted
-              </span>
+              <span className='text-green-500'>Food Log Submitted</span>
             </h1>
           </div>
         ) : (
@@ -151,7 +153,7 @@ const FoodLog = () => {
           <p className=' '>
             {/* {selectedDate !== null && selectedDate.formattedDate}{' '} */}
           </p>
-          {foodLog?.map((food: FoodLogTypes) => (
+          {foodLog?.map((food: FoodLogTypes ) => (
             <Food key={food.foodId} food={food} />
           ))}
 

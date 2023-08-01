@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import ConfirmDelete from './ConfirmDelete';
 import { FoodTypeData } from '@/types/Food.types';
 import Button from '@/app/components/Button';
@@ -11,7 +11,7 @@ import HoverFoodLogItemData from './HoverFoodLogItemData';
 import { useMyContext } from '@/MyContext';
 
 interface FoodDataProps {
-  food: FoodTypeData;
+  food: FoodLogTypes;
 }
 
 const Food = ({ food }: FoodDataProps) => {
@@ -25,9 +25,7 @@ const Food = ({ food }: FoodDataProps) => {
   } = useMyContext();
   const [hoverItemId, setHoverItemId] = useState<string | null>(null);
   const [deleteClicked, setDeleteClicked] = useState(false);
-  const [newQuantity, setNewQuantity] = useState<
-    number | ChangeEvent<HTMLInputElement> | null
-  >(null);
+  const [newQuantity, setNewQuantity] = useState<any>(null);
   const [emptyQuantityWarning, setEmptyQuantityWarning] = useState(false);
   const [delayRender, setDelayedRender] = useState(false);
 
@@ -63,6 +61,7 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleQuantity = (id: string): void => {
+    console.log(food.quantity);
     setNewQuantity(food.quantity);
     setClikedEditId(id);
   };
@@ -89,7 +88,7 @@ const Food = ({ food }: FoodDataProps) => {
       return;
     } else {
       setClikedEditId(null);
-      const updated = foodLog?.map((food: FoodLogTypes) => {
+      const updated = foodLog?.map((food: any) => {
         if (food.foodId === id) {
           return { ...food, quantity: newQuantity };
         }
@@ -99,7 +98,9 @@ const Food = ({ food }: FoodDataProps) => {
     }
   };
 
-  const quantityCalories = food.calories * food.quantity;
+  console.log('food QUantity',food.quantity)
+
+  const quantityCalories = food.calories * food?.quantity;
 
   return (
     <div
@@ -159,7 +160,7 @@ const Food = ({ food }: FoodDataProps) => {
           <span className='relative'>
             {hoverItemId && delayRender && (
               <div className='relative z-40'>
-                <HoverFoodLogItemData foodL={food.label} />
+                <HoverFoodLogItemData />
               </div>
             )}
             <span className='mr-2'>{food.quantity}X</span>

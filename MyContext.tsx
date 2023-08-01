@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  ReactNode,
   createContext,
   useContext,
   useEffect,
@@ -17,7 +18,9 @@ type MyContextType = {
   // incrementCount: () => void;
 
   macroTargets: MacroTargetTypes;
-  setMacroTargets: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
+  setMacroTargets: React.Dispatch<
+    React.SetStateAction<MacroTargetTypes | object>
+  >;
   macroTargetInputs: MacroTargetTypes;
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
   nutritionSearchData: NutritionSearchDataType;
@@ -25,15 +28,17 @@ type MyContextType = {
     React.SetStateAction<NutritionSearchDataType>
   >;
   foodLog: FoodTypeData;
-  setFoodLog: React.Dispatch<React.SetStateAction<FoodTypeData>>;
+  setFoodLog: React.Dispatch<
+    React.SetStateAction<FoodTypeData | object[] | ReactNode>
+  >;
   successAdded: Boolean;
   setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean>>;
   clikedEditId: string;
-  setClikedEditId: React.Dispatch<React.SetStateAction<string>>;
+  setClikedEditId: React.Dispatch<React.SetStateAction<string | null>>;
   foodItem: any;
   setFoodItem: React.Dispatch<React.SetStateAction<any>>;
   selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
   dispatch: any;
   submittedFoodLogs: any;
 };
@@ -119,6 +124,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
   };
 
+  console.log(foodLog);
+
   const [submittedFoodLogs, dispatch] = useReducer(
     reducer,
     JSON.parse(localStorage.getItem('submittedFoodLogs')) || []
@@ -129,10 +136,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       'submittedFoodLogs',
       JSON.stringify(submittedFoodLogs)
     );
-
-
   }, [submittedFoodLogs]);
-
 
   const value: MyContextType = {
     macroTargetInputs,

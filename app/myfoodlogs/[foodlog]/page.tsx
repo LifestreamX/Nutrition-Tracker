@@ -61,7 +61,6 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
 
   const handleConfirm: ConfirmDeleteHandler = () => {
     const deleteLog = submittedFoodLogs?.filter((e: { foodLogId: string }) => {
-    
       return e.foodLogId !== params.foodlog;
     });
 
@@ -156,7 +155,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
                     </p>
 
                     <div>
-                      {food.image !== undefined && (
+                      {food.image !== undefined ? (
                         <Image
                           src={food.image}
                           width={imageSize}
@@ -164,6 +163,8 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
                           alt={`Picture of ${food} `}
                           className='rounded-2xl'
                         />
+                      ) : (
+                        <span className='flex text-center'>No Image</span>
                       )}
                     </div>
                   </li>

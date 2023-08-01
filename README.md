@@ -1,32 +1,32 @@
 
 
 
-TODO: Delete log not working in my food logs
 
-TODO: Make no image icon if no image in specific food logs
 
-TODO: food log pages typescript
+
+
  
 
 
 
 
 
-
-TODO: Add filter by for my food logs page logic   / Types / responsive
-
+TODO: Contact Page
 
 
 
 
 
 
-TODO: PROP types for delete food log modal component
+
+
+TODO: make sure all pages are responsive
+
+
+TODO: Fix all Type issues
 
 
 
-
-TODO: Title tab change text and image
 
 
 
@@ -46,7 +46,7 @@ TODO: page for specific log
 TODO: indiviual log page with id
 
 TODO: About Page
-TODO: Contact Page
+
 
 TODO: loading skeloton or other
 
