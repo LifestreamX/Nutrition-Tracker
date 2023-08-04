@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, FormEvent } from 'react';
 import Button from '../components/Button';
 import emailjs from '@emailjs/browser';
 
@@ -10,13 +10,22 @@ type FormFields = {
   message: string;
 };
 
-const Contact = () => {
-  const form = useRef();
-  const [emailSent, setEmailSent] = useState(false);
+const Contact: React.FC = () => {
+  const form = useRef<HTMLFormElement>();
+  const [emailSent, setEmailSent] = useState<boolean>(false);
 
-  const sendEmail = (e) => {
-    console.log(e);
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!form.current) {
+      return;
+    }
+
+    const formData: FormFields = {
+      from_name: form.current.from_name.value,
+      email: form.current.email.value,
+      message: form.current.message.value,
+    };
 
     emailjs
       .sendForm(
@@ -33,7 +42,7 @@ const Contact = () => {
           console.log(error.text);
         }
       );
-    e.target.reset();
+    form.current.reset();
     setEmailSent(true);
   };
 
