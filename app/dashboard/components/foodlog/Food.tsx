@@ -61,7 +61,6 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleQuantity = (id: string): void => {
-    console.log(food.quantity);
     setNewQuantity(food.quantity);
     setClikedEditId(id);
   };
@@ -98,7 +97,6 @@ const Food = ({ food }: FoodDataProps) => {
     }
   };
 
-  console.log('food QUantity',food.quantity)
 
   const quantityCalories = food.calories * food?.quantity;
 

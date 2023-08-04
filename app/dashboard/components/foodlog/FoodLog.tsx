@@ -72,7 +72,6 @@ const FoodLog = () => {
     return value === '';
   };
 
-  console.log(macroTargets.calories);
 
   const handleFoodLogSubmit = (): void => {
     if (selectedDate === null) {

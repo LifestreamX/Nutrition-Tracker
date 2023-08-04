@@ -124,7 +124,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
   };
 
-  console.log(foodLog);
 
   const [submittedFoodLogs, dispatch] = useReducer(
     reducer,

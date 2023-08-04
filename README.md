@@ -11,7 +11,22 @@
 
 
 
-TODO: Contact Page
+TODO: Contact Page -   Typescript  / code overview 
+
+
+
+
+
+
+
+TODO: About Page 
+
+
+
+TODO: Loading - set up loading files
+
+
+TODO: Error - Set up error files
 
 
 
@@ -51,8 +66,7 @@ TODO: About Page
 TODO: loading skeloton or other
 
 TODO: suspense - wrap components in suspense 
-TODO: Loading - set up loading files
-TODO: Error - Set up error files
+T
 not-found set up file
 TODO: Meta Data - static and dyanmic
 TODO: update next project version to most recent
