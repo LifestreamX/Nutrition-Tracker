@@ -7,17 +7,23 @@ import navicon from '../images/navicon.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const navigation = [
+interface NavigationItem {
+  name: string;
+  href: string;
+  current: boolean;
+}
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
+const navigation: NavigationItem[] = [
   { name: 'Home', href: '/', current: false },
   { name: 'About', href: '/about', current: false },
   { name: 'Contact', href: '/contact', current: false },
 ];
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(' ');
-}
-
-export default function NavBar() {
+const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(true);
 
   return (
@@ -26,14 +32,12 @@ export default function NavBar() {
         <>
           <header className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 '>
             <Link href='/' legacyBehavior>
-              <div>
-                <h1
-                  className='text-white text-bold text-xl absolute left-4 top-4 hidden md:block
-                cursor-pointer'
-                >
-                  nutritiontracker
-                </h1>
-              </div>
+              <h1
+                className='text-white text-bold text-xl absolute left-10 top-4 hidden md:block z-20
+                cursor-pointer '
+              >
+                nutritiontracker
+              </h1>
             </Link>
             <div className='relative flex h-16 items-center justify-between'>
               <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
@@ -219,4 +223,6 @@ export default function NavBar() {
       )}
     </Disclosure>
   );
-}
+};
+
+export default NavBar;

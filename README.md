@@ -11,7 +11,6 @@
 
 
 
-TODO: Loading - set up loading files
 
 
 
@@ -19,82 +18,6 @@ TODO: Loading - set up loading files
 
 
 
-TODO: Error - Set up error files
-
-
-
-
-
-TODO: Dark mode all pages / components
-
-
-TODO: make sure all pages are responsive
-
-
-TODO: Fix all Type issues
-
-
-
-
-
-
-
-
-TODO: signup page 
-
-TODO: ADD CSS fade in or out?
-
-TODO: useOptimistic 
-
-TODO: Search results if not found
-TODO: Impletement pagination where needed 
-
-TODO: page for specific log
-
-TODO: indiviual log page with id
-
-
-
-TODO: loading skeloton or other
-
-TODO: suspense - wrap components in suspense 
-T
-not-found set up file
-TODO: Meta Data - static and dyanmic
-TODO: update next project version to most recent
-
-
-
-TODO: layouts for different pages?
-TODO: Testing
-
-TODO: server actions?
-
-TODO: Rendering Options SSG/ SSR / ISR etc...
-
- --- Server ---
-revailidate?
-Cache when fetching date?
-router.refresh? 
-Auth - next / etc. role base?
-
-
-SSG and SSR 
-
-
-
-
-
-
-
-            <!-- Hooks To Implement -->
-
-TODO: use useCallback Hook
-TODO: use useMemo / React Memo
-TODO: Other Data structures
-
-TODO: Lazy Loading
-TODO: smooth motion
 
 
 

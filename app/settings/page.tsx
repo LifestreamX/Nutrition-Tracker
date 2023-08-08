@@ -1,12 +1,14 @@
 'use client';
 
+import { useMyContext } from '@/MyContext';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
 
-const Settings = () => {
+const Settings: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
+
 
   useEffect(() => {
     setMounted(true);
@@ -18,9 +20,10 @@ const Settings = () => {
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
+
   return (
     <main className='flex flex-col w-full justify-center items-center '>
-      <section className='w-4/5 flex flex-col  max-w-xl shadow-2xl relative top-40 p-10'>
+      <section className='rounded-xl w-4/5 flex flex-col  max-w-xl shadow-2xl relative top-40 p-10 dark:bg-gray-800'>
         <h1 className='text-2xl font-bold w-full bottom-24 right-9 relative'>
           Settings
         </h1>

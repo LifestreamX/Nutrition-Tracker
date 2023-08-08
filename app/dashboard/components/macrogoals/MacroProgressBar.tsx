@@ -85,7 +85,7 @@ export const MacroProgressBar: React.FC = () => {
 
 
   return (
-    <section className=' bg-white rounded-lg shadow-lg p-8'>
+    <section className=' bg-white rounded-lg shadow-lg p-8 dark:bg-gray-800'>
       {isMacroTargetsEmpty ? (
         <div>
           <div className='mb-3'>
@@ -205,7 +205,7 @@ export const CaloriesProgress = () => {
   };
 
   return (
-    <section className='flex flex-col justify-around w-full p-5 items-center  md:flex-row  '>
+    <section className='flex flex-col justify-around w-full p-5 items-center  md:flex-row   dark:bg-gray-800'>
       <div className='w-32 flex flex-col justify-center items-center'>
         {' '}
         {caloriesRemain === 0 ||

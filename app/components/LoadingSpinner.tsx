@@ -4,7 +4,7 @@ import React from 'react';
 
 import { useWindowSize } from 'react-use';
 
-const LoadingSpinner = () => {
+const LoadingSpinner: React.FC = () => {
   const { width, height } = useWindowSize();
 
   const widthAndHeight = width < 768 ? '16' : '24';

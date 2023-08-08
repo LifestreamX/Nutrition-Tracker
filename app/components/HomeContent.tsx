@@ -1,10 +1,10 @@
 import React from 'react';
-import Image from "next/image";
+import Image from 'next/image';
 import homecontent from '../images/homecontent.png';
 import homecontent2 from '../images/homecontent2.png';
 import homecontent3 from '../images/homecontent3.png';
 
-const HomeContent = () => {
+const HomeContent: React.FC = () => {
   return (
     <section className=' flex flex-col items-center justify-center  '>
       <div className='text-center mx-5'>

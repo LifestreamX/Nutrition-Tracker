@@ -119,7 +119,7 @@ const FoodLog = () => {
 
 
   return (
-    <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 '>
+    <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 dark:bg-gray-800'>
       <p className=''>{selectedDate?.toString()}</p>
       {foodLog?.length === 0 ? (
           

@@ -3,6 +3,7 @@
 import React, { useState, useRef, FormEvent } from 'react';
 import Button from '../components/Button';
 import emailjs from '@emailjs/browser';
+import { useMyContext } from '@/MyContext';
 
 type FormFields = {
   from_name: string;
@@ -13,6 +14,16 @@ type FormFields = {
 const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>();
   const [emailSent, setEmailSent] = useState<boolean>(false);
+
+  const { themeSetting } = useMyContext();
+
+  console.log(themeSetting);
+
+  let themeTextColor;
+
+  const paraTextClasses = `lg:w-2/3 mx-auto ${
+    themeSetting === 'dark' && 'text-white'
+  }`;
 
   const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,10 +62,10 @@ const Contact: React.FC = () => {
       <section className='text-gray-700 body-font relative'>
         <div className='container px-5 py-24 mx-auto'>
           <div className='flex flex-col text-center w-full mb-12'>
-            <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-900'>
-              Contact Me
+            <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-900 dark:text-purple-600'>
+              Contact Me 
             </h1>
-            <p className='lg:w-2/3 mx-auto  '>
+            <p className='lg:w-2/3 mx-auto dark:text-gray-200  '>
               Send me a email if you have any questions or suggestions about my
               nutrition tracker application
             </p>
@@ -100,7 +111,7 @@ const Contact: React.FC = () => {
               <div className='flex flex-wrap -m-2'>
                 <div className='p-2 w-1/2'>
                   <div className='relative'>
-                    <label className=' leading-7 text-sm text-gray-600'>
+                    <label className=' leading-7 text-sm text-gray-600 dark:text-gray-200'>
                       Name
                     </label>
                     <input
@@ -113,7 +124,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className='p-2 w-1/2'>
                   <div className='relative'>
-                    <label className='leading-7 text-sm text-gray-600'>
+                    <label className='leading-7 text-sm text-gray-600 dark:text-gray-200'>
                       Email
                     </label>
                     <input
@@ -126,7 +137,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className='p-2 w-full'>
                   <div className='relative'>
-                    <label className='leading-7 text-sm text-gray-600'>
+                    <label className='leading-7 text-sm text-gray-600 dark:text-gray-200'>
                       Message
                     </label>
                     <textarea
@@ -145,7 +156,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div className='p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center'>
                   <a className='text-purple-600'>tylerallen@live.com</a>
-                  <p className='leading-normal my-5'>Boston, MA</p>
+                  <p className='leading-normal my-5 dark:text-gray-400'>Boston, MA</p>
                 </div>
               </div>
             </form>

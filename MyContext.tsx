@@ -41,6 +41,7 @@ type MyContextType = {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
   dispatch: any;
   submittedFoodLogs: any;
+  
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -94,6 +95,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [foodItem, setFoodItem] = useState(null);
 
+
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const [foodLog, setFoodLog] = useState(() => {
@@ -123,7 +125,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
         return state;
     }
   };
-
 
   const [submittedFoodLogs, dispatch] = useReducer(
     reducer,
@@ -156,6 +157,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setSelectedDate,
     submittedFoodLogs,
     dispatch,
+ 
   };
 
   // Local Storage

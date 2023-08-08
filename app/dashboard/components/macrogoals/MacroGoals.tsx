@@ -102,17 +102,16 @@ const MacroGoals = () => {
             </Button>
 
             <button className='mt-2 md:ml-6 0 '>
-             
               <MyDatePicker />
             </button>
           </div>
         )}
 
         {/* MACRO SET */}
-        <dialog className='relative top-40' open={showMacroForm}>
+        <dialog className='relative top-40 ' open={showMacroForm}>
           <form
             action=''
-            className='mt-5  bg-white w-full  p-14 rounded-lg shadow-lg flex flex-col relative justify-center items-center'
+            className='mt-5  bg-white w-full  p-14 rounded-lg shadow-lg flex flex-col relative justify-center items-center dark:bg-gray-800'
           >
             {/* Warning */}
 
@@ -140,7 +139,7 @@ const MacroGoals = () => {
               </div>
             )}
 
-            <div className=' min-w-full '>
+            <div className=' min-w-full  '>
               <div className='flex justify-end mt-3'>
                 <label htmlFor='macroCalories' className='mr-3'>
                   Calories{' '}
@@ -225,9 +224,9 @@ const MacroGoals = () => {
         {/* for Calories Burned / calories consumed  / calories remaining targets */}
 
         {!showMacroForm && (
-          <section className='w-screen h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-evenly md:top-20 '>
+          <section className='w-screen h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-evenly md:top-20  '>
             {/*  Left Side*/}
-            <div className=' w-1/3 bg-white rounded-lg shadow-lg'>
+            <div className=' w-1/3 bg-white rounded-lg shadow-lg '>
               <MacroProgressBar />
             </div>
 

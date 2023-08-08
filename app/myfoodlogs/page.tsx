@@ -9,6 +9,10 @@ import grapes from '.././images/dashboard/grapes.png';
 import Image from 'next/image';
 import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
 import { BsTypeH1 } from 'react-icons/bs';
+import { Suspense } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import Loading from './loading';
 
 const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();
@@ -61,6 +65,8 @@ const MyFoodLogs: React.FC = () => {
     ?.toString()
     ?.replaceAll(', ', '-')
     ?.replaceAll(' ', '-');
+
+  console.log(sortedByYear.length);
 
   return (
     <section className='w-full flex justify-center items-middle relative top-20'>
@@ -122,6 +128,8 @@ const MyFoodLogs: React.FC = () => {
                       key={foodLogId}
                       className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
+                    
+
                       <Link
                         key={submittedFoodLogs}
                         // href={`/myfoodlogs/${foodLogId}`}

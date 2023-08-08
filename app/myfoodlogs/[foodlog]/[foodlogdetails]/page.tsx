@@ -50,7 +50,6 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
 
   let noImage = logDetails.image === undefined && 'hidden';
 
-
   return (
     <main className='w-full flex justify-center items-middle relative top-20 p-5'>
       <div className='bg-white m-5   w-full rounded-lg shadow-2xl  flex flex-col justify-center items-center sm:p-20 relative md:max-w-5xl'>

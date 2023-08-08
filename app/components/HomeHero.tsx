@@ -5,7 +5,7 @@ import heroimg2 from '../images/heroimg2.png';
 import Link from 'next/link';
 import Button from './Button';
 
-const HomeHero = () => {
+const HomeHero: React.FC = () => {
   return (
     <section className='flex-col sm:flex-row  w-100 flex relative bottom-24 justify-evenly items-center '>
       {/* Left side hero */}
