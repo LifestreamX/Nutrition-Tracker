@@ -5,17 +5,13 @@ import './output.css';
 import Providers from './Providers';
 import { Oswald, Kanit } from '@next/font/google';
 import { Metadata } from 'next';
-
+import { Suspense } from 'react';
+import LoadingSpinner from './components/LoadingSpinner';
 
 export const metadata: Metadata = {
   title: 'nutrition tracker',
   description: 'track your nutrition progress daily',
-  
 };
-
-
-
-
 // export default function Head() {
 //   return (
 //     <>
@@ -26,13 +22,6 @@ export const metadata: Metadata = {
 //     </>
 //   )
 // }
-
-
-
-
-
-
-
 
 const oswald = Oswald({
   weight: ['400', '500'],
@@ -56,7 +45,10 @@ export default function RootLayout({
         <body className={kanit.className}>
           <main className='w-screen'>
             <NavBar />
-            <Providers>{children}</Providers>
+
+            <Providers>
+              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+            </Providers>
           </main>
         </body>
       </MyProvider>

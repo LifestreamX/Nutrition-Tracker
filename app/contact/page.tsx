@@ -60,6 +60,7 @@ const Contact: React.FC = () => {
             </p>
           </div>
 
+          {/* success message once form is submitted */}
           {emailSent === true && (
             <div
               className=' w-1/2 mx-auto flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400'
@@ -89,16 +90,17 @@ const Contact: React.FC = () => {
             </div>
           )}
 
+          {/* form  */}
           {emailSent === false && (
             <form
-              ref={form}
+              ref={form as React.RefObject<HTMLFormElement>}
               onSubmit={sendEmail}
               className='lg:w-1/2 md:w-2/3 mx-auto'
             >
               <div className='flex flex-wrap -m-2'>
                 <div className='p-2 w-1/2'>
                   <div className='relative'>
-                    <label className='leading-7 text-sm text-gray-600'>
+                    <label className=' leading-7 text-sm text-gray-600'>
                       Name
                     </label>
                     <input

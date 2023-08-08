@@ -11,19 +11,12 @@
 
 
 
-TODO: Contact Page -   Typescript  / code overview 
-
-
-
-
-
-
-
-TODO: About Page 
-
-
-
 TODO: Loading - set up loading files
+
+
+
+
+
 
 
 TODO: Error - Set up error files
@@ -32,7 +25,7 @@ TODO: Error - Set up error files
 
 
 
-
+TODO: Dark mode all pages / components
 
 
 TODO: make sure all pages are responsive
@@ -47,7 +40,7 @@ TODO: Fix all Type issues
 
 
 
-
+TODO: signup page 
 
 TODO: ADD CSS fade in or out?
 
@@ -60,7 +53,6 @@ TODO: page for specific log
 
 TODO: indiviual log page with id
 
-TODO: About Page
 
 
 TODO: loading skeloton or other
