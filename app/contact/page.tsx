@@ -60,10 +60,10 @@ const Contact: React.FC = () => {
   return (
     <div>
       <section className='text-gray-700 body-font relative'>
-        <div className='container px-5 py-24 mx-auto'>
-          <div className='flex flex-col text-center w-full mb-12'>
-            <h1 className='sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-900 dark:text-purple-600'>
-              Contact Me 
+        <div className='container px-5 py-24 mx-auto dark:bg-gray-800 dark:mt-20 dark:mb-10 dark:rounded-3xl'>
+          <div className='flex flex-col text-center w-full mb-12 '>
+            <h1 className=' bg-gray-800sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-900 dark:text-purple-600'>
+              Contact Me
             </h1>
             <p className='lg:w-2/3 mx-auto dark:text-gray-200  '>
               Send me a email if you have any questions or suggestions about my
@@ -74,7 +74,7 @@ const Contact: React.FC = () => {
           {/* success message once form is submitted */}
           {emailSent === true && (
             <div
-              className=' w-1/2 mx-auto flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400'
+              className='  w-1/2 mx-auto flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400'
               role='alert'
             >
               <div className=' flex flex-col sm:flex-row w-full justify-center items-center'>
@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
             <form
               ref={form as React.RefObject<HTMLFormElement>}
               onSubmit={sendEmail}
-              className='lg:w-1/2 md:w-2/3 mx-auto'
+              className='lg:w-1/2 md:w-2/3 mx-auto '
             >
               <div className='flex flex-wrap -m-2'>
                 <div className='p-2 w-1/2'>
@@ -156,7 +156,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div className='p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center'>
                   <a className='text-purple-600'>tylerallen@live.com</a>
-                  <p className='leading-normal my-5 dark:text-gray-400'>Boston, MA</p>
+                  <p className='leading-normal my-5 dark:text-gray-400'>
+                    Boston, MA
+                  </p>
                 </div>
               </div>
             </form>

@@ -74,7 +74,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
 
   return (
     <main className='w-full flex justify-center items-middle relative top-20 p-5'>
-      <div className='bg-white m-5 b  w-full rounded-lg shadow-2xl md:w-1/3 flex flex-col justify-center items-center p-5 sm:p-20 relative'>
+      <div className='bg-white dark:bg-gray-800 m-5 b  w-full rounded-lg shadow-2xl md:w-1/3 flex flex-col justify-center items-center p-5 sm:p-20 relative'>
         <div className=' w-full  '>
           {/* delete button */}
           <svg
@@ -113,12 +113,17 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
         <div className=' mb-10 flex flex-col lg:flex-row justify-center w-screen md:w-full  '>
           <p className='mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center mb-4 lg:mb-0 '>
             <p className=''>Date</p>
-            <p className='text-purple-800 mt-2'> {selectedDate}</p>
+            <p className='text-purple-800 mt-2 dark:text-purple-500'>
+              {' '}
+              {selectedDate}
+            </p>
           </p>
           <div className=' lg:h-full lg:p-0.5  lg:bg-purple-800 lg:mx-5'></div>
           <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
             <p className=' '>Total Calories </p>
-            <p className='text-purple-800 mt-2'>{totalCalories.toFixed(0)}</p>
+            <p className='text-purple-800 dark:text-purple-500 mt-2'>
+              {totalCalories.toFixed(0)}
+            </p>
           </p>
         </div>
 
@@ -148,8 +153,8 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
                 }}
                 // href={`/myfoodlogs/${foodLogId}/${food.foodId}`}
               >
-                <div className='bg-white   xs:w-full rounded-lg shadow-lg  justify-center items-center'>
-                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-purple-400 cursor-pointer rounded-xl p-4 '>
+                <div className='bg-white dark:bg-gray-700  xs:w-full rounded-lg shadow-lg  justify-center items-center'>
+                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-purple-400  dark:hover:bg-purple-800  cursor-pointer rounded-xl p-4 '>
                     <p className='text-left xs:text- md:text-xl  md:w-full mb-3 md:mb-0'>
                       {food.label}
                     </p>

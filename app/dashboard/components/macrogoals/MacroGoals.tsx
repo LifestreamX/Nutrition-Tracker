@@ -150,7 +150,7 @@ const MacroGoals = () => {
                   id='macroCalories'
                   value={macroTargetInputs.calories}
                   onChange={handleInputChange}
-                  className='border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500'
+                  className='border border-gray-300  focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500  dark:bg-gray-700'
                 />
               </div>
 
@@ -164,7 +164,7 @@ const MacroGoals = () => {
                   id='macroProtein'
                   value={macroTargetInputs.protein}
                   onChange={handleInputChange}
-                  className='border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500'
+                  className='border border-gray-300 focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700'
                 />
               </div>
               <div className='flex justify-end mt-3'>
@@ -177,7 +177,7 @@ const MacroGoals = () => {
                   id='macroCarbs'
                   value={macroTargetInputs.carbs}
                   onChange={handleInputChange}
-                  className='border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500'
+                  className='border border-gray-300 focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700'
                 />
               </div>
 
@@ -191,7 +191,7 @@ const MacroGoals = () => {
                   id='macroFats'
                   value={macroTargetInputs.fats}
                   onChange={handleInputChange}
-                  className='border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500'
+                  className='border border-gray-300 focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700'
                 />
               </div>
             </div>

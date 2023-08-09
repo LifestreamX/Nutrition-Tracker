@@ -1,4 +1,4 @@
-import React,from 'react';
+import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -37,7 +37,7 @@ const FilterFoodLogsByDate: React.FC<FilterFoodLogsByDateProps> = ({
         <DatePicker
           selected={startDate ? startDate.dateObject : null}
           onChange={handleDateChange}
-          className=' cursor-pointer w-full px-3 py-1 text-lg mb-5  text-gray-700 border rounded-lg focus:outline-none focus:ring focus:border-purple-300 text-center'
+          className=' cursor-pointer w-full px-3 py-1 text-lg mb-5  text-gray-700 border rounded-lg focus:outline-none focus:ring  focus:border-0 focus:ring-purple-500 text-center dark:bg-gray-700 '
           placeholderText={placeHolder}
           dateFormat='EEEE, d MMMM yyyy'
         />

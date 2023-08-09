@@ -41,7 +41,6 @@ type MyContextType = {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
   dispatch: any;
   submittedFoodLogs: any;
-  
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -157,7 +156,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setSelectedDate,
     submittedFoodLogs,
     dispatch,
- 
+   
   };
 
   // Local Storage

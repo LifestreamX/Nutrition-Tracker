@@ -50,8 +50,8 @@ const HoverFoodLogItemData = () => {
 
 
   return (
-    <div className='absolute w-full flex justify-center items-center bottom-36 md:bottom-0'>
-      <div className='bg-white shadow-md z-10 w-1/2 md:w-96 p-8 rounded-lg'>
+    <div className='absolute w-full flex justify-center items-center bottom-36 md:bottom-0 '>
+      <div className='bg-white shadow-md z-10 w-1/2 md:w-96 p-8 rounded-lg dark:bg-gray-800'>
         {/* Top Half */}
         <h1 className='mb-4 font-bold text-sm md:text-lg tracking-wide'>
           {label}

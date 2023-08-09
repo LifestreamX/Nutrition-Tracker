@@ -8,8 +8,8 @@ import icon4 from '../images/about/icon4.png';
 
 const About: React.FC = () => {
   return (
-    <div className='flex md:flex-row flex-col-reverse md:items-stretch items-center justify-center'>
-      <div className='md:py-20 xl:w-1/2 sm:w-1/2 lg:mr-20 md:mr-6 flex flex-col md:items-end items-center justify-center xl:mr-28 relative bottom-20 md:bottom-0'>
+    <div className='flex md:flex-row flex-col-reverse md:items-stretch items-center justify-center dark:bg-gray-800 dark:m-8 dark:rounded-3xl dark:mt-20 '>
+      <div className='md:py-20 xl:w-1/2 sm:w-1/2 lg:mr-20 md:mr-6 flex flex-col md:items-end items-center justify-center xl:mr-28 relative bottom-20 md:bottom-0 '>
         <div className='flex flex-col items-center justify-center '>
           <h1 className='md:text-5xl text-3xl font-bold text-center text-gray-800 dark:text-white flex flex-col mb-10 px-2'>
             <div>

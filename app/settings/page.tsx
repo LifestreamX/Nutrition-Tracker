@@ -9,7 +9,6 @@ const Settings: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
 
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -19,7 +18,6 @@ const Settings: React.FC = () => {
   }
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
-
 
   return (
     <main className='flex flex-col w-full justify-center items-center '>

@@ -7,9 +7,9 @@ import Button from './Button';
 
 const HomeHero: React.FC = () => {
   return (
-    <section className='flex-col sm:flex-row  w-100 flex relative bottom-24 justify-evenly items-center '>
+    <section className='flex-col sm:flex-row  w-100 flex relative bottom-24 justify-evenly items-center  '>
       {/* Left side hero */}
-      <div className='text-center sm:text-left'>
+      <div className='text-center sm:text-left dark:bg-gray-800 dark:p-12 dark:rounded-3xl'>
         <h1 className='text-4xl mb-5 font-bold lg:text-6xl'>Eat Better</h1>
         <h1 className='text-4xl mb-5 font-bold lg:text-6xl '>Live Healthier</h1>
         <h3 className='text-2xl mb-5 font-bold lg:text-3xl'>
@@ -21,7 +21,7 @@ const HomeHero: React.FC = () => {
       </div>
 
       {/* Rightside Hero */}
-      <div className='relative top-20 sm:top-0'>
+      <div className='relative top-20 sm:top-0 '>
         <Image
           src={heroimg}
           alt='fruit'

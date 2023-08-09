@@ -134,7 +134,7 @@ const NutritionInfo = () => {
 
   return (
     <>
-      <section className='border p-5 flex flex-col  items-center  md:flex-row md:justify-evenly  '>
+      <section className='border p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-900   '>
         <div className='mb-5 justify-center items-center h-full'>
           <Doughnut data={data} width={200} />
         </div>

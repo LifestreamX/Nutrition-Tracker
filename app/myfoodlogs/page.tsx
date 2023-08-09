@@ -70,10 +70,10 @@ const MyFoodLogs: React.FC = () => {
 
   return (
     <section className='w-full flex justify-center items-middle relative top-20'>
-      <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10'>
+      <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10 dark:bg-gray-800'>
         <div className='flex'>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
-          <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5 text-purple-800'>
+          <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5 text-purple-800 dark:text-white'>
             My Food Logs
           </h1>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
@@ -92,7 +92,7 @@ const MyFoodLogs: React.FC = () => {
             <>
               <li
                 // key={foodLogId}
-                className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                className='text-sm md:text-xl  hover:bg-purple-400 bg-slate-100 dark:hover:bg-purple-700 dark:bg-gray-500 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
               >
                 {noLog ? (
                   <h1>No Food Log for {selectedDate}</h1>
@@ -126,10 +126,8 @@ const MyFoodLogs: React.FC = () => {
                   return (
                     <li
                       key={foodLogId}
-                      className='text-sm md:text-xl hover:bg-purple-400 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                      className='text-sm md:text-xl hover:bg-purple-400 dark:hover:bg-purple-700 dark:bg-gray-500 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
-                    
-
                       <Link
                         key={submittedFoodLogs}
                         // href={`/myfoodlogs/${foodLogId}`}

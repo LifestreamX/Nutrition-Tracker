@@ -191,6 +191,7 @@ const FoodLog = () => {
                 size='medium'
                 responsiveWidth={true}
                 onClick={handleFoodLogSubmit}
+                
               >
                 Submit Food Log
               </Button>

@@ -97,7 +97,6 @@ const Food = ({ food }: FoodDataProps) => {
     }
   };
 
-
   const quantityCalories = food.calories * food?.quantity;
 
   return (
@@ -105,7 +104,7 @@ const Food = ({ food }: FoodDataProps) => {
       onMouseEnter={() => handleMouseEnterd(food.foodId)}
       onMouseLeave={handleMouseLeaving}
       key={food.foodId}
-      className={` mt-8 relative  grid grid-cols-1 lg:grid-cols-3 border border-gray-100 rounded-lg p-2 duration-300 ease-in-out  hover:bg-purple-400 `}
+      className={` mt-8 relative  grid grid-cols-1 lg:grid-cols-3 border border-gray-100 rounded-lg p-2 duration-300 ease-in-out  hover:bg-purple-400 dark:hover:bg-purple-700 `}
     >
       {/* Food Name */}
       <span className='col-span-1 mb-3 lg:mb-0'>{food.label}</span>
@@ -140,7 +139,7 @@ const Food = ({ food }: FoodDataProps) => {
         {clikedEditId === food.foodId ? (
           <>
             <input
-              className='p-1 focus:outline-none mr-2 border-2 '
+              className='p-1 focus:outline-none mr-2 border-2 dark:bg-gray-700 '
               placeholder='Enter Quantity'
               type='number'
               value={newQuantity}
@@ -157,14 +156,15 @@ const Food = ({ food }: FoodDataProps) => {
         ) : (
           <span className='relative'>
             {hoverItemId && delayRender && (
-              <div className='relative z-40'>
+              <div className='relative z-10'>
                 <HoverFoodLogItemData />
               </div>
             )}
+            {/* edit in the middle of each food item with quantity */}
             <span className='mr-2'>{food.quantity}X</span>
             <FontAwesomeIcon
               icon={faEdit}
-              className='text-gray-600 cursor-pointer'
+              className='text-gray-600 cursor-pointer dark:text-white'
               onClick={() => handleQuantity(food.foodId)}
             />
           </span>
@@ -175,7 +175,7 @@ const Food = ({ food }: FoodDataProps) => {
         <span className=''>
           {quantityCalories.toFixed(0)} <span>kcal</span>
         </span>
-        {/* Delete */}
+        {/* delete button right side of each food trash icon */}
         {hoverItemId === food.foodId && (
           <span className='absolute right-0 lg:relative '>
             <svg
@@ -184,7 +184,7 @@ const Food = ({ food }: FoodDataProps) => {
               viewBox='0 0 24 24'
               strokeWidth={1.5}
               stroke='currentColor'
-              className='w-6 h-6 hover:cursor-pointer'
+              className='w-6 h-6 hover:cursor-pointer  '
               onClick={() => {
                 setDeleteClicked(true);
               }}
