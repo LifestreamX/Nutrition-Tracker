@@ -7,14 +7,35 @@
 
 
 
+ 
 
 
 
-TODO: Fix responsiveness for each page
+
 
 
 
 TODO: Create read me 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TODO: do something with spinner if cant find foood item in search 
 
 
 
@@ -34,7 +55,6 @@ TODO: Break down into smaller contexts instead of one / maybe custom hooks
 
 TODO: signup page or disable
 
-TODO: do something with spinner if cant find foood item in search 
 
 TODO: ADD CSS fade in or out?
 
@@ -43,13 +63,9 @@ TODO: useOptimistic
 TODO: Search results if not found
 TODO: Impletement pagination where needed 
 
-TODO: page for specific log
 
 TODO: indiviual log page with id
 
-
-
-TODO: loading skeloton or other
 
 TODO: suspense - wrap components in suspense 
 T

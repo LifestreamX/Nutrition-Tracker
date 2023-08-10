@@ -19,9 +19,8 @@ const Dashboard = () => {
         {/* {count} */}
       </section>
 
-      <section>
-        <MacroGoals />
-      </section>
+      <MacroGoals />
+      <section></section>
 
       {/* bottom section */}
       <section className='w-full flex justify-center items-center relative top-96 mt-40 md:mt-0  md:top-44 '>

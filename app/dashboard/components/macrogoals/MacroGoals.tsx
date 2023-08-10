@@ -108,10 +108,10 @@ const MacroGoals = () => {
         )}
 
         {/* MACRO SET */}
-        <dialog className='relative top-40 ' open={showMacroForm}>
+        <dialog className='relative max-w-full' open={showMacroForm}>
           <form
             action=''
-            className='mt-5  bg-white w-full  p-14 rounded-lg shadow-lg flex flex-col relative justify-center items-center dark:bg-gray-800'
+            className='mt-5 box-border   bg-white w-full  rounded-lg shadow-lg flex flex-col relative justify-center items-center dark:bg-gray-800'
           >
             {/* Warning */}
 
@@ -139,7 +139,7 @@ const MacroGoals = () => {
               </div>
             )}
 
-            <div className=' min-w-full  '>
+            <div className='box-border p-6'>
               <div className='flex justify-end mt-3'>
                 <label htmlFor='macroCalories' className='mr-3'>
                   Calories{' '}
@@ -194,29 +194,28 @@ const MacroGoals = () => {
                   className='border border-gray-300 focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700'
                 />
               </div>
-            </div>
+              <div className='flex w-full justify-around relative py-4 '>
+                <Button
+                  color='purple'
+                  size='medium'
+                  onClick={() => {
+                    handleSubmit();
+                  }}
+                >
+                  Save
+                </Button>
 
-            <div className='flex w-full justify-around relative top-4 '>
-              <Button
-                color='purple'
-                size='medium'
-                onClick={() => {
-                  handleSubmit();
-                }}
-              >
-                Save
-              </Button>
-
-              <Button
-                color='red'
-                size='medium'
-                onClick={() => {
-                  setShowMacroForm(false);
-                  handleCancel();
-                }}
-              >
-                Cancel
-              </Button>
+                <Button
+                  color='red'
+                  size='medium'
+                  onClick={() => {
+                    setShowMacroForm(false);
+                    handleCancel();
+                  }}
+                >
+                  Cancel
+                </Button>
+              </div>
             </div>
           </form>
         </dialog>
@@ -226,12 +225,12 @@ const MacroGoals = () => {
         {!showMacroForm && (
           <section className='w-screen h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-evenly md:top-20  '>
             {/*  Left Side*/}
-            <div className=' w-1/3 bg-white rounded-lg shadow-lg '>
+            <div className=' w-full  md:w-1/3 bg-white rounded-lg shadow-lg container '>
               <MacroProgressBar />
             </div>
 
             {/* Right Ride */}
-            <div className=' w-1/3 bg-white rounded-lg shadow-lg flex justify-evenly items-center mt-5 md:mt-0'>
+            <div className=' w-1/3 bg-white rounded-lg shadow-lg flex justify-evenly items-center mt-5 md:mt-0 container'>
               <CaloriesProgress />
             </div>
           </section>

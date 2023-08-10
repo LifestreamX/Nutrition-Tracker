@@ -182,32 +182,34 @@ const FoodSearch: React.FC = () => {
         style={width < 768 ? mobileCustomStyles : customStyles}
         contentLabel='Example Modal'
       >
-        <div className='sticky top-0 mb-5 z-10  '>
-          <div className='w-full flex justify-end relative right-2'>
-            <button
-              onClick={closeModal}
-              className='text-2xl text-red-500 hover:text-white-900 font-bold '
-            >
-              X
-            </button>
-          </div>
+        <div className='sticky top-0  '>
+          <div className='bg-gray-50 '>
+            <div className='w-full flex justify-end relative right-2'>
+              <button
+                onClick={closeModal}
+                className='text-2xl text-red-500 hover:text-white-900 font-bold '
+              >
+                X
+              </button>
+            </div>
 
-          <div className='w-full flex  flex-row justify-center items-center p-5  '>
-            <input
-              type='text'
-              placeholder='Search...'
-              className=' border-gray-800 dark:border-gray-300 focus:border-0 border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-3 dark:bg-gray-700 '
-              value={val}
-              onChange={(e) => {
-                setVal(e.target.value);
-                val.length === 0 && setSearchData([]);
-              }}
-            />
+            <div className='w-full flex  flex-row justify-center items-center p-5  '>
+              <input
+                type='text'
+                placeholder='Search...'
+                className=' border-gray-800 dark:border-gray-300 focus:border-0 border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-3 dark:bg-gray-700 '
+                value={val}
+                onChange={(e) => {
+                  setVal(e.target.value);
+                  val.length === 0 && setSearchData([]);
+                }}
+              />
 
-            <div>
-              <Button color='purple' size='medium' onClick={handleSearch}>
-                Search
-              </Button>
+              <div>
+                <Button color='purple' size='medium' onClick={handleSearch}>
+                  Search
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -252,7 +254,6 @@ const FoodSearch: React.FC = () => {
             <div className='flex relative top-10 md:top-0 md:items-center '>
               {' '}
               <LoadingSpinner />
-             
             </div>
           </section>
         )}

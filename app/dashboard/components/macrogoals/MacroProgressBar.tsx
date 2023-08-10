@@ -35,6 +35,7 @@ const options = {
   width: 100, // Set the desired width here
 };
 
+// macro progress bar component
 export const MacroProgressBar: React.FC = () => {
   const { macroTargets, setMacroTargets, foodLog } = useMyContext();
   const [progress, setProgress] = useState(0);
@@ -83,9 +84,8 @@ export const MacroProgressBar: React.FC = () => {
     (foodLog.length === 0 && Object.keys(macroTargets).length === 0) ||
     macroTargets.calories === '';
 
-
   return (
-    <section className=' bg-white rounded-lg shadow-lg p-8 dark:bg-gray-800'>
+    <section className=' bg-white rounded-lg shadow-lg p-8 dark:bg-gray-800  '>
       {isMacroTargetsEmpty ? (
         <div>
           <div className='mb-3'>
@@ -115,7 +115,7 @@ export const MacroProgressBar: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div className='w-full'>
           <div className='mb-3'>
             <h1 className=' xxs:text-md lg:text-lg'>Macro Goals </h1>
           </div>
@@ -161,7 +161,6 @@ export const MacroProgressBar: React.FC = () => {
 
 export const CaloriesProgress = () => {
   const { macroTargets, setMacroTargets, foodLog } = useMyContext();
-
 
   const totalCalories = foodLog.reduce((acc: number, cur: FoodLogTypes) => {
     return acc + cur.calories * cur.quantity;

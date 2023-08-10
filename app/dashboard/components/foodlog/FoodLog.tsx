@@ -72,7 +72,6 @@ const FoodLog = () => {
     return value === '';
   };
 
-
   const handleFoodLogSubmit = (): void => {
     if (selectedDate === null) {
       dispatchState({ type: 'SET_IS_DATE_NOT_SELECTED', payload: true });
@@ -115,14 +114,12 @@ const FoodLog = () => {
     }
   };
 
-
-
-
   return (
     <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 dark:bg-gray-800'>
-      <p className=''>{selectedDate?.toString()}</p>
+      <p className='text-center   md:mb-0 md:text-left'>
+        {selectedDate?.toString()}
+      </p>
       {foodLog?.length === 0 ? (
-          
         state.foodLogSubmittedSuccess &&
         Object.keys(macroTargets).length === 0 &&
         selectedDate === null ? (
@@ -141,18 +138,21 @@ const FoodLog = () => {
                   d='M5 13l4 4L19 7'
                 />
               </svg>
-              <span className='text-green-500'>Food Log Submitted</span>
+              <span className='text-green-500 '>Food Log Submitted</span>
             </h1>
           </div>
         ) : (
-          <h1 className='text-center text-2xl'> Food Log Is Empty</h1>
+          <h1 className='text-center text-2xl mt-4 md:mt-0'>
+            {' '}
+            Food Log Is Empty
+          </h1>
         )
       ) : (
         <div className='relative  p-4 grid grid-cols-1 gap-4 justify-center items-center text-center'>
           <p className=' '>
             {/* {selectedDate !== null && selectedDate.formattedDate}{' '} */}
           </p>
-          {foodLog?.map((food: FoodLogTypes ) => (
+          {foodLog?.map((food: FoodLogTypes) => (
             <Food key={food.foodId} food={food} />
           ))}
 
@@ -191,7 +191,6 @@ const FoodLog = () => {
                 size='medium'
                 responsiveWidth={true}
                 onClick={handleFoodLogSubmit}
-                
               >
                 Submit Food Log
               </Button>

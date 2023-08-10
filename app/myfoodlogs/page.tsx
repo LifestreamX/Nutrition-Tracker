@@ -66,7 +66,7 @@ const MyFoodLogs: React.FC = () => {
     ?.replaceAll(', ', '-')
     ?.replaceAll(' ', '-');
 
-  console.log(sortedByYear.length);
+  let paginationClassWrapper = `flex  ${selectedDate !== null ? 'hidden' : ''}`;
 
   return (
     <section className='w-full flex justify-center items-middle relative top-20'>
@@ -92,21 +92,24 @@ const MyFoodLogs: React.FC = () => {
             <>
               <li
                 // key={foodLogId}
-                className='text-sm md:text-xl  hover:bg-purple-400 bg-slate-100 dark:hover:bg-purple-700 dark:bg-gray-500 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'
               >
                 {noLog ? (
                   <h1>No Food Log for {selectedDate}</h1>
                 ) : (
-                  <Link
-                    // key={submittedFoodLogs}
-                    href={{
-                      pathname: `/myfoodlogs/${dateFilterResults?.foodLogId}`,
-                      query: formattedFilteredDate,
-                    }}
-                    legacyBehavior
-                  >
-                    <h1>{dateFilterResults?.selectedDate[0]}</h1>
-                  </Link>
+                  <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-purple-400  dark:hover:bg-purple-800'>
+                    <Link
+                      // key={submittedFoodLogs}
+                      href={{
+                        pathname: `/myfoodlogs/${dateFilterResults?.foodLogId}`,
+                        query: formattedFilteredDate,
+                      }}
+                      legacyBehavior
+                      className='bg-black'
+                    >
+                      <h1>{dateFilterResults?.selectedDate[0]}</h1>
+                    </Link>
+                  </div>
                 )}
               </li>
             </>
@@ -148,13 +151,14 @@ const MyFoodLogs: React.FC = () => {
         </ul>
 
         {/* pagination */}
-        <nav aria-label='Page navigation  '>
+        <nav aria-label='Page navigation '>
           <ul className='flex items-center -space-x-px h-10 text-base'>
             {submittedFoodLogs.length === 0 && (
               <h1 className='font-bold text-xl'>No Food Logs Recorded</h1>
             )}
+
             {submittedFoodLogs.length > 0 && (
-              <>
+              <section className={paginationClassWrapper}>
                 <li>
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
@@ -222,7 +226,7 @@ const MyFoodLogs: React.FC = () => {
                     </svg>
                   </button>
                 </li>
-              </>
+              </section>
             )}
           </ul>
         </nav>

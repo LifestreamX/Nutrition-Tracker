@@ -132,11 +132,16 @@ const NutritionInfo = () => {
     }, 1000);
   };
 
+  const donutSize = width < 400 ? 150 : 200;
+  const buttonSize = width < 400 ? 'small' : 'medium';
+
+  console.log(width);
+
   return (
     <>
-      <section className='border p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-900   '>
+      <section className='border pb-2 xs:p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-900   '>
         <div className='mb-5 justify-center items-center h-full'>
-          <Doughnut data={data} width={200} />
+          <Doughnut data={data} width={donutSize} />
         </div>
         <ul className='flex flex-col justify-center '>
           <li className='m-1 text-sm md:text-lg'>
@@ -151,13 +156,17 @@ const NutritionInfo = () => {
             Fat: {fats?.toFixed(1)} g{' '}
             <span style={{ color: '#EA3B04' }}>({fatsPercent}%)</span>
           </li>
-          <Button
-            color='purple'
-            size='medium'
-            onClick={() => handleAddToFoodLog(nutritionSearchData.foodId)}
-          >
-            ADD
-          </Button>
+          <div className=' container  flex mx-auto justify-center'>
+            {' '}
+            <Button
+              color='purple'
+              size='medium'
+              responsiveWidth='true'
+              onClick={() => handleAddToFoodLog(nutritionSearchData.foodId)}
+            >
+              ADD
+            </Button>
+          </div>
         </ul>
       </section>
     </>

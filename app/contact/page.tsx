@@ -74,10 +74,10 @@ const Contact: React.FC = () => {
           {/* success message once form is submitted */}
           {emailSent === true && (
             <div
-              className='  w-1/2 mx-auto flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400'
+              className='  md:w-1/2 mx-auto flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400'
               role='alert'
             >
-              <div className=' flex flex-col sm:flex-row w-full justify-center items-center'>
+              <div className=' flex flex-col sm:flex-row w-full justify-center items-center '>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -93,8 +93,8 @@ const Contact: React.FC = () => {
                   />
                 </svg>
 
-                <div className='text-center sm:text-left'>
-                  <span className='font-medium'>Email Sent!</span> I will get
+                <div className=' text-center sm:text-left container'>
+                  <span className='font-medium '>Email Sent!</span> I will get
                   back to as soon as possible!
                 </div>
               </div>

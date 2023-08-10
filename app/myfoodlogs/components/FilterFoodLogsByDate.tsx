@@ -32,12 +32,12 @@ const FilterFoodLogsByDate: React.FC<FilterFoodLogsByDateProps> = ({
   const placeHolder = startDate !== null ? startDate : 'Select a specific date';
 
   return (
-    <div className='flex flex-col lg:flex-row   '>
+    <div className='flex flex-col md:flex-row   '>
       <div>
         <DatePicker
           selected={startDate ? startDate.dateObject : null}
           onChange={handleDateChange}
-          className=' cursor-pointer w-full px-3 py-1 text-lg mb-5  text-gray-700 border rounded-lg focus:outline-none focus:ring  focus:border-0 focus:ring-purple-500 text-center dark:bg-gray-700 '
+          className=' cursor-pointer w-full p-3 text-lg mb-5  text-gray-700 border rounded-lg focus:outline-none focus:ring  focus:border-0 focus:ring-purple-500 text-center dark:bg-gray-700 '
           placeholderText={placeHolder}
           dateFormat='EEEE, d MMMM yyyy'
         />
@@ -46,7 +46,7 @@ const FilterFoodLogsByDate: React.FC<FilterFoodLogsByDateProps> = ({
       {startDate !== null && (
         <button
           onClick={() => setStartDate(null)}
-          className=' ml-5 text-lg text-red-500 hover:text-red-800 p-0.5 font-md justify-center tracking-wide '
+          className=' mb-5 md:mb-0 md:ml-5 text-lg text-red-500 hover:text-red-800  font-md justify-center tracking-wide '
         >
           Clear
         </button>
