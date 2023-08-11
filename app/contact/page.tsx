@@ -17,7 +17,6 @@ const Contact: React.FC = () => {
 
   const { themeSetting } = useMyContext();
 
-  console.log(themeSetting);
 
   let themeTextColor;
 
@@ -47,10 +46,10 @@ const Contact: React.FC = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          // console.log(result.text);
         },
         (error) => {
-          console.log(error.text);
+          // console.log(error.text);
         }
       );
     form.current.reset();

@@ -135,7 +135,6 @@ const NutritionInfo = () => {
   const donutSize = width < 400 ? 150 : 200;
   const buttonSize = width < 400 ? 'small' : 'medium';
 
-  console.log(width);
 
   return (
     <>

@@ -17,10 +17,6 @@ import LoadingSpinner from '@/app/components/LoadingSpinner';
 const FoodSearch: React.FC = () => {
   const { theme } = useTheme();
 
-  useEffect(() => {
-    console.log(theme);
-  });
-
   let modalBackGroundColor = theme === 'dark' ? '#2d3748' : 'white';
 
   const customStyles = {
@@ -66,6 +62,7 @@ const FoodSearch: React.FC = () => {
     setSuccessAdded,
   } = useMyContext();
   const { width } = useWindowSize();
+  const [anySearchResults, setAnySearchResults] = useState(true);
 
   const [, cancel] = useDebounce(
     () => {
@@ -80,6 +77,7 @@ const FoodSearch: React.FC = () => {
   );
 
   const handleSearch = async () => {
+    setAnySearchResults(true);
     let { hints } = await fetchNutritionData(val);
 
     let data: Object[] = [];
@@ -88,7 +86,15 @@ const FoodSearch: React.FC = () => {
       data = [...data, e.food];
       setSearchData(data);
     });
+
+    if (hints.length === 0) {
+      setTimeout(() => {
+        setAnySearchResults(false);
+      }, [100]);
+    }
   };
+
+  console.log(anySearchResults);
 
   function openModal() {
     setIsOpen(true);
@@ -249,14 +255,22 @@ const FoodSearch: React.FC = () => {
         </div>
 
         {/* loaoding spinner for fetching food data search */}
-        {debouncedValue.length !== 0 && searchData.length === 0 && (
-          <section className='flex h-full justify-center '>
-            <div className='flex relative top-10 md:top-0 md:items-center '>
-              {' '}
-              <LoadingSpinner />
-            </div>
-          </section>
-        )}
+        {
+          // debouncedValue.length !== 0 &&
+          searchData.length === 0 && debouncedValue === val && (
+            <section className='flex h-full justify-center '>
+              <div className='flex relative top-10 md:top-0 md:items-center '>
+                {anySearchResults ? (
+                  <LoadingSpinner />
+                ) : (
+                  <p className='font-extrabold text-purple-800 text-4xl'>
+                    No Results
+                  </p>
+                )}
+              </div>
+            </section>
+          )
+        }
 
         {val !== '' && (
           <main className='border'>

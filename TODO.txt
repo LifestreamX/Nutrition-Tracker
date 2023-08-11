@@ -13,29 +13,28 @@
 
 
 
-
-
-TODO: Create read me 
-
-
-
-
+TODO: signup page 
+ - passwords match
+ - terms of service read and checked 
+ - submit to dummy local database?
 
 
 
-
+TODO: Terms of service 
 
 
 
 
 
+TODO: Login Page
+
+
+TODO: Logout component
+
+TODO: Avatar setup
 
 
 
-
-
-
-TODO: do something with spinner if cant find foood item in search 
 
 
 
@@ -49,22 +48,28 @@ TODO: Fix all Types for each page
 
 
 
+TODO: Finish  read me once project is ready
+
+
+
+
+
 TODO: Check out blurrdDataUrl
+
+
 
 TODO: Break down into smaller contexts instead of one / maybe custom hooks
 
-TODO: signup page or disable
+
 
 
 TODO: ADD CSS fade in or out?
 
 TODO: useOptimistic 
 
-TODO: Search results if not found
 TODO: Impletement pagination where needed 
 
 
-TODO: indiviual log page with id
 
 
 TODO: suspense - wrap components in suspense 
@@ -82,14 +87,10 @@ TODO: server actions?
 
 TODO: Rendering Options SSG/ SSR / ISR etc...
 
- --- Server ---
-revailidate?
-Cache when fetching date?
-router.refresh? 
-Auth - next / etc. role base?
 
 
-SSG and SSR 
+
+
 
 
 
@@ -105,3 +106,24 @@ TODO: Other Data structures
 
 TODO: Lazy Loading
 TODO: smooth motion
+
+
+
+ ----- BACKEND / SERVER -----
+
+ SSG and SSR 
+
+
+revailidate?
+Cache when fetching date?
+router.refresh? 
+Auth - next / etc. role base?
+
+TODO: signup page
+
+TODO: login page
+
+TODO: logout page
+
+
+TODO: if logged in show dashboard else show home page
