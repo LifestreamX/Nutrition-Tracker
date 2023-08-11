@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '../components/Button';
+import { useWindowSize } from 'react-use';
 
 const SignUp = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
@@ -17,6 +18,7 @@ const SignUp = (): JSX.Element => {
   const [isChecked, setIsChecked] = useState<any>(false);
   const [successfullyRegistered, setSuccessfullyRegistered] =
     useState<boolean>(false);
+  const { width } = useWindowSize();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
@@ -73,6 +75,10 @@ const SignUp = (): JSX.Element => {
     setIsChecked(e.target.value);
   };
 
+  let buttonSize = width < 768 ? 'medium' : 'large';
+
+  let buttonWidith = width < 768 ? true : '';
+
   return (
     <>
       <section className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
@@ -85,7 +91,7 @@ const SignUp = (): JSX.Element => {
         </h1>
         <form
           onSubmit={handleSignUpSubmit}
-          className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36'
+          className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36 '
         >
           {successfullyRegistered ? (
             <div>
@@ -97,27 +103,29 @@ const SignUp = (): JSX.Element => {
           ) : (
             <>
               <div className='md:flex md:items-center mb-6 w-max'>
-                <div className='md:w-1/3'>
-                  <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-                    Email
-                  </label>
-                </div>
-                <div className='md:w-2/3 '>
-                  <input
-                    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
-                    id='inline-full-name'
-                    required
-                    value={email}
-                    type='email'
-                    onChange={handleEmailChange}
+                <div className='flex flex-col md:flex-row'>
+                  <div className='md:w-1/3'>
+                    <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
+                      Email
+                    </label>
+                  </div>
+                  <div className='md:w-2/3 '>
+                    <input
+                      className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
+                      id='inline-full-name'
+                      required
+                      value={email}
+                      type='email'
+                      onChange={handleEmailChange}
 
-                    // value='Jane Doe'
-                  />
+                      // value='Jane Doe'
+                    />
+                  </div>
                 </div>
               </div>
               {/* password */}
               <div className='md:flex md:items-center mb-6 flex-col'>
-                <div className='flex'>
+                <div className='flex flex-col md:flex-row'>
                   <div className='md:w-1/3'>
                     <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                       Password
@@ -138,7 +146,7 @@ const SignUp = (): JSX.Element => {
               </div>
               {/* confirm password */}
               <div className='md:flex md:items-center mb-6 flex-col'>
-                <div className='flex'>
+                <div className='flex flex-col md:flex-row'>
                   <div className='md:w-1/3'>
                     <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
                       Confirm Password
@@ -210,22 +218,25 @@ const SignUp = (): JSX.Element => {
                 </label>
               </div>
               {/* signup submit button */}
-              <div className='md:flex md:items-center  md:justify-center '>
-                <div className=''></div>
-                <div className=''>
-                  <button>
-                    {' '}
-                    <Button color='purple' size='large'>
-                      Sign up
-                    </Button>
-                  </button>
-                </div>
+              <div className=' flex items-center  justify-center   '>
+                <button className='w-full'>
+                  {' '}
+                  <Button
+                    color='purple'
+                    size={buttonSize}
+                    responsiveWidth={buttonWidith}
+                  >
+                    Sign up
+                  </Button>
+                </button>
               </div>
             </>
           )}
         </form>
-        <div className='absolute bottom-3'>
-          <Link href='./login' className='text-red-400'>Already have a account?</Link>
+        <div className='absolute bottom-1'>
+          <Link href='./login' className='text-red-400'>
+            Already have a account?
+          </Link>
         </div>
       </section>
     </>
