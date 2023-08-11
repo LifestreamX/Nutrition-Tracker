@@ -1,38 +1,45 @@
 'use client';
 
 import Link from 'next/link';
-import React, { use, useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '../components/Button';
 
-const SignUp = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordMatch, setPasswordMatch] = useState(true);
-  const [isValidPassword, setIsValidPassword] = useState();
-  const [isTermsLinkedClicked, setIsTermsLinkedClicked] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+const SignUp = (): JSX.Element => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [passwordMatch, setPasswordMatch] = useState<boolean>(true);
+  const [isValidPassword, setIsValidPassword] = useState<boolean | undefined>();
+  const [isTermsLinkedClicked, setIsTermsLinkedClicked] = useState<
+    boolean | undefined
+  >();
+  const [termsDisabled, setTermsDisabled] = useState<boolean>(true);
+  const [isChecked, setIsChecked] = useState<any>(false);
+  const [successfullyRegistered, setSuccessfullyRegistered] =
+    useState<boolean>(false);
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setPassword(e.target.value);
   };
 
-  const handleConfirmPasswordChange = (e) => {
+  const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(e.target.value);
   };
 
   // submit logic
-  const handleSignUpSubmit = (e) => {
+  const handleSignUpSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit.
     const passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
     let isValid = passwordReg.test(password);
+
+    setIsValidPassword(isValid);
 
     if (password !== confirmPassword) {
       console.log('PASSWORDS MUST MATCH');
@@ -44,143 +51,184 @@ const SignUp = () => {
     } else if (isChecked === false) {
       console.log('please Agree to the terms of service ');
     } else {
+      setSuccessfullyRegistered(true);
     }
 
     if (password === confirmPassword) {
       setPasswordMatch(true);
     }
 
-    // if (password !== confirmPassword || password.length   ) {
-    //   console.log('Not Matching');
-    // }
+    if (isTermsLinkedClicked === undefined) {
+      setIsTermsLinkedClicked(false);
+    }
   };
 
   // terms logic
-  let likedClicked = false;
-
-  const handleLinkClick = () => {
+  const handleLinkClick = (): void => {
     setIsTermsLinkedClicked(true);
+    setTermsDisabled(false);
   };
 
-  let termsDisabled = isTermsLinkedClicked === false && true;
-
-  const handleCheckBoxChange = (e) => {
+  const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setIsChecked(e.target.value);
   };
 
-  // input warnings
-
   return (
-    <div className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
-      <h1 className='sm:text-2xl md:text-3xl relative top-2 sm:top-24 font-bold '>
-        Create Your Account{' '}
-      </h1>
-      <form
-        onSubmit={handleSignUpSubmit}
-        className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36'
-      >
-        <div className='md:flex md:items-center mb-6 w-max'>
-          <div className='md:w-1/3'>
-            <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-              Email
-            </label>
-          </div>
-          <div className='md:w-2/3 '>
-            <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
-              id='inline-full-name'
-              required
-              value={email}
-              type='email'
-              onChange={handleEmailChange}
-
-              // value='Jane Doe'
-            />
-          </div>
-        </div>
-        {/* password */}
-        <div className='md:flex md:items-center mb-6'>
-          <div>
-            {!passwordMatch && (
-              <p className='text-red-500 font-semibold'>
-                Passwords do not match
+    <>
+      <section className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
+        <h1 className='sm:text-2xl md:text-3xl relative top-2 sm:top-24 font-bold '>
+          {successfullyRegistered ? (
+            <h1 className='text-purple-800'>Successfully Registered</h1>
+          ) : (
+            <h1>Create Your Account </h1>
+          )}
+        </h1>
+        <form
+          onSubmit={handleSignUpSubmit}
+          className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36'
+        >
+          {successfullyRegistered ? (
+            <div>
+              <p className='text-center'>
+                {' '}
+                Thank you for registering with nutritiontracker!{' '}
               </p>
-            )}
-          </div>
+            </div>
+          ) : (
+            <>
+              <div className='md:flex md:items-center mb-6 w-max'>
+                <div className='md:w-1/3'>
+                  <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
+                    Email
+                  </label>
+                </div>
+                <div className='md:w-2/3 '>
+                  <input
+                    className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
+                    id='inline-full-name'
+                    required
+                    value={email}
+                    type='email'
+                    onChange={handleEmailChange}
 
-          <div>
-            <div className='md:w-1/3'>
-              <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-                Password
-              </label>
-            </div>
-            <div className='md:w-2/3'>
-              <input
-                className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
-                id='inline-password'
-                type='password'
-                placeholder='********'
-                required
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </div>
-          </div>
+                    // value='Jane Doe'
+                  />
+                </div>
+              </div>
+              {/* password */}
+              <div className='md:flex md:items-center mb-6 flex-col'>
+                <div className='flex'>
+                  <div className='md:w-1/3'>
+                    <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
+                      Password
+                    </label>
+                  </div>
+                  <div className='md:w-2/3'>
+                    <input
+                      className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
+                      id='inline-password'
+                      type='password'
+                      placeholder='********'
+                      required
+                      value={password}
+                      onChange={handlePasswordChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* confirm password */}
+              <div className='md:flex md:items-center mb-6 flex-col'>
+                <div className='flex'>
+                  <div className='md:w-1/3'>
+                    <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
+                      Confirm Password
+                    </label>
+                  </div>
+                  <div className='md:w-2/3'>
+                    <input
+                      className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
+                      id='inline-password'
+                      type='password'
+                      placeholder='********'
+                      required
+                      value={confirmPassword}
+                      onChange={handleConfirmPasswordChange}
+                    />
+                  </div>
+                </div>
+                <span className='flex mt-3'>
+                  {!passwordMatch && (
+                    <p className='text-red-500 '>Passwords do not match</p>
+                  )}
+                  {!isValidPassword &&
+                    isValidPassword !== undefined &&
+                    passwordMatch && (
+                      <p className='text-red-500 '>
+                        Your password must contain atleast 8 characters, at
+                        least one uppercase letter, at least one lowercase
+                        letter, and at least one digit{' '}
+                      </p>
+                    )}
+
+                  {/* if terms isnt clicked yet */}
+                  {!isTermsLinkedClicked &&
+                    isTermsLinkedClicked !== undefined &&
+                    passwordMatch !== false &&
+                    isValidPassword === true && (
+                      <p className='text-red-500 '>
+                        Please review our terms of service
+                      </p>
+                    )}
+
+                  {/* if terms checkbox is clicked but not viewed  */}
+                  {}
+                </span>
+              </div>
+              {/* terms */}
+              <div className='md:flex md:items-center mb-6 md:justify-center'>
+                <div className=''></div>
+                <label className=' block text-gray-500 font-bold '>
+                  <input
+                    className='mr-2 leading-tight accent-purple-600'
+                    type='checkbox'
+                    disabled={termsDisabled}
+                    checked={isChecked}
+                    onChange={handleCheckBoxChange}
+                  />
+                  <span className='text-sm'>
+                    I agree to our{' '}
+                    <strong className='text-purple-800 hover:cursor-pointer'>
+                      <Link
+                        href='/terms'
+                        target='_blank'
+                        onClick={handleLinkClick}
+                      >
+                        Terms of Service
+                      </Link>
+                    </strong>
+                  </span>
+                </label>
+              </div>
+              {/* signup submit button */}
+              <div className='md:flex md:items-center  md:justify-center '>
+                <div className=''></div>
+                <div className=''>
+                  <button>
+                    {' '}
+                    <Button color='purple' size='large'>
+                      Sign up
+                    </Button>
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+        </form>
+        <div className='absolute bottom-3'>
+          <Link href='./login' className='text-red-400'>Already have a account?</Link>
         </div>
-        {/* confirm password */}
-        <div className='md:flex md:items-center mb-6'>
-          <div className='md:w-1/3'>
-            <label className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-              Confirm Password
-            </label>
-          </div>
-          <div className='md:w-2/3'>
-            <input
-              className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
-              id='inline-password'
-              type='password'
-              placeholder='********'
-              required
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
-            />
-          </div>
-        </div>
-        {/* terms */}
-        <div className='md:flex md:items-center mb-6 md:justify-center'>
-          <div className=''></div>
-          <label className=' block text-gray-500 font-bold '>
-            <input
-              className='mr-2 leading-tight accent-purple-600'
-              type='checkbox'
-              disabled={termsDisabled}
-              checked={isChecked}
-              onChange={handleCheckBoxChange}
-            />
-            <span className='text-sm'>
-              I agree to our{' '}
-              <strong className='text-purple-800 hover:cursor-pointer'>
-                <Link href='/terms' target='_blank' onClick={handleLinkClick}>
-                  Terms of Service
-                </Link>
-              </strong>
-            </span>
-          </label>
-        </div>
-        {/* signup submit button */}
-        <div className='md:flex md:items-center  md:justify-center '>
-          <div className=''></div>
-          <div className=''>
-            <button>
-              {' '}
-              <Button color='purple' size='large'>
-                Sign up
-              </Button>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+      </section>
+    </>
   );
 };
 
