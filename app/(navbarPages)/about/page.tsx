@@ -1,23 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
-import aboutImageRight from '../images/about/about-right-side.jpg';
-import icon1 from '../images/about/icon1.png';
-import icon2 from '../images/about/icon2.png';
-import icon3 from '../images/about/icon3.png';
-import icon4 from '../images/about/icon4.png';
+import aboutImageRight from '../../images/about/about-right-side.jpg';
+import icon1 from '../../images/about/icon1.png';
+import icon2 from '../../images/about/icon2.png';
+import icon3 from '../../images/about/icon3.png';
+import icon4 from '../../images/about/icon4.png';
 
 const About: React.FC = () => {
   return (
     <div className='flex md:flex-row flex-col-reverse md:items-stretch items-center justify-center dark:bg-gray-800 dark:m-8 dark:rounded-3xl dark:mt-20 '>
-      <div className='md:py-20 xl:w-1/2 sm:w-1/2 lg:mr-20 md:mr-6 flex flex-col md:items-end items-center justify-center xl:mr-28 relative bottom-20 md:bottom-0 '>
+      <div className=' md:mt-28   md:mr-6 flex flex-col md:items-end items-center justify-center xl:mr-28 relative bottom-20 md:bottom-0 '>
         <div className='flex flex-col items-center justify-center '>
           <h1 className='md:text-5xl text-3xl font-bold text-center text-gray-800 dark:text-white flex flex-col mb-10 px-2'>
-            <div>
-              <span>About</span>{' '}
-              <span className='text-purple-800'>nutritiontracker</span>
+            <div className='flex flex-wrap'>
+              <span className='m-1'>About</span>{' '}
+              <span className='text-purple-800 m-1'>nutritiontracker</span>
             </div>
-
-            <span className='bg-purple-800 p-0.5 w-full'></span>
+            <span className='bg-purple-800 p-0.5 w-full p-2'></span>
           </h1>
 
           <section className='px-4'>
@@ -98,13 +97,13 @@ const About: React.FC = () => {
 
       {/* Right Side */}
 
-      <div className='py-12 m-10 '>
+      <div className='py-12 relative top-60  m-12'>
         <Image
           src={aboutImageRight}
           width={400}
           height={400}
           alt='picture of food'
-          className='rounded-md h-full object-cover object-center md:block hidden'
+          className='rounded-md  object-cover object-center md:block hidden'
         />
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import { useWindowSize } from 'react-use';
 
 const SignUp = (): JSX.Element => {
@@ -91,7 +91,7 @@ const SignUp = (): JSX.Element => {
         </h1>
         <form
           onSubmit={handleSignUpSubmit}
-          className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36 '
+          className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36 dark:bg-gray-800'
         >
           {successfullyRegistered ? (
             <div>
@@ -205,7 +205,7 @@ const SignUp = (): JSX.Element => {
                   />
                   <span className='text-sm'>
                     I agree to our{' '}
-                    <strong className='text-purple-800 hover:cursor-pointer'>
+                    <strong className='text-purple-800 hover:cursor-pointer dark:text-purple-400 dark:hover:text-purple-500'>
                       <Link
                         href='/terms'
                         target='_blank'
@@ -234,9 +234,19 @@ const SignUp = (): JSX.Element => {
           )}
         </form>
         <div className='absolute bottom-1'>
-          <Link href='./login' className='text-red-400'>
-            Already have a account?
-          </Link>
+          {successfullyRegistered ? (
+            <Link href='./dashboard'>
+              Go to
+              <span className='text-purple-600 font-medium hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-500'>
+                {' '}
+                Dashboard
+              </span>
+            </Link>
+          ) : (
+            <Link href='./login' className='text-red-400'>
+              Already have a account?
+            </Link>
+          )}
         </div>
       </section>
     </>

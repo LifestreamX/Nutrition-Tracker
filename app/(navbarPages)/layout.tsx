@@ -1,12 +1,12 @@
 import { MyProvider } from '@/MyContext';
-import NavBar from './components/NavBar';
-import './globals.css';
-import './output.css';
-import Providers from './Providers';
+import NavBar from '../components/NavBar';
+import '../globals.css';
+import '../output.css';
+import Providers from '../Providers';
 import { Oswald, Kanit } from '@next/font/google';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import LoadingSpinner from './components/LoadingSpinner';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 export const metadata: Metadata = {
   title: 'nutrition tracker',
@@ -45,7 +45,7 @@ export default function RootLayout({
         <body className={kanit.className}>
           <main className=''>
             <div className='fixed top-0 w-full z-50'>
-              {/* <NavBar /> */}
+              <NavBar />
             </div>
 
             <Providers>

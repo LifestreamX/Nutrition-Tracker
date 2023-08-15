@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import grapes from '../../../images/dashboard/grapes.png';
+import grapes from '../../../../images/dashboard/grapes.png';
 import Image from 'next/image';
 import Modal from 'react-modal';
 import { useDebounce } from 'react-use';

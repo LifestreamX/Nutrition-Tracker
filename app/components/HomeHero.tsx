@@ -15,9 +15,13 @@ const HomeHero: React.FC = () => {
         <h3 className='text-2xl mb-5 font-bold lg:text-3xl'>
           Track your nutriiton
         </h3>
-        <Button color='purple' size='large'>
-          <Link href='/signup'> Sign Up Now!</Link>
-        </Button>
+        <Link href='/signup'>
+          {' '}
+          <Button color='purple' size='large'>
+            {' '}
+            Sign Up Now!
+          </Button>
+        </Link>
       </div>
 
       {/* Rightside Hero */}

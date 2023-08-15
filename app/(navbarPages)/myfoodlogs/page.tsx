@@ -5,7 +5,7 @@ import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { specificFoodLogTypes } from '@/types/MyFoodLog.types';
-import grapes from '.././images/dashboard/grapes.png';
+import grapes from '../.././images/dashboard/grapes.png';
 import Image from 'next/image';
 import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
 import { BsTypeH1 } from 'react-icons/bs';

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, FormEvent } from 'react';
-import Button from '../components/Button';
+import Button from '../../components/Button';
 import emailjs from '@emailjs/browser';
 import { useMyContext } from '@/MyContext';
 
@@ -16,7 +16,6 @@ const Contact: React.FC = () => {
   const [emailSent, setEmailSent] = useState<boolean>(false);
 
   const { themeSetting } = useMyContext();
-
 
   let themeTextColor;
 

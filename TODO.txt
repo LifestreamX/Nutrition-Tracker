@@ -8,28 +8,16 @@
 
 
  
-TODO:: signup and login responsiveness mobile
-
-
-
-
-TODO: signup page 
- - passwords match
- - terms of service read and checked 
- - submit to dummy local database?
-
-
-
-TODO: Terms of service 
 
 
 
 
 
-TODO: Login Page
 
 
-TODO: Logout component
+
+TODO: Clean up responsiveness
+
 
 TODO: Avatar setup
 
@@ -44,7 +32,7 @@ TODO: Fix all Types for each page
 
 
 
-
+TODO: Makes sure nav works everywhere
 
 
 

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from './page.module.css';
-import HomeHero from './components/HomeHero';
-import HomeContent from './components/HomeContent';
-import HomeFooter from './components/HomeFooter';
+import HomeHero from '../components/HomeHero';
+import HomeContent from '../components/HomeContent';
+import HomeFooter from '../components/HomeFooter';
 
 const inter = Inter({ subsets: ['latin'] });
 
