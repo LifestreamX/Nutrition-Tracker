@@ -10,8 +10,8 @@ const Dashboard = () => {
   const [val, setVal] = useState<string | number>('');
 
   return (
-    <main>
-      <section className=' flex justify-center items-middle mt-5 '>
+    <main className='relative top-28'>
+      <section className='flex justify-center items-middle '>
         <FoodSearch val={val} setVal={setVal}>
           {/* @ts-expect-error Server Component */}
           <FetchNutritionData />

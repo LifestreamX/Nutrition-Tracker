@@ -643,6 +643,10 @@ video {
   bottom: 5rem;
 }
 
+.top-60 {
+  top: 15rem;
+}
+
 .top-96 {
   top: 24rem;
 }
@@ -711,28 +715,24 @@ video {
   top: 0.25rem;
 }
 
-.top-36 {
-  top: 9rem;
+.top-12 {
+  top: 3rem;
 }
 
-.top-48 {
-  top: 12rem;
+.top-14 {
+  top: 3.5rem;
 }
 
-.left-36 {
-  left: 9rem;
+.top-8 {
+  top: 2rem;
 }
 
-.top-52 {
-  top: 13rem;
+.top-24 {
+  top: 6rem;
 }
 
-.top-56 {
-  top: 14rem;
-}
-
-.top-60 {
-  top: 15rem;
+.top-32 {
+  top: 8rem;
 }
 
 .z-50 {
@@ -763,8 +763,8 @@ video {
   margin: 3rem;
 }
 
-.m-10 {
-  margin: 2.5rem;
+.m-1 {
+  margin: 0.25rem;
 }
 
 .-m-2 {
@@ -777,18 +777,6 @@ video {
 
 .m-2 {
   margin: 0.5rem;
-}
-
-.m-1 {
-  margin: 0.25rem;
-}
-
-.m-16 {
-  margin: 4rem;
-}
-
-.m-4 {
-  margin: 1rem;
 }
 
 .mx-5 {
@@ -965,12 +953,8 @@ video {
   margin-bottom: 2rem;
 }
 
-.mt-28 {
-  margin-top: 7rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
+.mt-16 {
+  margin-top: 4rem;
 }
 
 .box-border {
@@ -1148,10 +1132,6 @@ video {
 
 .w-24 {
   width: 6rem;
-}
-
-.w-11\/12 {
-  width: 91.666667%;
 }
 
 .max-w-7xl {
@@ -2635,10 +2615,6 @@ a {
     height: 100vh;
   }
 
-  .sm\:w-1\/2 {
-    width: 50%;
-  }
-
   .sm\:w-96 {
     width: 24rem;
   }
@@ -2732,6 +2708,10 @@ a {
     bottom: 0px;
   }
 
+  .md\:top-14 {
+    top: 3.5rem;
+  }
+
   .md\:top-44 {
     top: 11rem;
   }
@@ -2752,6 +2732,10 @@ a {
     margin-right: 1.5rem;
   }
 
+  .md\:mt-28 {
+    margin-top: 7rem;
+  }
+
   .md\:mt-14 {
     margin-top: 3.5rem;
   }
@@ -2770,18 +2754,6 @@ a {
 
   .md\:ml-6 {
     margin-left: 1.5rem;
-  }
-
-  .md\:mt-20 {
-    margin-top: 5rem;
-  }
-
-  .md\:mt-28 {
-    margin-top: 7rem;
-  }
-
-  .md\:mt-2 {
-    margin-top: 0.5rem;
   }
 
   .md\:block {
@@ -2868,11 +2840,6 @@ a {
     padding: 1.5rem;
   }
 
-  .md\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-
   .md\:text-left {
     text-align: left;
   }
@@ -2919,10 +2886,6 @@ a {
   .lg\:mx-5 {
     margin-left: 1.25rem;
     margin-right: 1.25rem;
-  }
-
-  .lg\:mr-20 {
-    margin-right: 5rem;
   }
 
   .lg\:mb-0 {
@@ -3035,9 +2998,5 @@ a {
 @media (min-width: 1280px) {
   .xl\:mr-28 {
     margin-right: 7rem;
-  }
-
-  .xl\:w-1\/2 {
-    width: 50%;
   }
 }

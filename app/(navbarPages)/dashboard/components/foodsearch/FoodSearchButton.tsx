@@ -83,18 +83,20 @@ const FoodSearch: React.FC = () => {
     let data: Object[] = [];
 
     hints.map((e: Object[]) => {
+      console.log(hints);
       data = [...data, e.food];
+
       setSearchData(data);
     });
 
     if (hints.length === 0) {
-      setTimeout(() => {
-        setAnySearchResults(false);
-      }, [100]);
+      setAnySearchResults(false);
+    } else setAnySearchResults(true);
+
+    if (val.trim().length === 0) {
+      setSearchData(0);
     }
   };
-
-  console.log(anySearchResults);
 
   function openModal() {
     setIsOpen(true);
@@ -149,6 +151,11 @@ const FoodSearch: React.FC = () => {
     setOpenExtra(true);
     setSuccessAdded(false);
   };
+
+  // console.log('search data length ', searchData.length);
+  // console.log('value length', val.length);
+
+  console.log(val === debouncedValue);
 
   return (
     <main>
@@ -254,25 +261,11 @@ const FoodSearch: React.FC = () => {
           )}
         </div>
 
-        {/* loaoding spinner for fetching food data search */}
-        {
-          // debouncedValue.length !== 0 &&
-          searchData.length === 0 && debouncedValue === val && (
-            <section className='flex h-full justify-center '>
-              <div className='flex relative top-10 md:top-0 md:items-center '>
-                {anySearchResults ? (
-                  <LoadingSpinner />
-                ) : (
-                  <p className='font-extrabold text-purple-800 text-4xl'>
-                    No Results
-                  </p>
-                )}
-              </div>
-            </section>
-          )
-        }
-
-        {val !== '' && (
+        {/* data displaying */}
+        {searchData.length !== 0 &&
+        debouncedValue === val &&
+        val !== '' &&
+        anySearchResults ? (
           <main className='border'>
             {searchData.map((e: FoodTypeData) => {
               const {
@@ -331,6 +324,28 @@ const FoodSearch: React.FC = () => {
               );
             })}
           </main>
+        ) : (
+          // Loading / no results
+          <section className='flex h-full justify-center '>
+         
+            <div className='flex relative top-10 md:top-0 md:items-center '>
+              {anySearchResults &&
+              val.trim().length !== 0 &&
+              val === debouncedValue ? (
+                <LoadingSpinner />
+              ) : val.trim().length !== 0 ? (
+                val === debouncedValue && (
+                  <p className='font-extrabold text-purple-800 text-4xl'>
+                    No Results
+                  </p>
+                )
+              ) : (
+                <p className='font-extrabold text-purple-800 text-4xl'>
+                  Search Food{' '}
+                </p>
+              )}
+            </div>
+          </section>
         )}
       </Modal>
     </main>

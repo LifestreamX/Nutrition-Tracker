@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
 
   return (
     <div>
-      <section className='text-gray-700 body-font relative'>
+      <section className='text-gray-700 body-font relative md:top-14'>
         <div className='container px-5 py-24 mx-auto dark:bg-gray-800 dark:mt-20 dark:mb-10 dark:rounded-3xl'>
           <div className='flex flex-col text-center w-full mb-12 '>
             <h1 className=' bg-gray-800sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-900 dark:text-purple-600'>

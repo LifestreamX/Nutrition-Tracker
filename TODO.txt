@@ -16,10 +16,44 @@
 
 
 
-TODO: Clean up responsiveness
 
 
+
+DASHBOARD PAGE:
+TODO: Loading Spinner spinner on model open for food search modal
+
+TODO: Width overlapping the page allowing side scrolling for mobile
+
+TODO: Modal to big on mobile cant see x button or ouside corners in mobile mode
+TODO: Input does not stay in its contained area when mobile becomes to small on input adjustment change 
+TODO: When food in dashboard clicked in mobile  the modal popup not responsive for smaller screen mobile type
+
+
+
+
+
+
+
+SETTINGS PAGE:
 TODO: Avatar setup
+TODO: Persist avatar through reload
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
