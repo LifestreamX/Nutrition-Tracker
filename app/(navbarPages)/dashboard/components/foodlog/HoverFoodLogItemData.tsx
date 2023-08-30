@@ -2,13 +2,11 @@ import { useMyContext } from '@/MyContext';
 import React, { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import Image from "next/image";
+import Image from 'next/image';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-type ChildProps = {
-  
-}
+type ChildProps = {};
 
 const HoverFoodLogItemData = () => {
   const { foodItem } = useMyContext();
@@ -48,44 +46,75 @@ const HoverFoodLogItemData = () => {
   const pieCentered =
     image === undefined ? 'justify-center' : 'justify-between';
 
-
   return (
-    <div className='absolute w-full flex justify-center items-center bottom-36 md:bottom-0 '>
-      <div className='bg-white shadow-md z-10 w-1/2 md:w-96 p-8 rounded-lg dark:bg-gray-800'>
+    <div className='absolute   container flex justify-center items-center bottom-36 md:bottom-0  '>
+      <div className='bg-white shadow-md z-10 container md:w-96 p-8 rounded-lg dark:bg-gray-800 '>
         {/* Top Half */}
-        <h1 className='mb-4 font-bold text-sm md:text-lg tracking-wide'>
+        <h1 className='mb-4 font-bold text-md md:text-lg tracking-wide '>
           {label}
         </h1>
-        <div className='grid grid-cols-2 gap-5 justify-center relative left-5'>
-          <div className='text-left'>
-            <p className='mb-1 text-sm md:text-lg'>Category: {category}</p>
+        <div className='grid grid-cols-1 md:grid-cols-2  gap-5 justify-center  relative md:left-5  '>
+          <div className='text-center md:text-left'>
             <p className='mb-1 text-sm md:text-lg'>
-              Category Label: {categoryLabel}
+              <span className='font-semibold text-sm md:text-lg'>
+                Category:{' '}
+              </span>
+              {category}
             </p>
-            <p className='mb-1 text-sm md:text-lg'>Quantity: {quantity}</p>
-            <p className='mb-1 text-sm md:text-lg'>Calories: {calories} kcal</p>
+            <p className='mb-1 text-sm md:text-lg '>
+              <span className='font-semibold  text-sm md:text-lg'>
+                Category Label:
+              </span>{' '}
+              {categoryLabel}
+            </p>
+            <p className='mb-1 text-sm md:text-lg '>
+              {' '}
+              <span className='font-semibold  text-sm md:text-lg'>
+                Quantity:
+              </span>{' '}
+              {quantity}
+            </p>
+            <p className='mb-1 text-sm md:text-lg '>
+              {' '}
+              <span className='font-semibold  text-sm md:text-lg'>
+                Calories:
+              </span>{' '}
+              {calories} kcal
+            </p>
           </div>
 
-          <div className='text-left'>
+          <div className='text-center md:text-left'>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
-              Protein: {protein.toFixed(1)}g
+              <span className='font-semibold  text-sm md:text-lg'>
+                Protein:
+              </span>{' '}
+              {protein.toFixed(1)}g
             </p>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
-              Carbs: {carbs.toFixed(1)}g
+              <span className='font-semibold  text-sm md:text-lg'>
+                Carbs:
+              </span>{' '}
+              {carbs.toFixed(1)}g
             </p>
-            <p className='mb-1 text-sm md:text-lg'> Fats: {fats.toFixed(1)}g</p>
+            <p className='mb-1 text-sm md:text-lg'>
+              {' '}
+              <span className='font-semibold  text-sm md:text-lg'>
+                Fats:
+              </span>{' '}
+              {fats.toFixed(1)}g
+            </p>
           </div>
         </div>
         <hr className='mt-5' />
         {/* Bottom Half */}
-        <div className={`flex w-full mt-5  ${pieCentered} `}>
-          <div className='w-2/3 '>
-            <span className=''>{<Pie data={data} />}</span>{' '}
+        <div className={` sm:flex w-full mt-5  ${pieCentered} `}>
+          <div className=' hidden sm:inline sm:w-2/3 '>
+            <div>{<Pie data={data} />}</div>
           </div>
 
-          <div className='w-1/3  justify-center items-center flex'>
+          <div className='flex md:w-1/3  justify-center items-center '>
             <Image
               src={image}
               width={100}

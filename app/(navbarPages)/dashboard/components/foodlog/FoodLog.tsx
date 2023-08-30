@@ -115,7 +115,7 @@ const FoodLog = () => {
   };
 
   return (
-    <div className='bg-white rounded-lg shadow-lg w-5/6 p-10 dark:bg-gray-800'>
+    <div className='bg-white mt-24 md:mt-0 rounded-lg shadow-lg w-5/6 p-10 dark:bg-gray-800 '>
       <p className='text-center   md:mb-0 md:text-left'>
         {selectedDate?.toString()}
       </p>

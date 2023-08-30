@@ -169,7 +169,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
                           className='rounded-2xl'
                         />
                       ) : (
-                        <span className='flex text-center'>No Image</span>
+                        <span className='flex text-center'>(No Image)</span>
                       )}
                     </div>
                   </li>

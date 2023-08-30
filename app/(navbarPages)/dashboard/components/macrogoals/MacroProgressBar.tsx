@@ -168,11 +168,14 @@ export const CaloriesProgress = () => {
 
   let caloriesRemain = macroTargets.calories - totalCalories;
 
+  let totalCaloriesFixed = totalCalories.toFixed(0);
+  let caloriesRemainFixed = caloriesRemain.toFixed(0);
+
   const caloriesRemainData: CaloriesRemainData = {
     labels: [],
     datasets: [
       {
-        data: [caloriesRemain, totalCalories],
+        data: [caloriesRemainFixed, totalCaloriesFixed],
         backgroundColor: ['#581C87', '#E0E0DE'],
         borderColor: 'transparent', // Set the border color to transparent
       },
@@ -204,8 +207,8 @@ export const CaloriesProgress = () => {
   };
 
   return (
-    <section className='flex flex-col justify-around w-full p-5 items-center  md:flex-row   dark:bg-gray-800'>
-      <div className='w-32 flex flex-col justify-center items-center'>
+    <section className='flex flex-col justify-around w-full p-5 items-center  md:flex-row   dark:bg-gray-800 '>
+      <div className='w-32 flex flex-col justify-center items-center '>
         {' '}
         {caloriesRemain === 0 ||
         caloriesRemain === null ||
@@ -233,11 +236,13 @@ export const CaloriesProgress = () => {
         )}
       </div>
 
-      <div className='w-32 flex flex-col justify-center items-center'>
+      <div className=' flex flex-col justify-center items-center container'>
         {' '}
-        <h1 className='relative md:bottom-6 text-center'>Calories Consumed</h1>
-        <div className='w-24 h-20 rounded-full bg-orange-500 flex items-center justify-center text-white text-2xl'>
-          {totalCalories.toFixed(0)}
+        <h1 className='relative md:bottom-6 text-center mt-6 md:mt-0 mb-4 md:mb-0 '>
+          Calories Consumed
+        </h1>
+        <div className='w-30 overflow-auto h-16 rounded-full  bg-orange-500 flex items-center justify-center text-white text-2xl'>
+          <p className='m-1'>{totalCalories.toFixed(0)}</p>
         </div>
       </div>
     </section>

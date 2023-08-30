@@ -41,8 +41,8 @@ const FoodSearch: React.FC = () => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      height: '95%',
-      width: '95%',
+      height: '75%',
+      width: '75%',
       background: modalBackGroundColor,
     },
   };
@@ -77,6 +77,7 @@ const FoodSearch: React.FC = () => {
   );
 
   const handleSearch = async () => {
+    setOpenExtra(false);
     setAnySearchResults(true);
     let { hints } = await fetchNutritionData(val);
 
@@ -96,6 +97,7 @@ const FoodSearch: React.FC = () => {
     if (val.trim().length === 0) {
       setSearchData(0);
     }
+
   };
 
   function openModal() {
@@ -148,14 +150,13 @@ const FoodSearch: React.FC = () => {
       servingSizes: { ...servingSizes },
       quantity: 1,
     });
+
     setOpenExtra(true);
     setSuccessAdded(false);
   };
 
   // console.log('search data length ', searchData.length);
   // console.log('value length', val.length);
-
-  console.log(val === debouncedValue);
 
   return (
     <main>
@@ -195,7 +196,7 @@ const FoodSearch: React.FC = () => {
         style={width < 768 ? mobileCustomStyles : customStyles}
         contentLabel='Example Modal'
       >
-        <div className='sticky top-0  '>
+        <div className='sticky top-0   '>
           <div className='bg-gray-50 '>
             <div className='w-full flex justify-end relative right-2'>
               <button
@@ -289,7 +290,7 @@ const FoodSearch: React.FC = () => {
 
               return (
                 <>
-                  <ul className='z-0'>
+                  <ul className='z-0  '>
                     <li className='flex cursor-pointer m-2' key={foodId}>
                       <button
                         className={` ${
@@ -327,7 +328,6 @@ const FoodSearch: React.FC = () => {
         ) : (
           // Loading / no results
           <section className='flex h-full justify-center '>
-         
             <div className='flex relative top-10 md:top-0 md:items-center '>
               {anySearchResults &&
               val.trim().length !== 0 &&

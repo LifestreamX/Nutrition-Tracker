@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import HoverFoodLogItemData from './HoverFoodLogItemData';
 import { useMyContext } from '@/MyContext';
+import { useWindowSize } from 'react-use';
 
 interface FoodDataProps {
   food: FoodLogTypes;
@@ -28,6 +29,7 @@ const Food = ({ food }: FoodDataProps) => {
   const [newQuantity, setNewQuantity] = useState<any>(null);
   const [emptyQuantityWarning, setEmptyQuantityWarning] = useState(false);
   const [delayRender, setDelayedRender] = useState(false);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     setTimeout(() => {});
@@ -71,9 +73,11 @@ const Food = ({ food }: FoodDataProps) => {
     setNewQuantity(e.target.value);
   };
 
+  console.log(newQuantity);
+
   const handleQuantitySave = (id: string) => {
     newQuantity == null ||
-      newQuantity.trim() === '' ||
+      newQuantity === '' ||
       (newQuantity <= 0 &&
         (() => {
           setNewQuantity(newQuantity);
@@ -139,16 +143,17 @@ const Food = ({ food }: FoodDataProps) => {
         {clikedEditId === food.foodId ? (
           <>
             <input
-              className='p-1 focus:outline-none mr-2 border-2 dark:bg-gray-700 '
+              className='p-1 focus:outline-none mr-2 border-2 dark:bg-gray-700  mb-5 md:mb-0 container md:w-1/3'
               placeholder='Enter Quantity'
               type='number'
               value={newQuantity}
               onChange={(e) => handleQuantityChange(e)}
-            />
+            />{' '}
             <Button
               onClick={() => handleQuantitySave(food.foodId)}
               color='purple'
               size='small'
+              responsiveWidth={width < 768 && true}
             >
               Save
             </Button>
@@ -156,7 +161,7 @@ const Food = ({ food }: FoodDataProps) => {
         ) : (
           <span className='relative'>
             {hoverItemId && delayRender && (
-              <div className='relative z-10'>
+              <div className='relative z-10  '>
                 <HoverFoodLogItemData />
               </div>
             )}

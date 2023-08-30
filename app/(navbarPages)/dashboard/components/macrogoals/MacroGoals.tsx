@@ -223,14 +223,14 @@ const MacroGoals = () => {
         {/* for Calories Burned / calories consumed  / calories remaining targets */}
 
         {!showMacroForm && (
-          <section className='w-screen h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-evenly md:top-20  '>
+          <section className=' w-screen xl:w-4/5 h-32  mt-10 flex flex-col items-center relative md:flex-row md:justify-evenly md:top-20 p-6 '>
             {/*  Left Side*/}
-            <div className=' w-full  md:w-1/3 bg-white rounded-lg shadow-lg container '>
+            <div className=' w-full lg:w-1/3 bg-white rounded-lg shadow-lg container '>
               <MacroProgressBar />
             </div>
 
             {/* Right Ride */}
-            <div className=' w-1/3 bg-white rounded-lg shadow-lg flex justify-evenly items-center mt-5 md:mt-0 container'>
+            <div className=' w-full lg:w-1/3 bg-white rounded-lg shadow-lg flex justify-evenly items-center m-5  md:mt-0 container'>
               <CaloriesProgress />
             </div>
           </section>
