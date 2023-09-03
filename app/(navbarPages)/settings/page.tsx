@@ -4,12 +4,21 @@ import { useMyContext } from '@/MyContext';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-import AvatarProfile from '../../components/AvatarProfile';
+// import AvatarProfile from '../../components/AvatarProfile';
+import UploadAvatar from '../../components/AvatarProfile';
+import Image from 'next/image';
+import NoAvatar from '../images/NoAvatar.png';
 
 const Settings: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, systemTheme } = useTheme();
   const [img, setImg] = useState();
+
+  const { profileAvatar } = useMyContext();
+
+  const handlePhotoChange = (e) => {
+    setImg(e.target.files[0]);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -20,6 +29,10 @@ const Settings: React.FC = () => {
   }
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
+
+  let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
+
+
 
   return (
     <main className='flex flex-col w-full justify-center items-center '>
@@ -65,12 +78,36 @@ const Settings: React.FC = () => {
                 <span className=' w-full p-0.5 bg-purple-600 flex' />
               </div>
 
+              <div className='flex mt-8 mb-8'>
+
+               
+                <Image
+                  className='w-20 h-20 rounded-full'
+                  src={Avatar}
+                  alt='Rounded avatar'
+                  width={50}
+                  height={50}
+                />
+              </div>
+
               <div className='mt-5'>
-                <AvatarProfile img={img} setImg={setImg} />
+                <UploadAvatar />
               </div>
-              <div className='mt-4'>
-                <p>Change Avatar</p>
-              </div>
+
+              {/* <div className='mt-4'>
+                <label
+                  className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                  for='file_input'
+                >
+                  Upload Photo
+                </label>
+                <input
+                  className='block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400'
+                  id='file_input'
+                  type='file'
+                  onChange={handlePhotoChange}
+                />
+              </div> */}
             </div>
           </div>
         </div>

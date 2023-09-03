@@ -41,6 +41,8 @@ type MyContextType = {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
   dispatch: any;
   submittedFoodLogs: any;
+  profileAvatar: any;
+  setProfileAvatar: any;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -94,7 +96,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [foodItem, setFoodItem] = useState(null);
 
-
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const [foodLog, setFoodLog] = useState(() => {
@@ -137,6 +138,15 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     );
   }, [submittedFoodLogs]);
 
+  // profile avatar
+  let [profileAvatar, setProfileAvatar] = useState(() => {
+    const savedProfileAvatar = localStorage.getItem('profileAvatar');
+
+    if (savedProfileAvatar !== undefined) {
+      return savedProfileAvatar;
+    } else return;
+  });
+
   const value: MyContextType = {
     macroTargetInputs,
     setMacroTargesInputs,
@@ -156,7 +166,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setSelectedDate,
     submittedFoodLogs,
     dispatch,
-   
+    profileAvatar,
+    setProfileAvatar,
   };
 
   // Local Storage

@@ -3,12 +3,6 @@
 
 
 
-DASHBOARD PAG
-
-
-
-
-
 
 
 
@@ -25,14 +19,7 @@ TODO: Persist avatar through reload
 
 
 
-
-
-
-
-
-
-
-
+TODO: Finish  read me once project is ready
 
 
 
@@ -40,15 +27,6 @@ TODO: Persist avatar through reload
 
 
 TODO: Fix all Types for each page 
-
-
-
-
-TODO: Makes sure nav works everywhere
-
-
-
-TODO: Finish  read me once project is ready
 
 
 

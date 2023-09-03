@@ -6,7 +6,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import navicon from '../images/navicon.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import Avatar from 'react-avatar';
+import { useMyContext } from '@/MyContext';
 
 interface NavigationItem {
   name: string;
@@ -26,7 +26,7 @@ const navigation: NavigationItem[] = [
 
 const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(true);
-  const [hasAvatar, setHasAvatar] = useState('');
+  const { profileAvatar } = useMyContext();
 
   return (
     <Disclosure as='nav' className='bg-gray-800 '>
@@ -117,12 +117,14 @@ const NavBar: React.FC = () => {
                         <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
                           <span className='sr-only'>Open user menu</span>
 
-                          {hasAvatar ? (
-                            <img
-                              className='h-8 w-8 rounded-full'
-                              src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                              alt=''
-                            />
+                          {profileAvatar ? (
+                            <div className='container'>
+                              <img
+                                className='w-10 h-10 rounded-full'
+                                src={profileAvatar}
+                                alt='Default avatar'
+                              />
+                            </div>
                           ) : (
                             <div className='relative w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600'>
                               <svg
