@@ -6,18 +6,6 @@
 
 
 
-SETTINGS PAGE:
-TODO: make repsonsive settings 
-
-
-
-
-
-
-
-
-
-
 TODO: Finish  read me once project is ready
 
 
