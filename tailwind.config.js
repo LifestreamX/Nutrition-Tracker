@@ -15,7 +15,5 @@ module.exports = {
     extend: {},
   },
   darkMode: 'class',
-  plugins: [],
+  plugins: [require('tw-elements-react/dist/plugin.cjs')],
 };
-
-

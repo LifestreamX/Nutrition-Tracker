@@ -97,7 +97,6 @@ const FoodSearch: React.FC = () => {
     if (val.trim().length === 0) {
       setSearchData(0);
     }
-
   };
 
   function openModal() {

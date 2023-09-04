@@ -135,7 +135,6 @@ const NutritionInfo = () => {
   const donutSize = width < 400 ? 150 : 200;
   const buttonSize = width < 400 ? 'small' : 'medium';
 
-
   return (
     <>
       <section className='border pb-2 xs:p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-900   '>

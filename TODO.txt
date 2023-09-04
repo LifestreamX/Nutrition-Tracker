@@ -7,8 +7,7 @@
 
 
 SETTINGS PAGE:
-TODO: Avatar setup
-TODO: Persist avatar through reload
+TODO: make repsonsive settings 
 
 
 
@@ -20,6 +19,12 @@ TODO: Persist avatar through reload
 
 
 TODO: Finish  read me once project is ready
+
+
+
+
+
+TODO: Push project to Vercel to Host
 
 
 

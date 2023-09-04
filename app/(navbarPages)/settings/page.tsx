@@ -32,8 +32,6 @@ const Settings: React.FC = () => {
 
   let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
 
-
-
   return (
     <main className='flex flex-col w-full justify-center items-center '>
       <section className='rounded-xl w-4/5 flex flex-col  max-w-xl shadow-2xl relative top-40 p-10 dark:bg-gray-800'>
@@ -79,8 +77,6 @@ const Settings: React.FC = () => {
               </div>
 
               <div className='flex mt-8 mb-8'>
-
-               
                 <Image
                   className='w-20 h-20 rounded-full'
                   src={Avatar}

@@ -71,7 +71,9 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
         </svg>
         {/* title */}
         <div className='mb-8 mt-10 xs:mt-0 text-purple-800 font-semibold'>
-          <h1 className='text-2xl font-purple-600 dark:text-purple-500'>{logDetails?.label}</h1>
+          <h1 className='text-2xl font-purple-600 dark:text-purple-500'>
+            {logDetails?.label}
+          </h1>
           <div className='w-full p-0.5 bg-purple-400' />
         </div>
 
@@ -80,14 +82,18 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Category:{' '}
-                <span className='text-purple-800 dark:text-purple-500'>{logDetails?.category}</span>
+                <span className='text-purple-800 dark:text-purple-500'>
+                  {logDetails?.category}
+                </span>
               </p>
             </li>
 
             <li className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Quantity:{' '}
-                <span className='text-purple-800 dark:text-purple-500'>{logDetails?.quantity}</span>
+                <span className='text-purple-800 dark:text-purple-500'>
+                  {logDetails?.quantity}
+                </span>
               </p>
             </li>
 

@@ -15,7 +15,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className=' flex flex-col items-center justify-center h-screen w-screen '>
+    <div className='flex flex-col items-center justify-center h-screen w-screen '>
       <div role='alert' className='m-12'>
         <div className='bg-red-500 text-white font-bold rounded-t px-4 py-2'>
           <h2 className='text-2xl font-semibold mb-4'>Something went wrong!</h2>
