@@ -8,11 +8,8 @@ import {
   useReducer,
   useState,
 } from 'react';
-import {
-  MacroTargetTypes,
-  NutritionSearchDataType,
-} from './types/MacroTarget.types';
-import { FoodTypeData } from './types/Food.types';
+import { MacroTargetTypes } from './types/MacroTarget.types';
+import { FoodTypeData, NutritionSearchDataType } from './types/Food.types';
 
 type MyContextType = {
   // incrementCount: () => void;
@@ -22,6 +19,7 @@ type MyContextType = {
     React.SetStateAction<MacroTargetTypes | object>
   >;
   macroTargetInputs: MacroTargetTypes;
+
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
   nutritionSearchData: NutritionSearchDataType;
   setnutritionSearchData: React.Dispatch<
@@ -44,6 +42,8 @@ type MyContextType = {
   profileAvatar: any;
   setProfileAvatar: any;
 };
+
+0;
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
 
@@ -109,6 +109,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       ? JSON.parse(savedSelectedDate)?.toString()
       : null;
   });
+
+  console.log(nutritionSearchData);
 
   type Action = {
     type: 'SUBMIT_FOOD_LOGS';

@@ -42,7 +42,6 @@ const Login = (): JSX.Element => {
 
   let buttonWidith = width < 768 ? true : '';
 
-  console.log(isValidPassword);
 
   return (
     <>

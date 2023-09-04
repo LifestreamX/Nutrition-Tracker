@@ -73,7 +73,6 @@ const Food = ({ food }: FoodDataProps) => {
     setNewQuantity(e.target.value);
   };
 
-  console.log(newQuantity);
 
   const handleQuantitySave = (id: string) => {
     newQuantity == null ||
