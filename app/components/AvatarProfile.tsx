@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
@@ -46,7 +46,8 @@ const UploadAvatar = (): JSX.Element => {
   const handleSaveProfileImage = () => {
     setProfileAvatar(croppedImage);
 
-    localStorage.setItem('profileAvatar', croppedImage);
+      localStorage.setItem('profileAvatar', croppedImage);
+
 
     setCroppedImage('');
     setImage(null);

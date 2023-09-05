@@ -56,7 +56,12 @@ const MacroGoals = () => {
       };
 
       setMacroTargets(updateMacroTargets);
-      localStorage.setItem('macroTargets', JSON.stringify(updateMacroTargets));
+
+        localStorage.setItem(
+          'macroTargets',
+          JSON.stringify(updateMacroTargets)
+        );
+      
 
       setShowMacroForm(false);
       setFillOutInputWarning(false);

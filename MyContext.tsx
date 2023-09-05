@@ -105,6 +105,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [selectedDate, setSelectedDate] = useState(() => {
     const savedSelectedDate = localStorage.getItem('selectedDate');
+
     return savedSelectedDate && savedSelectedDate !== undefined
       ? JSON.parse(savedSelectedDate)?.toString()
       : null;
@@ -173,15 +174,9 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setProfileAvatar,
   };
 
-  // Local Storage
-
   useEffect(() => {
     localStorage.setItem('foodLog', JSON.stringify(foodLog));
   }, [foodLog]);
-
-  // useEffect(() => {
-  //   localStorage.setItem('selectedDate', JSON.stringify(selectedDate));
-  // }, [selectedDate]);
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 };

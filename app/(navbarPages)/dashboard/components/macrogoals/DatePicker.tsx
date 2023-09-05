@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useMyContext } from '@/MyContext';
 import React, { useState } from 'react';
@@ -22,10 +22,10 @@ const MyDatePicker: React.FC = () => {
       currentDate = [formattedDate];
       setSelectedDate(currentDate);
 
-      localStorage.setItem('selectedDate', JSON.stringify(currentDate));
+        localStorage.setItem('selectedDate', JSON.stringify(currentDate));
+      
     } else {
       setSelectedDate(null);
-      // localStorage.removeItem('selectedDate');
     }
   };
 
