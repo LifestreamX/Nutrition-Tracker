@@ -21,7 +21,7 @@ type MyContextType = {
   macroTargetInputs: MacroTargetTypes;
 
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
-  nutritionSearchData: NutritionSearchDataType;
+  nutritionSearchData: NutritionSearchDataType | undefined;
   setnutritionSearchData: React.Dispatch<
     React.SetStateAction<NutritionSearchDataType>
   >;
