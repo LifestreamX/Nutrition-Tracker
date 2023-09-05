@@ -40,5 +40,5 @@ export interface ServingsType {
 export interface NutritionSearchDataType {
   carbs: number | string;
   fats: number | string;
-  protein: number | string;
+  protein: number | string ;
 }

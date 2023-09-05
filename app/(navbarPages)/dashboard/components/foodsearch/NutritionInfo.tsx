@@ -24,14 +24,14 @@ const NutritionInfo = () => {
 
   useEffect(() => {
     getPercentages(
-      nutritionSearchData.protein,
-      nutritionSearchData.carbs,
-      nutritionSearchData.fats
+      nutritionSearchData?.protein,
+      nutritionSearchData?.carbs,
+      nutritionSearchData?.fats
     );
   }, [
-    nutritionSearchData.protein,
-    nutritionSearchData.carbs,
-    nutritionSearchData.fats,
+    nutritionSearchData?.protein,
+    nutritionSearchData?.carbs,
+    nutritionSearchData?.fats,
   ]);
 
   const [percentages, setPercentages] = useState({
@@ -107,7 +107,7 @@ const NutritionInfo = () => {
   };
 
   const handleAddToFoodLog = (id: string) => {
-    const alreadyHaveFood = foodLog?.map((food) => {
+    const alreadyHaveFood = foodLog?.map((food: any) => {
       if (food.foodId === id) {
         return {
           ...food,
@@ -117,7 +117,7 @@ const NutritionInfo = () => {
       return food;
     });
 
-    const doesFoodExist = foodLog?.find((food) => food.foodId === id);
+    const doesFoodExist = foodLog?.find((food: any) => food.foodId === id);
 
     if (doesFoodExist) {
       setFoodLog(alreadyHaveFood);

@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>();
   const [emailSent, setEmailSent] = useState<boolean>(false);
 
-  const { themeSetting } = useMyContext();
+  const { themeSetting }: any = useMyContext();
 
   let themeTextColor;
 

@@ -48,10 +48,12 @@ const FoodSearch: React.FC = () => {
   };
 
   // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-  Modal.setAppElement(document.getElementById('root'));
+  // Modal.setAppElement(document.getElementById('root'));
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [searchData, setSearchData] = useState<FoodTypeData[]>([]);
+  const [searchData, setSearchData] = useState<FoodTypeData[] | number | any>(
+    []
+  );
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
   const [openExtra, setOpenExtra] = useState(false);
@@ -83,8 +85,9 @@ const FoodSearch: React.FC = () => {
 
     let data: Object[] = [];
 
-    hints.map((e: Object[]) => {
-      console.log(hints);
+    hints.map((e: any) => {
+
+
       data = [...data, e.food];
 
       setSearchData(data);
@@ -94,7 +97,7 @@ const FoodSearch: React.FC = () => {
       setAnySearchResults(false);
     } else setAnySearchResults(true);
 
-    if (val.trim().length === 0) {
+    if (typeof val === 'string' && val.trim().length === 0) {
       setSearchData(0);
     }
   };
@@ -214,7 +217,9 @@ const FoodSearch: React.FC = () => {
                 value={val}
                 onChange={(e) => {
                   setVal(e.target.value);
-                  val.length === 0 && setSearchData([]);
+                  typeof val === 'string' &&
+                    val.length === 0 &&
+                    setSearchData([]);
                 }}
               />
 
@@ -329,10 +334,11 @@ const FoodSearch: React.FC = () => {
           <section className='flex h-full justify-center '>
             <div className='flex relative top-10 md:top-0 md:items-center '>
               {anySearchResults &&
+              typeof val === 'string' &&
               val.trim().length !== 0 &&
               val === debouncedValue ? (
                 <LoadingSpinner />
-              ) : val.trim().length !== 0 ? (
+              ) : typeof val === 'string' && val.trim().length !== 0 ? (
                 val === debouncedValue && (
                   <p className='font-extrabold text-purple-800 text-4xl'>
                     No Results

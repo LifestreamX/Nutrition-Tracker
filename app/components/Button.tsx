@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
     }
   };
 
-  const sizeClasses = (): string => {
+  const sizeClasses = (): string  => {
     switch (size) {
       case 'extra-small':
         return 'py-1 px-2 text-sm';

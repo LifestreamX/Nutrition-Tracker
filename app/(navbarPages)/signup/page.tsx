@@ -77,6 +77,8 @@ const SignUp = (): JSX.Element => {
 
   let buttonSize = width < 768 ? 'medium' : 'large';
 
+  console.log(buttonSize)
+
   let buttonWidith = width < 768 ? true : '';
 
   return (

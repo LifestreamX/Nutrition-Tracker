@@ -1,17 +1,18 @@
 // Macro taget types
 export interface MacroTargetTypes {
-  calories: number | string ;
+  calories: number | string | any;
   protein: number | string;
   carbs: number | string;
   fats: number | string;
   date?: any;
+  [key: string]: any;
 }
 
 export interface Goals {
   [key: string]: number | string;
 }
 
-interface CaloriesConsumedData {
+export interface CaloriesConsumedData {
   labels: string[];
   datasets: {
     label: string;
@@ -22,7 +23,7 @@ interface CaloriesConsumedData {
   }[];
 }
 
-interface CaloriesRemainData {
+export interface CaloriesRemainData {
   labels: string[];
   datasets: {
     data: (number | string)[];

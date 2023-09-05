@@ -3,16 +3,12 @@
 import { useMyContext } from '@/MyContext';
 import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { specificFoodLogTypes } from '@/types/MyFoodLog.types';
 import grapes from '../.././images/dashboard/grapes.png';
 import Image from 'next/image';
 import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
-import { BsTypeH1 } from 'react-icons/bs';
-import { Suspense } from 'react';
-import Skeleton from 'react-loading-skeleton';
+
 import 'react-loading-skeleton/dist/skeleton.css';
-import Loading from './loading';
 
 const MyFoodLogs: React.FC = () => {
   const { submittedFoodLogs } = useMyContext();
@@ -28,8 +24,6 @@ const MyFoodLogs: React.FC = () => {
     indexOfLastResult
   );
 
-
-
   // Change the page
   const handlePageChange = (pageNumber: number): void => {
     setCurrentPage(pageNumber);
@@ -38,8 +32,6 @@ const MyFoodLogs: React.FC = () => {
   const [startDate, setStartDate] = useState<any | null>(null);
 
   let selectedDate = startDate;
-
-
 
   let sortedByYear = currentResults?.sort((a, b) => {
     const dateA = parseInt(a.selectedDate?.toString().split(',').at(-1) || '0');

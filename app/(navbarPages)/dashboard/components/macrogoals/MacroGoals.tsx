@@ -20,11 +20,11 @@ const MacroGoals = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     setFillOutInputWarning(false);
     const { name, value } = event.target;
 
-    const CustomInput = ({ value, onClick }) => (
+    const CustomInput = ({ value, onClick }: any) => (
       <input
         type='text'
         className='border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500'
@@ -57,14 +57,6 @@ const MacroGoals = () => {
 
       setMacroTargets(updateMacroTargets);
       localStorage.setItem('macroTargets', JSON.stringify(updateMacroTargets));
-
-      // setMacroTargesInputs({
-      //   ...macroTargetInputs,
-      //   calories: '',
-      //   protein: '',
-      //   carbs: '',
-      //   fats: '',
-      // });
 
       setShowMacroForm(false);
       setFillOutInputWarning(false);

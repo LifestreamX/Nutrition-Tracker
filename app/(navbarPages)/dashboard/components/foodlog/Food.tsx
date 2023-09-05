@@ -59,7 +59,9 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleFoodItemDelete = (id: string): void => {
-    setFoodLog((prevFood) => prevFood.filter((food) => food?.foodId !== id));
+    setFoodLog((prevFood: any) =>
+      prevFood.filter((food: any) => food?.foodId !== id)
+    );
   };
 
   const handleQuantity = (id: string): void => {
@@ -72,7 +74,6 @@ const Food = ({ food }: FoodDataProps) => {
   ): void => {
     setNewQuantity(e.target.value);
   };
-
 
   const handleQuantitySave = (id: string) => {
     newQuantity == null ||
@@ -100,7 +101,7 @@ const Food = ({ food }: FoodDataProps) => {
     }
   };
 
-  const quantityCalories = food.calories * food?.quantity;
+  const quantityCalories = (food.calories || 0) * (food?.quantity || 0);
 
   return (
     <div
