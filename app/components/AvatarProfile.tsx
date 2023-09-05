@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useState, useRef, ChangeEvent } from 'react';
