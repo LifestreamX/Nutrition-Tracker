@@ -110,17 +110,12 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       : null;
   });
 
-  console.log(nutritionSearchData);
-
   type Action = {
     type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';
     payload: FoodTypeData[];
   };
 
-  const reducer = (
-    state: FoodTypeData[],
-    action: { type: string; payload: any }
-  ) => {
+  const reducer = (state: FoodTypeData[] | any, action: Action) => {
     switch (action.type) {
       case 'SUBMIT_FOOD_LOGS':
         return [...state, action.payload];
@@ -131,10 +126,14 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
   };
 
-  const [submittedFoodLogs, dispatch] = useReducer(
-    reducer,
-    JSON.parse(localStorage.getItem('submittedFoodLogs')) || []
-  );
+  const storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
+
+  const initialFoodLogData = storedSubmittedFoodLogData
+    ? JSON.parse(storedSubmittedFoodLogData)
+    : [];
+
+  const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
+
 
   useEffect(() => {
     localStorage.setItem(

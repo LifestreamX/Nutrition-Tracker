@@ -28,6 +28,8 @@ const MyFoodLogs: React.FC = () => {
     indexOfLastResult
   );
 
+
+
   // Change the page
   const handlePageChange = (pageNumber: number): void => {
     setCurrentPage(pageNumber);
@@ -37,7 +39,9 @@ const MyFoodLogs: React.FC = () => {
 
   let selectedDate = startDate;
 
-  let sortedByYear = currentResults.sort((a, b) => {
+
+
+  let sortedByYear = currentResults?.sort((a, b) => {
     const dateA = parseInt(a.selectedDate?.toString().split(',').at(-1) || '0');
 
     const dateB = parseInt(b.selectedDate?.toString().split(',').at(-1) || '0');
