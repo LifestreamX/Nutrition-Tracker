@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <main className='relative top-28'>
       <section className='flex justify-center items-middle '>
-        <FoodSearch val={val} setVal={setVal}>
+        <FoodSearch>
           {/* @ts-expect-error Server Component */}
           <FetchNutritionData />
         </FoodSearch>

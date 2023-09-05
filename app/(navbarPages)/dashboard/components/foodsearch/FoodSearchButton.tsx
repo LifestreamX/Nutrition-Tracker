@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ReactNode } from 'react';
 import grapes from '../../../../images/dashboard/grapes.png';
 import Image from 'next/image';
 import Modal from 'react-modal';
@@ -14,7 +14,11 @@ import { useMyContext } from '@/MyContext';
 import { useTheme } from 'next-themes';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 
-const FoodSearch: React.FC = () => {
+type FoodSearchProps = {
+  children?: ReactNode;
+};
+
+const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
   const { theme } = useTheme();
 
   let modalBackGroundColor = theme === 'dark' ? '#2d3748' : 'white';
@@ -86,8 +90,6 @@ const FoodSearch: React.FC = () => {
     let data: Object[] = [];
 
     hints.map((e: any) => {
-
-
       data = [...data, e.food];
 
       setSearchData(data);
