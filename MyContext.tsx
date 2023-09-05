@@ -117,7 +117,10 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     payload: FoodTypeData[];
   };
 
-  const reducer = (state: FoodTypeData[], action: Action) => {
+  const reducer = (
+    state: FoodTypeData[],
+    action: { type: string; payload: any }
+  ) => {
     switch (action.type) {
       case 'SUBMIT_FOOD_LOGS':
         return [...state, action.payload];
@@ -130,7 +133,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [submittedFoodLogs, dispatch] = useReducer(
     reducer,
-    JSON.parse(localStorage.getItem('submittedFoodLogs')) || []
+    JSON.parse<unknown>(localStorage.getItem('submittedFoodLogs')) || []
   );
 
   useEffect(() => {
