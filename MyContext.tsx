@@ -133,7 +133,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [submittedFoodLogs, dispatch] = useReducer(
     reducer,
-    JSON.parse<unknown>(localStorage.getItem('submittedFoodLogs')) || []
+    JSON.parse(localStorage.getItem('submittedFoodLogs')) || []
   );
 
   useEffect(() => {
