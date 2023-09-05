@@ -22,17 +22,17 @@ type MyContextType = {
 
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
   nutritionSearchData: NutritionSearchDataType | undefined;
-  setnutritionSearchData: React.Dispatch<
-    React.SetStateAction<NutritionSearchDataType>
+  setNutritionSearchData: React.Dispatch<
+    React.SetStateAction<NutritionSearchDataType> | any
   >;
   foodLog: FoodTypeData;
   setFoodLog: React.Dispatch<
     React.SetStateAction<FoodTypeData | object[] | ReactNode>
   >;
   successAdded: Boolean;
-  setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean>>;
+  setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean> | any>;
   clikedEditId: string;
-  setClikedEditId: React.Dispatch<React.SetStateAction<string | null>>;
+  setClikedEditId: React.Dispatch<React.SetStateAction<string | null> | any>;
   foodItem: any;
   setFoodItem: React.Dispatch<React.SetStateAction<any>>;
   selectedDate: Date | null;
@@ -133,7 +133,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     : [];
 
   const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
-
 
   useEffect(() => {
     localStorage.setItem(
