@@ -113,7 +113,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   console.log(nutritionSearchData);
 
   type Action = {
-    type: 'SUBMIT_FOOD_LOGS';
+    type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';
     payload: FoodTypeData[];
   };
 
