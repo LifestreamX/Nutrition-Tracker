@@ -5,7 +5,7 @@
 nutritiontracker
 
 
-Access my site at [pending website]
+Access my site at [nutrition-tracker-psi.vercel.app]
 
 ## About The App
 
@@ -13,7 +13,7 @@ Access my site at [pending website]
 
 ## Screenshots
 
-![](screenshots/home1.png)
+![](screenshots/screenshot1.png)
 
 
 ## Technologies
