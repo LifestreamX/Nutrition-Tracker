@@ -4,8 +4,7 @@
 
 nutritiontracker
 
-
-Access my site at nutrition-tracker-psi.vercel.app
+Access my site at https://nutrition-tracker-psi.vercel.app
 
 ## About The App
 
