@@ -16,7 +16,7 @@ const About: React.FC = () => {
               <span className='m-1'>About</span>{' '}
               <span className='text-purple-800 m-1'>nutritiontracker</span>
             </div>
-            <span className='bg-purple-800 p-0.5 w-full p-2'></span>
+            <span className='bg-purple-800 p-0.5 w-full'></span>
           </h1>
 
           <section className='px-4'>

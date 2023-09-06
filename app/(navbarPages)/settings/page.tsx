@@ -24,9 +24,9 @@ const Settings: React.FC = () => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  // if (!mounted) {
+  //   return null;
+  // }
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
