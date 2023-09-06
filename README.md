@@ -4,34 +4,38 @@
 
 nutritiontracker
 
-
-Access my site at [pending website]
+Access my site at https://nutrition-tracker-psi.vercel.app
 
 ## About The App
 
-[nutritiontracker] lets you search and log all your nutrition intake. you can set macronutritent goals and keep track of them on your dashboard via stats and charts displaying daily nutrition goal progress
+[nutritiontracker] is a nutrition tracker app for the user and their nutrition information. The user can set macronutrient goals and keep track of them with charts on the user dashboard. The user can use a nutrition API to search for specific foods that they can view with the option of charts to display the data and add the food item to their dashboard to compare to their goals they have set. The user can submit the log for that day to their food logs which they have access to in their food log page to keep track of every food item for that day sorted by date with pagination as the logs grow in size. The site has form validation for account creation along with settings for changing the users avatar and dark mode theme. Charts are updated dynamically comparing the goals the user sets and the nutritional information from the foods that are added to the log.
 
-## Screenshots
 
-![](screenshots/home1.png)
+![](screenshots/screenshot1.png)
+![](screenshots/screenshot2.png)
+![](screenshots/screenshot3.png)
+![](screenshots/screenshot4.png)
+![](screenshots/screenshot5.png)
+![](screenshots/screenshot6.png)
+![](screenshots/screenshot7.png)
+![](screenshots/screenshot8.png)
+![](screenshots/screenshot9.png)
 
 
 ## Technologies
 
+  <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original-wordmark.svg" title="next.js" alt="next.js" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="typescript" alt="typescript" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original-wordmark.svg" title="html5" alt="html5" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original-wordmark.svg" title="css3" alt="css3" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="javascript" alt="javascript" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original-wordmark.svg" title="tailwind" alt="tailwind" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" title="Redux" alt="Redux" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="node" alt="node" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/express/express-original-wordmark.svg" title="express" alt="express" width="40" height="40"/>&nbsp;
-  <img src="https://github.com/devicons/devicon/blob/master/icons/mongodb/mongodb-original-wordmark.svg" title="mongoDB" alt="mongoDB" width="40" height="40"/>&nbsp;
 
 
 ## Approach
 
-Build with Next.js and styled with tailwind. 
+Built with Next.js for utilizing server side rendering for server components. Typescript for type checking. Styled with tailwind for responsive design. Using Nutrition API for fetching data. 
 
 
 
