@@ -35,7 +35,7 @@ Access my site at https://nutrition-tracker-psi.vercel.app
 
 ## Approach
 
-Built with Next.js and styled with tailwind. 
+Built with Next.js for utilizing server side rendering for server components. Typescript for typechecking. Styled with tailwind for responsive design. Using Nutrition API for fetching data. 
 
 
 
