@@ -68,7 +68,12 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   // });
 
   const [macroTargets, setMacroTargets] = useState(() => {
-    const savedMacroTargets = localStorage.getItem('macroTargets');
+    let savedMacroTargets;
+
+    if (typeof window !== 'undefined') {
+      savedMacroTargets = localStorage.getItem('macroTargets');
+    }
+
     return savedMacroTargets
       ? JSON.parse(savedMacroTargets)
       : {
@@ -99,12 +104,20 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const [foodLog, setFoodLog] = useState(() => {
-    const savedFoodLog = localStorage.getItem('foodLog');
+    let savedFoodLog;
+
+    if (typeof window !== 'undefined') {
+      savedFoodLog = localStorage.getItem('foodLog');
+    }
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
   });
 
   const [selectedDate, setSelectedDate] = useState(() => {
-    const savedSelectedDate = localStorage.getItem('selectedDate');
+    let savedSelectedDate;
+
+    if (typeof window !== 'undefined') {
+      savedSelectedDate = localStorage.getItem('selectedDate');
+    }
 
     return savedSelectedDate && savedSelectedDate !== undefined
       ? JSON.parse(savedSelectedDate)?.toString()
@@ -127,7 +140,11 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
   };
 
-  const storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
+  let storedSubmittedFoodLogData;
+
+  if (typeof window !== 'undefined') {
+    storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
+  }
 
   const initialFoodLogData = storedSubmittedFoodLogData
     ? JSON.parse(storedSubmittedFoodLogData)
@@ -144,7 +161,11 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   // profile avatar
   let [profileAvatar, setProfileAvatar] = useState(() => {
-    const savedProfileAvatar = localStorage.getItem('profileAvatar');
+    let savedProfileAvatar;
+
+    if (typeof window !== 'undefined') {
+      savedProfileAvatar = localStorage.getItem('profileAvatar');
+    }
 
     if (savedProfileAvatar !== undefined) {
       return savedProfileAvatar;

@@ -46,6 +46,8 @@ const UploadAvatar = (): JSX.Element => {
   const handleSaveProfileImage = () => {
     setProfileAvatar(croppedImage);
 
+
+      
       localStorage.setItem('profileAvatar', croppedImage);
 
 

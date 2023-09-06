@@ -22,6 +22,8 @@ const MyDatePicker: React.FC = () => {
       currentDate = [formattedDate];
       setSelectedDate(currentDate);
 
+      
+
         localStorage.setItem('selectedDate', JSON.stringify(currentDate));
       
     } else {
