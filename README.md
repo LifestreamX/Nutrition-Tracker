@@ -21,6 +21,7 @@ Access my site at [nutrition-tracker-psi.vercel.app]
 ![](screenshots/screenshot6.png)
 ![](screenshots/screenshot7.png)
 ![](screenshots/screenshot8.png)
+![](screenshots/screenshot9.png)
 
 
 ## Technologies
