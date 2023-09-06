@@ -11,6 +11,8 @@ Access my site at https://nutrition-tracker-psi.vercel.app
 [nutritiontracker] is a nutrition tracker app for the user and their nutrition information. The user can set macronutrient goals and keep track of them with charts on the user dashboard. The user can use a nutrition API to search for specific foods that they can view with the option of charts to display the data and add the food item to their dashboard to compare to their goals they have set. The user can submit the log for that day to their food logs which they have access to in their food log page to keep track of every food item for that day sorted by date with pagination as the logs grow in size. The site has form validation for account creation along with settings for changing the users avatar and dark mode theme. Charts are updated dynamically comparing the goals the user sets and the nutritional information from the foods that are added to the log.
 
 
+![](screenshots/screenshot10.png)
+![](screenshots/screenshot11.png)
 ![](screenshots/screenshot1.png)
 ![](screenshots/screenshot2.png)
 ![](screenshots/screenshot3.png)
