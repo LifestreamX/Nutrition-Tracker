@@ -25,6 +25,7 @@ Access my site at https://nutrition-tracker-psi.vercel.app
 ## Technologies
 
   <img src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original-wordmark.svg" title="next.js" alt="next.js" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" title="typescript" alt="typescript" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original-wordmark.svg" title="html5" alt="html5" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original-wordmark.svg" title="css3" alt="css3" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="javascript" alt="javascript" width="40" height="40"/>&nbsp;
@@ -34,7 +35,7 @@ Access my site at https://nutrition-tracker-psi.vercel.app
 
 ## Approach
 
-Build with Next.js and styled with tailwind. 
+Built with Next.js and styled with tailwind. 
 
 
 
