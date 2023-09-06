@@ -12,6 +12,13 @@ const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
   const { setProfileAvatar, profileAvatar } = useMyContext();
 
   const cancelButtonRef = useRef(null);
+
+  const handleDeleteProfileImage = () => {
+    setProfileAvatar(undefined);
+    setShowModal(false);
+    localStorage.removeItem('profileAvatar');
+  };
+
   return (
     <Transition.Root show={showModal} as={Fragment}>
       <Dialog
@@ -71,14 +78,7 @@ const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
                   <button
                     type='button'
                     className='inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto'
-                    onClick={() => {
-                      setProfileAvatar(undefined);
-                      setShowModal(false);
-                      // localStorage.setItem(
-                      //   'profileAvatar',
-                      //   JSON.stringify(profileAvatar)
-                      // );
-                    }}
+                    onClick={handleDeleteProfileImage}
                   >
                     Delete
                   </button>

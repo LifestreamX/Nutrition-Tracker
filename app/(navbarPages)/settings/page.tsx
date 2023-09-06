@@ -15,7 +15,6 @@ const Settings: React.FC = () => {
   const [img, setImg] = useState();
 
   const { profileAvatar } = useMyContext();
-  console.log(profileAvatar)
 
 
   const handlePhotoChange = (e: any) => {

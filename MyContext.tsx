@@ -43,8 +43,6 @@ type MyContextType = {
   setProfileAvatar: any;
 };
 
-0;
-
 const MyContext = createContext<MyContextType | undefined>(undefined);
 
 export const useMyContext = (): MyContextType => {
@@ -167,12 +165,14 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       savedProfileAvatar = localStorage.getItem('profileAvatar');
     }
 
-    // if (savedProfileAvatar !== undefined) {
-    //   return savedProfileAvatar;
-    // } else return;
 
-    
+    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
+      return savedProfileAvatar;
+    } else return;
   });
+
+
+  console.log(profileAvatar)
 
   const value: MyContextType = {
     macroTargetInputs,
