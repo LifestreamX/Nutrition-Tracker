@@ -15,6 +15,8 @@ const Settings: React.FC = () => {
   const [img, setImg] = useState();
 
   const { profileAvatar } = useMyContext();
+  console.log(profileAvatar)
+
 
   const handlePhotoChange = (e: any) => {
     setImg(e.target.files[0]);
@@ -24,9 +26,9 @@ const Settings: React.FC = () => {
     setMounted(true);
   }, []);
 
-  // if (!mounted) {
-  //   return null;
-  // }
+  if (!mounted) {
+    return null;
+  }
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
 

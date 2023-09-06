@@ -9,7 +9,7 @@ type modalProps = {
 };
 
 const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
-  const { setProfileAvatar } = useMyContext();
+  const { setProfileAvatar, profileAvatar } = useMyContext();
 
   const cancelButtonRef = useRef(null);
   return (
@@ -74,6 +74,10 @@ const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
                     onClick={() => {
                       setProfileAvatar(undefined);
                       setShowModal(false);
+                      // localStorage.setItem(
+                      //   'profileAvatar',
+                      //   JSON.stringify(profileAvatar)
+                      // );
                     }}
                   >
                     Delete

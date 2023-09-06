@@ -167,9 +167,11 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       savedProfileAvatar = localStorage.getItem('profileAvatar');
     }
 
-    if (savedProfileAvatar !== undefined) {
-      return savedProfileAvatar;
-    } else return;
+    // if (savedProfileAvatar !== undefined) {
+    //   return savedProfileAvatar;
+    // } else return;
+
+    
   });
 
   const value: MyContextType = {

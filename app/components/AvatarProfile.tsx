@@ -46,19 +46,14 @@ const UploadAvatar = (): JSX.Element => {
   const handleSaveProfileImage = () => {
     setProfileAvatar(croppedImage);
 
-
-      
-      localStorage.setItem('profileAvatar', croppedImage);
-
+    localStorage.setItem('profileAvatar', croppedImage);
 
     setCroppedImage('');
     setImage(null);
     setShowCropButton(false);
   };
 
-  const handleDeleteProfileAvatar = () => {
-    setProfileAvatar(undefined);
-  };
+
 
   const cropPreview = width < 480 ? 100 : width < 768 ? 150 : 200;
 
