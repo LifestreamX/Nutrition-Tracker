@@ -154,7 +154,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
                 // href={`/myfoodlogs/${foodLogId}/${food.foodId}`}
               >
                 <div className='bg-white dark:bg-gray-700  xs:w-full rounded-lg shadow-lg  justify-center items-center'>
-                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-purple-400  dark:hover:bg-purple-800  cursor-pointer rounded-xl p-4 '>
+                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-gray-200  dark:hover:bg-purple-800  cursor-pointer rounded-xl p-4 '>
                     <p className='text-left xs:text- md:text-xl  md:w-full mb-3 md:mb-0'>
                       {food.label}
                     </p>

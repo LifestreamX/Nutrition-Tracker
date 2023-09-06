@@ -93,7 +93,7 @@ const MyFoodLogs: React.FC = () => {
                 {noLog ? (
                   <h1>No Food Log for {selectedDate}</h1>
                 ) : (
-                  <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-purple-400  dark:hover:bg-purple-800'>
+                  <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-gray-100  dark:hover:bg-purple-800'>
                     <Link
                       // key={submittedFoodLogs}
                       href={{
@@ -125,7 +125,7 @@ const MyFoodLogs: React.FC = () => {
                   return (
                     <li
                       key={foodLogId}
-                      className='text-sm md:text-xl hover:bg-purple-400 dark:hover:bg-purple-700 dark:bg-gray-500 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                      className='text-sm md:text-xl hover:bg-gray-200 dark:hover:bg-purple-700 dark:bg-gray-500 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
                       <Link
                         key={submittedFoodLogs}

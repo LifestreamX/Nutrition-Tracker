@@ -297,7 +297,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
               return (
                 <>
                   <ul className='z-0  '>
-                    <li className='flex cursor-pointer m-2' key={foodId}>
+                    <li className=' hover:bg-gray-100 flex cursor-pointer m-2' key={foodId}>
                       <button
                         className={` ${
                           nutritionSearchData?.foodId === foodId &&
