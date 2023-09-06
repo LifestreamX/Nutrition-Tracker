@@ -23,7 +23,7 @@ const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
     <Transition.Root show={showModal} as={Fragment}>
       <Dialog
         as='div'
-        className='relative z-10 '
+        className='absolute top-1/2 z-10 w-full '
         initialFocus={cancelButtonRef}
         onClose={() => setShowModal(false)}
       >

@@ -79,7 +79,7 @@ const Settings: React.FC = () => {
 
               <div className='flex mt-8 mb-8'>
                 <Image
-                  className='w-20 h-20 rounded-full'
+                  className='w-20 h-20 rounded-full border-gray border-2'
                   src={Avatar}
                   alt='Rounded avatar'
                   width={50}

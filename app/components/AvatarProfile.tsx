@@ -53,8 +53,6 @@ const UploadAvatar = (): JSX.Element => {
     setShowCropButton(false);
   };
 
-
-
   const cropPreview = width < 480 ? 100 : width < 768 ? 150 : 200;
 
   return (
@@ -145,7 +143,7 @@ const UploadAvatar = (): JSX.Element => {
                   {croppedImage && (
                     <div className='flex flex-col'>
                       <Image
-                        className=' rounded-full relative  border-black border-4 mb-5'
+                        className=' rounded-full relative  border-gray border-2 mb-5'
                         src={croppedImage}
                         alt='Rounded avatar'
                         width={100}
