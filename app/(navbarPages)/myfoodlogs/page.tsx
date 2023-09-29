@@ -44,6 +44,9 @@ const MyFoodLogs: React.FC = () => {
   let dateFilterResults: any = null;
   let noLog = false;
 
+
+
+  
   sortedByYear.find((e) => {
     let pickedDate = String(startDate)?.replaceAll(' ', '');
     let listedDates = String(e?.selectedDate)?.replaceAll(' ', '');

@@ -63,8 +63,8 @@ const UploadAvatar = (): JSX.Element => {
             <div className='flex flex-col'>
               <div className='container'>
                 <div className='flex flex-col  '>
-                  <div className='grid grid-cols-2 '>
-                    <div className='flex w-full'>
+                  <div className='flex flex-col  md:grid md:grid-cols-2  '>
+                    <button className='flex w-full'>
                       <label
                         htmlFor='fileInput'
                         className=' text-center font-bold px-4 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
@@ -78,9 +78,9 @@ const UploadAvatar = (): JSX.Element => {
                         onChange={handleImageChange}
                         className='hidden'
                       />
-                    </div>
+                    </button>
 
-                    <div className='ml-4 w-full '>
+                    <button className='mt-3 md:mt-0 md:ml-4 w-full  '>
                       {profileAvatar && (
                         <Button
                           onClick={() => {
@@ -91,7 +91,7 @@ const UploadAvatar = (): JSX.Element => {
                           Delete Image
                         </Button>
                       )}
-                    </div>
+                    </button>
                   </div>
 
                   <DeleteAvatarProfileModal
