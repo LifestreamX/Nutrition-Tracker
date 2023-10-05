@@ -15,7 +15,8 @@ const SignUp = (): JSX.Element => {
     boolean | undefined
   >();
   const [termsDisabled, setTermsDisabled] = useState<boolean>(true);
-  const [isChecked, setIsChecked] = useState<any>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+
   const [successfullyRegistered, setSuccessfullyRegistered] =
     useState<boolean>(false);
   const { width } = useWindowSize();
@@ -71,15 +72,13 @@ const SignUp = (): JSX.Element => {
     setTermsDisabled(false);
   };
 
-  console.log(isChecked)
-
   const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    setIsChecked(e.target.value);
+    if (e.target.value === 'on') {
+      setIsChecked(true);
+    }
   };
 
   let buttonSize = width < 768 ? 'medium' : 'large';
-
-  console.log(buttonSize);
 
   let buttonWidith = width < 768 ? true : '';
 
@@ -188,7 +187,7 @@ const SignUp = (): JSX.Element => {
                     passwordMatch !== false &&
                     isValidPassword === true && (
                       <p className='text-red-500 '>
-                        Please review our terms of service
+                        Please review the terms of service
                       </p>
                     )}
 
@@ -208,7 +207,7 @@ const SignUp = (): JSX.Element => {
                     onChange={handleCheckBoxChange}
                   />
                   <span className='text-sm'>
-                    I agree to our{' '}
+                    I agree to the{' '}
                     <strong className='text-purple-800 hover:cursor-pointer dark:text-purple-400 dark:hover:text-purple-500'>
                       <Link
                         href='/terms'
@@ -247,8 +246,8 @@ const SignUp = (): JSX.Element => {
               </span>
             </Link>
           ) : (
-            <Link href='./login' className='text-red-400'>
-              Already have a account?
+            <Link href='./login' className='text-purple-400 '>
+              <p className='relative bottom-5'>Already have an account?</p>
             </Link>
           )}
         </div>

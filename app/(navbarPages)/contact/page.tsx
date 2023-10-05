@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
               Contact Me
             </h1>
             <p className='lg:w-2/3 mx-auto dark:text-gray-200  '>
-              Send me a email if you have any questions or suggestions about my
+              Send me an email if you have any questions or suggestions about my
               nutrition tracker application
             </p>
           </div>

@@ -89,7 +89,7 @@ export const MacroProgressBar: React.FC = () => {
       {isMacroTargetsEmpty ? (
         <div>
           <div className='mb-3'>
-            <h1 className=' xxs:text-md lg:text-lg'>Set Macro Goals</h1>
+            <h1 className=' xxs:text-md lg:text-lg'>Set Macro Targets</h1>
           </div>
 
           <div>
@@ -117,7 +117,7 @@ export const MacroProgressBar: React.FC = () => {
       ) : (
         <div className='w-full'>
           <div className='mb-3'>
-            <h1 className=' xxs:text-md lg:text-lg'>Macro Goals </h1>
+            <h1 className=' xxs:text-md lg:text-lg'>Macro Targets </h1>
           </div>
           <div>
             <h2>% Calories</h2>

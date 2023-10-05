@@ -159,8 +159,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setSuccessAdded(false);
   };
 
-  // console.log('search data length ', searchData.length);
-  // console.log('value length', val.length);
 
   return (
     <main>

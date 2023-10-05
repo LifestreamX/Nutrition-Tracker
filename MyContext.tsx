@@ -172,7 +172,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   });
 
 
-  console.log(profileAvatar)
 
   const value: MyContextType = {
     macroTargetInputs,

@@ -21,7 +21,7 @@ const About: React.FC = () => {
 
           <section className='px-4'>
             <p className='sm:w-96 w-full mt-6 text-base leading-6 text-center text-gray-600 dark:text-gray-200 font-semibold md:text-lg'>
-              nutrition tracker is an easy way to log your food intake
+              Nutritiontracker is an easy way to log your food intake
             </p>
             <div className='md:mt-14 mt-12 flex flex-col items-center'>
               <div
@@ -36,8 +36,7 @@ const About: React.FC = () => {
                 />
               </div>
               <p className='text-base leading-6 mt-6 text-center text-gray-600 dark:text-gray-200 sm:w-96 w-full font-semibold lg:text-lg'>
-                Keep a detailed ordered log of all the dates you logged your
-                food
+                Keep a detailed ordered log of all your food by date
               </p>
             </div>
             <div className='mt-7 flex flex-col items-center'>
@@ -53,8 +52,7 @@ const About: React.FC = () => {
                 />
               </div>
               <p className='text-base leading-6 mt-6 text-center text-gray-600 dark:text-gray-200 sm:w-96 w-full font-semibold lg:text-lg'>
-                Select a date for each log and start tracking your intake for
-                that date
+                Select a date for each log and start tracking your intake
               </p>
             </div>
             <div className='mt-7 flex flex-col items-center'>
