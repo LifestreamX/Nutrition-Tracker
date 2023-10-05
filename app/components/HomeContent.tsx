@@ -9,7 +9,7 @@ const HomeContent: React.FC = () => {
     <section className=' flex flex-col items-center justify-center    '>
       <div className='text-center mx-5 dark:bg-gray-800 dark:p-4 dark:rounded-3xl'>
         <h1 className='text-3xl text-w font-bold my-2'>
-          Never to late to start
+          Never too late to start
         </h1>
         <p className='text-1xl md:text-2xl  my-5 md:max-w-xl '>
           Start counting your calories today. Keep track of what you eat and

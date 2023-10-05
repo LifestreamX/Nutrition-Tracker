@@ -71,13 +71,15 @@ const SignUp = (): JSX.Element => {
     setTermsDisabled(false);
   };
 
+  console.log(isChecked)
+
   const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setIsChecked(e.target.value);
   };
 
   let buttonSize = width < 768 ? 'medium' : 'large';
 
-  console.log(buttonSize)
+  console.log(buttonSize);
 
   let buttonWidith = width < 768 ? true : '';
 
