@@ -159,7 +159,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setSuccessAdded(false);
   };
 
-
   return (
     <main>
       {/* search button activate modal */}
@@ -198,8 +197,8 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
         style={width < 768 ? mobileCustomStyles : customStyles}
         contentLabel='Example Modal'
       >
-        <div className='sticky top-0   '>
-          <div className='bg-gray-50 '>
+        <div className='sticky top-0  '>
+          <div className='bg-gray-50 dark:bg-gray-800  '>
             <div className='w-full flex justify-end relative right-2'>
               <button
                 onClick={closeModal}
@@ -295,7 +294,10 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
               return (
                 <>
                   <ul className='z-0  '>
-                    <li className=' hover:bg-gray-100 flex cursor-pointer m-2' key={foodId}>
+                    <li
+                      className=' hover:bg-gray-100 flex cursor-pointer m-2'
+                      key={foodId}
+                    >
                       <button
                         className={` ${
                           nutritionSearchData?.foodId === foodId &&
@@ -345,7 +347,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                   </p>
                 )
               ) : (
-                <p className='font-extrabold text-purple-800 text-4xl'>
+                <p className='font-extrabold text-purple-800 text-4xl dark:text-white'>
                   Search Food{' '}
                 </p>
               )}
