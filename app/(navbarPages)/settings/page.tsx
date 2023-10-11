@@ -16,7 +16,6 @@ const Settings: React.FC = () => {
 
   const { profileAvatar } = useMyContext();
 
-
   const handlePhotoChange = (e: any) => {
     setImg(e.target.files[0]);
   };
@@ -45,20 +44,21 @@ const Settings: React.FC = () => {
           <div className='flex-col justify-center items-center '>
             <div className='w-1/2 '>
               <h1 className='text-2xl'>Theme</h1>
-              <span className=' w-full p-0.5 bg-purple-600 flex' />
+              <span className=' w-full py-px bg-gray-500 flex' />
             </div>
 
             <div className='flex mt-5'>
               <select value={theme} onChange={(e) => setTheme(e.target.value)}>
                 {/* <option value='system'>System</option> */}
                 <option value='dark'>Dark</option>
+
                 <option value='light'>Light</option>
               </select>
               <div className='ml-5'>
                 {currentTheme === 'dark' ? (
                   <BsFillSunFill
                     className='h-8 w-8 cursor-pointer text-yellow-500'
-                    onClick={() => setTheme('Light')}
+                    onClick={() => setTheme('light')}
                   />
                 ) : (
                   <BsFillMoonFill
@@ -74,7 +74,7 @@ const Settings: React.FC = () => {
             <div>
               <div className='w-1/2'>
                 <h1 className='text-2xl'>Profile Picture</h1>
-                <span className=' w-full p-0.5 bg-purple-600 flex' />
+                <span className=' w-full py-px bg-gray-500 flex' />
               </div>
 
               <div className='flex mt-8 mb-8'>

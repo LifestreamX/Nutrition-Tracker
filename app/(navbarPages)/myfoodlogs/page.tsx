@@ -72,7 +72,7 @@ const MyFoodLogs: React.FC = () => {
       <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10 dark:bg-gray-800'>
         <div className='flex'>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
-          <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5 text-purple-800 dark:text-white'>
+          <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5  dark:text-white'>
             My Food Logs
           </h1>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
