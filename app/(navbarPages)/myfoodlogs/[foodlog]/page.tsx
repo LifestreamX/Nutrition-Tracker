@@ -113,15 +113,12 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
         <div className=' mb-10 flex flex-col lg:flex-row justify-center w-screen md:w-full  '>
           <p className='mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center mb-4 lg:mb-0 '>
             <p className=''>Date</p>
-            <p className='text-purple-800 mt-2 dark:text-purple-500'>
-              {' '}
-              {selectedDate}
-            </p>
+            <p className=' mt-2 dark:text-purple-500'> {selectedDate}</p>
           </p>
-          <div className=' lg:h-full lg:p-0.5  lg:bg-purple-800 lg:mx-5'></div>
+          <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
           <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
             <p className=' '>Total Calories </p>
-            <p className='text-purple-800 dark:text-purple-500 mt-2'>
+            <p className=' dark:text-purple-500 mt-2'>
               {totalCalories.toFixed(0)}
             </p>
           </p>

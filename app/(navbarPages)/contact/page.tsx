@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
       <section className='text-gray-700 body-font relative md:top-14'>
         <div className='container px-5 py-24 mx-auto dark:bg-gray-800 dark:mt-20 dark:mb-10 dark:rounded-3xl'>
           <div className='flex flex-col text-center w-full mb-12 '>
-            <h1 className=' bg-gray-800sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-900 dark:text-purple-600'>
+            <h1 className=' bg-gray-800sm:text-3xl text-2xl font-medium title-font mb-4  dark:text-purple-600'>
               Contact Me
             </h1>
             <p className='lg:w-2/3 mx-auto dark:text-gray-200  '>
@@ -153,7 +153,8 @@ const Contact: React.FC = () => {
                   </button>
                 </div>
                 <div className='p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center'>
-                  <a className='text-purple-600'>tylerallen@live.com</a>
+                  <p>tylerallen@live.com</p>
+
                   <p className='leading-normal my-5 dark:text-gray-400'>
                     Boston, MA
                   </p>

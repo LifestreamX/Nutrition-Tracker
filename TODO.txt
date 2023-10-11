@@ -7,27 +7,7 @@
 USE BRANCHES FOR EACH TODO 
 
 
-
-
-
-
-
-TODO: fix dark mode icon bug and thinner purple lines in settings make gray
-
-
-
-TODO: change on text that is not links to different black lines and text make font bolder that matters or get rid of lines
-
-
-
-TODO: Add google analytics to site 
-
-
-
-
 TODO: Fix all any types with any (try generics?)
-
-
 
 
 TODO: Testing code 
