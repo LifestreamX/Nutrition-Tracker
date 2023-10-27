@@ -46,7 +46,7 @@ const FilterFoodLogsByDate: React.FC<FilterFoodLogsByDateProps> = ({
       {startDate !== null && (
         <button
           onClick={() => setStartDate(null)}
-          className=' mb-5 md:mb-0 md:ml-5 text-lg text-red-500 hover:text-red-800  font-md justify-center tracking-wide '
+          className=' mb-5 md:mb-0 md:ml-5 text-lg relative md:bottom-2  text-red-500 hover:text-red-800  font-md justify-center tracking-wide '
         >
           Clear
         </button>

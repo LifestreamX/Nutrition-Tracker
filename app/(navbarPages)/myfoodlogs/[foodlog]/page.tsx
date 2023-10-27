@@ -47,17 +47,24 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
 
   const imageSize = width > 768 ? 70 : 50;
 
-  useEffect(() => {
-    const totalCal: number | any = foodLog.reduce(
-      (acc: number, cur: { calories: number }) => {
-        acc += cur.calories;
-        return acc;
-      },
-      0
-    );
+  let calories = 0;
+  let protein = 0;
+  let carbs = 0;
+  let fats = 0;
 
-    setTotalCalories(totalCal);
-  }, []);
+  foodLog.forEach((food: FoodLogTypes) => {
+    let eachFoodCal = (food.quantity && food.calories * food.quantity) || 0;
+    let eachFoodPro = (food.quantity && food.protein * food.quantity) || 0;
+    let eachFoodCarb = (food.quantity && food.carbs * food.quantity) || 0;
+    let eachFoodFat = (food.quantity && food.fats * food.quantity) || 0;
+
+    calories += eachFoodCal;
+    protein += eachFoodPro;
+    carbs += eachFoodCarb;
+    fats += eachFoodFat;
+  });
+
+  // setTotalCalories(totalCal);
 
   const handleConfirm: ConfirmDeleteHandler = () => {
     const deleteLog = submittedFoodLogs?.filter((e: { foodLogId: string }) => {
@@ -118,9 +125,28 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
           <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
             <p className=' '>Total Calories </p>
-            <p className=' dark:text-purple-500 mt-2'>
-              {totalCalories.toFixed(0)}
-            </p>
+            <p className=' dark:text-purple-500 mt-2'>{calories.toFixed(0)}</p>
+          </p>
+        </div>
+
+        <div className='flex lg:m-8 p-6'>
+          <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
+            <p className=' '>Total Protein </p>
+            <p className=' dark:text-purple-500 mt-2'>{protein.toFixed(0)}g</p>
+          </p>
+
+          <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
+
+          <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
+            <p className=' '>Total Carbs </p>
+            <p className=' dark:text-purple-500 mt-2'>{carbs.toFixed(0)}g</p>
+          </p>
+
+          <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
+
+          <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
+            <p className=' '>Total Fats </p>
+            <p className=' dark:text-purple-500 mt-2'>{fats.toFixed(0)}g</p>
           </p>
         </div>
 
@@ -152,7 +178,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
               >
                 <div className='bg-white dark:bg-gray-700  xs:w-full rounded-lg shadow-lg  justify-center items-center'>
                   <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-gray-200  dark:hover:bg-purple-800  cursor-pointer rounded-xl p-4 '>
-                    <p className='text-left xs:text- md:text-xl  md:w-full mb-3 md:mb-0'>
+                    <p className='text-left xs:text-sm md:text-lg mx-4  md:w-full mb-3 md:mb-0'>
                       {food.label}
                     </p>
 

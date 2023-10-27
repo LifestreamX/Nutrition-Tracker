@@ -7,14 +7,13 @@
 USE BRANCHES FOR EACH TODO 
 
 
-<<<<<<< HEAD
-TODO: dashboard live bug
+
+TODO: Purple text thats not links and my food logs show pro car fats total and make sure all logic is correct in specific logs
 
 
 
-=======
->>>>>>> parent of 1e1cc65 ('feat: Implement TypeScript types and enhance myfoodlog logic)
-TODO: Fix all any types with any (try generics?)
+
+TODO: check dark mode again
 
 
 TODO: Testing code 
@@ -22,7 +21,6 @@ TODO: Testing code
 
 
 
-TODO: Have jill look over typos and other shit etc...
 
 TODO: comments use chatgpt 
 
@@ -35,6 +33,8 @@ TODO: Use searchParams for url instead of usestate
 TODO: Semantics work on
 
 TODO: ADD CSS fade in or out?
+
+TODO: work on types
 
 TODO: Meta Data - static and dyanmic
 
