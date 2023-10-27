@@ -1,12 +1,11 @@
 export interface FoodTypeData {
-  reduce?(arg0: (acc: any, cur: any) => any, arg1: number): unknown;
+  reduce(arg0: (acc: any, cur: any) => any, arg1: number): unknown;
   length: number;
-  find?(arg0: (food: any) => boolean): unknown;
-  filter?(arg0: (food: any) => boolean): FoodTypeData;
-  map?(
+  find(arg0: (food: any) => boolean): unknown;
+  filter(arg0: (food: any) => boolean): FoodTypeData;
+  map(
     arg0: (food: import('./FoodLog.types').FoodLogTypes) => JSX.Element
   ): import('react').ReactNode;
-  FIBTG: number;
   category: string;
   categoryLabel: string;
   foodId: string;
@@ -41,5 +40,5 @@ export interface ServingsType {
 export interface NutritionSearchDataType {
   carbs: number | string;
   fats: number | string;
-  protein: number | string;
+  protein: number | string ;
 }

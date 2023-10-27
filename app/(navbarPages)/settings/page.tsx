@@ -30,7 +30,7 @@ const Settings: React.FC = () => {
 
   const currentTheme = theme === 'system' ? systemTheme : theme;
 
-  let Avatar = profileAvatar === '' ? NoAvatar : profileAvatar;
+  let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
 
   return (
     <main className='flex flex-col w-full justify-center items-center '>

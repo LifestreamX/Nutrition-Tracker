@@ -4,13 +4,7 @@ import { useMyContext } from '@/MyContext';
 import { Goals } from '@/types/MacroTarget.types';
 import { useState, useEffect } from 'react';
 
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  ChartData,
-} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { FoodLogTypes } from '@/types/FoodLog.types';
 import { BsTypeH1 } from 'react-icons/bs';
@@ -46,43 +40,45 @@ export const MacroProgressBar: React.FC = () => {
   const { macroTargets, setMacroTargets, foodLog } = useMyContext();
   const [progress, setProgress] = useState(0);
 
-  const goals: Goals = {
+  const goals: Goals | any = {
     caloriesGoal: macroTargets.calories,
     proteinGoal: macroTargets.protein,
     carbsGoal: macroTargets.carbs,
     fatsGoal: macroTargets.fats,
   };
 
-  const totalCalories = foodLog
-    .filter((food) => food.quantity !== undefined) // Filter out entries with undefined quantity
-    .reduce((acc, cur) => {
-      return acc + (cur.calories || 0) * (cur.quantity || 1); // Provide default values if they are undefined
-    }, 0);
+  const totalCalories: any = foodLog.reduce(
+    (acc: number, cur: FoodLogTypes | any): number | string => {
+      return acc + cur.calories * cur.quantity;
+    },
+    0
+  );
 
-  const totalProtein = foodLog
-    .filter((food) => food.quantity !== undefined) // Filter out entries with undefined quantity
-    .reduce((acc, cur) => {
-      return acc + (cur.protein || 0) * (cur.quantity || 1); // Provide default values if they are undefined
-    }, 0);
+  const totalProtein: any = foodLog.reduce(
+    (acc: number, cur: FoodLogTypes | any): number | string => {
+      return acc + cur.protein * cur.quantity;
+    },
+    0
+  );
 
-  const totalCarbs = foodLog
-    .filter((food) => food.quantity !== undefined) // Filter out entries with undefined quantity
-    .reduce((acc, cur) => {
-      return acc + (cur.carbs || 0) * (cur.quantity || 1); // Provide default values if they are undefined
-    }, 0);
+  const totalCarbs: any = foodLog.reduce(
+    (acc: number, cur: FoodLogTypes | any): number | string => {
+      return acc + cur.carbs * cur.quantity;
+    },
+    0
+  );
 
-  const totalFats = foodLog
-    .filter((food) => food.quantity !== undefined) // Filter out entries with undefined quantity
-    .reduce((acc, cur) => {
-      return acc + (cur.fats || 0) * (cur.quantity || 1); // Provide default values if they are undefined
-    }, 0);
+  const totalFats: any = foodLog.reduce(
+    (acc: number, cur: FoodLogTypes | any): number | string => {
+      return acc + cur.fats * cur.quantity;
+    },
+    0
+  );
 
-  const totalCaloriesPercentage =
-    (totalCalories / Number(goals.caloriesGoal)) * 100;
-  const totalProteinPercentage =
-    (totalProtein / Number(goals.proteinGoal)) * 100;
-  const totalCarbsPercentage = (totalCarbs / Number(goals.carbsGoal)) * 100;
-  const totalFatsPercentage = (totalFats / Number(goals.fatsGoal)) * 100;
+  const totalCaloriesPercentage = (totalCalories / goals.caloriesGoal) * 100;
+  const totalProteinPercentage = (totalProtein / goals.proteinGoal) * 100;
+  const totalCarbsPercentage = (totalCarbs / goals.carbsGoal) * 100;
+  const totalFatsPercentage = (totalFats / goals.fatsGoal) * 100;
 
   const isMacroTargetsEmpty =
     (foodLog.length === 0 && Object.keys(macroTargets).length === 0) ||
@@ -166,10 +162,9 @@ export const MacroProgressBar: React.FC = () => {
 export const CaloriesProgress = () => {
   const { macroTargets, setMacroTargets, foodLog } = useMyContext();
 
-  const totalCalories: number = foodLog.reduce(
-    (acc: number, cur: FoodLogTypes) => {
-      console.log(cur.quantity);
-      return acc + cur.calories * (cur.quantity ?? 1);
+  const totalCalories: any = foodLog.reduce(
+    (acc: number, cur: FoodLogTypes | any) => {
+      return acc + cur.calories * cur.quantity;
     },
     0
   );
@@ -179,23 +174,21 @@ export const CaloriesProgress = () => {
   let totalCaloriesFixed = totalCalories.toFixed(0);
   let caloriesRemainFixed = caloriesRemain.toFixed(0);
 
-  const caloriesRemainData: CaloriesRemainData = {
+  const caloriesRemainData: CaloriesRemainData | any = {
     labels: [],
     datasets: [
       {
         data: [caloriesRemainFixed, totalCaloriesFixed],
         backgroundColor: ['#581C87', '#E0E0DE'],
         borderColor: 'transparent', // Set the border color to transparent
-        borderWidth: null,
       },
     ],
   };
 
-  const noCaloriesSet: CaloriesConsumedData = {
+  const noCaloriesSet: CaloriesConsumedData | any = {
     labels: [],
     datasets: [
       {
-        label: null,
         data: ['100'],
         backgroundColor: ['gray'],
         borderColor: ['gray', 'gray'],
@@ -225,48 +218,21 @@ export const CaloriesProgress = () => {
         Number.isNaN(caloriesRemain) ? (
           <>
             <h1>Set Calories Goal</h1>
-            <Doughnut
-              data={
-                noCaloriesSet as unknown as ChartData<
-                  'doughnut',
-                  (string | number)[],
-                  string
-                >
-              }
-              options={options}
-            />
+            <Doughnut data={noCaloriesSet} options={options} />
           </>
         ) : (
           <>
             {caloriesRemain < 0 ? (
               <>
                 <h1>Calories Reached</h1>
-                <Doughnut
-                  data={
-                    caloriesReached as ChartData<
-                      'doughnut',
-                      (string | number)[],
-                      string
-                    >
-                  }
-                  options={options}
-                />
+                <Doughnut data={caloriesReached} options={options} />
               </>
             ) : (
               <>
                 <h1 className='text-center'>Calories Remaining</h1>
                 <p className=''>{caloriesRemain.toFixed(0)}</p>
 
-                <Doughnut
-                  data={
-                    caloriesRemain as unknown as ChartData<
-                      'doughnut',
-                      (string | number)[],
-                      string
-                    >
-                  }
-                  options={options}
-                />
+                <Doughnut data={caloriesRemainData} options={options} />
               </>
             )}
           </>

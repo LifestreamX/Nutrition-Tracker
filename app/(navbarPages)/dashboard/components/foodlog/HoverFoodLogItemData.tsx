@@ -11,7 +11,8 @@ type ChildProps = {};
 const HoverFoodLogItemData = () => {
   const { foodItem } = useMyContext();
 
-  let protein,
+  const {
+    protein,
     carbs,
     fats,
     calories,
@@ -24,26 +25,8 @@ const HoverFoodLogItemData = () => {
     label,
     nutrients,
     quantity,
-    servingSizes;
-
-  if (foodItem) {
-    ({
-      protein,
-      carbs,
-      fats,
-      calories,
-      FIBTG,
-      category,
-      categoryLabel,
-      foodId,
-      image,
-      knownAs,
-      label,
-      nutrients,
-      quantity,
-      servingSizes,
-    } = foodItem);
-  }
+    servingSizes,
+  } = foodItem;
 
   const data = {
     labels: ['Protein', 'Net Carbs', 'Fats'],
@@ -106,21 +89,21 @@ const HoverFoodLogItemData = () => {
               <span className='font-semibold  text-sm md:text-lg'>
                 Protein:
               </span>{' '}
-              {protein && protein.toFixed(1)}g
+              {protein.toFixed(1)}g
             </p>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
               <span className='font-semibold  text-sm md:text-lg'>
                 Carbs:
               </span>{' '}
-              {carbs && carbs.toFixed(1)}g
+              {carbs.toFixed(1)}g
             </p>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
               <span className='font-semibold  text-sm md:text-lg'>
                 Fats:
               </span>{' '}
-              {fats && fats.toFixed(1)}g
+              {fats.toFixed(1)}g
             </p>
           </div>
         </div>
@@ -133,7 +116,7 @@ const HoverFoodLogItemData = () => {
 
           <div className='flex md:w-1/3  justify-center items-center '>
             <Image
-              src={image || ''}
+              src={image}
               width={100}
               height={100}
               alt={`Picture of ${label} `}

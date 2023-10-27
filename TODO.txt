@@ -7,17 +7,14 @@
 USE BRANCHES FOR EACH TODO 
 
 
+<<<<<<< HEAD
 TODO: dashboard live bug
 
 
 
+=======
+>>>>>>> parent of 1e1cc65 ('feat: Implement TypeScript types and enhance myfoodlog logic)
 TODO: Fix all any types with any (try generics?)
-
-
-TODO: Fix years not being sorted correctly in logs
-
-
-TODO: dark mode bug
 
 
 TODO: Testing code 

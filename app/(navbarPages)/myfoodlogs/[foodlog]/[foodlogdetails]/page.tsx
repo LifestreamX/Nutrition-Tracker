@@ -101,7 +101,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Calories:{' '}
                 <span className=' dark:text-purple-500 font-bold'>
-                  {logDetails?.calories.toFixed(0)} Kcal
+                  {logDetails?.calories.toFixed(0) * logDetails.quantity} Kcal
                 </span>
               </p>
             </li>
@@ -109,7 +109,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Protein:{' '}
                 <span className=' dark:text-purple-500 font-bold'>
-                  {logDetails?.protein.toFixed(0)} g
+                  {logDetails?.protein.toFixed(0) * logDetails.quantity} g
                 </span>
               </p>
             </li>
@@ -117,7 +117,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Carbs:{' '}
                 <span className=' dark:text-purple-500 font-bold'>
-                  {logDetails?.carbs.toFixed(0)} g
+                  {logDetails?.carbs.toFixed(0) * logDetails.quantity} g
                 </span>
               </p>
             </li>
@@ -125,7 +125,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Fats:{' '}
                 <span className=' dark:text-purple-500 font-bold'>
-                  {logDetails?.fats.toFixed(0)} g
+                  {logDetails?.fats.toFixed(0) * logDetails.quantity} g
                 </span>
               </p>
             </li>

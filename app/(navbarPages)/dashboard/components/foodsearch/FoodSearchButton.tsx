@@ -13,7 +13,6 @@ import Button from '@/app/components/Button';
 import { useMyContext } from '@/MyContext';
 import { useTheme } from 'next-themes';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
-import { FoodLogTypes } from '@/types/FoodLog.types';
 
 type FoodSearchProps = {
   children?: ReactNode;
@@ -56,9 +55,9 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
   // Modal.setAppElement(document.getElementById('root'));
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [searchData, setSearchData] = useState<FoodLogTypes[] | number>([]);
-
-  console.log(searchData);
+  const [searchData, setSearchData] = useState<FoodTypeData[] | number | any>(
+    []
+  );
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
   const [openExtra, setOpenExtra] = useState(false);
@@ -88,12 +87,10 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setAnySearchResults(true);
     let { hints } = await fetchNutritionData(val);
 
-    let data: FoodLogTypes[] = [];
+    let data: Object[] = [];
 
-    hints.map((e: FoodLogTypes | undefined) => {
-      if (e) {
-        data = [...data, e.food as FoodLogTypes];
-      }
+    hints.map((e: any) => {
+      data = [...data, e.food];
 
       setSearchData(data);
     });
@@ -122,13 +119,9 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setOpenExtra(false);
   }
 
-  let theFoodId: string = '';
-  let theLabel: string = '';
+  let num = 3000;
 
-  if ('foodId' in nutritionSearchData) {
-    theFoodId = nutritionSearchData?.foodId;
-    theLabel = nutritionSearchData?.label;
-  }
+  let stringNum = '3000';
 
   const handleItemHighlightClick = (
     protein: number,
@@ -142,16 +135,10 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     image: string,
     knownAs: string,
     label: string,
-    nutrients: {
-      CHOCDF: number;
-      ENERC_KCAL: number;
-      FAT: number;
-      FIBTG: number;
-      PROCNT: number;
-    },
-    servingSizes: object | undefined
+    nutrients: {},
+    servingSizes: any
   ) => {
-    const updatedData: FoodLogTypes = {
+    setNutritionSearchData({
       protein: protein,
       carbs: carbs,
       fats: fats,
@@ -166,20 +153,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       nutrients: nutrients,
       servingSizes: { ...servingSizes },
       quantity: 1,
-      filter: function (arg0: (food: FoodLogTypes) => boolean): unknown {
-        throw new Error('Function not implemented.');
-      },
-      map: function (
-        arg0: (food: FoodLogTypes) => JSX.Element
-      ): React.ReactNode {
-        throw new Error('Function not implemented.');
-      },
-      forEach: function (arg0: (e: FoodLogTypes) => void): unknown {
-        throw new Error('Function not implemented.');
-      }
-    };
-
-    setNutritionSearchData(updatedData);
+    });
 
     setOpenExtra(true);
     setSuccessAdded(false);
@@ -282,7 +256,9 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                 </svg>
                 <span className='sr-only'>Info</span>
                 <div>
-                  <span className='text-md  md:text-lg '>{theLabel} Added</span>
+                  <span className='text-md  md:text-lg '>
+                    {nutritionSearchData.label} Added
+                  </span>
                 </div>
               </div>
             </div>
@@ -290,113 +266,70 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
         </div>
 
         {/* data displaying */}
-        {searchData &&
-        (searchData as FoodLogTypes[]).length !== 0 &&
+        {searchData.length !== 0 &&
         debouncedValue === val &&
         val !== '' &&
         anySearchResults ? (
           <main className='border'>
-            {Array.isArray(searchData) &&
-              searchData.map((e) => {
-                const {
-                  category,
-                  categoryLabel,
-                  foodId,
-                  image,
-                  knownAs,
-                  label,
-                  nutrients,
-                  servingSizes,
-                } = e as FoodLogTypes;
+            {searchData.map((e: FoodTypeData) => {
+              const {
+                category,
+                categoryLabel,
+                foodId,
+                image,
+                knownAs,
+                label,
+                nutrients,
+                servingSizes,
+              } = e;
 
-                let carbs: number = 0;
-                let calories: number = 0;
-                let fats: number = 0;
-                let protein: number = 0;
-                let FIBTG: number = 0;
+              const {
+                CHOCDF: carbs,
+                ENERC_KCAL: calories,
+                FAT: fats,
+                FIBTG,
+                PROCNT: protein,
+              } = nutrients;
 
-                const myNutrients: {
-                  ENERC_KCAL: number;
-                  PROCNT: number;
-                  FAT: number;
-                  CHOCDF: number;
-                  FIBTG: number;
-                } = (e.nutrients || {}) as {
-                  ENERC_KCAL: 0;
-                  PROCNT: 0;
-                  FAT: 0;
-                  CHOCDF: 0;
-                  FIBTG: 0;
-                };
-
-                // if (
-                //   nutrients &&
-                //   'CHOCDF' in nutrients &&
-                //   'ENERC_KCAL' in nutrients &&
-                //   'FAT' in nutrients &&
-                //   'FIBTG' in nutrients &&
-                //   'PROCNT' in nutrients
-                // ) {
-                //   const {
-                //     CHOCDF: carbsV,
-                //     ENERC_KCAL: caloriesV,
-                //     FAT: fatsV,
-                //     FIBTG: FIBTGV,
-                //     PROCNT: proteinV,
-                //   } = nutrients;
-
-                //   carbs = carbsV;
-                //   calories = caloriesV;
-                //   fats = fatsV;
-                //   protein = proteinV;
-                //   FIBTG = FIBTGV;
-                // }
-
-                let isImage = '';
-
-                if (image) {
-                  isImage = image;
-                }
-
-                return (
-                  <>
-                    <ul className='z-0  '>
-                      <li
-                        className=' hover:bg-gray-100 flex cursor-pointer m-2'
-                        key={foodId}
+              return (
+                <>
+                  <ul className='z-0  '>
+                    <li
+                      className=' hover:bg-gray-100 flex cursor-pointer m-2'
+                      key={foodId}
+                    >
+                      <button
+                        className={` ${
+                          nutritionSearchData?.foodId === foodId &&
+                          nutritionSearchData?.label === label &&
+                          'bg-purple-200  dark:focus:bg-purple-700 dark:bg-purple-700'
+                        } rounded p-2 w-screen text-left flex justify-between`}
+                        onClick={() =>
+                          handleItemHighlightClick(
+                            protein,
+                            carbs,
+                            fats,
+                            calories,
+                            FIBTG,
+                            category,
+                            categoryLabel,
+                            foodId,
+                            image,
+                            knownAs,
+                            label,
+                            nutrients,
+                            servingSizes
+                          )
+                        }
                       >
-                        <button
-                          className={` ${
-                            theFoodId === foodId &&
-                            theLabel === label &&
-                            'bg-purple-200  dark:focus:bg-purple-700 dark:bg-purple-700'
-                          } rounded p-2 w-screen text-left flex justify-between`}
-                          onClick={() =>
-                            handleItemHighlightClick(
-                              protein,
-                              carbs,
-                              fats,
-                              calories,
-                              FIBTG,
-                              category,
-                              categoryLabel,
-                              foodId,
-                              isImage,
-                              knownAs,
-                              label,
-                              myNutrients,
-                              servingSizes
-                            )
-                          }
-                        >
-                          <p className='flex '>{label}</p>
-                          <p>kcal: {calories.toFixed(0)}</p>
-                        </button>
-                      </li>
-                    </ul>
-                  </>
-                );
-              })}
+                        <p className='flex '>{label}</p>
+                        <p>kcal: {calories.toFixed(0)}</p>
+                      </button>
+                    </li>
+                  </ul>
+                </>
+              );
+            })}
           </main>
         ) : (
           // Loading / no results
@@ -409,7 +342,9 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                 <LoadingSpinner />
               ) : typeof val === 'string' && val.trim().length !== 0 ? (
                 val === debouncedValue && (
-                  <p className='font-extrabold  text-4xl'>No Results</p>
+                  <p className='font-extrabold text-purple-800 text-4xl'>
+                    No Results
+                  </p>
                 )
               ) : (
                 <p className='font-extrabold text-purple-800 text-4xl dark:text-white'>

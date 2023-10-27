@@ -1,15 +1,12 @@
 // Macro taget types
 export interface FoodLogTypes {
-  forEach(arg0: (e: any) => void): unknown;
-  food?: FoodLogTypes;
-  filter(arg0: (food: any) => boolean): unknown;
   map(arg0: (food: any) => JSX.Element): import('react').ReactNode;
-  reduce?(
+  reduce(
     arg0: (acc: number, cur: { calories: number }) => number,
     arg1: number
   ): unknown;
 
-  FIBTG?: number | undefined;
+  FIBTG: number;
   calories: number;
   carbs: number;
   category: string;
@@ -20,15 +17,14 @@ export interface FoodLogTypes {
   knownAs: string;
   label: string;
   quantity: number | undefined;
-  nutrients?:
-    | {
-        ENERC_KCAL: number;
-        PROCNT: number;
-        FAT: number;
-        CHOCDF: number;
-        FIBTG: number;
-      }
-    | {};
+  nutrients: {
+    ENERC_KCAL: number;
+    PROCNT: number;
+    FAT: number;
+    CHOCDF: number;
+    FIBTG: number;
+  };
   protein: number;
   servingSizes?: object | undefined;
+  
 }

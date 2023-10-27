@@ -14,7 +14,7 @@ const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
   const cancelButtonRef = useRef(null);
 
   const handleDeleteProfileImage = () => {
-    setProfileAvatar('');
+    setProfileAvatar(undefined);
     setShowModal(false);
     localStorage.removeItem('profileAvatar');
   };
