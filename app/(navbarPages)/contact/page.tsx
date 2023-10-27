@@ -15,14 +15,7 @@ const Contact: React.FC = () => {
   const form = useRef<HTMLFormElement>();
   const [emailSent, setEmailSent] = useState<boolean>(false);
 
-  const { themeSetting }: any = useMyContext();
-
-  let themeTextColor;
-
-  const paraTextClasses = `lg:w-2/3 mx-auto ${
-    themeSetting === 'dark' && 'text-white'
-  }`;
-
+ 
   const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

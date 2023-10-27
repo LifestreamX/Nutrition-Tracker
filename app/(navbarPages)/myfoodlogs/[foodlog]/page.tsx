@@ -30,6 +30,9 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
   });
   const { width } = useWindowSize();
   const [totalCalories, setTotalCalories] = useState<number>(0);
+  const [totalProtein, setTotalProtein] = useState<number>(0);
+  const [totalCarbs, setTotalCarbs] = useState<number>(0);
+  const [totalFats, setTotalFats] = useState<number>(0);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -48,15 +51,22 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
   const imageSize = width > 768 ? 70 : 50;
 
   useEffect(() => {
-    const totalCal: number | any = foodLog.reduce(
-      (acc: number, cur: { calories: number }) => {
-        acc += cur.calories;
-        return acc;
-      },
-      0
-    );
+    let totalCal = 0;
+    let totalPro = 0;
+    let totalCarb = 0;
+    let totalFat = 0;
 
-    setTotalCalories(totalCal);
+    foodLog.forEach((e) => {
+      totalCal += e.calories * e.quantity;
+      totalPro += e.protein * e.quantity;
+      totalCarb += e.carbs * e.quantity;
+      totalFat += e.fats * e.quantity;
+    });
+
+    setTotalCalories(Number(totalCal));
+    setTotalProtein(Number(totalPro));
+    setTotalCarbs(Number(totalCarb));
+    setTotalFats(Number(totalFat));
   }, []);
 
   const handleConfirm: ConfirmDeleteHandler = () => {
@@ -123,12 +133,36 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
             </p>
           </p>
         </div>
-
         <DeleteFoodLogModal
           isOpen={isModalOpen}
           onCancel={handleCancel}
           onConfirm={handleConfirm}
         />
+
+        <div className='flex p-5 m-5 '>
+          <div className=' mx-6 text-sm md:text-lg lg:text-xl font-bold  text-center'>
+            <p className=' '>Total Protein </p>
+            <p className=' dark:text-purple-500 mt-2'>
+              {totalProtein.toFixed(0)}g
+            </p>
+          </div>
+          <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
+
+          <div className=' mx-6 text-sm md:text-lg lg:text-xl font-bold  text-center'>
+            <p className=' '>Total Carbs </p>
+            <p className=' dark:text-purple-500 mt-2'>
+              {totalCarbs.toFixed(0)}g
+            </p>
+          </div>
+          <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
+
+          <div className=' mx-6 text-sm md:text-lg lg:text-xl font-bold  text-center'>
+            <p className=' '>Total Fats </p>
+            <p className=' dark:text-purple-500 mt-2'>
+              {totalFats.toFixed(0)}g
+            </p>{' '}
+          </div>
+        </div>
 
         {foodLog.map((food: FoodLogTypes) => {
           let queryLabel = food.label.replaceAll(' ', '-').replaceAll(',', '');

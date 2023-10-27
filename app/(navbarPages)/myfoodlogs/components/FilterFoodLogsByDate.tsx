@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type FilterFoodLogsByDateProps = {
-  startDate: Date | any;
+  startDate: Date | string[] | null;
   setStartDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
 };
 
@@ -29,13 +29,20 @@ const FilterFoodLogsByDate: React.FC<FilterFoodLogsByDateProps> = ({
     }
   };
 
-  const placeHolder = startDate !== null ? startDate : 'Select a specific date';
+  // const placeHolder = startDate !== null ? startDate : 'Select a specific date';
+
+  const placeHolder = startDate ? 'Select a specific date' : '';
+
+
+  
+
+
 
   return (
     <div className='flex flex-col md:flex-row   '>
       <div>
         <DatePicker
-          selected={startDate ? startDate.dateObject : null}
+          selected={startDate instanceof Date ? startDate : null}
           onChange={handleDateChange}
           className=' cursor-pointer w-full p-3 text-lg mb-5  text-gray-700 border rounded-lg focus:outline-none focus:ring  focus:border-0 focus:ring-purple-500 text-center dark:bg-gray-700 '
           placeholderText={placeHolder}

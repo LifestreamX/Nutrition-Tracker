@@ -26,7 +26,7 @@ const Food = ({ food }: FoodDataProps) => {
   } = useMyContext();
   const [hoverItemId, setHoverItemId] = useState<string | null>(null);
   const [deleteClicked, setDeleteClicked] = useState(false);
-  const [newQuantity, setNewQuantity] = useState<any>(null);
+  const [newQuantity, setNewQuantity] = useState<number>(Number(0));
   const [emptyQuantityWarning, setEmptyQuantityWarning] = useState(false);
   const [delayRender, setDelayedRender] = useState(false);
   const { width } = useWindowSize();
@@ -59,25 +59,24 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleFoodItemDelete = (id: string): void => {
-    setFoodLog((prevFood: any) =>
-      prevFood.filter((food: any) => food?.foodId !== id)
+    setFoodLog((prevFood) =>
+      prevFood.filter((food) => food?.foodId !== id)
     );
   };
 
   const handleQuantity = (id: string): void => {
-    setNewQuantity(food.quantity);
+    setNewQuantity(Number(food.quantity));
     setClikedEditId(id);
   };
 
   const handleQuantityChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setNewQuantity(e.target.value);
+    setNewQuantity(Number(e.target.value));
   };
 
   const handleQuantitySave = (id: string) => {
     newQuantity == null ||
-      newQuantity === '' ||
       (newQuantity <= 0 &&
         (() => {
           setNewQuantity(newQuantity);
@@ -91,7 +90,7 @@ const Food = ({ food }: FoodDataProps) => {
       return;
     } else {
       setClikedEditId(null);
-      const updated = foodLog?.map((food: any) => {
+      const updated = foodLog?.map((food) => {
         if (food.foodId === id) {
           return { ...food, quantity: newQuantity };
         }

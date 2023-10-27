@@ -15,8 +15,8 @@ export interface Goals {
 export interface CaloriesConsumedData {
   labels: string[];
   datasets: {
-    label: string;
-    data: number[];
+    label: string | string[] | null;
+    data: number[] | string[];
     backgroundColor: string[];
     borderColor: string[];
     borderWidth: number;
@@ -28,7 +28,7 @@ export interface CaloriesRemainData {
   datasets: {
     data: (number | string)[];
     backgroundColor: string[];
-    borderColor: string[];
-    borderWidth: number;
+    borderColor: string | string[];
+    borderWidth: number | null;
   }[];
 }

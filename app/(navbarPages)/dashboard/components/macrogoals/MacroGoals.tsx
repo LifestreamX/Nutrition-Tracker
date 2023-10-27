@@ -20,19 +20,19 @@ const MacroGoals = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFillOutInputWarning(false);
     const { name, value } = event.target;
 
-    const CustomInput = ({ value, onClick }: any) => (
-      <input
-        type='text'
-        className='border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500'
-        value={value}
-        onClick={onClick}
-        readOnly
-      />
-    );
+    // const CustomInput = ({ value, onClick }: any) => (
+    //   <input
+    //     type='text'
+    //     className='border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500'
+    //     value={value}
+    //     onClick={onClick}
+    //     readOnly
+    //   />
+    // );
 
     setMacroTargesInputs((prevFormData) => ({
       ...prevFormData,
@@ -57,11 +57,7 @@ const MacroGoals = () => {
 
       setMacroTargets(updateMacroTargets);
 
-        localStorage.setItem(
-          'macroTargets',
-          JSON.stringify(updateMacroTargets)
-        );
-      
+      localStorage.setItem('macroTargets', JSON.stringify(updateMacroTargets));
 
       setShowMacroForm(false);
       setFillOutInputWarning(false);

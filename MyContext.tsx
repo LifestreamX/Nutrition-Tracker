@@ -10,6 +10,16 @@ import {
 } from 'react';
 import { MacroTargetTypes } from './types/MacroTarget.types';
 import { FoodTypeData, NutritionSearchDataType } from './types/Food.types';
+import { FoodLogTypes } from './types/FoodLog.types';
+import {
+  specificFoodLogDetailsTypes,
+  specificFoodLogTypes,
+} from './types/MyFoodLog.types';
+
+type Action = {
+  type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';
+  payload: unknown;
+};
 
 type MyContextType = {
   // incrementCount: () => void;
@@ -21,26 +31,22 @@ type MyContextType = {
   macroTargetInputs: MacroTargetTypes;
 
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
-  nutritionSearchData: NutritionSearchDataType | undefined | any;
-  setNutritionSearchData: React.Dispatch<
-    React.SetStateAction<NutritionSearchDataType> | any
-  >;
-  foodLog: FoodTypeData | any;
-  setFoodLog: React.Dispatch<
-    React.SetStateAction<FoodTypeData | object[] | ReactNode>
-  >;
+  nutritionSearchData: FoodLogTypes | {};
+  setNutritionSearchData: React.Dispatch<React.SetStateAction<FoodLogTypes>>;
+  foodLog: FoodLogTypes[];
+  setFoodLog: React.Dispatch<React.SetStateAction<FoodLogTypes[]>>;
   successAdded: Boolean;
-  setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean> | any>;
-  clikedEditId: string;
-  setClikedEditId: React.Dispatch<React.SetStateAction<string | null> | any>;
-  foodItem: any;
-  setFoodItem: React.Dispatch<React.SetStateAction<any>>;
+  setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean>>;
+  clikedEditId: string | null;
+  setClikedEditId: React.Dispatch<React.SetStateAction<string | null>>;
+  foodItem: FoodLogTypes | null;
+  setFoodItem: React.Dispatch<React.SetStateAction<FoodLogTypes | null>>;
   selectedDate: Date | null;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
-  dispatch: any;
-  submittedFoodLogs: any;
-  profileAvatar: any;
-  setProfileAvatar: any;
+  dispatch: React.Dispatch<Action>;
+  submittedFoodLogs: specificFoodLogTypes;
+  profileAvatar: string;
+  setProfileAvatar: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -58,13 +64,6 @@ type MyProviderProps = {
 };
 
 export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
-  // const [macroTargets, setMacroTargets] = useState({
-  //   calories: '',
-  //   protein: '',
-  //   carbs: '',
-  //   fats: '',
-  // });
-
   const [macroTargets, setMacroTargets] = useState(() => {
     let savedMacroTargets;
 
@@ -89,19 +88,21 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     fats: macroTargets.fats || '',
   });
 
-  const [nutritionSearchData, setNutritionSearchData] = useState();
+  const [nutritionSearchData, setNutritionSearchData] = useState<
+    FoodLogTypes | {}
+  >({});
 
   // const [foodLog, setFoodLog] = useState([]);
 
-  const [successAdded, setSuccessAdded] = useState(false);
+  const [successAdded, setSuccessAdded] = useState<Boolean>(false);
 
-  const [clikedEditId, setClikedEditId] = useState('');
+  const [clikedEditId, setClikedEditId] = useState<string | null>('');
 
-  const [foodItem, setFoodItem] = useState(null);
+  const [foodItem, setFoodItem] = useState<FoodLogTypes | null>(null);
 
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const [foodLog, setFoodLog] = useState(() => {
+  const [foodLog, setFoodLog] = useState<FoodLogTypes[]>(() => {
     let savedFoodLog;
 
     if (typeof window !== 'undefined') {
@@ -122,12 +123,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       : null;
   });
 
-  type Action = {
-    type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';
-    payload: FoodTypeData[];
-  };
-
-  const reducer = (state: FoodTypeData[] | any, action: Action) => {
+  const reducer = (state: FoodTypeData[], action: Action) => {
     switch (action.type) {
       case 'SUBMIT_FOOD_LOGS':
         return [...state, action.payload];
@@ -148,7 +144,10 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     ? JSON.parse(storedSubmittedFoodLogData)
     : [];
 
-  const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
+  const [submittedFoodLogs, dispatch] = useReducer(
+    reducer as unknown as React.Reducer<specificFoodLogTypes, Action>,
+    initialFoodLogData
+  );
 
   useEffect(() => {
     localStorage.setItem(
@@ -158,20 +157,15 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   }, [submittedFoodLogs]);
 
   // profile avatar
-  let [profileAvatar, setProfileAvatar] = useState(() => {
+  const [profileAvatar, setProfileAvatar] = useState<string>(() => {
     let savedProfileAvatar;
 
     if (typeof window !== 'undefined') {
       savedProfileAvatar = localStorage.getItem('profileAvatar');
     }
 
-
-    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
-      return savedProfileAvatar;
-    } else return;
+    return (savedProfileAvatar ?? '') as string; // Cast to string
   });
-
-
 
   const value: MyContextType = {
     macroTargetInputs,

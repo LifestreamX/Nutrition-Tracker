@@ -29,7 +29,7 @@ const MyFoodLogs: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  const [startDate, setStartDate] = useState<any | null>(null);
+  const [startDate, setStartDate] = useState<Date | string[] | null>(null);
 
   let selectedDate = startDate;
 
@@ -41,12 +41,9 @@ const MyFoodLogs: React.FC = () => {
     return dateA - dateB;
   });
 
-  let dateFilterResults: any = null;
+  let dateFilterResults: specificFoodLogTypes | any = null;
   let noLog = false;
 
-
-
-  
   sortedByYear.find((e) => {
     let pickedDate = String(startDate)?.replaceAll(' ', '');
     let listedDates = String(e?.selectedDate)?.replaceAll(' ', '');
@@ -94,7 +91,7 @@ const MyFoodLogs: React.FC = () => {
                 className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'
               >
                 {noLog ? (
-                  <h1>No Food Log for {selectedDate}</h1>
+                  <h1>No Food Log for {selectedDate?.toString()}</h1>
                 ) : (
                   <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-gray-100  dark:hover:bg-purple-800'>
                     <Link
@@ -131,7 +128,6 @@ const MyFoodLogs: React.FC = () => {
                       className='text-sm md:text-xl hover:bg-gray-200 dark:hover:bg-purple-700 dark:bg-gray-500 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
                       <Link
-                        key={submittedFoodLogs}
                         // href={`/myfoodlogs/${foodLogId}`}
                         href={{
                           pathname: `/myfoodlogs/${foodLogId}`,

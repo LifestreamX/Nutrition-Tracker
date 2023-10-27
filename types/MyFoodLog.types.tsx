@@ -8,6 +8,11 @@ export type Params = {
 
 // specific Log types
 export type specificFoodLogTypes = {
+  map(arg0: (log: any) => any): unknown;
+  filter(arg0: (e: { foodLogId: string; }) => boolean): unknown;
+  find(arg0: (e: { foodLogId: string; foodLog: FoodLogTypes[]; }) => any): unknown;
+  slice(indexOfFirstResult: number, indexOfLastResult: number): specificFoodLogTypes[];
+  length: number;
   foodLogId: string;
   selectedDate: string[];
   foodLog: FoodLogTypes;

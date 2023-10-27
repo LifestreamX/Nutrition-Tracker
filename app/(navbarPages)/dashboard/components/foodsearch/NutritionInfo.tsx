@@ -5,16 +5,17 @@ import { Doughnut } from 'react-chartjs-2';
 import { useWindowSize } from 'react-use';
 import Button from '@/app/components/Button';
 import { useMyContext } from '@/MyContext';
+import { FoodLogTypes } from '@/types/FoodLog.types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const NutritionInfo = () => {
   const {
     nutritionSearchData,
-    setNutritionSearchData,
+
     foodLog,
     setFoodLog,
-    successAdded,
+
     setSuccessAdded,
   } = useMyContext();
 
@@ -23,16 +24,18 @@ const NutritionInfo = () => {
   const { width } = useWindowSize();
 
   useEffect(() => {
-    getPercentages(
-      nutritionSearchData?.protein,
-      nutritionSearchData?.carbs,
-      nutritionSearchData?.fats
-    );
-  }, [
-    nutritionSearchData?.protein,
-    nutritionSearchData?.carbs,
-    nutritionSearchData?.fats,
-  ]);
+    if (
+      'protein' in nutritionSearchData &&
+      'carbs' in nutritionSearchData &&
+      'fats' in nutritionSearchData
+    ) {
+      getPercentages(
+        nutritionSearchData?.protein,
+        nutritionSearchData?.carbs,
+        nutritionSearchData?.fats
+      );
+    }
+  }, [nutritionSearchData]);
 
   const [percentages, setPercentages] = useState({
     proteinPercentage: 0,
@@ -87,7 +90,20 @@ const NutritionInfo = () => {
     });
   };
 
-  const { protein, carbs, fats } = nutritionSearchData;
+  let protein;
+  let carbs;
+  let fats;
+
+  if (
+    'protein' in nutritionSearchData &&
+    'carbs' in nutritionSearchData &&
+    'fats' in nutritionSearchData
+  ) {
+    const { protein: tempP, carbs: tempC, fats: tempF } = nutritionSearchData;
+    protein = tempP;
+    carbs = tempC;
+    fats = tempF;
+  }
 
   const { proteinPercentage, carbsPercentage, fatsPercent } = percentages;
 
@@ -107,8 +123,8 @@ const NutritionInfo = () => {
   };
 
   const handleAddToFoodLog = (id: string) => {
-    const alreadyHaveFood = foodLog?.map((food: any) => {
-      if (food.foodId === id) {
+    const alreadyHaveFood = foodLog?.map((food) => {
+      if (food.foodId === id && food.quantity !== undefined) {
         return {
           ...food,
           quantity: food.quantity + 1,
@@ -117,12 +133,12 @@ const NutritionInfo = () => {
       return food;
     });
 
-    const doesFoodExist = foodLog?.find((food: any) => food.foodId === id);
+    const doesFoodExist = foodLog?.find((food) => food.foodId === id);
 
     if (doesFoodExist) {
       setFoodLog(alreadyHaveFood);
     } else {
-      setFoodLog([...foodLog, { ...nutritionSearchData }]);
+      setFoodLog([...foodLog, { ...(nutritionSearchData as FoodLogTypes) }]);
     }
 
     setSuccessAdded(true);
@@ -160,7 +176,11 @@ const NutritionInfo = () => {
               color='purple'
               size='medium'
               responsiveWidth='true'
-              onClick={() => handleAddToFoodLog(nutritionSearchData.foodId)}
+              onClick={() => {
+                if ('foodId' in nutritionSearchData) {
+                  handleAddToFoodLog(nutritionSearchData.foodId);
+                }
+              }}
             >
               ADD
             </Button>

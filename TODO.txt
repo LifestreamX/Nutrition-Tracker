@@ -7,7 +7,17 @@
 USE BRANCHES FOR EACH TODO 
 
 
+
+
+
+
 TODO: Fix all any types with any (try generics?)
+
+
+TODO: Fix years not being sorted correctly in logs
+
+
+TODO: dark mode bug
 
 
 TODO: Testing code 
