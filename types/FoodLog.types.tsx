@@ -1,5 +1,6 @@
 // Macro taget types
 export interface FoodLogTypes {
+  forEach(arg0: (food: FoodLogTypes) => void): unknown;
   map(arg0: (food: any) => JSX.Element): import('react').ReactNode;
   reduce(
     arg0: (acc: number, cur: { calories: number }) => number,

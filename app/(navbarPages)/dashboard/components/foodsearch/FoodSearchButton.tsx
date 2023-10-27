@@ -342,9 +342,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                 <LoadingSpinner />
               ) : typeof val === 'string' && val.trim().length !== 0 ? (
                 val === debouncedValue && (
-                  <p className='font-extrabold text-purple-800 text-4xl'>
-                    No Results
-                  </p>
+                  <p className='font-extrabold text-4xl'>No Results</p>
                 )
               ) : (
                 <p className='font-extrabold text-purple-800 text-4xl dark:text-white'>
