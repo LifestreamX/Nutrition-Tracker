@@ -120,33 +120,33 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
         <div className=' mb-10 flex flex-col lg:flex-row justify-center w-screen md:w-full  '>
           <p className='mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center mb-4 lg:mb-0 '>
             <p className=''>Date</p>
-            <p className=' mt-2 dark:text-purple-500'> {selectedDate}</p>
+            <p className=' mt-2 font-semibold'> {selectedDate}</p>
           </p>
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
           <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
             <p className=' '>Total Calories </p>
-            <p className=' dark:text-purple-500 mt-2'>{calories.toFixed(0)}</p>
+            <p className=' font-semibold mt-2'>{calories.toFixed(0)}</p>
           </p>
         </div>
 
         <div className='flex lg:m-8 p-6'>
           <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
             <p className=' '>Total Protein </p>
-            <p className=' dark:text-purple-500 mt-2'>{protein.toFixed(0)}g</p>
+            <p className=' font-semibold mt-2'>{protein.toFixed(0)}g</p>
           </p>
 
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
 
           <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
             <p className=' '>Total Carbs </p>
-            <p className=' dark:text-purple-500 mt-2'>{carbs.toFixed(0)}g</p>
+            <p className=' font-semibold mt-2'>{carbs.toFixed(0)}g</p>
           </p>
 
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
 
           <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
             <p className=' '>Total Fats </p>
-            <p className=' dark:text-purple-500 mt-2'>{fats.toFixed(0)}g</p>
+            <p className=' font-semibold mt-2'>{fats.toFixed(0)}g</p>
           </p>
         </div>
 
@@ -177,7 +177,7 @@ const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
                 // href={`/myfoodlogs/${foodLogId}/${food.foodId}`}
               >
                 <div className='bg-white dark:bg-gray-700  xs:w-full rounded-lg shadow-lg  justify-center items-center'>
-                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-gray-200  dark:hover:bg-purple-800  cursor-pointer rounded-xl p-4 '>
+                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-gray-200  dark:hover:bg-gray-600 cursor-pointer rounded-xl p-4 '>
                     <p className='text-left xs:text-sm md:text-lg mx-4  md:w-full mb-3 md:mb-0'>
                       {food.label}
                     </p>

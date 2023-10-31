@@ -128,7 +128,7 @@ const MyFoodLogs: React.FC = () => {
                   return (
                     <li
                       key={foodLogId}
-                      className='text-sm md:text-xl hover:bg-gray-200 dark:hover:bg-purple-700 dark:bg-gray-500 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                      className='text-sm md:text-xl hover:bg-gray-200  dark:bg-gray-500 dark:hover:bg-gray-600 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
                       <Link
                         key={submittedFoodLogs}

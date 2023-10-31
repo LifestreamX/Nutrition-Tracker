@@ -32,8 +32,8 @@ export default function RootLayout({
       <head />
 
       <MyProvider>
-        <body className={kanit.className}>
-          <main className=''>
+        <body className={`${kanit.className} dark:bg-gray-900`}>
+          <main>
             <div className='fixed top-0 w-full z-50'>
               <NavBar />
             </div>

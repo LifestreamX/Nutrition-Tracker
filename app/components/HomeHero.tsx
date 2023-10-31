@@ -29,12 +29,18 @@ const HomeHero: React.FC = () => {
         <Image
           src={heroimg}
           alt='fruit'
+          width={500}
+          height={500}
           className='rounded-xl w-72 lg:w-96 relative'
+          placeholder='blur'
         />
         <Image
           src={heroimg2}
           alt='fruit'
+          width={500}
+          height={500}
           className='rounded-xl w-72 lg:w-96 relative top-5'
+          placeholder='blur'
         />
       </div>
     </section>

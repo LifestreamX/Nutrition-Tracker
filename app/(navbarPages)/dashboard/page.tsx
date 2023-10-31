@@ -7,7 +7,8 @@ import FoodSearch from './components/foodsearch/FoodSearchButton';
 import FoodLog from './components/foodlog/FoodLog';
 
 const Dashboard = () => {
-  const [val, setVal] = useState<string | number>('');
+
+  
 
   return (
     <main className='relative top-28'>

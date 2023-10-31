@@ -11,24 +11,29 @@ import NoAvatar from '../images/NoAvatar.png';
 
 const Settings: React.FC = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, systemTheme } = useTheme();
-  const [img, setImg] = useState();
+  const { theme, setTheme, systemTheme, resolvedTheme } = useTheme();
 
   const { profileAvatar } = useMyContext();
 
-  const handlePhotoChange = (e: any) => {
-    setImg(e.target.files[0]);
+  const toggleTheme = (newTheme: string) => {
+    setTheme(newTheme);
   };
 
   useEffect(() => {
+    const userSelectedTheme = localStorage.getItem('theme');
+
+    if (userSelectedTheme) {
+      setTheme(userSelectedTheme);
+    }
+
     setMounted(true);
-  }, []);
+  }, [theme]);
 
   if (!mounted) {
     return null;
   }
 
-  const currentTheme = theme === 'system' ? systemTheme : theme;
+  const currentTheme = resolvedTheme || theme;
 
   let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
 
@@ -48,7 +53,10 @@ const Settings: React.FC = () => {
             </div>
 
             <div className='flex mt-5'>
-              <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+              <select
+                value={resolvedTheme}
+                onChange={(e) => toggleTheme(e.target.value)}
+              >
                 {/* <option value='system'>System</option> */}
                 <option value='dark'>Dark</option>
 
@@ -58,12 +66,12 @@ const Settings: React.FC = () => {
                 {currentTheme === 'dark' ? (
                   <BsFillSunFill
                     className='h-8 w-8 cursor-pointer text-yellow-500'
-                    onClick={() => setTheme('light')}
+                    onClick={() => toggleTheme('light')}
                   />
                 ) : (
                   <BsFillMoonFill
                     className='h-8 w-8 cursor-pointer'
-                    onClick={() => setTheme('dark')}
+                    onClick={() => toggleTheme('dark')}
                   />
                 )}
               </div>

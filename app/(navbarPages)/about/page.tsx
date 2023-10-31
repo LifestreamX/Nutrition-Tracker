@@ -8,13 +8,13 @@ import icon4 from '../../images/about/icon4.png';
 
 const About: React.FC = () => {
   return (
-    <div className='flex md:flex-row flex-col-reverse md:items-stretch items-center justify-center dark:bg-gray-800 dark:m-8 dark:rounded-3xl dark:mt-20 '>
+    <div className='flex md:flex-row flex-col-reverse md:items-stretch items-center justify-center   dark:rounded-3xl  '>
       <div className=' md:mt-28   md:mr-6 flex flex-col md:items-end items-center justify-center xl:mr-28 relative bottom-20 md:bottom-0 '>
         <div className='flex flex-col items-center justify-center '>
           <h1 className='md:text-5xl text-3xl font-bold text-center text-gray-800 dark:text-white flex flex-col mb-10 px-2'>
             <div className='flex flex-wrap'>
               <span className='m-1'>About</span>{' '}
-              <span className='text-purple-800 m-1'>nutritiontracker</span>
+              <span className=' m-1'>nutritiontracker</span>
             </div>
             <span className='bg-gray-500 p-0.5 w-full'></span>
           </h1>
@@ -100,6 +100,7 @@ const About: React.FC = () => {
           src={aboutImageRight}
           width={400}
           height={400}
+          placeholder='blur'
           alt='picture of food'
           className='rounded-md  object-cover object-center md:block hidden'
         />

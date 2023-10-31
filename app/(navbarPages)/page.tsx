@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home(): JSX.Element {
   return (
-    <main className='flex flex-col h-full mt-12'>
-      <section className='mt-40 sm:mt-80  '>
+    <main className='flex flex-col h-full mt-12 '>
+      <section className='mt-40 sm:mt-80   '>
         <HomeHero />
       </section>
       <section className='mt-32 sm:mt-48'>

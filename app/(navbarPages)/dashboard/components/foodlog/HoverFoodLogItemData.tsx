@@ -56,54 +56,40 @@ const HoverFoodLogItemData = () => {
         <div className='grid grid-cols-1 md:grid-cols-2  gap-5 justify-center  relative md:left-5  '>
           <div className='text-center md:text-left'>
             <p className='mb-1 text-sm md:text-lg'>
-              <span className='font-semibold text-sm md:text-lg'>
-                Category:{' '}
-              </span>
-              {category}
+              <span className=' text-sm md:text-lg'>Category: </span>
+              <span className='font-semibold'>{category}</span>
             </p>
             <p className='mb-1 text-sm md:text-lg '>
-              <span className='font-semibold  text-sm md:text-lg'>
-                Category Label:
-              </span>{' '}
-              {categoryLabel}
+              <span className='  text-sm md:text-lg'>Category Label:</span>{' '}
+              <span className='font-semibold'>{categoryLabel}</span>
             </p>
             <p className='mb-1 text-sm md:text-lg '>
               {' '}
-              <span className='font-semibold  text-sm md:text-lg'>
-                Quantity:
-              </span>{' '}
-              {quantity}
+              <span className='  text-sm md:text-lg'>Quantity:</span>
+              <span className='font-semibold'> {quantity}</span>
             </p>
             <p className='mb-1 text-sm md:text-lg '>
               {' '}
-              <span className='font-semibold  text-sm md:text-lg'>
-                Calories:
-              </span>{' '}
-              {calories} kcal
+              <span className='  text-sm md:text-lg'>Calories:</span>{' '}
+              <span className='font-semibold'>{calories}</span> kcal
             </p>
           </div>
 
           <div className='text-center md:text-left'>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
-              <span className='font-semibold  text-sm md:text-lg'>
-                Protein:
-              </span>{' '}
-              {protein.toFixed(1)}g
+              <span className='  text-sm md:text-lg'>Protein:</span>{' '}
+              <span className='font-semibold'>{protein.toFixed(1)}g</span>
             </p>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
-              <span className='font-semibold  text-sm md:text-lg'>
-                Carbs:
-              </span>{' '}
-              {carbs.toFixed(1)}g
+              <span className='  text-sm md:text-lg'>Carbs:</span>{' '}
+              <span className='font-semibold'>{carbs.toFixed(1)}g</span>{' '}
             </p>
             <p className='mb-1 text-sm md:text-lg'>
               {' '}
-              <span className='font-semibold  text-sm md:text-lg'>
-                Fats:
-              </span>{' '}
-              {fats.toFixed(1)}g
+              <span className='  text-sm md:text-lg'>Fats:</span>{' '}
+              <span className='font-semibold'>{fats.toFixed(1)}g</span>
             </p>
           </div>
         </div>

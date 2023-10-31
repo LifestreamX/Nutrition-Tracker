@@ -23,6 +23,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
 
   let modalBackGroundColor = theme === 'dark' ? '#2d3748' : 'white';
 
+
   const customStyles = {
     content: {
       top: '50%',

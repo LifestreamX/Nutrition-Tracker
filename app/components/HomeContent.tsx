@@ -7,7 +7,7 @@ import homecontent3 from '../images/homecontent3.png';
 const HomeContent: React.FC = () => {
   return (
     <section className=' flex flex-col items-center justify-center    '>
-      <div className='text-center mx-5 dark:bg-gray-800 dark:p-4 dark:rounded-3xl'>
+      <div className='text-center mx-5  dark:p-4 dark:rounded-3xl'>
         <h1 className='text-3xl text-w font-bold my-2'>
           Never too late to start
         </h1>
@@ -18,12 +18,15 @@ const HomeContent: React.FC = () => {
         </p>
       </div>
 
-      <div className='flex flex-col items-center relative top-10   md:flex-row lg:w-3/4 lg:justify-evenly dark:bg-gray-800 dark:rounded-3xl dark:p-2 '>
+      <div className='flex flex-col items-center relative top-10   md:flex-row lg:w-3/4 lg:justify-evenly  dark:rounded-3xl dark:p-2 '>
         <div className='flex flex-col items-center my-3 rounded-full drop-shadow-xl '>
           <Image
             src={homecontent}
             className='w-16 lg:w-24  '
             alt='clipboard '
+            width={500}
+            height={500}
+            placeholder='blur'
           />
           <h1 className='my-3 text-center md:w-60 font-bold lg:text-lg'>
             Track all your meals
@@ -33,6 +36,9 @@ const HomeContent: React.FC = () => {
           <Image
             src={homecontent2}
             className='w-16 realtive lg:w-24 '
+            width={500}
+            height={500}
+            placeholder='blur'
             alt='food'
           />
           <h1 className='my-3 font-bold text-center md:w-60 lg:text-lg'>
@@ -44,6 +50,9 @@ const HomeContent: React.FC = () => {
             src={homecontent3}
             className='w-16 lg:w-24 '
             alt='motivation'
+            width={500}
+            height={500}
+            placeholder='blur'
           />
           <h1 className='my-3 font-bold text-center md:w-60 lg:text-lg'>
             Keep Your Motivation Up!

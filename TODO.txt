@@ -7,24 +7,62 @@
 USE BRANCHES FOR EACH TODO 
 
 
-
-TODO: Purple text thats not links and my food logs show pro car fats total and make sure all logic is correct in specific logs
-
+TODO: Change dark mode background to lighter color 
 
 
-
-TODO: check dark mode again
-
-
-TODO: Testing code 
+TODO: dark mose persist on refresh
 
 
+
+
+
+TODO: foodlog dates are not filtered by year
+
+
+
+
+
+TODO: 
+
+- Lazy Loading 
+- cache static assets? cdn?
+- blurrdDataUrl
+- Rendering Options SSG/ SSR / ISR etc...
+
+
+TODO: Meta Data - static and dyanmic
+
+
+
+
+
+
+
+
+
+
+
+
+TODO: Testing code - all 3 types 
+
+
+
+
+
+
+
+
+
+
+
+
+
+TODO: Warnings in console
 
 
 
 TODO: comments use chatgpt 
 
-TODO: Check out blurrdDataUrl
 
 TODO: Break down into smaller contexts instead of one / maybe custom hooks
 
@@ -36,17 +74,9 @@ TODO: ADD CSS fade in or out?
 
 TODO: work on types
 
-TODO: Meta Data - static and dyanmic
-
 TODO: update next project version to most recent
 
-TODO: layouts for different pages?
-
 TODO: server actions?
-
-TODO: Rendering Options SSG/ SSR / ISR etc...
-
-TODO: Lazy Loading
 
 TODO: smooth motion
 

@@ -57,11 +57,7 @@ const MacroGoals = () => {
 
       setMacroTargets(updateMacroTargets);
 
-        localStorage.setItem(
-          'macroTargets',
-          JSON.stringify(updateMacroTargets)
-        );
-      
+      localStorage.setItem('macroTargets', JSON.stringify(updateMacroTargets));
 
       setShowMacroForm(false);
       setFillOutInputWarning(false);
@@ -105,7 +101,10 @@ const MacroGoals = () => {
         )}
 
         {/* MACRO SET */}
-        <dialog className='relative max-w-full' open={showMacroForm}>
+        <dialog
+          className='relative max-w-full dark:bg-gray-900  rounded-sm'
+          open={showMacroForm}
+        >
           <form
             action=''
             className='mt-5 box-border   bg-white w-full  rounded-lg shadow-lg flex flex-col relative justify-center items-center dark:bg-gray-800'

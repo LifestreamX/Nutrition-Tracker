@@ -38,19 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <head />
 
       <MyProvider>
-        <body className={kanit.className}>
-          <main className=''>
-            <div className='fixed top-0 w-full z-50'>{/* <NavBar /> */}</div>
-
-            <Providers>
-              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
-            </Providers>
-          </main>
-        </body>
+        <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
       </MyProvider>
     </html>
   );

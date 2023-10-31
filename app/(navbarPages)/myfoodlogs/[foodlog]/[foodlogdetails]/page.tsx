@@ -71,7 +71,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
         </svg>
         {/* title */}
         <div className='mb-8 mt-10 xs:mt-0  font-semibold'>
-          <h1 className='text-2xl font-purple-600 dark:text-purple-500 font-bold'>
+          <h1 className='text-2xl font-purple-600  font-bold'>
             {logDetails?.label}
           </h1>
           <div className='w-full py-px bg-gray-500' />
@@ -82,7 +82,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Category:{' '}
-                <span className=' dark:text-purple-500 font-bold '>
+                <span className='  font-bold '>
                   {logDetails?.category}
                 </span>
               </p>
@@ -91,7 +91,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Quantity:{' '}
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {logDetails?.quantity}
                 </span>
               </p>
@@ -100,7 +100,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Calories:{' '}
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {logDetails?.calories.toFixed(0)} Kcal
                 </span>
               </p>
@@ -108,7 +108,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Protein:{' '}
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {logDetails?.protein.toFixed(0) } g
                 </span>
               </p>
@@ -116,7 +116,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Carbs:{' '}
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {logDetails?.carbs.toFixed(0) } g
                 </span>
               </p>
@@ -124,7 +124,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Fats:{' '}
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {logDetails?.fats.toFixed(0) } g
                 </span>
               </p>
@@ -133,7 +133,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Ounces:{' '}
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {isNaN(ounces) ? <span>N/A</span> : ounces + 'oz'}
                 </span>
               </p>
@@ -141,7 +141,7 @@ const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
             <li className='   text-lg md:text-2xl font-medium mb-4   '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Grams:
-                <span className=' dark:text-purple-500 font-bold'>
+                <span className='  font-bold'>
                   {' '}
                   {isNaN(grams) ? <span>N/A</span> : grams.toFixed(0) + 'g'}
                 </span>
