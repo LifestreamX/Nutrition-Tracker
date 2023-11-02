@@ -4,19 +4,17 @@
 
 
 
-USE BRANCHES FOR EACH TODO 
 
-
-TODO: Change dark mode background to lighter color 
-
-
-TODO: dark mose persist on refresh
 
 
 
 
 
 TODO: foodlog dates are not filtered by year
+
+
+
+
 
 
 
@@ -81,7 +79,7 @@ TODO: server actions?
 TODO: smooth motion
 
 
-
+TODO: Check out Signals signals library?
 
 
 

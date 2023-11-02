@@ -34,19 +34,16 @@ const MyFoodLogs: React.FC = () => {
   let selectedDate = startDate;
 
   let sortedByYear = currentResults?.sort((a, b) => {
-    const dateA = parseInt(a.selectedDate?.toString().split(',').at(-1) || '0');
+    const dateA = new Date(a.selectedDate[0]);
 
-    const dateB = parseInt(b.selectedDate?.toString().split(',').at(-1) || '0');
+    const dateB = new Date(b.selectedDate[0]);
 
-    return dateA - dateB;
+    return dateA.getTime() - dateB.getTime();
   });
 
   let dateFilterResults: any = null;
   let noLog = false;
 
-
-
-  
   sortedByYear.find((e) => {
     let pickedDate = String(startDate)?.replaceAll(' ', '');
     let listedDates = String(e?.selectedDate)?.replaceAll(' ', '');

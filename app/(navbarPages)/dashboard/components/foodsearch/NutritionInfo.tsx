@@ -18,8 +18,6 @@ const NutritionInfo = () => {
     setSuccessAdded,
   } = useMyContext();
 
-  const [added, setAdded] = useState(false);
-
   const { width } = useWindowSize();
 
   useEffect(() => {
@@ -137,7 +135,7 @@ const NutritionInfo = () => {
 
   return (
     <>
-      <section className='border pb-2 xs:p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-900   '>
+      <section className='border pb-2 xs:p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-800   '>
         <div className='mb-5 justify-center items-center h-full'>
           <Doughnut data={data} width={donutSize} />
         </div>

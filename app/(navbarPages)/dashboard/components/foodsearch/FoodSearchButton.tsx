@@ -23,7 +23,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
 
   let modalBackGroundColor = theme === 'dark' ? '#2d3748' : 'white';
 
-
   const customStyles = {
     content: {
       top: '50%',
@@ -165,7 +164,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       {/* search button activate modal */}
       <button
         onClick={openModal}
-        className='p-2 flex relative top-5 hover:bg-slate-100 dark:hover:bg-gray-800   rounded-md
+        className='p-2 flex relative top-5 hover:bg-slate-100  dark:hover:bg-gray-800   rounded-md
 
     '
       >
@@ -294,9 +293,9 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
 
               return (
                 <>
-                  <ul className='z-0  '>
+                  <ul className='z-0   '>
                     <li
-                      className=' hover:bg-gray-100 flex cursor-pointer m-2'
+                      className=' hover:bg-gray-100 dark:hover:bg-gray-800 flex cursor-pointer m-2'
                       key={foodId}
                     >
                       <button
