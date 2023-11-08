@@ -9,8 +9,12 @@ import { Suspense } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 export const metadata: Metadata = {
-  title: 'nutrition tracker',
+  title: {
+    default: 'nutrition tracker',
+    template: '%s | nutrition tracker',
+  },
   description: 'track your nutrition progress daily',
+  keywords: ['food', 'nutrition', 'tracking', 'calories', 'macronutrients'],
 };
 
 const oswald = Oswald({

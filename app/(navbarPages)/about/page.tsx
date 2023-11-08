@@ -5,6 +5,11 @@ import icon1 from '../../images/about/icon1.png';
 import icon2 from '../../images/about/icon2.png';
 import icon3 from '../../images/about/icon3.png';
 import icon4 from '../../images/about/icon4.png';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About',
+};
 
 const About: React.FC = () => {
   return (

@@ -1,3 +1,5 @@
+'use client';
+
 import { useMyContext } from '@/MyContext';
 import { FoodLogTypes } from '@/types/FoodLog.types';
 import React, { useState, useReducer, useEffect } from 'react';

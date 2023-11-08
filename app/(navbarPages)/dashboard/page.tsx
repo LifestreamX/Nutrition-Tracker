@@ -1,15 +1,16 @@
-'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import FetchNutritionData from './components/foodsearch/FetchNutritionData';
 import MacroGoals from './components/macrogoals/MacroGoals';
 import FoodSearch from './components/foodsearch/FoodSearchButton';
 import FoodLog from './components/foodlog/FoodLog';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
 
 const Dashboard = () => {
-
-  
-
   return (
     <main className='relative top-28'>
       <section className='flex justify-center items-middle '>

@@ -6,11 +6,19 @@
 
 
 
+TODO: Meta Data - static and dyanmic
+
+
+TODO: make client pages server components and put client logic in sepreate components and improt them
 
 
 
 
-TODO: foodlog dates are not filtered by year
+
+
+
+
+
 
 
 
@@ -28,28 +36,11 @@ TODO:
 - Rendering Options SSG/ SSR / ISR etc...
 
 
-TODO: Meta Data - static and dyanmic
-
-
-
-
-
-
-
-
 
 
 
 
 TODO: Testing code - all 3 types 
-
-
-
-
-
-
-
-
 
 
 

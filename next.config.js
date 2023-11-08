@@ -2,6 +2,9 @@
 const nextConfig = {
   experimental: {
     appDir: true,
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
   },
 
   test: /\\.(png|jp(e*)g|svg|gif)$/,

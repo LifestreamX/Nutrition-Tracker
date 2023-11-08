@@ -1,11 +1,16 @@
 import React from 'react';
 import Providers from '../Providers';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms | nutrition tracker',
+};
 
 const Terms = () => {
   return (
     <Providers>
       <section className='flex flex-col justify-center items-center  dark:bg-gray-900    '>
-        <div className='rounded-2xl  dark:bg-gray-800 relative p-6 lg:p-20 lg:m-20 '>
+        <div className='rounded-2xl  dark:bg-gray-800 relative p-6 lg:p-20 lg:m-20  '>
           <h1 className='relative text-2xl underline font-bold  text-center'>
             nutritiontracker Terms and Confitions of Use
           </h1>
