@@ -6,35 +6,26 @@
 
 
 
-
-TODO: fix meta tag title not updatng
-
-
-
-
-
-
-
-
 TODO: 
+
+  ---- OPTIMIZATIONS ----
+- blurrdDataUrl
 
 - Lazy Loading 
 - cache static assets? cdn?
-- blurrdDataUrl
-- Rendering Options SSG/ SSR / ISR etc...
+- put as many static info in server components best as possible
 
 
 
+TODO: work on types
 
+
+TODO: Warnings in console
 
 
 TODO: Testing code - all 3 types 
 
 
-
-
-
-TODO: Warnings in console
 
 
 
@@ -49,7 +40,6 @@ TODO: Semantics work on
 
 TODO: ADD CSS fade in or out?
 
-TODO: work on types
 
 TODO: update next project version to most recent
 

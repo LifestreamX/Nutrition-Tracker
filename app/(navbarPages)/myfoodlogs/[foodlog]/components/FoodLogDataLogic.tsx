@@ -14,6 +14,7 @@ import {
 import Link from 'next/link';
 import { FoodLogTypes } from '@/types/FoodLog.types';
 import DeleteFoodLogModal from './DeleteFoodLogModal';
+import { Base64 } from 'js-base64';
 
 type MyFoodLogProps = {
   params: Params;
@@ -165,6 +166,8 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
           let combinedQuery = queryDate + '/' + queryLabel;
 
+
+
           return (
             <ul className='w-full '>
               <Link
@@ -189,6 +192,8 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
                           height={imageSize}
                           alt={`Picture of ${food} `}
                           className='rounded-2xl'
+                          placeholder='blur'
+                          blurDataURL={Base64.encode(food.image)}
                         />
                       ) : (
                         <span className='flex text-center'>(No Image)</span>

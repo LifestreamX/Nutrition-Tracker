@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import Image from 'next/image';
+import { Base64 } from 'js-base64';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -45,6 +46,9 @@ const HoverFoodLogItemData = () => {
 
   const pieCentered =
     image === undefined ? 'justify-center' : 'justify-between';
+  console.log(image);
+
+  let blured = Base64.encode(image ? image : '');
 
   return (
     <div className='absolute   container flex justify-center items-center bottom-36 md:bottom-0  '>
@@ -107,6 +111,7 @@ const HoverFoodLogItemData = () => {
               height={100}
               alt={`Picture of ${label} `}
               className='rounded-2xl'
+              blurDataURL={blured}
             />
           </div>
         </div>

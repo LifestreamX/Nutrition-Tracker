@@ -9,6 +9,14 @@ const nextConfig = {
 
   images: {
     domains: ['www.edamam.com'],
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.edamam.com',
+        pathname: '/food-img/**',
+      },
+    ],
   },
 
   eslint: {

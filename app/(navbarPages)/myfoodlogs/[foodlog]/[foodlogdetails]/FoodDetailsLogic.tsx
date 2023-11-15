@@ -6,12 +6,13 @@ import { Params } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
 import { FoodLogTypes } from '@/types/FoodLog.types';
+import { Base64 } from 'js-base64';
 
 type MyFoodLogProps = {
   params: Params;
 };
 
-const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
+const FoodDetailsLogic: React.FC<MyFoodLogProps> =  ({ params }) => {
   const { submittedFoodLogs } = useMyContext();
 
   let logDetails: any;
@@ -49,6 +50,8 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
       : servingSizes[0]?.quantity.toFixed(2);
 
   let noImage = logDetails.image === undefined && 'hidden';
+
+  let imageToBlur = Base64.encode(logDetails.image);
 
   return (
     <main className='w-full flex justify-center items-middle relative top-20 p-5'>
@@ -154,6 +157,8 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
               alt={logDetails.label}
               style={{ objectFit: 'contain' }}
               className='rounded-lg '
+              placeholder='blur'
+              blurDataURL={imageToBlur}
             />
           </div>
         </ul>
