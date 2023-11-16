@@ -160,15 +160,15 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   // profile avatar
 
   let [profileAvatar, setProfileAvatar] = useState(() => {
-    return localStorage.getItem('profileAvatar' || undefined);
+    let savedProfileAvatar;
+
+    savedProfileAvatar = localStorage.getItem('profileAvatar');
+
+    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
+      return savedProfileAvatar;
+    } else return;
   });
 
-  useEffect(() => {
-    const storedAvatar = localStorage.getItem('profileAvatar');
-    if (storedAvatar) {
-      setProfileAvatar(storedAvatar);
-    }
-  }, []);
 
   const value: MyContextType = {
     macroTargetInputs,

@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <>
       <head />
 
       <MyProvider>
@@ -48,6 +48,6 @@ export default function RootLayout({
           </main>
         </body>
       </MyProvider>
-    </html>
+    </>
   );
 }
