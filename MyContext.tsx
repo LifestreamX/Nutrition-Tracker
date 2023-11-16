@@ -160,15 +160,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   // profile avatar
 
   let [profileAvatar, setProfileAvatar] = useState(() => {
-    let savedProfileAvatar;
-
-    // if (typeof window !== 'undefined') {
-    // }
-    savedProfileAvatar = localStorage.getItem('profileAvatar');
-
-    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
-      return savedProfileAvatar;
-    } else return;
+    return localStorage.getItem('profileAvatar');
   });
 
   const value: MyContextType = {
