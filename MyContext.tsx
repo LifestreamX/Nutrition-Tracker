@@ -113,14 +113,14 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   let [profileAvatar, setProfileAvatar] = useState(() => {
     let savedProfileAvatar;
 
-    savedProfileAvatar = localStorage.getItem('profileAvatar');
+    if (typeof window !== 'undefined') {
+      savedProfileAvatar = localStorage.getItem('profileAvatar');
+    }
 
     if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
       return savedProfileAvatar;
     } else return;
   });
-
-
 
   const [selectedDate, setSelectedDate] = useState(() => {
     let savedSelectedDate;
