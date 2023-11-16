@@ -5,17 +5,12 @@ import React from 'react';
 import { useWindowSize } from 'react-use';
 
 const LoadingSpinner: React.FC = () => {
-  const { width, height } = useWindowSize();
-
-  // const widthAndHeight = width < 768 ? '16' : '18';
-
-  const spinnerStyles = `inline w-21 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600`;
 
   return (
     <div role='status ' className=' h-screen  flex justify-center items-center'>
       <svg
         aria-hidden='true'
-        className='inline w-1/3 md:w-5/12 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600'
+        className='inline w-1/4 md:w-32 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
