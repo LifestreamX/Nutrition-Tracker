@@ -3,7 +3,6 @@
 import React from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useState, useRef, ChangeEvent } from 'react';
-import willow from './willow.jpg';
 import Image from 'next/image';
 import Button from './Button';
 import { useMyContext } from '@/MyContext';

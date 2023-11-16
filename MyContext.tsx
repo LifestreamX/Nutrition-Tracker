@@ -110,6 +110,16 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
   });
 
+  let [profileAvatar, setProfileAvatar] = useState(() => {
+    let savedProfileAvatar;
+
+    savedProfileAvatar = localStorage.getItem('profileAvatar');
+
+    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
+      return savedProfileAvatar;
+    } else return;
+  });
+
   const [selectedDate, setSelectedDate] = useState(() => {
     let savedSelectedDate;
 
@@ -158,17 +168,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   }, [submittedFoodLogs]);
 
   // profile avatar
-
-  let [profileAvatar, setProfileAvatar] = useState(() => {
-    let savedProfileAvatar;
-
-    savedProfileAvatar = localStorage.getItem('profileAvatar');
-
-    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
-      return savedProfileAvatar;
-    } else return;
-  });
-
 
   const value: MyContextType = {
     macroTargetInputs,

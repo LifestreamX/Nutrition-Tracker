@@ -4,7 +4,6 @@ import { useMyContext } from '@/MyContext';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-// import AvatarProfile from '../../components/AvatarProfile';
 import UploadAvatar from '../../components/AvatarProfile';
 import Image from 'next/image';
 import NoAvatar from '../images/NoAvatar.png';
@@ -41,6 +40,7 @@ const UserSettings: React.FC = () => {
   const currentTheme = resolvedTheme || theme;
 
   let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
+
 
   return (
     <main className='flex flex-col w-full justify-center items-center '>
