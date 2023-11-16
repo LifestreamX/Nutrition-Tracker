@@ -1,4 +1,3 @@
-'use client';
 
 import UserSettings from './UserSettings';
 

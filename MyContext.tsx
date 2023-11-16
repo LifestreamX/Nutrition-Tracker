@@ -120,6 +120,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     } else return;
   });
 
+
+
   const [selectedDate, setSelectedDate] = useState(() => {
     let savedSelectedDate;
 
