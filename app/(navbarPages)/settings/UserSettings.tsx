@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const UserSettings: React.FC = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme, systemTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   const { profileAvatar } = useMyContext();
 

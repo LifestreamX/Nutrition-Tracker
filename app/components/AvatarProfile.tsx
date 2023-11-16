@@ -37,6 +37,7 @@ const UploadAvatar = (): JSX.Element => {
     if (editorRef.current) {
       const canvas = editorRef.current.getImageScaledToCanvas();
       // You can now use the canvas to get the cropped image data
+
       const croppedImage = canvas.toDataURL();
 
       setCroppedImage(croppedImage);
@@ -80,7 +81,7 @@ const UploadAvatar = (): JSX.Element => {
                       />
                     </button>
 
-                    <button className='mt-3 md:mt-0 md:ml-4 w-full  '>
+                    <div className='mt-3 md:mt-0 md:ml-4 w-full  '>
                       {profileAvatar && (
                         <Button
                           onClick={() => {
@@ -91,7 +92,7 @@ const UploadAvatar = (): JSX.Element => {
                           Delete Image
                         </Button>
                       )}
-                    </button>
+                    </div>
                   </div>
 
                   <DeleteAvatarProfileModal
@@ -114,48 +115,55 @@ const UploadAvatar = (): JSX.Element => {
                   )}
                 </div>
 
-                <div className=' container relative right-7 md:right-0'>
-                  {image && (
-                    <AvatarEditor
-                      ref={editorRef}
-                      image={image}
-                      width={cropPreview}
-                      height={cropPreview}
-                      border={50}
-                      color={[255, 255, 255, 0.6]} // RGBA
-                      scale={scale}
-                      rotate={0}
-                    />
-                  )}
+                <div className=' flex container justify-center items-center flex-wrap'>
+                  {/* crop */}
+                  <div className='flex flex-col justify-evenly items-center m-5'>
+                    {image && (
+                      <AvatarEditor
+                        ref={editorRef}
+                        image={image}
+                        width={cropPreview}
+                        height={cropPreview}
+                        border={50}
+                        color={[255, 255, 255, 0.6]} // RGBA
+                        scale={scale}
+                        rotate={0}
+                      />
+                    )}
 
-                  {showCropButton && (
-                    <div className='mt-5 md:relative md:left-12'>
-                      <Button color='purple' onClick={handleCrop}>
-                        Crop
-                      </Button>
+                    <div>
+                      {showCropButton && (
+                        <div className='relative  '>
+                          <Button color='purple' onClick={handleCrop}>
+                            Crop
+                          </Button>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
+
+                  {/* save */}
+                  <div className='m-5'>
+                    {/* displaying crop avatar demo */}
+                    {croppedImage && (
+                      <div className='flex flex-col'>
+                        <Image
+                          className=' rounded-full relative  border-gray border-2 mb-5'
+                          src={croppedImage}
+                          alt='Rounded avatar'
+                          width={100}
+                          height={100}
+                        />
+
+                        <Button onClick={handleSaveProfileImage} color='purple'>
+                          Save
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* crop photo button */}
-                <div className='relative flex justify-center  container md:left-full md:bottom-64'>
-                  {/* displaying crop avatar demo */}
-                  {croppedImage && (
-                    <div className='flex flex-col'>
-                      <Image
-                        className=' rounded-full relative  border-gray border-2 mb-5'
-                        src={croppedImage}
-                        alt='Rounded avatar'
-                        width={100}
-                        height={100}
-                      />
-
-                      <Button onClick={handleSaveProfileImage} color='purple'>
-                        Save
-                      </Button>
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
           </div>

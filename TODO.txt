@@ -2,28 +2,41 @@
 
 
 
+TODO: work on 1 any types
+
+
+TODO: Lazy Loading
+
+
+TODO: work on 1 any types 
+
+
+TODO: Static assets : Docs
+
+
+TODO: work on 1 any types 
+
+
+TODO: Nextjs analytics : Docs
+
+TODO: work on 1 any types 
+
+
+TODO: Testing code - all 3 types  : Docs
+
+
+TODO: work on 1 any types 
 
 
 
-
-TODO: 
-
-  ---- OPTIMIZATIONS ----
-- blurrdDataUrl
-
-- Lazy Loading 
-- cache static assets? cdn?
-- put as many static info in server components best as possible
+TODO:  put as many static info in server components best as possible
 
 
-
-TODO: work on types
 
 
 TODO: Warnings in console
 
 
-TODO: Testing code - all 3 types 
 
 
 
