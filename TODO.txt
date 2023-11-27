@@ -2,30 +2,29 @@
 
 
 
-TODO: work on 1 any types
+
+TODO: 1 type & Rendering issues on page load
+
+
+
+TODO: Warnings in console 
 
 
 TODO: Lazy Loading
 
 
-TODO: work on 1 any types 
-
-
 TODO: Static assets : Docs
-
-
-TODO: work on 1 any types 
 
 
 TODO: Nextjs analytics : Docs
 
-TODO: work on 1 any types 
+
+
+
+
 
 
 TODO: Testing code - all 3 types  : Docs
-
-
-TODO: work on 1 any types 
 
 
 
@@ -34,7 +33,10 @@ TODO:  put as many static info in server components best as possible
 
 
 
-TODO: Warnings in console
+
+
+
+TODO: Chat ai bot for question answering?
 
 
 

@@ -1,4 +1,3 @@
-
 import { Params } from '@/types/MyFoodLog.types';
 import { Metadata } from 'next';
 import FoodDetailsLogic from './FoodDetailsLogic';
@@ -11,7 +10,10 @@ type MyFoodLogProps = {
   params: Params;
 };
 
+
 const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
+  console.log(params);
+
   return <FoodDetailsLogic params={params} />;
 };
 

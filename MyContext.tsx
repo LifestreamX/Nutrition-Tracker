@@ -29,8 +29,8 @@ type MyContextType = {
   setFoodLog: React.Dispatch<
     React.SetStateAction<FoodTypeData | object[] | ReactNode>
   >;
-  successAdded: Boolean;
-  setSuccessAdded: React.Dispatch<React.SetStateAction<Boolean> | any>;
+  successAdded: boolean;
+  setSuccessAdded: React.Dispatch<React.SetStateAction<boolean>>;
   clikedEditId: string;
   setClikedEditId: React.Dispatch<React.SetStateAction<string | null> | any>;
   foodItem: any;
