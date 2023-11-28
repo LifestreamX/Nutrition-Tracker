@@ -1,15 +1,15 @@
 // Macro taget types
 export interface MacroTargetTypes {
-  calories: number | string | any;
-  protein: number | string;
-  carbs: number | string;
-  fats: number | string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fats: number;
   date?: any;
   [key: string]: any;
 }
 
 export interface Goals {
-  [key: string]: number | string;
+  [key: string]: number;
 }
 
 export interface CaloriesConsumedData {

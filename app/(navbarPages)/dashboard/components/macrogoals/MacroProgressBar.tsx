@@ -2,7 +2,6 @@ import React from 'react';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useMyContext } from '@/MyContext';
 import { Goals } from '@/types/MacroTarget.types';
-import { useState, useEffect } from 'react';
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -37,38 +36,42 @@ const options = {
 
 // macro progress bar component
 export const MacroProgressBar: React.FC = () => {
-  const { macroTargets, setMacroTargets, foodLog } = useMyContext();
-  const [progress, setProgress] = useState(0);
+  const { macroTargets, foodLog } = useMyContext();
 
-  const goals: Goals | any = {
+  const goals: Goals = {
     caloriesGoal: macroTargets.calories,
     proteinGoal: macroTargets.protein,
     carbsGoal: macroTargets.carbs,
     fatsGoal: macroTargets.fats,
   };
 
-  const totalCalories: any = foodLog.reduce(
+  let totalCalories: number = 0;
+  let totalProtein: number = 0;
+  let totalCarbs: number = 0;
+  let totalFats: number = 0;
+
+  totalCalories = foodLog?.reduce(
     (acc: number, cur: FoodLogTypes | any): number | string => {
       return acc + cur.calories * cur.quantity;
     },
     0
   );
 
-  const totalProtein: any = foodLog.reduce(
+  totalProtein = foodLog?.reduce(
     (acc: number, cur: FoodLogTypes | any): number | string => {
       return acc + cur.protein * cur.quantity;
     },
     0
   );
 
-  const totalCarbs: any = foodLog.reduce(
+  totalCarbs = foodLog?.reduce(
     (acc: number, cur: FoodLogTypes | any): number | string => {
       return acc + cur.carbs * cur.quantity;
     },
     0
   );
 
-  const totalFats: any = foodLog.reduce(
+  totalFats = foodLog?.reduce(
     (acc: number, cur: FoodLogTypes | any): number | string => {
       return acc + cur.fats * cur.quantity;
     },
@@ -82,7 +85,7 @@ export const MacroProgressBar: React.FC = () => {
 
   const isMacroTargetsEmpty =
     (foodLog.length === 0 && Object.keys(macroTargets).length === 0) ||
-    macroTargets.calories === '';
+    macroTargets.calories === 0;
 
   return (
     <section className=' bg-white rounded-lg shadow-lg p-8 dark:bg-gray-800  '>
@@ -162,12 +165,13 @@ export const MacroProgressBar: React.FC = () => {
 export const CaloriesProgress = () => {
   const { macroTargets, setMacroTargets, foodLog } = useMyContext();
 
-  const totalCalories: any = foodLog.reduce(
-    (acc: number, cur: FoodLogTypes | any) => {
+  let totalCalories: number = 0;
+
+  if (Array.isArray(foodLog)) {
+    totalCalories = foodLog?.reduce((acc: number, cur: FoodLogTypes | any) => {
       return acc + cur.calories * cur.quantity;
-    },
-    0
-  );
+    }, 0);
+  }
 
   let caloriesRemain = macroTargets.calories - totalCalories;
 

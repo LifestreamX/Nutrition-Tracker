@@ -10,11 +10,12 @@ type MyFoodLogProps = {
   params: Params;
 };
 
-
 const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
-  console.log(params);
-
-  return <FoodDetailsLogic params={params} />;
+  return (
+    <>
+      <FoodDetailsLogic params={params} />;
+    </>
+  );
 };
 
 export default FoodLogDetails;

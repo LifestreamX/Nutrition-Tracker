@@ -75,18 +75,18 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     return savedMacroTargets
       ? JSON.parse(savedMacroTargets)
       : {
-          calories: '',
-          protein: '',
-          carbs: '',
-          fats: '',
+          calories: 0,
+          protein: 0,
+          carbs: 0,
+          fats: 0,
         };
   });
 
   const [macroTargetInputs, setMacroTargesInputs] = useState({
-    calories: macroTargets.calories || '',
-    protein: macroTargets.protein || '',
-    carbs: macroTargets.carbs || '',
-    fats: macroTargets.fats || '',
+    calories: macroTargets.calories || 0,
+    protein: macroTargets.protein || 0,
+    carbs: macroTargets.carbs || 0,
+    fats: macroTargets.fats || 0,
   });
 
   const [nutritionSearchData, setNutritionSearchData] = useState();

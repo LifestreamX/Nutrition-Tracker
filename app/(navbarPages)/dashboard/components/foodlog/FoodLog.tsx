@@ -107,10 +107,10 @@ const FoodLog = () => {
 
       setTimeout(() => {
         setMacroTargesInputs({
-          calories: '',
-          protein: '',
-          carbs: '',
-          fats: '',
+          calories: 0,
+          protein: 0,
+          carbs: 0,
+          fats: 0,
         });
       });
     }
@@ -154,6 +154,9 @@ const FoodLog = () => {
           <p className=' '>
             {/* {selectedDate !== null && selectedDate.formattedDate}{' '} */}
           </p>
+
+          {}
+
           {foodLog?.map((food: FoodLogTypes) => (
             <Food key={food.foodId} food={food} />
           ))}

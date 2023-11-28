@@ -10,7 +10,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 
 export const metadata: Metadata = {
   title: 'nutrition tracker',
-  
+
   description: 'track your nutrition progress daily',
 };
 

@@ -3,11 +3,18 @@
 
 
 
-TODO: 1 type & Rendering issues on page load
+TODO: 1 type & 
 
+TODO: put as many static info in server components best as possible
 
-
+TODO: Rendering Page issues 
 TODO: Warnings in console 
+
+
+
+TODO: Hover food log item calories needs to be to fixed and take out kcal
+
+
 
 
 TODO: Lazy Loading
@@ -28,7 +35,6 @@ TODO: Testing code - all 3 types  : Docs
 
 
 
-TODO:  put as many static info in server components best as possible
 
 
 
