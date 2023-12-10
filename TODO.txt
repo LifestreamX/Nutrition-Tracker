@@ -1,18 +1,43 @@
 
 
+TODO: TERMS issues
+
+TODO: SIGNUP ISSUES
+
+Commit message:
+
+ - fixed console errors 
+ - fix rendering page issues on first Loading
+ - moved static images to public folder
 
 
 
-TODO: 1 type & 
-
-TODO: put as many static info in server components best as possible
-
-TODO: Rendering Page issues 
 TODO: Warnings in console 
 
 
 
+TODO: Rendering Page issues 
+
+
+
+
+TODO: 1 type &  put as many static info in server components best as possible
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 TODO: Hover food log item calories needs to be to fixed and take out kcal
+
 
 
 
@@ -27,6 +52,7 @@ TODO: Nextjs analytics : Docs
 
 
 
+TODO: check out CDN for static assets
 
 
 

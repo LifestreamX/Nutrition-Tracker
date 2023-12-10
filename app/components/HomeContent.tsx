@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import homecontent from '../images/homecontent.png';
-import homecontent2 from '../images/homecontent2.png';
-import homecontent3 from '../images/homecontent3.png';
+import homecontent from '../.././public/images/homecontent.png';
+import homecontent2 from '../.././public/images/homecontent2.png';
+import homecontent3 from '../.././public/images/homecontent3.png';
 
 const HomeContent: React.FC = () => {
   return (
@@ -27,6 +27,7 @@ const HomeContent: React.FC = () => {
             width={500}
             height={500}
             placeholder='blur'
+            priority={true}
           />
           <h1 className='my-3 text-center md:w-60 font-bold lg:text-lg'>
             Track all your meals
@@ -40,6 +41,7 @@ const HomeContent: React.FC = () => {
             height={500}
             placeholder='blur'
             alt='food'
+            priority={true}
           />
           <h1 className='my-3 font-bold text-center md:w-60 lg:text-lg'>
             Choose The Right Foods
@@ -53,6 +55,7 @@ const HomeContent: React.FC = () => {
             width={500}
             height={500}
             placeholder='blur'
+            priority={true}
           />
           <h1 className='my-3 font-bold text-center md:w-60 lg:text-lg'>
             Keep Your Motivation Up!

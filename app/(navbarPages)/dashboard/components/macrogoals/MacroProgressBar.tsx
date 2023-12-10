@@ -50,33 +50,38 @@ export const MacroProgressBar: React.FC = () => {
   let totalCarbs: number = 0;
   let totalFats: number = 0;
 
-  totalCalories = foodLog?.reduce(
-    (acc: number, cur: FoodLogTypes | any): number | string => {
-      return acc + cur.calories * cur.quantity;
-    },
-    0
-  );
+  if (foodLog.length > 0) {
+    totalCalories = foodLog?.reduce(
+      (acc: number, cur: FoodLogTypes | any): number | string => {
+        return acc + cur.calories * cur.quantity;
+      },
+      0
+    );
 
-  totalProtein = foodLog?.reduce(
-    (acc: number, cur: FoodLogTypes | any): number | string => {
-      return acc + cur.protein * cur.quantity;
-    },
-    0
-  );
 
-  totalCarbs = foodLog?.reduce(
-    (acc: number, cur: FoodLogTypes | any): number | string => {
-      return acc + cur.carbs * cur.quantity;
-    },
-    0
-  );
+    
 
-  totalFats = foodLog?.reduce(
-    (acc: number, cur: FoodLogTypes | any): number | string => {
-      return acc + cur.fats * cur.quantity;
-    },
-    0
-  );
+    totalProtein = foodLog?.reduce(
+      (acc: number, cur: FoodLogTypes | any): number | string => {
+        return acc + cur.protein * cur.quantity;
+      },
+      0
+    );
+
+    totalCarbs = foodLog?.reduce(
+      (acc: number, cur: FoodLogTypes | any): number | string => {
+        return acc + cur.carbs * cur.quantity;
+      },
+      0
+    );
+
+    totalFats = foodLog?.reduce(
+      (acc: number, cur: FoodLogTypes | any): number | string => {
+        return acc + cur.fats * cur.quantity;
+      },
+      0
+    );
+  }
 
   const totalCaloriesPercentage = (totalCalories / goals.caloriesGoal) * 100;
   const totalProteinPercentage = (totalProtein / goals.proteinGoal) * 100;

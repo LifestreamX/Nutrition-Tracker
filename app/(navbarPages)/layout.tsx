@@ -37,7 +37,7 @@ export default function RootLayout({
 
       <MyProvider>
         <body className={`${kanit.className} dark:bg-gray-900`}>
-          <main>
+          <>
             <div className='fixed top-0 w-full z-50'>
               <NavBar />
             </div>
@@ -45,7 +45,7 @@ export default function RootLayout({
             <Providers>
               <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
             </Providers>
-          </main>
+          </>
         </body>
       </MyProvider>
     </>

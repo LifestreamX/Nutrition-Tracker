@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import heroimg from '../images/heroimg.png';
-import heroimg2 from '../images/heroimg2.png';
+import heroimg from '../.././public/images/heroimg.png';
+import heroimg2 from '../.././public/images/heroimg2.png';
 import Link from 'next/link';
 import Button from './Button';
 
@@ -33,6 +33,7 @@ const HomeHero: React.FC = () => {
           height={500}
           className='rounded-xl w-72 lg:w-96 relative'
           placeholder='blur'
+          priority={true}
         />
         <Image
           src={heroimg2}
@@ -41,6 +42,7 @@ const HomeHero: React.FC = () => {
           height={500}
           className='rounded-xl w-72 lg:w-96 relative top-5'
           placeholder='blur'
+          priority={true}
         />
       </div>
     </section>

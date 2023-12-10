@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
 import UploadAvatar from '../../components/AvatarProfile';
 import Image from 'next/image';
-import NoAvatar from '../images/NoAvatar.png';
+import NoAvatar from '../../../public/images/NoAvatar.png';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

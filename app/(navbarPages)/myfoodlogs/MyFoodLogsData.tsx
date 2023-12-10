@@ -4,7 +4,7 @@ import { useMyContext } from '@/MyContext';
 import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import { specificFoodLogTypes } from '@/types/MyFoodLog.types';
-import grapes from '../.././images/dashboard/grapes.png';
+import grapes from '../../.././public/images/dashboard/grapes.png';
 import Image from 'next/image';
 import FilterFoodLogsByDate from './components/FilterFoodLogsByDate';
 

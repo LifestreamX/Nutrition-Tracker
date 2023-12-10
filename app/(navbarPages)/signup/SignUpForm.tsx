@@ -92,9 +92,9 @@ const SignUpForm = (): JSX.Element => {
       <section className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
         <h1 className='sm:text-2xl md:text-3xl relative top-2 sm:top-24 font-bold '>
           {successfullyRegistered ? (
-            <h1 className='text-purple-800'>Successfully Registered</h1>
+            <p className='text-purple-800'>Successfully Registered</p>
           ) : (
-            <h1>Create Your Account </h1>
+            <p>Create Your Account </p>
           )}
         </h1>
         <form
@@ -227,7 +227,7 @@ const SignUpForm = (): JSX.Element => {
               </div>
               {/* signup submit button */}
               <div className=' flex items-center  justify-center   '>
-                <button className='w-full'>
+                <div>
                   {' '}
                   <Button
                     color='purple'
@@ -236,7 +236,7 @@ const SignUpForm = (): JSX.Element => {
                   >
                     Sign up
                   </Button>
-                </button>
+                </div>
               </div>
             </>
           )}

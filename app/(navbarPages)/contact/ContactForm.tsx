@@ -113,11 +113,11 @@ const ContactForm: React.FC = () => {
               </div>
             </div>
             <div className='p-2 w-full'>
-              <button className='flex mx-auto w-full justify-center'>
+              <div className='flex mx-auto w-full justify-center'>
                 <Button color='purple' size='large' responsiveWidth>
                   Send
                 </Button>
-              </button>
+              </div>
             </div>
             <div className='p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center dark:text-gray-400'>
               <p>tylerallen@live.com</p>

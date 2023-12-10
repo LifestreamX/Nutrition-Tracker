@@ -1,3 +1,4 @@
+
 import { Inter } from '@next/font/google';
 import HomeHero from '../components/HomeHero';
 import HomeContent from '../components/HomeContent';

@@ -1144,6 +1144,10 @@ video {
   width: 2rem;
 }
 
+.w-\[400px\] {
+  width: 400px;
+}
+
 .w-auto {
   width: auto;
 }

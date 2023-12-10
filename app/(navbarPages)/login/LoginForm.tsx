@@ -111,7 +111,7 @@ const LoginForm = (): JSX.Element => {
             </div>
             {/* signup submit button */}
             <div className='md:flex md:items-center  md:justify-center mb-6'>
-              <button className='w-full'>
+              <div>
                 {' '}
                 <Button
                   color='purple'
@@ -123,7 +123,7 @@ const LoginForm = (): JSX.Element => {
                 {!isValidPassword && isValidPassword !== undefined && (
                   <p className='text-red-500 mt-5'>Invalid Password</p>
                 )}
-              </button>
+              </div>
             </div>
           </div>
         </form>

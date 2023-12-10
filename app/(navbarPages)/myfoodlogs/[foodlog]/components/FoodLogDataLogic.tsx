@@ -80,7 +80,7 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   };
 
   return (
-    <main className='w-full flex justify-center items-middle relative top-20 p-5'>
+    <div className='w-full flex justify-center items-middle relative top-20 p-5'>
       <div className='bg-white dark:bg-gray-800 m-5 b  w-full rounded-lg shadow-2xl md:w-1/3 flex flex-col justify-center items-center p-5 sm:p-20 relative'>
         <div className=' w-full  '>
           {/* delete button */}
@@ -206,7 +206,7 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           );
         })}
       </div>
-    </main>
+    </div>
   );
 };
 

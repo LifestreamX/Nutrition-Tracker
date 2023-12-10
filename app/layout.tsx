@@ -30,9 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <MyProvider>
-        <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
-      </MyProvider>
+      <MyProvider>{children}</MyProvider>
     </html>
   );
 }

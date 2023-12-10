@@ -102,20 +102,22 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const [foodLog, setFoodLog] = useState(() => {
-    let savedFoodLog;
+    let savedFoodLog = null;
 
-    if (typeof window !== 'undefined') {
-      savedFoodLog = localStorage.getItem('foodLog');
-    }
+    // if (typeof window !== 'undefined') {
+    // }
+
+    savedFoodLog = localStorage.getItem('foodLog');
+
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
   });
 
   let [profileAvatar, setProfileAvatar] = useState(() => {
     let savedProfileAvatar;
 
-    if (typeof window !== 'undefined') {
-      savedProfileAvatar = localStorage.getItem('profileAvatar');
-    }
+    // if (typeof window !== 'undefined') {
+    // }
+    savedProfileAvatar = localStorage.getItem('profileAvatar');
 
     if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
       return savedProfileAvatar;
@@ -125,9 +127,9 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   const [selectedDate, setSelectedDate] = useState(() => {
     let savedSelectedDate;
 
-    if (typeof window !== 'undefined') {
-      savedSelectedDate = localStorage.getItem('selectedDate');
-    }
+    // if (typeof window !== 'undefined') {
+    // }
+    savedSelectedDate = localStorage.getItem('selectedDate');
 
     return savedSelectedDate && savedSelectedDate !== undefined
       ? JSON.parse(savedSelectedDate)?.toString()
@@ -152,9 +154,9 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   let storedSubmittedFoodLogData;
 
-  if (typeof window !== 'undefined') {
-    storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
-  }
+  // if (typeof window !== 'undefined') {
+  // }
+  storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
 
   const initialFoodLogData = storedSubmittedFoodLogData
     ? JSON.parse(storedSubmittedFoodLogData)
