@@ -59,40 +59,40 @@ const HoverFoodLogItemData = () => {
         </h1>
         <div className='grid grid-cols-1 md:grid-cols-2  gap-5 justify-center  relative md:left-5  '>
           <div className='text-center md:text-left'>
-            <p className='mb-1 text-sm md:text-lg'>
-              <span className=' text-sm md:text-lg'>Category: </span>
+            <p className='mb-1 text-sm md:text-md'>
+              <span className=' text-sm md:text-md'>Category: </span>
               <span className='font-semibold'>{category}</span>
             </p>
-            <p className='mb-1 text-sm md:text-lg '>
-              <span className='  text-sm md:text-lg'>Category Label:</span>{' '}
+            <p className='mb-1 text-sm md:text-md '>
+              <span className='  text-sm md:text-md'>Category Label:</span>{' '}
               <span className='font-semibold'>{categoryLabel}</span>
             </p>
-            <p className='mb-1 text-sm md:text-lg '>
+            <p className='mb-1 text-sm md:text-md '>
               {' '}
-              <span className='  text-sm md:text-lg'>Quantity:</span>
+              <span className='  text-sm md:text-md'>Quantity:</span>
               <span className='font-semibold'> {quantity}</span>
             </p>
-            <p className='mb-1 text-sm md:text-lg '>
+            <p className='mb-1 text-sm md:text-md '>
               {' '}
-              <span className='  text-sm md:text-lg'>Calories:</span>{' '}
+              <span className='  text-sm md:text-md'>Calories:</span>{' '}
               <span className='font-semibold'>{calories}</span> kcal
             </p>
           </div>
 
           <div className='text-center md:text-left'>
-            <p className='mb-1 text-sm md:text-lg'>
+            <p className='mb-1 text-sm md:text-md'>
               {' '}
-              <span className='  text-sm md:text-lg'>Protein:</span>{' '}
+              <span className='  text-sm md:text-md'>Protein:</span>{' '}
               <span className='font-semibold'>{protein.toFixed(1)}g</span>
             </p>
-            <p className='mb-1 text-sm md:text-lg'>
+            <p className='mb-1 text-sm md:text-md'>
               {' '}
-              <span className='  text-sm md:text-lg'>Carbs:</span>{' '}
+              <span className='  text-sm md:text-md'>Carbs:</span>{' '}
               <span className='font-semibold'>{carbs.toFixed(1)}g</span>{' '}
             </p>
-            <p className='mb-1 text-sm md:text-lg'>
+            <p className='mb-1 text-sm md:text-md'>
               {' '}
-              <span className='  text-sm md:text-lg'>Fats:</span>{' '}
+              <span className='  text-sm md:text-md'>Fats:</span>{' '}
               <span className='font-semibold'>{fats.toFixed(1)}g</span>
             </p>
           </div>

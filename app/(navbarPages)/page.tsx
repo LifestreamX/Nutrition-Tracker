@@ -1,10 +1,14 @@
-
 import { Inter } from '@next/font/google';
 import HomeHero from '../components/HomeHero';
 import HomeContent from '../components/HomeContent';
 import HomeFooter from '../components/HomeFooter';
+import { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  description: 'nutrition tracker home page',
+};
 
 export default function Home(): JSX.Element {
   return (

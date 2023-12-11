@@ -51,9 +51,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     },
   };
 
-  // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-  // Modal.setAppElement(document.getElementById('root'));
-
   const [modalIsOpen, setIsOpen] = useState(false);
   const [searchData, setSearchData] = useState<FoodTypeData[] | number | any>(
     []
@@ -119,9 +116,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setOpenExtra(false);
   }
 
-  let num = 3000;
 
-  let stringNum = '3000';
 
   const handleItemHighlightClick = (
     protein: number,
@@ -158,6 +153,8 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setOpenExtra(true);
     setSuccessAdded(false);
   };
+
+  console.log(nutritionSearchData)
 
   return (
     <div>
@@ -257,7 +254,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                 <span className='sr-only'>Info</span>
                 <div>
                   <span className='text-md  md:text-lg '>
-                    {nutritionSearchData.label} Added
+                    {nutritionSearchData?.label} Added
                   </span>
                 </div>
               </div>

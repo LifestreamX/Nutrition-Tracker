@@ -20,17 +20,19 @@ const NutritionInfo = () => {
 
   const { width } = useWindowSize();
 
-  useEffect(() => {
-    getPercentages(
+  if (nutritionSearchData) {
+    useEffect(() => {
+      getPercentages(
+        nutritionSearchData?.protein,
+        nutritionSearchData?.carbs,
+        nutritionSearchData?.fats
+      );
+    }, [
       nutritionSearchData?.protein,
       nutritionSearchData?.carbs,
-      nutritionSearchData?.fats
-    );
-  }, [
-    nutritionSearchData?.protein,
-    nutritionSearchData?.carbs,
-    nutritionSearchData?.fats,
-  ]);
+      nutritionSearchData?.fats,
+    ]);
+  }
 
   const [percentages, setPercentages] = useState({
     proteinPercentage: 0,
@@ -85,7 +87,7 @@ const NutritionInfo = () => {
     });
   };
 
-  const { protein, carbs, fats } = nutritionSearchData;
+  const { protein, carbs, fats } = nutritionSearchData ?? {};
 
   const { proteinPercentage, carbsPercentage, fatsPercent } = percentages;
 
@@ -158,7 +160,11 @@ const NutritionInfo = () => {
               color='purple'
               size='medium'
               responsiveWidth='true'
-              onClick={() => handleAddToFoodLog(nutritionSearchData.foodId)}
+              onClick={() => {
+                if (nutritionSearchData) {
+                  handleAddToFoodLog(nutritionSearchData.foodId);
+                }
+              }}
             >
               ADD
             </Button>

@@ -80,64 +80,64 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           <div className='w-full py-px bg-gray-500' />
         </div>
 
-        <ul className='flex  w-full flex-col  xs:flex-row md:justify-around'>
+        <div className='flex  w-full flex-col  xs:flex-row md:justify-around'>
           <div className='flex flex-col justify-evenly  xxs:items-center xs:items-start xs:mx-5 '>
-            <li className='   text-lg md:text-2xl font-medium mb-4  '>
+            <div className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Category:{' '}
                 <span className='  font-bold '>{logDetails?.category}</span>
               </p>
-            </li>
+            </div>
 
-            <li className='   text-lg md:text-2xl font-medium  mb-4  '>
+            <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Quantity:{' '}
                 <span className='  font-bold'>{logDetails?.quantity}</span>
               </p>
-            </li>
+            </div>
 
-            <li className='   text-lg md:text-2xl font-medium  mb-4  '>
+            <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Calories:{' '}
                 <span className='  font-bold'>
                   {logDetails?.calories.toFixed(0)} Kcal
                 </span>
               </p>
-            </li>
-            <li className='   text-lg md:text-2xl font-medium  mb-4  '>
+            </div>
+            <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Protein:{' '}
                 <span className='  font-bold'>
                   {logDetails?.protein.toFixed(0)} g
                 </span>
               </p>
-            </li>
-            <li className='   text-lg md:text-2xl font-medium mb-4  '>
+            </div>
+            <div className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Carbs:{' '}
                 <span className='  font-bold'>
                   {logDetails?.carbs.toFixed(0)} g
                 </span>
               </p>
-            </li>
-            <li className='   text-lg md:text-2xl font-medium  mb-4  '>
+            </div>
+            <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Fats:{' '}
                 <span className='  font-bold'>
                   {logDetails?.fats.toFixed(0)} g
                 </span>
               </p>
-            </li>
+            </div>
 
-            <li className='   text-lg md:text-2xl font-medium  mb-4  '>
+            <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Ounces:{' '}
                 <span className='  font-bold'>
                   {isNaN(ounces) ? <span>N/A</span> : ounces + 'oz'}
                 </span>
               </p>
-            </li>
-            <li className='   text-lg md:text-2xl font-medium mb-4   '>
+            </div>
+            <div className='   text-lg md:text-2xl font-medium mb-4   '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Grams:
                 <span className='  font-bold'>
@@ -145,7 +145,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
                   {isNaN(grams) ? <span>N/A</span> : grams.toFixed(0) + 'g'}
                 </span>
               </p>
-            </li>
+            </div>
           </div>
 
           {/* Image */}
@@ -159,7 +159,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
               className='rounded-lg '
             />
           </div>
-        </ul>
+        </div>
       </div>
     </main>
   );

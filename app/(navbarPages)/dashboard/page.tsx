@@ -1,4 +1,3 @@
-
 import React from 'react';
 import FetchNutritionData from './components/foodsearch/FetchNutritionData';
 import MacroGoals from './components/macrogoals/MacroGoals';
@@ -8,6 +7,8 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
+  description:
+    'user dashboard with food search and macronutrients goals with detailed logs',
 };
 
 const Dashboard = () => {

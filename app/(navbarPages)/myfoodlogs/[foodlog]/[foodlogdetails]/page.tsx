@@ -4,6 +4,7 @@ import FoodDetailsLogic from './FoodDetailsLogic';
 
 export const metadata: Metadata = {
   title: 'Food Details',
+  description: 'users food log details',
 };
 
 type MyFoodLogProps = {

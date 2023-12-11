@@ -6,7 +6,11 @@ export const metadata: Metadata = {
 };
 
 const SignUp = (): JSX.Element => {
-  return <SignUpForm />;
+  return (
+    <section className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
+      <SignUpForm />
+    </section>
+  );
 };
 
 export default SignUp;

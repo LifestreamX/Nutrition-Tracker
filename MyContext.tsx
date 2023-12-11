@@ -21,9 +21,9 @@ type MyContextType = {
   macroTargetInputs: MacroTargetTypes;
 
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
-  nutritionSearchData: NutritionSearchDataType | undefined | any;
+  nutritionSearchData: NutritionSearchDataType | null;
   setNutritionSearchData: React.Dispatch<
-    React.SetStateAction<NutritionSearchDataType> | any
+    React.SetStateAction<NutritionSearchDataType | null>
   >;
   foodLog: FoodTypeData | any;
   setFoodLog: React.Dispatch<
@@ -88,8 +88,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     carbs: macroTargets.carbs || 0,
     fats: macroTargets.fats || 0,
   });
-
-  const [nutritionSearchData, setNutritionSearchData] = useState();
+  const [nutritionSearchData, setNutritionSearchData] =
+    useState<NutritionSearchDataType | null>(null);
 
   // const [foodLog, setFoodLog] = useState([]);
 

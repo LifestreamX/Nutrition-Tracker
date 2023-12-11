@@ -80,7 +80,6 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   };
 
   return (
-    <div className='w-full flex justify-center items-middle relative top-20 p-5'>
       <div className='bg-white dark:bg-gray-800 m-5 b  w-full rounded-lg shadow-2xl md:w-1/3 flex flex-col justify-center items-center p-5 sm:p-20 relative'>
         <div className=' w-full  '>
           {/* delete button */}
@@ -119,34 +118,34 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
         </div>
         <div className=' mb-10 flex flex-col lg:flex-row justify-center w-screen md:w-full  '>
           <p className='mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center mb-4 lg:mb-0 '>
-            <p className=''>Date</p>
-            <p className=' mt-2 font-semibold'> {selectedDate}</p>
+            <span className=''>Date</span>
+            <span className=' mt-2 font-semibold'> {selectedDate}</span>
           </p>
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
           <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
-            <p className=' '>Total Calories </p>
-            <p className=' font-semibold mt-2'>{calories.toFixed(0)}</p>
+            <span className=' '>Total Calories </span>
+            <span className=' font-semibold mt-2'>{calories.toFixed(0)}</span>
           </p>
         </div>
 
         <div className='flex lg:m-8 p-6'>
           <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
-            <p className=' '>Total Protein </p>
-            <p className=' font-semibold mt-2'>{protein.toFixed(0)}g</p>
+            <span className=' '>Total Protein </span>
+            <span className=' font-semibold mt-2'>{protein.toFixed(0)}g</span>
           </p>
 
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
 
           <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
-            <p className=' '>Total Carbs </p>
-            <p className=' font-semibold mt-2'>{carbs.toFixed(0)}g</p>
+            <span className=' '>Total Carbs </span>
+            <span className=' font-semibold mt-2'>{carbs.toFixed(0)}g</span>
           </p>
 
           <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
 
           <p className=' mx-6 text-md md:text-lg lg:text-1xl font-bold  text-center'>
-            <p className=' '>Total Fats </p>
-            <p className=' font-semibold mt-2'>{fats.toFixed(0)}g</p>
+            <span className=' '>Total Fats </span>
+            <span className=' font-semibold mt-2'>{fats.toFixed(0)}g</span>
           </p>
         </div>
 
@@ -165,8 +164,6 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
             .replaceAll(' ', '-');
 
           let combinedQuery = queryDate + '/' + queryLabel;
-
-
 
           return (
             <ul className='w-full '>
@@ -206,7 +203,6 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           );
         })}
       </div>
-    </div>
   );
 };
 

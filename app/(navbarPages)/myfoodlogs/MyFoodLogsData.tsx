@@ -70,7 +70,6 @@ const MyFoodLogsData: React.FC = () => {
   let paginationClassWrapper = `flex  ${selectedDate !== null ? 'hidden' : ''}`;
 
   return (
-    <section className='w-full flex justify-center items-middle relative top-20'>
       <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10 dark:bg-gray-800'>
         <div className='flex'>
           <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
@@ -232,7 +231,6 @@ const MyFoodLogsData: React.FC = () => {
           </ul>
         </nav>
       </div>
-    </section>
   );
 };
 

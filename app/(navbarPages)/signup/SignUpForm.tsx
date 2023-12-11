@@ -6,9 +6,6 @@ import Button from '../../components/Button';
 import { useWindowSize } from 'react-use';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Signup',
-};
 
 const SignUpForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
@@ -89,7 +86,6 @@ const SignUpForm = (): JSX.Element => {
 
   return (
     <>
-      <section className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
         <h1 className='sm:text-2xl md:text-3xl relative top-2 sm:top-24 font-bold '>
           {successfullyRegistered ? (
             <p className='text-purple-800'>Successfully Registered</p>
@@ -251,12 +247,14 @@ const SignUpForm = (): JSX.Element => {
               </span>
             </Link>
           ) : (
-            <Link href='./login' className='text-purple-400 '>
+            <Link
+              href='./login'
+              className='text-purple-400 hover:text-purple-800 '
+            >
               <p className='relative bottom-5'>Already have an account?</p>
             </Link>
           )}
         </div>
-      </section>
     </>
   );
 };

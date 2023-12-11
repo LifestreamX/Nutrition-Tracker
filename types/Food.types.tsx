@@ -38,7 +38,18 @@ export interface ServingsType {
 }
 
 export interface NutritionSearchDataType {
-  carbs: number | string;
-  fats: number | string;
-  protein: number | string ;
+  carbs: number;
+  fats: number;
+  protein: number;
+  calories: number;
+  FIBTG: number;
+  category: string;
+  categoryLabel: string;
+  foodId: string;
+  image: string;
+  knownAs: string;
+  label: string;
+  nutrients: {};
+  servingSizes: {};
+  quantity: 1;
 }

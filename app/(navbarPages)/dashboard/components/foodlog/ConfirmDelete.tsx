@@ -1,5 +1,4 @@
 import React from 'react';
-import { useMyContext } from '@/MyContext';
 
 interface ChildProps {
   onDelete: (id?: string) => void;

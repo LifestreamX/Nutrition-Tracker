@@ -8,11 +8,15 @@ type MyFoodLogProps = {
 
 export const metadata: Metadata = {
   title: 'Food Log',
+  description: 'users food log',
 };
 
 const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
-
-  return <FoodLogDataLogic params={params} />;
+  return (
+    <div className='w-full flex justify-center items-middle relative top-20 p-5'>
+      <FoodLogDataLogic params={params} />;
+    </div>
+  );
 };
 
 export default MyFoodLog;
