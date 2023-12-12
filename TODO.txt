@@ -2,13 +2,12 @@
 
 
 
-fixed NutritionSearchData types
 
 
 
 
 
-TODO: 1 type &  put as many static info in server components best as possible
+TODO: 1 type &  Check out Lazy Loading
 
 
 
@@ -17,10 +16,12 @@ TODO: 1 type &  put as many static info in server components best as possible
 
 
 
-TODO: Warnings in console 
 
 
-TODO: Lazy Loading
+
+
+
+
 
 
 TODO: Static assets : Docs
@@ -29,13 +30,12 @@ TODO: Static assets : Docs
 TODO: Nextjs analytics : Docs
 
 
-
 TODO: check out CDN for static assets
 
 
-
-
 TODO: Testing code - all 3 types  : Docs
+
+TODO: Warnings in console 
 
 
 
