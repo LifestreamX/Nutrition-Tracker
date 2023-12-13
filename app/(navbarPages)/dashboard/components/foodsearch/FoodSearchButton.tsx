@@ -116,8 +116,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setOpenExtra(false);
   }
 
-
-
   const handleItemHighlightClick = (
     protein: number,
     carbs: number,
@@ -153,8 +151,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     setOpenExtra(true);
     setSuccessAdded(false);
   };
-
-  console.log(nutritionSearchData)
 
   return (
     <div>

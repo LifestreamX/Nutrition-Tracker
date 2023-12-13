@@ -25,14 +25,14 @@ type MyContextType = {
   setNutritionSearchData: React.Dispatch<
     React.SetStateAction<NutritionSearchDataType | null>
   >;
-  foodLog: FoodTypeData | any;
+  foodLog: FoodTypeData;
   setFoodLog: React.Dispatch<
     React.SetStateAction<FoodTypeData | object[] | ReactNode>
   >;
   successAdded: boolean;
   setSuccessAdded: React.Dispatch<React.SetStateAction<boolean>>;
   clikedEditId: string;
-  setClikedEditId: React.Dispatch<React.SetStateAction<string | null> | any>;
+  setClikedEditId: React.Dispatch<React.SetStateAction<string>>;
   foodItem: any;
   setFoodItem: React.Dispatch<React.SetStateAction<any>>;
   selectedDate: Date | null;
@@ -103,9 +103,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [foodLog, setFoodLog] = useState(() => {
     let savedFoodLog = null;
-
-    // if (typeof window !== 'undefined') {
-    // }
 
     if (typeof window !== 'undefined') {
       savedFoodLog = localStorage.getItem('foodLog');

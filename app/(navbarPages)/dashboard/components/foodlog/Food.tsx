@@ -90,7 +90,7 @@ const Food = ({ food }: FoodDataProps) => {
     if (newQuantity <= 0) {
       return;
     } else {
-      setClikedEditId(null);
+      setClikedEditId('');
       const updated = foodLog?.map((food: any) => {
         if (food.foodId === id) {
           return { ...food, quantity: newQuantity };
@@ -100,6 +100,8 @@ const Food = ({ food }: FoodDataProps) => {
       setFoodLog(updated);
     }
   };
+
+  console.log(clikedEditId);
 
   const quantityCalories = (food.calories || 0) * (food?.quantity || 0);
 

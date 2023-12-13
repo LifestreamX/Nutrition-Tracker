@@ -2,12 +2,21 @@
 
 
 
+foodLog type
+clickedEditId type
 
-TODO: Fix Deploymeny failing 
+
+
+TODO: Fix Types
 
 
 
-TODO: 1 type &  Check out Lazy Loading
+
+
+
+
+
+TODO:  Check out Lazy Loading
 
 
 
