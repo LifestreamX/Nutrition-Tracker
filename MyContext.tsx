@@ -25,7 +25,7 @@ type MyContextType = {
   setNutritionSearchData: React.Dispatch<
     React.SetStateAction<NutritionSearchDataType | null>
   >;
-  foodLog: FoodTypeData;
+  foodLog: FoodTypeData[];
   setFoodLog: React.Dispatch<
     React.SetStateAction<FoodTypeData | object[] | ReactNode>
   >;
@@ -95,7 +95,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [successAdded, setSuccessAdded] = useState(false);
 
-  const [clikedEditId, setClikedEditId] = useState('');
+  const [clikedEditId, setClikedEditId] = useState('null');
 
   const [foodItem, setFoodItem] = useState(null);
 
@@ -110,6 +110,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
   });
+
+  console.log(foodLog);
 
   let [profileAvatar, setProfileAvatar] = useState(() => {
     let savedProfileAvatar;
