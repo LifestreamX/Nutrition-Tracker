@@ -6,6 +6,7 @@ import React, { useState, useReducer, useEffect } from 'react';
 import Food from './Food';
 import Button from '@/app/components/Button';
 import uniqid from 'uniqid';
+import { FoodTypeData } from '@/types/Food.types';
 
 interface State {
   foodLogSubmittedSuccess: boolean;

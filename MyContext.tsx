@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { MacroTargetTypes } from './types/MacroTarget.types';
 import { FoodTypeData, NutritionSearchDataType } from './types/Food.types';
+import { FoodLogTypes } from './types/FoodLog.types';
 
 type MyContextType = {
   // incrementCount: () => void;
@@ -25,9 +26,9 @@ type MyContextType = {
   setNutritionSearchData: React.Dispatch<
     React.SetStateAction<NutritionSearchDataType | null>
   >;
-  foodLog: FoodTypeData[];
+  foodLog: FoodLogTypes[];
   setFoodLog: React.Dispatch<
-    React.SetStateAction<FoodTypeData | object[] | ReactNode>
+    React.SetStateAction<FoodLogTypes | object[] | ReactNode>
   >;
   successAdded: boolean;
   setSuccessAdded: React.Dispatch<React.SetStateAction<boolean>>;
