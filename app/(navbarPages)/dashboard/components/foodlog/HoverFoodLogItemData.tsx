@@ -27,7 +27,11 @@ const HoverFoodLogItemData = () => {
     nutrients,
     quantity,
     servingSizes,
-  } = foodItem;
+  } = foodItem || {};
+
+  let isImage = image || '';
+
+  console.log(isImage);
 
   const data = {
     labels: ['Protein', 'Net Carbs', 'Fats'],
@@ -46,7 +50,7 @@ const HoverFoodLogItemData = () => {
 
   const pieCentered =
     image === undefined ? 'justify-center' : 'justify-between';
-  console.log(image);
+  // console.log(image);
 
   let blured = Base64.encode(image ? image : '');
 
@@ -83,17 +87,17 @@ const HoverFoodLogItemData = () => {
             <p className='mb-1 text-sm md:text-md'>
               {' '}
               <span className='  text-sm md:text-md'>Protein:</span>{' '}
-              <span className='font-semibold'>{protein.toFixed(1)}g</span>
+              <span className='font-semibold'>{protein?.toFixed(1)}g</span>
             </p>
             <p className='mb-1 text-sm md:text-md'>
               {' '}
               <span className='  text-sm md:text-md'>Carbs:</span>{' '}
-              <span className='font-semibold'>{carbs.toFixed(1)}g</span>{' '}
+              <span className='font-semibold'>{carbs?.toFixed(1)}g</span>{' '}
             </p>
             <p className='mb-1 text-sm md:text-md'>
               {' '}
               <span className='  text-sm md:text-md'>Fats:</span>{' '}
-              <span className='font-semibold'>{fats.toFixed(1)}g</span>
+              <span className='font-semibold'>{fats?.toFixed(1)}g</span>
             </p>
           </div>
         </div>
@@ -106,7 +110,7 @@ const HoverFoodLogItemData = () => {
 
           <div className='flex md:w-1/3  justify-center items-center '>
             <Image
-              src={image}
+              src={isImage}
               width={100}
               height={100}
               alt={`Picture of ${label} `}

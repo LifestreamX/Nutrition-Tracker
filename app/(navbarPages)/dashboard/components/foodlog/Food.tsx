@@ -101,8 +101,6 @@ const Food = ({ food }: FoodDataProps) => {
     }
   };
 
-  console.log(clikedEditId);
-
   const quantityCalories = (food.calories || 0) * (food?.quantity || 0);
 
   return (

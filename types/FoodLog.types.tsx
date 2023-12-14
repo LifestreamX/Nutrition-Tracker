@@ -7,6 +7,8 @@ export interface FoodLogTypes {
     arg1: number
   ): unknown;
 
+  foodLogId: number;
+
   FIBTG: number;
   calories: number;
   carbs: number;
@@ -27,5 +29,4 @@ export interface FoodLogTypes {
   };
   protein: number;
   servingSizes?: object | undefined;
-  
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Dispatch,
   ReactNode,
   createContext,
   useContext,
@@ -11,6 +12,8 @@ import {
 import { MacroTargetTypes } from './types/MacroTarget.types';
 import { FoodTypeData, NutritionSearchDataType } from './types/Food.types';
 import { FoodLogTypes } from './types/FoodLog.types';
+import { FoodItemType } from './types/FoodItem.types';
+import { SubmitAndDeleteActionType } from './types/Action.types';
 
 type MyContextType = {
   // incrementCount: () => void;
@@ -34,11 +37,12 @@ type MyContextType = {
   setSuccessAdded: React.Dispatch<React.SetStateAction<boolean>>;
   clikedEditId: string;
   setClikedEditId: React.Dispatch<React.SetStateAction<string>>;
-  foodItem: any;
-  setFoodItem: React.Dispatch<React.SetStateAction<any>>;
+  foodItem: FoodItemType;
+  setFoodItem: React.Dispatch<React.SetStateAction<FoodItemType>>;
   selectedDate: Date | null;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
-  dispatch: any;
+  dispatch: Dispatch<SubmitAndDeleteActionType>;
+
   submittedFoodLogs: any;
   profileAvatar: undefined | string;
   setProfileAvatar: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -98,7 +102,9 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   const [clikedEditId, setClikedEditId] = useState('null');
 
-  const [foodItem, setFoodItem] = useState(null);
+  const [foodItem, setFoodItem] = useState({});
+
+  console.log(foodItem);
 
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -111,8 +117,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
   });
-
-  console.log(foodLog);
 
   let [profileAvatar, setProfileAvatar] = useState(() => {
     let savedProfileAvatar;
@@ -138,15 +142,17 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       : null;
   });
 
-  type Action = {
-    type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';
-    payload: FoodTypeData[];
-  };
-
-  const reducer = (state: FoodTypeData[] | any, action: Action) => {
+  const reducer = (
+    state: FoodTypeData[],
+    action: SubmitAndDeleteActionType
+  ) => {
     switch (action.type) {
       case 'SUBMIT_FOOD_LOGS':
-        return [...state, action.payload];
+        const newLogs = Array.isArray(action.payload)
+          ? action.payload
+          : [action.payload];
+
+        return [...state, ...newLogs];
       case 'DELETE_FOOD_LOG':
         return action.payload;
       default:

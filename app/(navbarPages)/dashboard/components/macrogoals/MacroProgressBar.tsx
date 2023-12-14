@@ -60,7 +60,6 @@ export const MacroProgressBar: React.FC = () => {
       0
     );
 
-    console.log(totalCalories)
 
     totalProtein = foodLog?.reduce((acc: number, cur: FoodLogTypes): number => {
       const quantity = cur.quantity !== undefined ? cur.quantity : 0;

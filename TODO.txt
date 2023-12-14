@@ -2,8 +2,10 @@
 
 
 
-foodLog type
-clickedEditId type
+Dispastch type 
+
+
+TODO: Center my food logs and and specific food log and no food logs
 
 
 
