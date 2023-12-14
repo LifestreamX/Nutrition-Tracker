@@ -70,167 +70,162 @@ const MyFoodLogsData: React.FC = () => {
   let paginationClassWrapper = `flex  ${selectedDate !== null ? 'hidden' : ''}`;
 
   return (
-      <div className='bg-white  rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10 dark:bg-gray-800'>
-        <div className='flex'>
-          <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
-          <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5  dark:text-white'>
-            My Food Logs
-          </h1>
-          <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
+    <div className='bg-white   rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-10 dark:bg-gray-800'>
+      <div className='flex'>
+        <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
+        <h1 className='mx-4 text-lg md:text-2xl font-bold text-center mb-5  dark:text-white'>
+          My Food Logs
+        </h1>
+        <Image src={grapes} alt='grapes' className='w-4 h-4 md:w-6 md:h-6' />
+      </div>
+      {submittedFoodLogs.length > 0 && (
+        <div>
+          <FilterFoodLogsByDate
+            startDate={startDate}
+            setStartDate={setStartDate}
+          />
         </div>
-        {submittedFoodLogs.length > 0 && (
-          <div>
-            <FilterFoodLogsByDate
-              startDate={startDate}
-              setStartDate={setStartDate}
-            />
-          </div>
-        )}
+      )}
 
-        <ul className='w-full mb-6'>
-          {dateFilterResults !== null || noLog ? (
-            <>
-              <li
-                // key={foodLogId}
-                className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'
-              >
-                {noLog ? (
-                  <h1>No Food Log for {selectedDate}</h1>
-                ) : (
-                  <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-gray-100  dark:hover:bg-purple-800'>
+      <ul className='w-full mb-6 '>
+        {dateFilterResults !== null || noLog ? (
+          <>
+            <li
+              // key={foodLogId}
+              className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'
+            >
+              {noLog ? (
+                <h1>No Food Log for {selectedDate}</h1>
+              ) : (
+                <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-gray-100  dark:hover:bg-purple-800'>
+                  <Link
+                    // key={submittedFoodLogs}
+                    href={{
+                      pathname: `/myfoodlogs/${dateFilterResults?.foodLogId}`,
+                      query: formattedFilteredDate,
+                    }}
+                    legacyBehavior
+                    className='bg-black'
+                  >
+                    <h1>{dateFilterResults?.selectedDate[0]}</h1>
+                  </Link>
+                </div>
+              )}
+            </li>
+          </>
+        ) : (
+          <>
+            {sortedByYear.map(
+              ({ foodLogId, selectedDate, foodLog }: specificFoodLogTypes) => {
+                let formattedDate = selectedDate
+                  .toString()
+                  .replaceAll(', ', '-')
+                  .replaceAll(' ', '-');
+
+                return (
+                  <li
+                    key={foodLogId}
+                    className='text-sm md:text-xl hover:bg-gray-200  dark:bg-gray-500 dark:hover:bg-gray-600 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                  >
                     <Link
-                      // key={submittedFoodLogs}
+                      // href={`/myfoodlogs/${foodLogId}`}
                       href={{
-                        pathname: `/myfoodlogs/${dateFilterResults?.foodLogId}`,
-                        query: formattedFilteredDate,
+                        pathname: `/myfoodlogs/${foodLogId}`,
+                        query: formattedDate,
                       }}
                       legacyBehavior
-                      className='bg-black'
                     >
-                      <h1>{dateFilterResults?.selectedDate[0]}</h1>
+                      <h1>{selectedDate}</h1>
                     </Link>
-                  </div>
-                )}
-              </li>
-            </>
-          ) : (
-            <>
-              {sortedByYear.map(
-                ({
-                  foodLogId,
-                  selectedDate,
-                  foodLog,
-                }: specificFoodLogTypes) => {
-                  let formattedDate = selectedDate
-                    .toString()
-                    .replaceAll(', ', '-')
-                    .replaceAll(' ', '-');
+                  </li>
+                );
+              }
+            )}
+          </>
+        )}
+      </ul>
 
-                  return (
-                    <li
-                      key={foodLogId}
-                      className='text-sm md:text-xl hover:bg-gray-200  dark:bg-gray-500 dark:hover:bg-gray-600 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
-                    >
-                      <Link
-                        key={submittedFoodLogs}
-                        // href={`/myfoodlogs/${foodLogId}`}
-                        href={{
-                          pathname: `/myfoodlogs/${foodLogId}`,
-                          query: formattedDate,
-                        }}
-                        legacyBehavior
-                      >
-                        <h1>{selectedDate}</h1>
-                      </Link>
-                    </li>
-                  );
-                }
-              )}
-            </>
+      {/* pagination */}
+      <nav aria-label='Page navigation'>
+        <ul className='flex items-center -space-x-px h-10 text-base'>
+          {submittedFoodLogs.length === 0 && (
+            <h1 className='font-bold text-xl'>No Food Logs Recorded</h1>
+          )}
+
+          {submittedFoodLogs.length > 0 && (
+            <section className={paginationClassWrapper}>
+              <li>
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className='flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                >
+                  <span className='sr-only'>Previous</span>
+                  <svg
+                    className='w-3 h-3'
+                    aria-hidden='true'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 6 10'
+                  >
+                    <path
+                      stroke='currentColor'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='M5 1 1 5l4 4'
+                    />
+                  </svg>
+                </button>
+              </li>
+              {Array.from({
+                length: Math.ceil(submittedFoodLogs.length / resultsPerPage),
+              }).map((_, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => handlePageChange(index + 1)}
+                    className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                      currentPage === index + 1
+                        ? 'text-purple-600 bg-purple-50'
+                        : ''
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+              <li>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={
+                    currentPage ===
+                    Math.ceil(submittedFoodLogs.length / resultsPerPage)
+                  }
+                  className='flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                >
+                  <span className='sr-only'>Next</span>
+                  <svg
+                    className='w-3 h-3'
+                    aria-hidden='true'
+                    xmlns='http://www.w3.org/2000/svg'
+                    fill='none'
+                    viewBox='0 0 6 10'
+                  >
+                    <path
+                      stroke='currentColor'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth='2'
+                      d='m1 9 4-4-4-4'
+                    />
+                  </svg>
+                </button>
+              </li>
+            </section>
           )}
         </ul>
-
-        {/* pagination */}
-        <nav aria-label='Page navigation '>
-          <ul className='flex items-center -space-x-px h-10 text-base'>
-            {submittedFoodLogs.length === 0 && (
-              <h1 className='font-bold text-xl'>No Food Logs Recorded</h1>
-            )}
-
-            {submittedFoodLogs.length > 0 && (
-              <section className={paginationClassWrapper}>
-                <li>
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className='flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-                  >
-                    <span className='sr-only'>Previous</span>
-                    <svg
-                      className='w-3 h-3'
-                      aria-hidden='true'
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 6 10'
-                    >
-                      <path
-                        stroke='currentColor'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                        d='M5 1 1 5l4 4'
-                      />
-                    </svg>
-                  </button>
-                </li>
-                {Array.from({
-                  length: Math.ceil(submittedFoodLogs.length / resultsPerPage),
-                }).map((_, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => handlePageChange(index + 1)}
-                      className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                        currentPage === index + 1
-                          ? 'text-purple-600 bg-purple-50'
-                          : ''
-                      }`}
-                    >
-                      {index + 1}
-                    </button>
-                  </li>
-                ))}
-                <li>
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={
-                      currentPage ===
-                      Math.ceil(submittedFoodLogs.length / resultsPerPage)
-                    }
-                    className='flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
-                  >
-                    <span className='sr-only'>Next</span>
-                    <svg
-                      className='w-3 h-3'
-                      aria-hidden='true'
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 6 10'
-                    >
-                      <path
-                        stroke='currentColor'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                        d='m1 9 4-4-4-4'
-                      />
-                    </svg>
-                  </button>
-                </li>
-              </section>
-            )}
-          </ul>
-        </nav>
-      </div>
+      </nav>
+    </div>
   );
 };
 

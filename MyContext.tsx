@@ -14,6 +14,7 @@ import { FoodTypeData, NutritionSearchDataType } from './types/Food.types';
 import { FoodLogTypes } from './types/FoodLog.types';
 import { FoodItemType } from './types/FoodItem.types';
 import { SubmitAndDeleteActionType } from './types/Action.types';
+import { SubmittedFoodLogsType } from './types/MyFoodLog.types';
 
 type MyContextType = {
   // incrementCount: () => void;
@@ -42,8 +43,7 @@ type MyContextType = {
   selectedDate: Date | null;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
   dispatch: Dispatch<SubmitAndDeleteActionType>;
-
-  submittedFoodLogs: any;
+  submittedFoodLogs: SubmittedFoodLogsType[];
   profileAvatar: undefined | string;
   setProfileAvatar: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
@@ -63,13 +63,6 @@ type MyProviderProps = {
 };
 
 export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
-  // const [macroTargets, setMacroTargets] = useState({
-  //   calories: '',
-  //   protein: '',
-  //   carbs: '',
-  //   fats: '',
-  // });
-
   const [macroTargets, setMacroTargets] = useState(() => {
     let savedMacroTargets;
 
@@ -103,8 +96,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   const [clikedEditId, setClikedEditId] = useState('null');
 
   const [foodItem, setFoodItem] = useState({});
-
-  console.log(foodItem);
 
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 

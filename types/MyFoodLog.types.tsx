@@ -1,5 +1,13 @@
 import { FoodLogTypes } from './FoodLog.types';
 
+export type SubmittedFoodLogsType = {
+  foodId: string;
+  find(arg0: (log: any) => boolean): any;
+  foodLog: FoodLogTypes;
+  foodLogId: string;
+  selectedDate: string[];
+};
+
 export type Params = {
   foodlog: string;
   foodLog: string;

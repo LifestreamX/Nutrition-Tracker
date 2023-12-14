@@ -1,5 +1,6 @@
 import { FoodTypeData } from './Food.types';
 import { FoodLogTypes } from './FoodLog.types';
+import { SubmittedFoodLogsType } from './MyFoodLog.types';
 
 // type SubmitFoodLogsPayload = {
 //   foodLogId: string | number;
@@ -18,7 +19,7 @@ export type SubmitAndDeleteActionType =
         foodLog: FoodLogTypes[];
       };
     }
-  | { type: 'DELETE_FOOD_LOG'; payload: FoodLogTypes[] };
+  | { type: 'DELETE_FOOD_LOG'; payload: SubmittedFoodLogsType[] };
 
 // export type Action = {
 //   type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';

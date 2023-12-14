@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Params } from '@/types/MyFoodLog.types';
+import { Params, SubmittedFoodLogsType } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
 import { FoodLogTypes } from '@/types/FoodLog.types';
@@ -17,22 +17,37 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   let logDetails: any;
 
-  submittedFoodLogs.find(
-    (e: { foodLogId: string; foodLog: Array<FoodLogTypes> }) => {
-      let logs;
-      if (e.foodLogId === params.foodlog) {
-        logs = e.foodLog;
-      }
+  // const foundLog = submittedFoodLogs.find(
+  //   (e: SubmittedFoodLogsType) => e.foodLogId === params.foodlog
+  // );
 
-      logDetails = logs?.find((e) => {
-        return e.foodId === params.foodlogdetails;
-      });
+  // console.log(logDetails)
 
-      return logDetails;
+  // if (foundLog) {
+  //   logDetails = foundLog.find((log) => log.foodId === params.foodlogdetails);
+  // }
+
+  submittedFoodLogs.find((e: SubmittedFoodLogsType) => {
+    let logs;
+    if (e.foodLogId === params.foodlog) {
+      logs = e.foodLog;
     }
-  );
 
-  let { servingSizes } = logDetails;
+    logDetails = Array.isArray(logs)
+      ? logs.find(
+          (logItem: FoodLogTypes) => logItem.foodId === params.foodlogdetails
+        )
+      : null;
+
+    return logDetails;
+  });
+
+  let servingSizes;
+
+  if (logDetails) {
+    let { servingSizes: servingDetails } = logDetails;
+    servingSizes = servingDetails;
+  }
 
   const router = useRouter();
 
@@ -54,7 +69,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   // let imageToBlur =  Base64.encode(logDetails.image) ;
 
   return (
-    <main className='w-full flex justify-center items-middle relative top-20 p-5'>
+    <main className='w-full flex justify-center items-middle relative top-40 p-5'>
       <div className='bg-white dark:bg-gray-800 m-5   w-full rounded-lg shadow-2xl  flex flex-col justify-center items-center sm:p-20 relative md:max-w-5xl'>
         {/* back arrow */}
         <svg
