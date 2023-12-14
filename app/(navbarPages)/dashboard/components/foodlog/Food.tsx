@@ -26,10 +26,12 @@ const Food = ({ food }: FoodDataProps) => {
   } = useMyContext();
   const [hoverItemId, setHoverItemId] = useState<string | null>(null);
   const [deleteClicked, setDeleteClicked] = useState(false);
-  const [newQuantity, setNewQuantity] = useState<any>(null);
+  const [newQuantity, setNewQuantity] = useState<null | number>(null);
   const [emptyQuantityWarning, setEmptyQuantityWarning] = useState(false);
   const [delayRender, setDelayedRender] = useState(false);
   const { width } = useWindowSize();
+
+  console.log(typeof newQuantity);
 
   useEffect(() => {
     setTimeout(() => {});
@@ -65,19 +67,18 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleQuantity = (id: string): void => {
-    setNewQuantity(food.quantity);
+    setNewQuantity(Number(food.quantity));
     setClikedEditId(id);
   };
 
   const handleQuantityChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    setNewQuantity(e.target.value);
+    setNewQuantity(Number(e.target.value));
   };
 
   const handleQuantitySave = (id: string) => {
     newQuantity == null ||
-      newQuantity === '' ||
       (newQuantity <= 0 &&
         (() => {
           setNewQuantity(newQuantity);
@@ -87,17 +88,19 @@ const Food = ({ food }: FoodDataProps) => {
           }, 2000);
         })());
 
-    if (newQuantity <= 0) {
-      return;
-    } else {
-      setClikedEditId('');
-      const updated = foodLog?.map((food: any) => {
-        if (food.foodId === id) {
-          return { ...food, quantity: newQuantity };
-        }
-        return food;
-      });
-      setFoodLog(updated);
+    if (newQuantity) {
+      if (newQuantity <= 0) {
+        return;
+      } else {
+        setClikedEditId('');
+        const updated = foodLog?.map((food: any) => {
+          if (food.foodId === id) {
+            return { ...food, quantity: newQuantity };
+          }
+          return food;
+        });
+        setFoodLog(updated);
+      }
     }
   };
 
@@ -146,7 +149,7 @@ const Food = ({ food }: FoodDataProps) => {
               className='p-1 focus:outline-none mr-2 border-2 dark:bg-gray-700  mb-5 md:mb-0 container md:w-1/3'
               placeholder='Enter Quantity'
               type='number'
-              value={newQuantity}
+              value={newQuantity ?? ''}
               onChange={(e) => handleQuantityChange(e)}
             />{' '}
             <Button
