@@ -2,7 +2,9 @@
 
 
 
-Dispastch type 
+handleFoodItemDelete type
+fetchNutritionData Primise type
+handlesearch types
 
 
 

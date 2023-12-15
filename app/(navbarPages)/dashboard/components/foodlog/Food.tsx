@@ -61,9 +61,17 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleFoodItemDelete = (id: string): void => {
-    setFoodLog((prevFood: any) =>
-      prevFood.filter((food: any) => food?.foodId !== id)
-    );
+    setFoodLog((prevFood) => {
+      if (Array.isArray(prevFood)) {
+        return (prevFood as { foodId: string }[]).filter(
+          (food) => food?.foodId !== id
+        );
+      }
+
+      // Handle other scenarios where prevFood is not an array
+      // For example, you might want to return prevFood unchanged or handle it differently
+      return prevFood;
+    });
   };
 
   const handleQuantity = (id: string): void => {
@@ -93,7 +101,7 @@ const Food = ({ food }: FoodDataProps) => {
         return;
       } else {
         setClikedEditId('');
-        const updated = foodLog?.map((food: any) => {
+        const updated = foodLog?.map((food) => {
           if (food.foodId === id) {
             return { ...food, quantity: newQuantity };
           }

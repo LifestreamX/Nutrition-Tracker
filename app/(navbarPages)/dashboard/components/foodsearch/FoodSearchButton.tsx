@@ -7,7 +7,11 @@ import Modal from 'react-modal';
 import { useDebounce } from 'react-use';
 import { useWindowSize } from 'react-use';
 import fetchNutritionData from './FetchNutritionData';
-import { FoodTypeData } from '@/types/Food.types';
+import {
+  FoodTypeData,
+  NutritionSearchDataType,
+  NutritonSearchDataServinvgSizes,
+} from '@/types/Food.types';
 import NutritionInfo from './NutritionInfo';
 import Button from '@/app/components/Button';
 import { useMyContext } from '@/MyContext';
@@ -52,9 +56,9 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
   };
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [searchData, setSearchData] = useState<FoodTypeData[] | number | any>(
-    []
-  );
+  const [searchData, setSearchData] = useState<
+    NutritionSearchDataType[] | number
+  >([]);
   const [val, setVal] = useState<string | number>('');
   const [debouncedValue, setDebouncedValue] = useState<string | number>('');
   const [openExtra, setOpenExtra] = useState(false);
@@ -79,14 +83,41 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     [val]
   );
 
+  console.log(searchData);
+
   const handleSearch = async () => {
     setOpenExtra(false);
     setAnySearchResults(true);
+
+    try {
+      let { hints } = await fetchNutritionData(val);
+
+      let data: NutritionSearchDataType[] = [];
+
+      hints.map((e) => {
+        data = [...data, e.food];
+      });
+
+      setSearchData(data);
+
+      if (hints.length === 0) {
+        setAnySearchResults(false);
+      } else {
+        setAnySearchResults(true);
+      }
+
+      if (typeof val === 'string' && val.trim().length === 0) {
+        setSearchData(0);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
     let { hints } = await fetchNutritionData(val);
 
-    let data: Object[] = [];
+    let data: NutritionSearchDataType[] = [];
 
-    hints.map((e: any) => {
+    hints.map((e) => {
       data = [...data, e.food];
 
       setSearchData(data);
@@ -259,12 +290,13 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
         </div>
 
         {/* data displaying */}
-        {searchData.length !== 0 &&
+        {typeof searchData !== 'number' &&
+        searchData.length !== 0 &&
         debouncedValue === val &&
         val !== '' &&
         anySearchResults ? (
           <main className='border'>
-            {searchData.map((e: FoodTypeData) => {
+            {searchData.map((e: NutritionSearchDataType) => {
               const {
                 category,
                 categoryLabel,
@@ -282,7 +314,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                 FAT: fats,
                 FIBTG,
                 PROCNT: protein,
-              } = nutrients;
+              } = nutrients as NutritonSearchDataServinvgSizes;
 
               return (
                 <>

@@ -51,5 +51,17 @@ export interface NutritionSearchDataType {
   label: string;
   nutrients: {};
   servingSizes: {};
-  quantity: 1;
+  quantity: number;
+}
+
+export interface NutritonSearchDataServinvgSizes {
+  CHOCDF: number;
+  ENERC_KCAL: number;
+  FAT: number;
+  FIBTG: number;
+  PROCNT: number;
+}
+
+export interface ApiResponse {
+  hints: { food: NutritionSearchDataType }[];
 }

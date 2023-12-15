@@ -17,16 +17,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   let logDetails: any;
 
-  // const foundLog = submittedFoodLogs.find(
-  //   (e: SubmittedFoodLogsType) => e.foodLogId === params.foodlog
-  // );
-
-  // console.log(logDetails)
-
-  // if (foundLog) {
-  //   logDetails = foundLog.find((log) => log.foodId === params.foodlogdetails);
-  // }
-
+  
   submittedFoodLogs.find((e: SubmittedFoodLogsType) => {
     let logs;
     if (e.foodLogId === params.foodlog) {
