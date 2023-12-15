@@ -41,7 +41,7 @@ type MyContextType = {
   foodItem: FoodItemType;
   setFoodItem: React.Dispatch<React.SetStateAction<FoodItemType>>;
   selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string[]>>;
+  setSelectedDate: React.Dispatch<React.SetStateAction<null | string>>;
   dispatch: Dispatch<SubmitAndDeleteActionType>;
   submittedFoodLogs: SubmittedFoodLogsType[];
   profileAvatar: undefined | string;
@@ -127,6 +127,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     if (typeof window !== 'undefined') {
       savedSelectedDate = localStorage.getItem('selectedDate');
     }
+
 
     return savedSelectedDate && savedSelectedDate !== undefined
       ? JSON.parse(savedSelectedDate)?.toString()

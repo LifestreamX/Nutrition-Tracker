@@ -107,8 +107,8 @@ const NutritionInfo = () => {
   };
 
   const handleAddToFoodLog = (id: string) => {
-    const alreadyHaveFood = foodLog?.map((food: any) => {
-      if (food.foodId === id) {
+    const alreadyHaveFood = foodLog?.map((food) => {
+      if (food.foodId === id && food.quantity !== undefined) {
         return {
           ...food,
           quantity: food.quantity + 1,
@@ -117,7 +117,7 @@ const NutritionInfo = () => {
       return food;
     });
 
-    const doesFoodExist = foodLog?.find((food: any) => food.foodId === id);
+    const doesFoodExist = foodLog?.find((food) => food.foodId === id);
 
     if (doesFoodExist) {
       setFoodLog(alreadyHaveFood);

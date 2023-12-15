@@ -11,6 +11,7 @@ import {
   FoodTypeData,
   NutritionSearchDataType,
   NutritonSearchDataServinvgSizes,
+  ServingsType,
 } from '@/types/Food.types';
 import NutritionInfo from './NutritionInfo';
 import Button from '@/app/components/Button';
@@ -82,8 +83,6 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     1000,
     [val]
   );
-
-  console.log(searchData);
 
   const handleSearch = async () => {
     setOpenExtra(false);
@@ -160,7 +159,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     knownAs: string,
     label: string,
     nutrients: {},
-    servingSizes: any
+    servingSizes: ServingsType
   ) => {
     setNutritionSearchData({
       protein: protein,
@@ -343,7 +342,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                             knownAs,
                             label,
                             nutrients,
-                            servingSizes
+                            servingSizes as ServingsType
                           )
                         }
                       >
@@ -370,7 +369,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                   <p className='font-extrabold text-4xl'>No Results</p>
                 )
               ) : (
-                <p className='font-extrabold text-purple-800 text-4xl dark:text-white'>
+                <p className='font-extrabold  text-4xl dark:text-white'>
                   Search Food{' '}
                 </p>
               )}

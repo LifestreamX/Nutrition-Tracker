@@ -123,21 +123,21 @@ const MyFoodLogsData: React.FC = () => {
                   .replaceAll(' ', '-');
 
                 return (
-                  <li
-                    key={foodLogId}
-                    className='text-sm md:text-xl hover:bg-gray-200  dark:bg-gray-500 dark:hover:bg-gray-600 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
+                  <Link
+                    // href={`/myfoodlogs/${foodLogId}`}
+                    href={{
+                      pathname: `/myfoodlogs/${foodLogId}`,
+                      query: formattedDate,
+                    }}
+                    legacyBehavior
                   >
-                    <Link
-                      // href={`/myfoodlogs/${foodLogId}`}
-                      href={{
-                        pathname: `/myfoodlogs/${foodLogId}`,
-                        query: formattedDate,
-                      }}
-                      legacyBehavior
+                    <li
+                      key={foodLogId}
+                      className='text-sm md:text-xl hover:bg-gray-200  dark:bg-gray-500 dark:hover:bg-gray-600 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
                       <h1>{selectedDate}</h1>
-                    </Link>
-                  </li>
+                    </li>
+                  </Link>
                 );
               }
             )}

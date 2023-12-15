@@ -31,7 +31,6 @@ const HoverFoodLogItemData = () => {
 
   let isImage = image || '';
 
-  console.log(isImage);
 
   const data = {
     labels: ['Protein', 'Net Carbs', 'Fats'],

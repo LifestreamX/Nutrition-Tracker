@@ -31,7 +31,6 @@ const Food = ({ food }: FoodDataProps) => {
   const [delayRender, setDelayedRender] = useState(false);
   const { width } = useWindowSize();
 
-  console.log(typeof newQuantity);
 
   useEffect(() => {
     setTimeout(() => {});

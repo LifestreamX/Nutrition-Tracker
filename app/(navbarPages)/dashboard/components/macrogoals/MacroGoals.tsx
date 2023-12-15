@@ -44,8 +44,15 @@ const MacroGoals = () => {
     (key) => macroTargetInputs[key] === ''
   );
 
+  const isMacroTargetsZero = Object.values(macroTargetInputs).some(
+    (value) => value === 0
+  );
+
+
   const handleSubmit = () => {
     if (isAnyMacroInputsEmpty) {
+      setFillOutInputWarning(true);
+    } else if (isMacroTargetsZero) {
       setFillOutInputWarning(true);
     } else {
       const updateMacroTargets = {
