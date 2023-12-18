@@ -1,12 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Params, SubmittedFoodLogsType } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
 import { FoodLogTypes } from '@/types/FoodLog.types';
 import { Base64 } from 'js-base64';
+import { FoodItemType } from '@/types/FoodItem.types';
+import { ServingsType } from '@/types/Food.types';
+import { log } from 'console';
+import { Span } from 'next/dist/trace';
 
 type MyFoodLogProps = {
   params: Params;
@@ -14,10 +18,14 @@ type MyFoodLogProps = {
 
 const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   const { submittedFoodLogs } = useMyContext();
+  const [myLog, setMyLog] = useState<FoodItemType | null>(null);
 
-  let logDetails: any;
+  let logDetails: FoodItemType | null = null;
 
-  
+  useEffect(() => {
+    setMyLog(logDetails);
+  }, []);
+
   submittedFoodLogs.find((e: SubmittedFoodLogsType) => {
     let logs;
     if (e.foodLogId === params.foodlog) {
@@ -33,31 +41,54 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
     return logDetails;
   });
 
-  let servingSizes;
+  let servingSizes: ServingsType | undefined;
 
   if (logDetails) {
     let { servingSizes: servingDetails } = logDetails;
+
     servingSizes = servingDetails;
   }
 
+  let grams: number = 0;
+
+  let ounces: number = 0;
+
+  const servingsArr = Object.entries(servingSizes as FoodItemType);
+
+  // checking to see if first index is grams or ounces for proper conversion
+  if (servingsArr.length > 0) {
+    servingsArr.forEach((e) => {
+      if (e[1].label === 'Gram') {
+        grams = e[1].quantity;
+        ounces = grams * 0.03527396;
+      } else if (e[1].label === 'Ounce') {
+        ounces = e[1].quantity;
+        grams = ounces * 28.3495;
+      } else return;
+    });
+  }
+
+  const foodQuantity: number = myLog?.quantity ?? 0;
+
+  const combinedGramsAndQuantity: number = grams * foodQuantity;
+  const combinedOuncesandQuantity: number = ounces * foodQuantity;
+
+  const toFixedGrams: number = parseInt(combinedGramsAndQuantity.toFixed(0));
+  const toFixedOunces: number = parseInt(combinedOuncesandQuantity.toFixed(2));
+
+  console.log(servingsArr.length);
+
+  let isImage;
+
+  if (logDetails && (logDetails as FoodItemType).hasOwnProperty('image')) {
+    isImage = (logDetails as FoodItemType).image;
+  } else {
+    isImage = 'hidden';
+  }
+
+  // let noImage = logDetails?.image === undefined && 'hidden';
+
   const router = useRouter();
-
-  let ouncesWithQuantity: string | number =
-    servingSizes[0]?.quantity * logDetails?.quantity;
-  let grams = servingSizes[1]?.quantity * logDetails.quantity;
-
-  let ouncesDecimalNumberAfter: string | number = ouncesWithQuantity
-    .toFixed(2)
-    .split('.')[1];
-
-  let ounces: number =
-    ouncesDecimalNumberAfter == '00'
-      ? servingSizes[0]?.quantity.toFixed(0)
-      : servingSizes[0]?.quantity.toFixed(2);
-
-  let noImage = logDetails.image === undefined && 'hidden';
-
-  // let imageToBlur =  Base64.encode(logDetails.image) ;
 
   return (
     <main className='w-full flex justify-center items-middle relative top-40 p-5'>
@@ -81,7 +112,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
         {/* title */}
         <div className='mb-8 mt-10 xs:mt-0  font-semibold'>
           <h1 className='text-2xl font-purple-600  font-bold'>
-            {logDetails?.label}
+            {myLog?.label}
           </h1>
           <div className='w-full py-px bg-gray-500' />
         </div>
@@ -91,14 +122,13 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
             <div className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Category:{' '}
-                <span className='  font-bold '>{logDetails?.category}</span>
+                <span className='  font-bold '>{myLog?.category}</span>
               </p>
             </div>
 
             <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
-                Quantity:{' '}
-                <span className='  font-bold'>{logDetails?.quantity}</span>
+                Quantity: <span className='  font-bold'>{myLog?.quantity}</span>
               </p>
             </div>
 
@@ -106,7 +136,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Calories:{' '}
                 <span className='  font-bold'>
-                  {logDetails?.calories.toFixed(0)} Kcal
+                  {myLog?.calories?.toFixed(0)} Kcal
                 </span>
               </p>
             </div>
@@ -114,7 +144,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Protein:{' '}
                 <span className='  font-bold'>
-                  {logDetails?.protein.toFixed(0)} g
+                  {myLog?.protein?.toFixed(0)} g
                 </span>
               </p>
             </div>
@@ -122,16 +152,14 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Carbs:{' '}
                 <span className='  font-bold'>
-                  {logDetails?.carbs.toFixed(0)} g
+                  {myLog?.carbs?.toFixed(0)} g
                 </span>
               </p>
             </div>
             <div className='   text-lg md:text-2xl font-medium  mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Fats:{' '}
-                <span className='  font-bold'>
-                  {logDetails?.fats.toFixed(0)} g
-                </span>
+                <span className='  font-bold'>{myLog?.fats?.toFixed(0)} g</span>
               </p>
             </div>
 
@@ -139,28 +167,46 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Ounces:{' '}
                 <span className='  font-bold'>
-                  {isNaN(ounces) ? <span>N/A</span> : ounces + 'oz'}
+                  {servingsArr.length <= 0 ||
+                  toFixedGrams === 0 ||
+                  toFixedOunces === 0 ? (
+                    <span>N/A</span>
+                  ) : (
+                    <span>
+                      {toFixedOunces}
+                      <span className='text-sm relative '>oz</span>
+                    </span>
+                  )}
                 </span>
               </p>
             </div>
-            <div className='   text-lg md:text-2xl font-medium mb-4   '>
+            <div className='text-lg md:text-2xl font-medium mb-4   '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>
                 Grams:
                 <span className='  font-bold'>
                   {' '}
-                  {isNaN(grams) ? <span>N/A</span> : grams.toFixed(0) + 'g'}
+                  {servingsArr.length <= 0 ||
+                  toFixedGrams === 0 ||
+                  toFixedOunces === 0 ? (
+                    <span>N/A</span>
+                  ) : (
+                    <span>
+                      {toFixedGrams}
+                      <span className='text-sm relative'>g</span>
+                    </span>
+                  )}
                 </span>
               </p>
             </div>
           </div>
 
           {/* Image */}
-          <div className={`my-5 mx-5 ${noImage} `}>
+          <div className={`my-5 mx-5 ${isImage} `}>
             <Image
-              src={logDetails?.image}
+              src={myLog?.image ?? ''}
               width={350}
               height={350}
-              alt={logDetails.label}
+              alt={myLog?.label ?? ''}
               style={{ objectFit: 'contain' }}
               className='rounded-lg '
             />

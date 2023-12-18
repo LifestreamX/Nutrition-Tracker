@@ -60,7 +60,6 @@ export const MacroProgressBar: React.FC = () => {
       0
     );
 
-
     totalProtein = foodLog?.reduce((acc: number, cur: FoodLogTypes): number => {
       const quantity = cur.quantity !== undefined ? cur.quantity : 0;
 
@@ -170,8 +169,8 @@ export const CaloriesProgress = () => {
   let totalCalories: number = 0;
 
   if (Array.isArray(foodLog)) {
-    totalCalories = foodLog?.reduce((acc: number, cur: FoodLogTypes | any) => {
-      return acc + cur.calories * cur.quantity;
+    totalCalories = foodLog?.reduce((acc: number, cur: FoodLogTypes) => {
+      return acc + cur.calories * (cur.quantity || 1);
     }, 0);
   }
 
@@ -180,7 +179,7 @@ export const CaloriesProgress = () => {
   let totalCaloriesFixed = totalCalories.toFixed(0);
   let caloriesRemainFixed = caloriesRemain.toFixed(0);
 
-  const caloriesRemainData: CaloriesRemainData | any = {
+  const caloriesRemainData: CaloriesRemainData = {
     labels: [],
     datasets: [
       {
@@ -191,7 +190,7 @@ export const CaloriesProgress = () => {
     ],
   };
 
-  const noCaloriesSet: CaloriesConsumedData | any = {
+  const noCaloriesSet: CaloriesConsumedData = {
     labels: [],
     datasets: [
       {

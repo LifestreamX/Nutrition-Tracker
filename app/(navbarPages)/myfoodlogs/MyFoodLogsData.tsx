@@ -34,7 +34,7 @@ const MyFoodLogsData: React.FC = () => {
     setCurrentPage(pageNumber);
   };
 
-  const [startDate, setStartDate] = useState<any | null>(null);
+  const [startDate, setStartDate] = useState<string[] | Date | null>(null);
 
   let selectedDate = startDate;
 
@@ -46,7 +46,7 @@ const MyFoodLogsData: React.FC = () => {
     return dateA.getTime() - dateB.getTime();
   });
 
-  let dateFilterResults: any = null;
+  let dateFilterResults: null | specificFoodLogTypes = null;
   let noLog = false;
 
   sortedByYear.find((e) => {
@@ -62,7 +62,11 @@ const MyFoodLogsData: React.FC = () => {
     }
   });
 
-  let formattedFilteredDate = dateFilterResults?.selectedDate
+  console.log(dateFilterResults);
+
+  let formattedFilteredDate = (
+    dateFilterResults as specificFoodLogTypes | null
+  )?.selectedDate
     ?.toString()
     ?.replaceAll(', ', '-')
     ?.replaceAll(' ', '-');
@@ -95,19 +99,27 @@ const MyFoodLogsData: React.FC = () => {
               className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'
             >
               {noLog ? (
-                <h1>No Food Log for {selectedDate}</h1>
+                <h1>No Food Log for {selectedDate?.toLocaleString()}</h1>
               ) : (
                 <div className='shadow-lg  cursor-pointer rounded-xl p-4 hover:bg-gray-100  dark:hover:bg-purple-800'>
                   <Link
                     // key={submittedFoodLogs}
                     href={{
-                      pathname: `/myfoodlogs/${dateFilterResults?.foodLogId}`,
+                      pathname: `/myfoodlogs/${
+                        (dateFilterResults as specificFoodLogTypes | null)
+                          ?.foodLogId
+                      }`,
                       query: formattedFilteredDate,
                     }}
                     legacyBehavior
                     className='bg-black'
                   >
-                    <h1>{dateFilterResults?.selectedDate[0]}</h1>
+                    <h1>
+                      {
+                        (dateFilterResults as specificFoodLogTypes | null)
+                          ?.selectedDate[0]
+                      }
+                    </h1>
                   </Link>
                 </div>
               )}

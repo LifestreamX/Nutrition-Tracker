@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useMyContext } from '../../../../../MyContext';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -20,19 +20,10 @@ const MacroGoals = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
     setFillOutInputWarning(false);
     const { name, value } = event.target;
-
-    const CustomInput = ({ value, onClick }: any) => (
-      <input
-        type='text'
-        className='border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500'
-        value={value}
-        onClick={onClick}
-        readOnly
-      />
-    );
 
     setMacroTargesInputs((prevFormData) => ({
       ...prevFormData,
@@ -47,7 +38,6 @@ const MacroGoals = () => {
   const isMacroTargetsZero = Object.values(macroTargetInputs).some(
     (value) => value === 0
   );
-
 
   const handleSubmit = () => {
     if (isAnyMacroInputsEmpty) {

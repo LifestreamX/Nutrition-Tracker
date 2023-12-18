@@ -9,7 +9,7 @@ export interface FoodItemType {
   image?: string | undefined;
   knownAs?: string;
   label?: string;
-  quantity?: number | undefined;
+  quantity?: number;
   nutrients?: {
     ENERC_KCAL?: number;
     PROCNT?: number;

@@ -2,12 +2,16 @@
 
 
 
-Macronutritents gaols bug
-Servings type 
-date type
-date UI
+
+HandleInputChange Type
+Calories progress types
+startDate type
+MyFoodLogData types
 
 
+
+
+TODO: Ounces and Grams bug for specific food log 
 
 
 TODO: Fix Types
@@ -15,6 +19,8 @@ TODO: Fix Types
 
 
 
+
+TODO: If food item 0 calories fix the UI chart bug in search 
 
 
 

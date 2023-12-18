@@ -27,9 +27,3 @@ export type ConfirmDeleteHandler = (
   e: React.MouseEvent<HTMLButtonElement>
 ) => void;
 
-//  specific log details types
-export type specificFoodLogDetailsTypes = {
-  logDetails: any;
-  ounces: number;
-  grams: number;
-};
