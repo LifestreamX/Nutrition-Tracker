@@ -3,11 +3,7 @@
 
 
 
-HandleInputChange Type
-Calories progress types
-startDate type
-MyFoodLogData types
-
+Filterlogsbydata type 
 
 
 
