@@ -20,6 +20,8 @@ const NutritionInfo = () => {
 
   const { width } = useWindowSize();
 
+  console.log(nutritionSearchData?.calories);
+
   if (nutritionSearchData) {
     useEffect(() => {
       getPercentages(
@@ -106,6 +108,21 @@ const NutritionInfo = () => {
     ],
   };
 
+  const data2 = {
+    labels: ['Protein', 'Net Carbs', 'Fats'],
+    datasets: [
+      {
+        label: 'Maconutritents',
+
+        data: [100],
+        // data: [{nutritionSearchData.protein},{nutritionSearchData.carbs}, {nutritionSearchData.fats} ],
+        backgroundColor: ['#919191'],
+        borderColor: ['#fff'],
+        borderWidth: 1,
+      },
+    ],
+  };
+
   const handleAddToFoodLog = (id: string) => {
     const alreadyHaveFood = foodLog?.map((food) => {
       if (food.foodId === id && food.quantity !== undefined) {
@@ -139,20 +156,42 @@ const NutritionInfo = () => {
     <>
       <section className='border pb-2 xs:p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-800   '>
         <div className='mb-5 justify-center items-center h-full'>
-          <Doughnut data={data} width={donutSize} />
+          {nutritionSearchData?.calories === 0 ? (
+            <Doughnut data={data2} width={donutSize} />
+          ) : (
+            <Doughnut data={data} width={donutSize} />
+          )}
         </div>
         <ul className='flex flex-col justify-center '>
           <li className='m-1 text-sm md:text-lg'>
-            Protein: {protein?.toFixed(1)} g{' '}
-            <span style={{ color: '#44D07B' }}>({proteinPercentage}%)</span>
+            Protein:{' '}
+            {nutritionSearchData?.calories === 0
+              ? protein?.toFixed(0)
+              : protein?.toFixed(1)}{' '}
+            g
+            {nutritionSearchData?.calories !== 0 && (
+              <span style={{ color: '#44D07B' }}>({proteinPercentage}%)</span>
+            )}
           </li>
           <li className='m-1 text-sm md:text-lg'>
-            Net Carbs: {carbs?.toFixed(1)} g{' '}
-            <span style={{ color: '#1CCAD7' }}>({carbsPercentage}%)</span>
+            Net Carbs:{' '}
+            {nutritionSearchData?.calories === 0
+              ? carbs?.toFixed(0)
+              : carbs?.toFixed(1)}{' '}
+            g{' '}
+            {nutritionSearchData?.calories !== 0 && (
+              <span style={{ color: '#1CCAD7' }}>({carbsPercentage}%)</span>
+            )}
           </li>
           <li className='m-1 text-sm md:text-lg mb-4'>
-            Fat: {fats?.toFixed(1)} g{' '}
-            <span style={{ color: '#EA3B04' }}>({fatsPercent}%)</span>
+            Fat:{' '}
+            {nutritionSearchData?.calories === 0
+              ? fats?.toFixed(0)
+              : fats?.toFixed(1)}{' '}
+            g{' '}
+            {nutritionSearchData?.calories !== 0 && (
+              <span style={{ color: '#EA3B04' }}>({fatsPercent}%)</span>
+            )}
           </li>
           <div className=' container  flex mx-auto justify-center'>
             {' '}

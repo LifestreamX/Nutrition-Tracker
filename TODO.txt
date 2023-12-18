@@ -3,20 +3,14 @@
 
 
 
-Filterlogsbydata type 
-
-
-
-TODO: Ounces and Grams bug for specific food log 
-
-
-TODO: Fix Types
-
 
 
 
 
 TODO: If food item 0 calories fix the UI chart bug in search 
+
+
+
 
 
 
