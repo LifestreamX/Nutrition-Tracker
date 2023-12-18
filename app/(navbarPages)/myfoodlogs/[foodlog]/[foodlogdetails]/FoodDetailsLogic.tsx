@@ -86,6 +86,8 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
     isImage = 'hidden';
   }
 
+  console.log(isImage);
+
   // let noImage = logDetails?.image === undefined && 'hidden';
 
   const router = useRouter();
@@ -203,12 +205,12 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           {/* Image */}
           <div className={`my-5 mx-5 ${isImage} `}>
             <Image
-              src={myLog?.image ?? ''}
+              src={myLog?.image ?? 'No Image'}
               width={350}
               height={350}
               alt={myLog?.label ?? ''}
               style={{ objectFit: 'contain' }}
-              className='rounded-lg '
+              className={`rounded-lg ${isImage}`}
             />
           </div>
         </div>

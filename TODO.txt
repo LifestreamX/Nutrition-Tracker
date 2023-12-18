@@ -7,19 +7,12 @@
 
 
 
-TODO: If food item 0 calories fix the UI chart bug in search 
-
-
 
 
 
 
 
 TODO:  Check out Lazy Loading
-
-
-
-
 
 
 
