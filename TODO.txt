@@ -9,18 +9,7 @@
 
 
 
-MyFoodLogs / Signup /signin Responsiveness
-
-edited button component to accept button type of submit and button
-
- MY FOOD LOG  WIDTH OF LOG issue on-screen change size
-
-
-
-TODO: MY FOOD LOG details  WIDTH OF LOG issue on-screen change size
-
-
-TODO: check other responsive design 
+TODO: Responsiveness check and functionality check smaller screens
 
 
 TODO: Warnings in console 
@@ -29,8 +18,6 @@ TODO: Warnings in console
 
 
 
-
-TODO: Fetchihing food modal styling off mobile
 
 
 
