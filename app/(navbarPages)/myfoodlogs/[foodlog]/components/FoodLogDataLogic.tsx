@@ -26,12 +26,14 @@ type DeleteHandler = (
 
 const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   const { submittedFoodLogs, dispatch } = useMyContext();
-  let result = submittedFoodLogs.find((e: SubmittedFoodLogsType) => {
-    return e.foodLogId === params.foodlog?.toString();
-  });
+
   const { width } = useWindowSize();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  let result = submittedFoodLogs.find((e: SubmittedFoodLogsType) => {
+    return e.foodLogId === params.foodlog?.toString();
+  });
 
   const handleDeleteClick: DeleteHandler = () => {
     setIsModalOpen(true);
@@ -41,7 +43,8 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
     setIsModalOpen(false);
   };
 
-  let { foodLog, foodLogId, selectedDate } = result as specificFoodLogTypes;
+  let { foodLog, foodLogId, selectedDate } =
+    (result as specificFoodLogTypes) ?? {};
 
   const router = useRouter();
 
@@ -52,19 +55,19 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   let carbs = 0;
   let fats = 0;
 
-  foodLog.forEach((food: FoodLogTypes) => {
-    let eachFoodCal = (food.quantity && food.calories * food.quantity) || 0;
-    let eachFoodPro = (food.quantity && food.protein * food.quantity) || 0;
-    let eachFoodCarb = (food.quantity && food.carbs * food.quantity) || 0;
-    let eachFoodFat = (food.quantity && food.fats * food.quantity) || 0;
+  if (foodLog) {
+    foodLog.forEach((food: FoodLogTypes) => {
+      let eachFoodCal = (food.quantity && food.calories * food.quantity) || 0;
+      let eachFoodPro = (food.quantity && food.protein * food.quantity) || 0;
+      let eachFoodCarb = (food.quantity && food.carbs * food.quantity) || 0;
+      let eachFoodFat = (food.quantity && food.fats * food.quantity) || 0;
 
-    calories += eachFoodCal;
-    protein += eachFoodPro;
-    carbs += eachFoodCarb;
-    fats += eachFoodFat;
-  });
-
-  // setTotalCalories(totalCal);
+      calories += eachFoodCal;
+      protein += eachFoodPro;
+      carbs += eachFoodCarb;
+      fats += eachFoodFat;
+    });
+  }
 
   const handleConfirm: ConfirmDeleteHandler = () => {
     const deleteLog = submittedFoodLogs?.filter((e: { foodLogId: string }) => {
@@ -80,8 +83,8 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   };
 
   return (
-    <div className='bg-white dark:bg-gray-800 m-5 b  w-full rounded-lg shadow-2xl md:w-1/3 flex flex-col justify-center items-center p-5 sm:p-20 relative'>
-      <div className=' w-full  '>
+    <div className='bg-white dark:bg-gray-800 m-5  w-full rounded-lg shadow-2xl md:w-1/2 flex flex-col justify-center items-center p-5 sm:p-20 relative'>
+      <div className=' w-full m-8 '>
         {/* delete button */}
         <svg
           onClick={handleDeleteClick}
@@ -119,7 +122,10 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
       <div className=' mb-10 flex flex-col lg:flex-row justify-center w-screen md:w-full  '>
         <p className='mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center mb-4 lg:mb-0 '>
           <span className=''>Date</span>
-          <span className=' mt-2 font-semibold'> {selectedDate}</span>
+          <span className=' mt-2 font-semibold'>
+            {' '}
+            {selectedDate && selectedDate}
+          </span>
         </p>
         <div className=' lg:h-full lg:p-0.5  lg:bg-gray-500 lg:mx-5'></div>
         <p className=' mx-6 text-lg md:text-1xl lg:text-2xl font-bold  text-center'>
@@ -155,53 +161,56 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
         onConfirm={handleConfirm}
       />
 
-      {foodLog.map((food: FoodLogTypes) => {
-        let queryLabel = food.label.replaceAll(' ', '-').replaceAll(',', '');
+      {foodLog &&
+        foodLog.map((food: FoodLogTypes) => {
+          let queryLabel = food.label.replaceAll(' ', '-').replaceAll(',', '');
 
-        let queryDate = selectedDate
-          .toString()
-          .replaceAll(', ', '-')
-          .replaceAll(' ', '-');
+          let queryDate = selectedDate
+            .toString()
+            .replaceAll(', ', '-')
+            .replaceAll(' ', '-');
 
-        let combinedQuery = queryDate + '/' + queryLabel;
+          let combinedQuery = queryDate + '/' + queryLabel;
 
-        return (
-          <ul className='w-full '>
-            <Link
-              key={foodLog.foodId}
-              href={{
-                pathname: `/myfoodlogs/${foodLogId}/${food.foodId}`,
-                query: combinedQuery,
-              }}
-              // href={`/myfoodlogs/${foodLogId}/${food.foodId}`}
-            >
-              <div className='bg-white dark:bg-gray-700  xs:w-full rounded-lg shadow-lg  justify-center items-center'>
-                <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-gray-200  dark:hover:bg-gray-600 cursor-pointer rounded-xl p-4 '>
-                  <p className='text-left xs:text-sm md:text-lg mx-4  md:w-full mb-3 md:mb-0'>
-                    {food.label}
-                  </p>
+          return (
+            <ul className='w-full ' key={food.foodId}>
+              <Link
+                key={foodLog.foodId}
+                href={{
+                  pathname: `/myfoodlogs/${foodLogId}/${food.foodId}`,
+                  query: combinedQuery,
+                }}
+                // href={`/myfoodlogs/${foodLogId}/${food.foodId}`}
+              >
+                <div className='bg-white dark:bg-gray-700  xs:w-full rounded-lg shadow-lg  justify-center items-center'>
+                  <li className='flex w-full flex-col  xs:flex-row justify-between  items-center text-lg md:text-2xl font-medium  mb-5 hover:bg-gray-200  dark:hover:bg-gray-600 cursor-pointer rounded-xl p-4 '>
+                    <p className='text-left xs:text-sm md:text-lg mx-4  md:w-full mb-3 md:mb-0'>
+                      {food.label}
+                    </p>
 
-                  <div>
-                    {food.image !== undefined ? (
-                      <Image
-                        src={food.image}
-                        width={imageSize}
-                        height={imageSize}
-                        alt={`Picture of ${food} `}
-                        className='rounded-2xl'
-                        placeholder='blur'
-                        blurDataURL={Base64.encode(food.image)}
-                      />
-                    ) : (
-                      <span className='flex text-center'>(No Image)</span>
-                    )}
-                  </div>
-                </li>
-              </div>
-            </Link>
-          </ul>
-        );
-      })}
+                    <div>
+                      {food.image !== undefined ? (
+                        <Image
+                          src={food.image}
+                          width={imageSize}
+                          height={imageSize}
+                          alt={`Picture of ${food} `}
+                          className='rounded-2xl'
+                          placeholder='blur'
+                          blurDataURL={Base64.encode(food.image)}
+                        />
+                      ) : (
+                        <span className='flex text-center text-sm md:text-md lg:text-lg'>
+                          (No Image)
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                </div>
+              </Link>
+            </ul>
+          );
+        })}
     </div>
   );
 };

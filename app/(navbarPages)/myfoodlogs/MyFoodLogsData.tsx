@@ -62,8 +62,6 @@ const MyFoodLogsData: React.FC = () => {
     }
   });
 
-  console.log(dateFilterResults);
-
   let formattedFilteredDate = (
     dateFilterResults as specificFoodLogTypes | null
   )?.selectedDate
@@ -91,13 +89,10 @@ const MyFoodLogsData: React.FC = () => {
         </div>
       )}
 
-      <ul className='w-full mb-6 '>
+      <div className='w-full mb-6 '>
         {dateFilterResults !== null || noLog ? (
           <>
-            <li
-              // key={foodLogId}
-              className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'
-            >
+            <div className='text-sm md:text-xl   dark:bg-gray-500 p-4 rounded-lg mt-3  w-full text-center'>
               {noLog ? (
                 <h1>No Food Log for {selectedDate?.toLocaleString()}</h1>
               ) : (
@@ -123,7 +118,7 @@ const MyFoodLogsData: React.FC = () => {
                   </Link>
                 </div>
               )}
-            </li>
+            </div>
           </>
         ) : (
           <>
@@ -136,6 +131,7 @@ const MyFoodLogsData: React.FC = () => {
 
                 return (
                   <Link
+                    key={foodLogId}
                     // href={`/myfoodlogs/${foodLogId}`}
                     href={{
                       pathname: `/myfoodlogs/${foodLogId}`,
@@ -143,30 +139,30 @@ const MyFoodLogsData: React.FC = () => {
                     }}
                     legacyBehavior
                   >
-                    <li
+                    <div
                       key={foodLogId}
                       className='text-sm md:text-xl hover:bg-gray-200  dark:bg-gray-500 dark:hover:bg-gray-600 bg-slate-100 p-4 rounded-lg mt-3 cursor-pointer w-full text-center'
                     >
                       <h1>{selectedDate}</h1>
-                    </li>
+                    </div>
                   </Link>
                 );
               }
             )}
           </>
         )}
-      </ul>
+      </div>
 
       {/* pagination */}
       <nav aria-label='Page navigation'>
-        <ul className='flex items-center -space-x-px h-10 text-base'>
+        <div className='flex items-center -space-x-px h-10 text-base'>
           {submittedFoodLogs.length === 0 && (
             <h1 className='font-bold text-xl'>No Food Logs Recorded</h1>
           )}
 
           {submittedFoodLogs.length > 0 && (
             <section className={paginationClassWrapper}>
-              <li>
+              <div>
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
@@ -189,11 +185,11 @@ const MyFoodLogsData: React.FC = () => {
                     />
                   </svg>
                 </button>
-              </li>
+              </div>
               {Array.from({
                 length: Math.ceil(submittedFoodLogs.length / resultsPerPage),
               }).map((_, index) => (
-                <li key={index}>
+                <div key={index}>
                   <button
                     onClick={() => handlePageChange(index + 1)}
                     className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
@@ -204,9 +200,9 @@ const MyFoodLogsData: React.FC = () => {
                   >
                     {index + 1}
                   </button>
-                </li>
+                </div>
               ))}
-              <li>
+              <div>
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={
@@ -232,10 +228,10 @@ const MyFoodLogsData: React.FC = () => {
                     />
                   </svg>
                 </button>
-              </li>
+              </div>
             </section>
           )}
-        </ul>
+        </div>
       </nav>
     </div>
   );

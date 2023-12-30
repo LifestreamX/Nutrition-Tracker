@@ -23,6 +23,7 @@ type FoodSearchProps = {
   children?: ReactNode;
 };
 
+
 const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
   const { theme } = useTheme();
 
@@ -213,6 +214,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       </button>
 
       {/* Modal */}
+
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

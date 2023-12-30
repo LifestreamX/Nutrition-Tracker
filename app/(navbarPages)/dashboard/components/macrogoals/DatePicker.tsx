@@ -1,13 +1,12 @@
 'use client';
 
 import { useMyContext } from '@/MyContext';
-import React, { useState } from 'react';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const MyDatePicker: React.FC = () => {
   const { selectedDate, setSelectedDate } = useMyContext();
-  const [isDateClicked, setIsDateClicked] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
     let currentDate;

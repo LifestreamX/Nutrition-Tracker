@@ -9,32 +9,19 @@
 
 
 
+MyFoodLogs / Signup /signin Responsiveness
+
+edited button component to accept button type of submit and button
+
+ MY FOOD LOG  WIDTH OF LOG issue on-screen change size
 
 
 
-TODO:  Check out Lazy Loading
+TODO: MY FOOD LOG details  WIDTH OF LOG issue on-screen change size
 
 
+TODO: check other responsive design 
 
-
-
-
-
-
-
-
-
-
-TODO: Static assets : Docs
-
-
-TODO: Nextjs analytics : Docs
-
-
-TODO: check out CDN for static assets
-
-
-TODO: Testing code - all 3 types  : Docs
 
 TODO: Warnings in console 
 
@@ -43,40 +30,48 @@ TODO: Warnings in console
 
 
 
-
-
-
-
-TODO: Chat ai bot for question answering?
-
+TODO: Fetchihing food modal styling off mobile
 
 
 
 
 
+TODO: Testing code - all 3 types: Docs
 
-TODO: comments use chatgpt 
 
+
+TODO: Chat AI bot for question answering?
+
+
+TODO: NUtrition public page news API with comment options 
+
+
+
+
+
+
+
+
+
+
+
+
+TODO: comments use chatbot 
 
 TODO: Break down into smaller contexts instead of one / maybe custom hooks
 
-TODO: Use searchParams for url instead of usestate
+TODO: Use search params for url instead of usestate
 
 TODO: Semantics work on
 
 TODO: ADD CSS fade in or out?
 
+TODO: Parallel Routes / Intercepting Routes?
 
-TODO: update next project version to most recent
-
-TODO: server actions?
 
 TODO: smooth motion
 
-
-TODO: Check out Signals signals library?
-
-
+TODO: Replace context with State library if needed 
 
 
 
@@ -86,7 +81,7 @@ TODO: use useCallback Hook
 TODO: use useMemo / React Memo
 TODO: Other Data structures
 TODO: useOptimistic 
-TODO: useSearchParams for searching over usestate keep hisotry url
+TODO: useSearchParams for searching over usestate keep history url
 
 
 
@@ -101,10 +96,13 @@ TODO: useSearchParams for searching over usestate keep hisotry url
 
  SSG and SSR 
 
+ server actions?
 
-revailidate?
+
+
+revalidate?
 Cache when fetching date?
-router.refresh? 
+router. refresh? 
 Auth - next / etc. role base?
 
 TODO: signup page
@@ -113,4 +111,4 @@ TODO: login page
 
 TODO: logout page
 
-TODO: if logged in show dashboard else show home page
+TODO: if logged in show the dashboard else show the home page

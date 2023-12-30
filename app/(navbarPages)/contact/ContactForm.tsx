@@ -114,7 +114,12 @@ const ContactForm: React.FC = () => {
             </div>
             <div className='p-2 w-full'>
               <div className='flex mx-auto w-full justify-center'>
-                <Button color='purple' size='large' responsiveWidth>
+                <Button
+                  color='purple'
+                  size='large'
+                  type='submit'
+                  responsiveWidth
+                >
                   Send
                 </Button>
               </div>

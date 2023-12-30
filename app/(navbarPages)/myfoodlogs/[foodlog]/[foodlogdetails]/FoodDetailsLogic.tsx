@@ -6,11 +6,8 @@ import { Params, SubmittedFoodLogsType } from '@/types/MyFoodLog.types';
 import { useMyContext } from '@/MyContext';
 import Image from 'next/image';
 import { FoodLogTypes } from '@/types/FoodLog.types';
-import { Base64 } from 'js-base64';
 import { FoodItemType } from '@/types/FoodItem.types';
 import { ServingsType } from '@/types/Food.types';
-import { log } from 'console';
-import { Span } from 'next/dist/trace';
 
 type MyFoodLogProps = {
   params: Params;
@@ -19,11 +16,22 @@ type MyFoodLogProps = {
 const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   const { submittedFoodLogs } = useMyContext();
   const [myLog, setMyLog] = useState<FoodItemType | null>(null);
+  const [isImage, setIsImage] = useState<string>();
 
   let logDetails: FoodItemType | null = null;
 
   useEffect(() => {
     setMyLog(logDetails);
+
+    if (logDetails && (logDetails as FoodItemType).hasOwnProperty('image')) {
+      // isImage = (logDetails as FoodItemType).image;
+
+      let myImg = (logDetails as FoodItemType).image;
+
+      setIsImage(myImg);
+    } else {
+      setIsImage('hidden');
+    }
   }, []);
 
   submittedFoodLogs.find((e: SubmittedFoodLogsType) => {
@@ -53,7 +61,12 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   let ounces: number = 0;
 
-  const servingsArr = Object.entries(servingSizes as FoodItemType);
+  let servingsArr: any[] = [];
+
+  if (servingSizes) {
+    servingsArr = Object.entries(servingSizes as FoodItemType);
+  }
+
 
   // checking to see if first index is grams or ounces for proper conversion
   if (servingsArr.length > 0) {
@@ -76,21 +89,8 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
   const toFixedGrams: number = parseInt(combinedGramsAndQuantity.toFixed(0));
   const toFixedOunces: number = parseInt(combinedOuncesandQuantity.toFixed(2));
 
-  console.log(servingsArr.length);
-
-  let isImage;
-
-  if (logDetails && (logDetails as FoodItemType).hasOwnProperty('image')) {
-    isImage = (logDetails as FoodItemType).image;
-  } else {
-    isImage = 'hidden';
-  }
-
-  console.log(isImage);
-
-  // let noImage = logDetails?.image === undefined && 'hidden';
-
   const router = useRouter();
+
 
   return (
     <main className='w-full flex justify-center items-middle relative top-40 p-5'>
@@ -206,6 +206,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           <div className={`my-5 mx-5 ${isImage} `}>
             <Image
               src={myLog?.image ?? 'No Image'}
+              priority={true}
               width={350}
               height={350}
               alt={myLog?.label ?? ''}

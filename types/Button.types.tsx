@@ -10,4 +10,5 @@ export interface ButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
   responsiveWidth?: any;
+  type?: 'button' | 'submit'; // Add the 'type' property here
 }

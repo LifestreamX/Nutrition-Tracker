@@ -20,7 +20,6 @@ const NutritionInfo = () => {
 
   const { width } = useWindowSize();
 
-  console.log(nutritionSearchData?.calories);
 
   if (nutritionSearchData) {
     useEffect(() => {

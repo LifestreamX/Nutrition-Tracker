@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const SignUp = (): JSX.Element => {
   return (
-    <section className='relative sm:top-32 top-20  flex flex-col justify-center items-center  '>
+    <section className='relative  top-24  flex flex-col justify-center items-center  '>
       <SignUpForm />
     </section>
   );

@@ -8,6 +8,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   responsiveWidth,
   children,
+  type = 'button',
 }) => {
   const colorClass = () => {
     switch (color) {
@@ -20,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
     }
   };
 
-  const sizeClasses = (): string  => {
+  const sizeClasses = (): string => {
     switch (size) {
       case 'extra-small':
         return 'py-1 px-2 text-sm';
@@ -46,7 +47,7 @@ const Button: React.FC<ButtonProps> = ({
   const buttonClasses = ` ${colorClass()} ${sizeClasses()} ${widthClass()} `;
 
   return (
-    <button type='button' className={buttonClasses} onClick={onClick}>
+    <button type={type} className={buttonClasses} onClick={onClick}>
       {children}
     </button>
   );

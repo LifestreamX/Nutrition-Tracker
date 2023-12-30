@@ -735,6 +735,18 @@ video {
   top: 24rem;
 }
 
+.top-24 {
+  top: 6rem;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.bottom-2 {
+  bottom: 0.5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -777,6 +789,14 @@ video {
 
 .m-5 {
   margin: 1.25rem;
+}
+
+.m-8 {
+  margin: 2rem;
+}
+
+.m-10 {
+  margin: 2.5rem;
 }
 
 .mx-1 {
@@ -1233,6 +1253,10 @@ video {
 
 .items-center {
   align-items: center;
+}
+
+.justify-normal {
+  justify-content: normal;
 }
 
 .justify-end {
@@ -2752,6 +2776,10 @@ a {
 
   .md\:top-20 {
     top: 5rem;
+  }
+
+  .md\:top-40 {
+    top: 10rem;
   }
 
   .md\:top-44 {

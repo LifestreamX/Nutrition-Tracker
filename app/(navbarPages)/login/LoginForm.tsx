@@ -4,8 +4,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '../../components/Button';
 import { useRouter } from 'next/navigation';
 import { useWindowSize } from 'react-use';
-
-
+import Link from 'next/link';
 
 const LoginForm = (): JSX.Element => {
   const router = useRouter();
@@ -25,6 +24,7 @@ const LoginForm = (): JSX.Element => {
 
   // submit logic
   const handleLoginButton = (e: FormEvent<HTMLFormElement>) => {
+    console.log('fdfdfs');
     e.preventDefault();
 
     // At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit.
@@ -102,24 +102,29 @@ const LoginForm = (): JSX.Element => {
           <label className=' block text-gray-500 font-bold '></label>
         </div>
         {/* signup submit button */}
-        <div className='md:flex md:items-center  md:justify-center mb-6'>
-          <div>
-            {' '}
-            <Button
-              color='purple'
-              size={buttonSize}
-              responsiveWidth={buttonWidith}
-            >
-              Login
-            </Button>
-            {!isValidPassword && isValidPassword !== undefined && (
-              <p className='text-red-500 mt-5'>Invalid Password</p>
-            )}
-          </div>
+        <div className='md:flex md:items-center  md:justify-center mb-6 flex flex-col'>
+          {' '}
+          <Button
+            color='purple'
+            size={buttonSize}
+            responsiveWidth={buttonWidith}
+            type='submit'
+          >
+            Login
+          </Button>
+          {!isValidPassword && isValidPassword !== undefined && (
+            <p className='text-red-500 mt-5 text-center'>Invalid Password</p>
+          )}
+        </div>
+        <div className=' absolute text-sm md:text-lg md:bottom-2'>
+          <Link href='./signup'>
+            Don't have a account? Create one{' '}
+            <span className='text-purple-400 hover:text-purple-800'>Here</span>
+          </Link>
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default LoginForm;

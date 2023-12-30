@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
               nutrition tracker application
             </p>
           </div>
-          <ContactForm />;
+          <ContactForm />
         </div>
       </section>
     </>

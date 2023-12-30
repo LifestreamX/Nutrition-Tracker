@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Image from 'next/image';
 import aboutImageRight from '/public/images/about/about-right-side.jpg';

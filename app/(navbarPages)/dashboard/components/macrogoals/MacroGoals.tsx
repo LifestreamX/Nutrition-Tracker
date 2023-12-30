@@ -21,7 +21,6 @@ const MacroGoals = () => {
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
     setFillOutInputWarning(false);
     const { name, value } = event.target;
 
