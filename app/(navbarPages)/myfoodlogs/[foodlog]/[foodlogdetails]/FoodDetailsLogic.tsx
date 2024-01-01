@@ -67,7 +67,6 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
     servingsArr = Object.entries(servingSizes as FoodItemType);
   }
 
-
   // checking to see if first index is grams or ounces for proper conversion
   if (servingsArr.length > 0) {
     servingsArr.forEach((e) => {
@@ -91,11 +90,11 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   const router = useRouter();
 
-
   return (
-    <main className='w-full flex justify-center items-middle relative top-40 p-5'>
+    <main className='w-full flex justify-center items-middle relative top-20 md:top-40 p-5'>
       <div className='bg-white dark:bg-gray-800 m-5   w-full rounded-lg shadow-2xl  flex flex-col justify-center items-center sm:p-20 relative md:max-w-5xl'>
         {/* back arrow */}
+
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -111,6 +110,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
             d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18'
           />
         </svg>
+
         {/* title */}
         <div className='mb-8 mt-10 xs:mt-0  font-semibold'>
           <h1 className='text-2xl font-purple-600  font-bold'>
@@ -119,7 +119,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           <div className='w-full py-px bg-gray-500' />
         </div>
 
-        <div className='flex  w-full flex-col  xs:flex-row md:justify-around'>
+        <div className='flex  w-full flex-col  md:flex-row md:justify-around'>
           <div className='flex flex-col justify-evenly  xxs:items-center xs:items-start xs:mx-5 '>
             <div className='   text-lg md:text-2xl font-medium mb-4  '>
               <p className='text-left xs:text- md:text-xl  md:w-full '>

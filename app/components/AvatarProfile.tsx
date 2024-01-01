@@ -130,7 +130,7 @@ const UploadAvatar = (): JSX.Element => {
                       />
                     )}
 
-                    <div>
+                    <div className='relative right-3'>
                       {showCropButton && (
                         <div className='relative  '>
                           <Button color='purple' onClick={handleCrop}>
@@ -142,10 +142,10 @@ const UploadAvatar = (): JSX.Element => {
                   </div>
 
                   {/* save */}
-                  <div className='m-5'>
+                  <div className='m-5 right-2 relative'>
                     {/* displaying crop avatar demo */}
                     {croppedImage && (
-                      <div className='flex flex-col'>
+                      <div className='flex flex-col '>
                         <Image
                           className=' rounded-full relative  border-gray border-2 mb-5'
                           src={croppedImage}

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const MyFoodLog: React.FC<MyFoodLogProps> = ({ params }) => {
   return (
-    <div className='w-full flex justify-center items-middle relative top-40 p-5 '>
+    <div className='w-full flex justify-center items-middle relative top-20 md:top-40 p-5 '>
       <FoodLogDataLogic params={params} />;
     </div>
   );

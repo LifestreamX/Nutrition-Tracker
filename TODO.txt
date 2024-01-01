@@ -9,22 +9,19 @@
 
 
 
-TODO: Responsiveness check and functionality check smaller screens
+TODO: Mobile responsiveness food search modal smaller screens chart issue &&  overflow issue 
+
+
+
+
+
+
 
 
 TODO: Warnings in console 
 
 
-
-
-
-
-
-
-
-
 TODO: Testing code - all 3 types: Docs
-
 
 
 TODO: Chat AI bot for question answering?

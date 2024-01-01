@@ -23,7 +23,6 @@ type FoodSearchProps = {
   children?: ReactNode;
 };
 
-
 const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
   const { theme } = useTheme();
 
@@ -38,8 +37,12 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       height: '75%',
-      width: '45%',
+      width: '50%',
       background: modalBackGroundColor,
+    },
+
+    overlay: {
+      overflow: 'hidden',
     },
   };
 
@@ -51,8 +54,8 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      height: '75%',
-      width: '75%',
+      height: '88%',
+      width: '95%',
       background: modalBackGroundColor,
     },
   };
@@ -85,8 +88,15 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
     [val]
   );
 
+  useEffect(() => {
+    if (val === '') {
+      setOpenExtra(false);
+    }
+  }, [val]);
+
   const handleSearch = async () => {
     setOpenExtra(false);
+
     setAnySearchResults(true);
 
     try {
@@ -194,7 +204,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       >
         <Image src={grapes} alt='grapes' className='w-6' />
 
-        <p className='text-bolder text-1xl font-bold mx-1'>FOOD</p>
+        <p className='text-bolder text-1xl font-bold mx-1 '>FOOD</p>
         <span className='relative'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -223,17 +233,8 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
         contentLabel='Example Modal'
       >
         <div className='sticky top-0  '>
-          <div className='bg-gray-50 dark:bg-gray-800  '>
-            <div className='w-full flex justify-end relative right-2'>
-              <button
-                onClick={closeModal}
-                className='text-2xl text-red-500 hover:text-white-900 font-bold '
-              >
-                X
-              </button>
-            </div>
-
-            <div className='w-full flex  flex-row justify-center items-center p-5  '>
+          <div className='bg-gray-50  dark:bg-gray-800'>
+            <div className=' flex justify-center items-center p-5   '>
               <input
                 type='text'
                 placeholder='Search...'
@@ -246,18 +247,26 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                     setSearchData([]);
                 }}
               />
-
+              {/* Search BUtton */}
               <div>
                 <Button color='purple' size='medium' onClick={handleSearch}>
                   Search
                 </Button>
               </div>
+
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className='text-2xl text-red-500 hover:text-red-700 font-bold relative bottom-6 left-4  '
+              >
+                X
+              </button>
             </div>
           </div>
 
           {/* Results */}
           {/* Load info for clicked item */}
-          <div className='z-40 bg-white'>{openExtra && <NutritionInfo />}</div>
+          <div className='z-40  bg-white'>{openExtra && <NutritionInfo />}</div>
 
           {/* success ui for added food item */}
           {successAdded && (
@@ -368,10 +377,10 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
                 <LoadingSpinner />
               ) : typeof val === 'string' && val.trim().length !== 0 ? (
                 val === debouncedValue && (
-                  <p className='font-extrabold text-4xl'>No Results</p>
+                  <p className='font-extrabold text-2xl'>No Results</p>
                 )
               ) : (
-                <p className='font-extrabold  text-4xl dark:text-white'>
+                <p className='font-extrabold text-2xl dark:text-white'>
                   Search Food{' '}
                 </p>
               )}

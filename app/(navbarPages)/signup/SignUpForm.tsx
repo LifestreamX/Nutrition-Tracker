@@ -85,7 +85,7 @@ const SignUpForm = (): JSX.Element => {
 
   return (
     <>
-      <h1 className='sm:text-2xl md:text-3xl relative top-2 sm:top-24 font-bold p-10'>
+      <h1 className='sm:text-2xl md:text-3xl relative top-20 sm:top-24 md:top-28  font-bold p-10'>
         {successfullyRegistered ? (
           <p className='text-purple-800'>Successfully Registered</p>
         ) : (
@@ -94,7 +94,7 @@ const SignUpForm = (): JSX.Element => {
       </h1>
       <form
         onSubmit={handleSignUpSubmit}
-        className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36 dark:bg-gray-800'
+        className='max-w-xl shadow-2xl  ml-20 mr-20 p-12 sm:p-36 dark:bg-gray-800'
       >
         {successfullyRegistered ? (
           <div>
@@ -222,17 +222,15 @@ const SignUpForm = (): JSX.Element => {
             </div>
             {/* signup submit button */}
             <div className=' flex items-center  justify-center   '>
-              <div>
-                {' '}
-                <Button
-                  color='purple'
-                  size={buttonSize}
-                  responsiveWidth={buttonWidith}
-                  type='submit'
-                >
-                  Sign up
-                </Button>
-              </div>
+              {' '}
+              <Button
+                color='purple'
+                size={buttonSize}
+                responsiveWidth={buttonWidith}
+                type='submit'
+              >
+                Sign up
+              </Button>
             </div>
           </>
         )}
