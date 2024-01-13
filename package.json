@@ -6,7 +6,9 @@
     "dev": "concurrently \"next dev\" \"tailwindcss --input ./app/globals.css --output ./app/output.css --watch\"",
     "build": "tailwindcss ./app/globals.css --output ./app/output.css && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
@@ -42,18 +44,27 @@
     "react-native-email-link": "^1.14.7",
     "react-use": "^17.4.0",
     "reactv16-mailto": "^0.4.4",
+    "ts-jest": "^29.1.1",
     "tw-elements": "^1.0.0-rc.1",
     "tw-elements-react": "^1.0.0-alpha1",
     "typescript": "4.9.4",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.11",
     "@types/react-avatar-editor": "^13.0.0",
     "@types/react-datepicker": "^4.11.2",
     "@types/react-modal": "^3.16.0",
     "@types/uniqid": "^5.3.2",
     "autoprefixer": "^10.4.13",
+    "eslint-plugin-jest-dom": "^5.1.0",
+    "eslint-plugin-testing-library": "^6.2.0",
     "file-loader": "^6.2.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4"
   }

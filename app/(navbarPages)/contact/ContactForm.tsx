@@ -84,6 +84,7 @@ const ContactForm: React.FC = () => {
                   type='text'
                   name='from_name'
                   className='w-full bg-gray-100 rounded border border-gray-300 focus:border-purple-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                  data-testid='name-input'
                 />
               </div>
             </div>
@@ -97,6 +98,7 @@ const ContactForm: React.FC = () => {
                   type='email'
                   name='email'
                   className='w-full bg-gray-100 rounded border border-gray-300 focus:border-purple-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                  data-testid='email-input'
                 />
               </div>
             </div>
@@ -109,6 +111,7 @@ const ContactForm: React.FC = () => {
                   required
                   name='message'
                   className='w-full bg-gray-100 rounded border border-gray-300 focus:border-purple-500 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out'
+                  data-testid='message-input'
                 ></textarea>
               </div>
             </div>
