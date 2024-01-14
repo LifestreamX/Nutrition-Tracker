@@ -95,6 +95,7 @@ const SignUpForm = (): JSX.Element => {
       <form
         onSubmit={handleSignUpSubmit}
         className='max-w-xl shadow-2xl  ml-20 mr-20 p-12 sm:p-36 dark:bg-gray-800'
+        role='form'
       >
         {successfullyRegistered ? (
           <div>
@@ -120,6 +121,7 @@ const SignUpForm = (): JSX.Element => {
                     value={email}
                     type='email'
                     onChange={handleEmailChange}
+                    data-testid='signup-email-input'
 
                     // value='Jane Doe'
                   />
@@ -143,6 +145,7 @@ const SignUpForm = (): JSX.Element => {
                     required
                     value={password}
                     onChange={handlePasswordChange}
+                    data-testid='signup-password-input'
                   />
                 </div>
               </div>
@@ -164,6 +167,7 @@ const SignUpForm = (): JSX.Element => {
                     required
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}
+                    data-testid='signup-confirm-password-input'
                   />
                 </div>
               </div>

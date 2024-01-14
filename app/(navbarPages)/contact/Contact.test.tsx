@@ -10,7 +10,7 @@ import '@testing-library/jest-dom';
 
 // AAA - ARRANGE - ACT - ASSERT
 
-test('renders form and submits email', async () => {
+it('renders form and submits email', async () => {
   // render form component
   // ARRANGE
   const { getByText, queryByText, getByTestId } = render(<ContactForm />);
