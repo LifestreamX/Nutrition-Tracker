@@ -128,7 +128,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       savedSelectedDate = localStorage.getItem('selectedDate');
     }
 
-
     return savedSelectedDate && savedSelectedDate !== undefined
       ? JSON.parse(savedSelectedDate)?.toString()
       : null;
