@@ -1,0 +1,219 @@
+[33mcommit 80f091a1cf5721ce6348f36f05a79e735049c990[m[33m ([m[1;36mHEAD -> [m[1;32mtesting[m[33m)[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Sat Jan 13 19:43:32 2024 -0500
+
+    test: Add Jest and React Testing Library test for SignUpForm component
+
+[33mcommit 67aaccc9264dd28457d746ae33424fac9fb45ad8[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Sat Jan 13 16:32:13 2024 -0500
+
+    test: Add integration test for ContactForm component
+    
+    Set up an integration test to ensure that the ContactForm component renders correctly, handles user input, and displays the success message upon form submission.
+
+[33mcommit f77d563017b58f9dd66a757bdac14c50d99a38ed[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Jan 1 18:06:46 2024 -0500
+
+    Remove cached files
+
+[33mcommit 86b6a2a094caa2df5e7f8b0e842025fa3b9112f6[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Jan 1 17:40:15 2024 -0500
+
+    adjusted mobile styling for food search modal for smaller mobile devices
+
+[33mcommit 878d9c6035f30839c7f7e1ba64f91782e36fe96c[m[33m ([m[1;32mconsole-errors[m[33m)[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Sat Dec 30 17:03:23 2023 -0500
+
+    todo update
+
+[33mcommit e0bbcaf0b5f2ae87683d97a39c4b675b86d4a69d[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Sat Dec 30 17:02:03 2023 -0500
+
+    fix: Resolve console errors, improve responsiveness in MyFoodLogs, Signup, and Signin components
+    feat: Enhance Button component to accept the 'type' prop for submit and button types
+    style: Adjust MyFoodLogs layout to address width issues on screen size changes
+
+[33mcommit 0a423ee39d5c06ca6af6333be086243330e270f1[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 18 17:45:33 2023 -0500
+
+    no food image bug
+
+[33mcommit 17efa3f21f3691c305f001e9052a221aa913df55[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 18 14:33:18 2023 -0500
+
+    fix: Resolve UI bug displaying 0 calories for food items
+    
+    Adjusted UI rendering to properly handle cases where a food item has 0 calories, ensuring accurate display and preventing visual inconsistencies.
+
+[33mcommit f78e2db1ef7be4811527e93f3529154b16c0c5b6[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 18 14:15:16 2023 -0500
+
+    refactor: Enhance FilterFoodLogsByDate component and update types
+    
+    Improved handling of startDate types and refined logic in the DatePicker component. Updated types to ensure compatibility and prevent potential runtime errors.
+
+[33mcommit f8dea52321004ae235051d712a880740c63aa45f[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 18 13:56:45 2023 -0500
+
+    chore: Update types for handleInputChange, calories progress, start date, and myFoodLogData
+    
+    fix: Display proper ounces and grams based on food quantity
+    
+    Resolves a bug where the correct ounces and grams were not being displayed according to the quantity of the food. Additionally, ensures proper types for handleInputChange, calories progress, start date, and myFoodLogData to enhance code consistency.
+
+[33mcommit bf7b1b28056e901a060132dadd2709ec0542951d[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Fri Dec 15 18:47:53 2023 -0500
+
+    Fix Macronutrients Goal Input Bug, Resolve Servings Types Issue, Update Date UI for Improved User Experience
+
+[33mcommit e619cb51a1a68b00db00db4863a9c2d7a106b5ce[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Fri Dec 15 17:34:59 2023 -0500
+
+    Refactor types for handleFoodItemDelete, fetchNutritionData Promise, and handleSearch to improve accuracy and handle different scenarios.
+
+[33mcommit eba50fdc2ea6cb9dd31f305c1ef7f044509bc6b6[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Thu Dec 14 18:26:48 2023 -0500
+
+    Refactor: Ensure newQuantity is consistently of type string | number in Food component
+
+[33mcommit aa68cfe14925642713ce42909767ea2e5fa474ef[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Thu Dec 14 18:12:05 2023 -0500
+
+    type edits
+
+[33mcommit 202b5d59502114a271a5c6786fd707b3db769407[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Thu Dec 14 16:17:45 2023 -0500
+
+    fix: Correct dispatch type in MyContext for Action
+    
+    Resolved a TypeScript error where the dispatch function in MyContext was not correctly typed for the Action type. Updated the dispatch type to ensure proper compatibility with the Action type definition.
+
+[33mcommit 3bf1bd8ec8446a264a4e99c8669f799d8fe14398[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Wed Dec 13 19:25:53 2023 -0500
+
+    edited macroProgressBar logic for macronutritents
+
+[33mcommit 030cd70ca92853ad0135399753f77cfba60cb01c[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Wed Dec 13 19:06:12 2023 -0500
+
+    type edit
+
+[33mcommit 91b329b06d5fc1215395c0beed7e6754b9fe9ea7[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Wed Dec 13 18:59:40 2023 -0500
+
+    fixed:foodLog type error
+
+[33mcommit 770992d432f9a95ae30453564ec53a5338ca94e0[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Wed Dec 13 18:32:47 2023 -0500
+
+    Refactor: Adjusted types for foodLog and clickedEditId in MyContextType to resolve TypeScript error.
+
+[33mcommit 1551b9ad3a77dd41069ad9d2eaeffabaa7357c5b[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 20:25:08 2023 -0500
+
+    context edit
+
+[33mcommit 25fe335dbba382c54a2b6ad2b9083844cc82f107[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 20:21:25 2023 -0500
+
+    test
+
+[33mcommit eb6c50032f2ae5e5eb15895ec27d749a2a33f6d0[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 20:15:29 2023 -0500
+
+    sharp
+
+[33mcommit 84650c57dab75aa28daeca2b232c03480e473723[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 20:10:11 2023 -0500
+
+    sharp
+
+[33mcommit 44d9dac1834d476724c63ea86cd740483899ab1a[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 20:03:36 2023 -0500
+
+    sharp edit
+
+[33mcommit 1e3587a042124bfb865ced9ca09262d124131ed4[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 19:23:54 2023 -0500
+
+    removed sharp
+
+[33mcommit 3b212fdcd58b355dc521067d226b1130482433c0[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 19:15:52 2023 -0500
+
+    removed sharp
+
+[33mcommit 71ea9bf12848a55323e922051811eb3a6231699e[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Dec 11 18:32:30 2023 -0500
+
+    fix: Correct NutritionSearchData type and move data from client to server components
+    
+    Resolved TypeScript error by updating the NutritionSearchData type to handle possible null values. Additionally, moved data retrieval and processing logic from client components to server components for better separation of concerns and improved maintainability.
+
+[33mcommit 56dac5ff08c42959ca5d6dd8c343ee75cf21ba5c[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Sun Dec 10 18:31:45 2023 -0500
+
+    Move static images to public folder, resolve console warnings
+    
+    - Moved static images to the 'public' folder for better accessibility.
+    - Addressed console warnings related to image paths and loading.
+    - Fixed rendering issues to improve overall user experience.
+
+[33mcommit d3720a824db78f82c59f403eaafb8c39474980a6[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Nov 27 20:54:49 2023 -0500
+
+    fixed macro progress bar types and edited contact page putting more elements in server component from client component
+
+[33mcommit bb4b0f839069e8e854eb6e5357380d502d52e76c[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Mon Nov 27 18:29:11 2023 -0500
+
+    fixed rendering issue for specific food and successadded type
+
+[33mcommit 8cd96eef6093ae8178ed6b2ff323eb94cac4542a[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Thu Nov 16 18:39:35 2023 -0500
+
+    fix: loading spinner size
+
+[33mcommit ffe6fe2e9692f4d53066f66a4bea2a0e52ea599b[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Wed Nov 15 22:20:52 2023 -0500
+
+    m
+
+[33mcommit 931bcc9da6e4c58d126fac930bc38f88c06ac402[m
+Author: haloandfable <tylerallen@live.com>
+Date:   Wed Nov 15 21:58:35 2023 -0500
+
+    m
+
+[33mcommit 6c0b0d6

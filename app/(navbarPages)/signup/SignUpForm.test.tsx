@@ -3,6 +3,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import SignUpForm from './SignUpForm';
 
 describe('SignUpForm Component', () => {
+
+    
   it('renders the component correctly', () => {
     render(<SignUpForm />);
     // Add assertions based on the expected initial state or elements.

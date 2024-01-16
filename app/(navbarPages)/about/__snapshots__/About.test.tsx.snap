@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="flex md:flex-row flex-col-reverse md:items-stretch items-center justify-center   dark:rounded-3xl  "
+  >
+    <div
+      class=" md:mt-28   md:mr-6 flex flex-col md:items-end items-center justify-center xl:mr-28 relative bottom-20 md:bottom-0 "
+    >
+      <div
+        class="flex flex-col items-center justify-center "
+      >
+        <h1
+          class="md:text-5xl text-3xl font-bold text-center text-gray-800 dark:text-white flex flex-col mb-10 px-2"
+        >
+          <div
+            class="flex flex-wrap"
+          >
+            <span
+              class="m-1"
+            >
+              About
+            </span>
+             
+            <span
+              class=" m-1"
+            >
+              nutritiontracker
+            </span>
+          </div>
+          <span
+            class="bg-gray-500 p-0.5 w-full"
+          />
+        </h1>
+        <section
+          class="px-4"
+        >
+          <p
+            class="sm:w-96 w-full mt-6 text-base leading-6 text-center text-gray-600 dark:text-gray-200 font-semibold md:text-lg"
+          >
+            Nutritiontracker is an easy way to log your food intake
+          </p>
+          <div
+            class="md:mt-14 mt-12 flex flex-col items-center"
+          >
+            <div
+              aria-label="money"
+              class="w-20 h-20 bg-white shadow rounded-full flex items-center justify-center"
+              role="img"
+            >
+              <img
+                alt="picture of food"
+                class="rounded-md h-full object-cover object-center md:block "
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="40"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                width="40"
+              />
+            </div>
+            <p
+              class="text-base leading-6 mt-6 text-center text-gray-600 dark:text-gray-200 sm:w-96 w-full font-semibold lg:text-lg"
+            >
+              Keep a detailed ordered log of all your food by date
+            </p>
+          </div>
+          <div
+            class="mt-7 flex flex-col items-center"
+          >
+            <div
+              aria-label="phone"
+              class="w-20 h-20 bg-white shadow rounded-full flex items-center justify-center"
+              role="img"
+            >
+              <img
+                alt="picture of food"
+                class="rounded-md h-full object-cover object-center md:block "
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="40"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                width="40"
+              />
+            </div>
+            <p
+              class="text-base leading-6 mt-6 text-center text-gray-600 dark:text-gray-200 sm:w-96 w-full font-semibold lg:text-lg"
+            >
+              Select a date for each log and start tracking your intake
+            </p>
+          </div>
+          <div
+            class="mt-7 flex flex-col items-center"
+          >
+            <div
+              aria-label="ideas"
+              class="w-20 h-20 bg-white shadow rounded-full flex items-center justify-center"
+              role="img"
+            >
+              <img
+                alt="picture of food"
+                class="rounded-md h-full object-cover object-center md:block "
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="40"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                width="40"
+              />
+            </div>
+            <p
+              class="text-base leading-6 mt-6 text-center text-gray-600 dark:text-gray-200 sm:w-96 w-full font-semibold lg:text-lg"
+            >
+              Set macronutrient goals for each date to also track and make sure you are hitting your targeted goals
+            </p>
+          </div>
+          <div
+            class="mt-7 flex flex-col items-center"
+          >
+            <div
+              aria-label="bright ideas"
+              class="w-20 h-20 bg-white shadow rounded-full flex items-center justify-center"
+              role="img"
+            >
+              <img
+                alt="picture of food"
+                class="rounded-md h-full object-cover object-center md:block "
+                data-nimg="1"
+                decoding="async"
+                fetchpriority="high"
+                height="40"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+                width="40"
+              />
+            </div>
+            <p
+              class="text-base leading-6 mt-6 text-center text-gray-600 dark:text-gray-200 sm:w-96 w-full font-semibold lg:text-lg"
+            >
+              Adjust your logs as needed to make sure the quantity is correct along with deleting any logs you do not want anymore
+            </p>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div
+      class="py-12 relative top-60  m-12 w-[400px]"
+    >
+      <img
+        alt="picture of food"
+        class="rounded-md  object-cover object-center md:block hidden"
+        data-nimg="1"
+        decoding="async"
+        fetchpriority="high"
+        height="40"
+        src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+        srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+        style="color: transparent; background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"
+        width="40"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
