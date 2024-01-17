@@ -119,7 +119,10 @@ const NavBar: React.FC = () => {
                       {/* Profile dropdown */}
                       <Menu as='div' className='relative ml-3'>
                         <div>
-                          <Menu.Button className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'>
+                          <Menu.Button
+                            data-testid='right-nav-menu-button'
+                            className='flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+                          >
                             <span className='sr-only'>Open user menu</span>
 
                             {profileAvatar ? (
@@ -128,6 +131,7 @@ const NavBar: React.FC = () => {
                                   className='w-10 h-10 rounded-full'
                                   src={profileAvatar}
                                   alt='Default avatar'
+                                  data-testid='avatar'
                                 />
                               </div>
                             ) : (
@@ -137,6 +141,7 @@ const NavBar: React.FC = () => {
                                   fill='currentColor'
                                   viewBox='0 0 20 20'
                                   xmlns='http://www.w3.org/2000/svg'
+                                  data-testid='avatar'
                                 >
                                   <path
                                     fillRule='evenodd'
@@ -148,6 +153,7 @@ const NavBar: React.FC = () => {
                             )}
                           </Menu.Button>
                         </div>
+
                         <Transition
                           as={Fragment}
                           enter='transition ease-out duration-100'
@@ -166,6 +172,7 @@ const NavBar: React.FC = () => {
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700'
                                   )}
+                                  data-testid='Dashboard'
                                 >
                                   Dashboard
                                 </Link>
@@ -179,6 +186,7 @@ const NavBar: React.FC = () => {
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700'
                                   )}
+                                  data-testid='Settings'
                                 >
                                   Settings
                                 </Link>
@@ -192,6 +200,7 @@ const NavBar: React.FC = () => {
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700'
                                   )}
+                                  data-testid='Sign-out'
                                 >
                                   Sign out
                                 </Link>
@@ -205,6 +214,7 @@ const NavBar: React.FC = () => {
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700'
                                   )}
+                                  data-testid='My-Food-Logs'
                                 >
                                   My Food Logs
                                 </Link>
