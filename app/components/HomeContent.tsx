@@ -11,10 +11,13 @@ const HomeContent: React.FC = () => {
         <h1 className='text-3xl text-w font-bold my-2'>
           Never too late to start
         </h1>
-        <p className='text-1xl md:text-2xl  my-5 md:max-w-xl '>
+        <p
+          data-testid='home-content-paragraph'
+          className='text-1xl md:text-2xl  my-5 md:max-w-xl '
+        >
           Start counting your calories today. Keep track of what you eat and
           achieve your nutrition goals. We have the tools to provide you for a
-          healthy liftstyle.
+          healthy lifestyle.
         </p>
       </div>
 
