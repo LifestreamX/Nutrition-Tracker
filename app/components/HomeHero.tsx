@@ -28,7 +28,7 @@ const HomeHero: React.FC = () => {
       <div className='relative top-20 sm:top-0 '>
         <Image
           src={heroimg}
-          alt='fruit'
+          alt='fruit-1'
           width={500}
           height={500}
           className='rounded-xl w-72 lg:w-96 relative'
@@ -37,7 +37,7 @@ const HomeHero: React.FC = () => {
         />
         <Image
           src={heroimg2}
-          alt='fruit'
+          alt='fruit-2'
           width={500}
           height={500}
           className='rounded-xl w-72 lg:w-96 relative top-5'
