@@ -1,12 +1,10 @@
 import { MyProvider } from '@/MyContext';
-import NavBar from './components/NavBar';
 import './globals.css';
 import './output.css';
-import Providers from './Providers';
 import { Oswald, Kanit } from '@next/font/google';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
-import LoadingSpinner from './components/LoadingSpinner';
+import AuthProvider from './components/backendcomponents/AuthProvider';
+
 
 export const metadata: Metadata = {
   title: 'nutrition tracker',
@@ -30,7 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning={true}>
-      <MyProvider>{children}</MyProvider>
+      <AuthProvider>
+        <MyProvider>{children}</MyProvider>
+      </AuthProvider>
     </html>
   );
 }

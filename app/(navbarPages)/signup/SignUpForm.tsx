@@ -5,6 +5,9 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Button from '../../components/Button';
 import { useWindowSize } from 'react-use';
 import { Metadata } from 'next';
+import { signUp } from '@/app/actions/users/signUp';
+import { faL } from '@fortawesome/free-solid-svg-icons';
+import { isValid } from 'js-base64';
 
 const SignUpForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
@@ -17,6 +20,13 @@ const SignUpForm = (): JSX.Element => {
   >();
   const [termsDisabled, setTermsDisabled] = useState<boolean>(true);
   const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>();
+
+  const [termsPending, setTermsPending] = useState<boolean>();
+
+  const [termsCheckBoxClicked, setTermsCheckBoxClicked] = useState<
+    boolean | undefined
+  >();
 
   const [successfullyRegistered, setSuccessfullyRegistered] =
     useState<boolean>(false);
@@ -35,7 +45,7 @@ const SignUpForm = (): JSX.Element => {
   };
 
   // submit logic
-  const handleSignUpSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSignUpSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit.
@@ -48,6 +58,7 @@ const SignUpForm = (): JSX.Element => {
     if (password !== confirmPassword) {
       console.log('PASSWORDS MUST MATCH');
       setPasswordMatch(false);
+      return;
     } else if (!isValid) {
       console.log(
         'At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit '
@@ -55,28 +66,51 @@ const SignUpForm = (): JSX.Element => {
     } else if (isChecked === false) {
       console.log('please Agree to the terms of service ');
     } else {
-      setSuccessfullyRegistered(true);
     }
 
     if (password === confirmPassword) {
       setPasswordMatch(true);
     }
 
+    if (!isValid) {
+      return;
+    }
+
     if (isTermsLinkedClicked === undefined) {
-      setIsTermsLinkedClicked(false);
+      setTermsPending(true);
+      return;
+    } else {
+      if (termsCheckBoxClicked === undefined) {
+        setTermsCheckBoxClicked(false);
+        return;
+      } else {
+        const resMessage = await signUp(email, password);
+        setMessage(resMessage);
+
+        if (
+          isValidPassword &&
+          passwordMatch &&
+          isTermsLinkedClicked &&
+          resMessage !== 'User with that email already exists'
+        ) {
+          setSuccessfullyRegistered(true);
+        }
+      }
     }
   };
-
   // terms logic
   const handleLinkClick = (): void => {
     setIsTermsLinkedClicked(true);
     setTermsDisabled(false);
+    setTermsPending(false);
   };
 
   const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target.value === 'on') {
       setIsChecked(true);
     }
+
+    setTermsCheckBoxClicked(true);
   };
 
   let buttonSize = width < 768 ? 'medium' : 'large';
@@ -171,7 +205,10 @@ const SignUpForm = (): JSX.Element => {
                   />
                 </div>
               </div>
-              <span className='flex mt-3'>
+              <span className='flex flex-col items-center justify-center  mt-3'>
+                {message === 'User with that email already exists' && (
+                  <p className='text-red-500 '>{message}</p>
+                )}
                 {!passwordMatch && (
                   <p className='text-red-500 '>Passwords do not match</p>
                 )}
@@ -186,14 +223,17 @@ const SignUpForm = (): JSX.Element => {
                   )}
 
                 {/* if terms isnt clicked yet */}
-                {!isTermsLinkedClicked &&
-                  isTermsLinkedClicked !== undefined &&
-                  passwordMatch !== false &&
-                  isValidPassword === true && (
-                    <p className='text-red-500 '>
-                      Please review the terms of service
-                    </p>
-                  )}
+                {termsPending && (
+                  <p className='text-red-500 '>
+                    Please review the terms of service
+                  </p>
+                )}
+
+                {termsCheckBoxClicked === false && (
+                  <p className='text-red-500 '>
+                    Please agree to the terms of service
+                  </p>
+                )}
 
                 {/* if terms checkbox is clicked but not viewed  */}
                 {}

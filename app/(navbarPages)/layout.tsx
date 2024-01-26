@@ -7,6 +7,7 @@ import { Oswald, Kanit } from '@next/font/google';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
+import AuthProvider from '../components/backendcomponents/AuthProvider';
 
 export const metadata: Metadata = {
   title: {
@@ -35,19 +36,21 @@ export default function RootLayout({
     <>
       <head />
 
-      <MyProvider>
-        <body className={`${kanit.className} dark:bg-gray-900`}>
-          <>
-            <div className='fixed top-0 w-full z-50'>
-              <NavBar />
-            </div>
+      <AuthProvider>
+        <MyProvider>
+          <body className={`${kanit.className} dark:bg-gray-900`}>
+            <>
+              <div className='fixed top-0 w-full z-50'>
+                <NavBar />
+              </div>
 
-            <Providers>
-              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
-            </Providers>
-          </>
-        </body>
-      </MyProvider>
+              <Providers>
+                <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+              </Providers>
+            </>
+          </body>
+        </MyProvider>
+      </AuthProvider>
     </>
   );
 }

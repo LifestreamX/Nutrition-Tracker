@@ -70,8 +70,9 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     // Configuring the sign-in and sign-out pages
-    signIn: '/auth/signin',
-    signOut: '/auth/signout',
+    
+    signIn: '/signin',
+    signOut: '/signout',
   },
   // Configuring the secret for JWT encoding/decoding
   secret: process.env.NEXTAUTH_SECRET,
