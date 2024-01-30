@@ -53,7 +53,15 @@ const SignUpForm = (): JSX.Element => {
 
     let isValid = passwordReg.test(password);
 
-    setIsValidPassword(isValid);
+    let isValidPass;
+
+    if (isValid) {
+      isValidPass = true;
+    } else {
+      isValidPass = false;
+    }
+
+    console.log(isValidPassword);
 
     if (password !== confirmPassword) {
       console.log('PASSWORDS MUST MATCH');
@@ -85,10 +93,11 @@ const SignUpForm = (): JSX.Element => {
         return;
       } else {
         const resMessage = await signUp(email, password);
+        console.log(resMessage);
         setMessage(resMessage);
 
         if (
-          isValidPassword &&
+          isValidPass &&
           passwordMatch &&
           isTermsLinkedClicked &&
           resMessage !== 'User with that email already exists'
@@ -121,7 +130,7 @@ const SignUpForm = (): JSX.Element => {
     <>
       <h1 className='sm:text-2xl md:text-3xl relative top-20 sm:top-24 md:top-28  font-bold p-10'>
         {successfullyRegistered ? (
-          <p className='text-purple-800'>Successfully Registered</p>
+          <p>Successfully Registered</p>
         ) : (
           <p>Create Your Account </p>
         )}
@@ -133,9 +142,12 @@ const SignUpForm = (): JSX.Element => {
       >
         {successfullyRegistered ? (
           <div>
-            <p className='text-center'>
+            {/* <p className='text-center'>{message && message}</p> */}
+            <p className='text-left'>
               {' '}
-              Thank you for registering with nutritiontracker!{' '}
+              Your account is now active, and you can start tracking your
+              nutrition journey. If you have any questions or need assistance,
+              feel free to reach out. We're excited to have you on board!{' '}
             </p>
           </div>
         ) : (

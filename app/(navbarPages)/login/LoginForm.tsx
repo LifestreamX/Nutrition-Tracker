@@ -1,18 +1,20 @@
 'use client';
 
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Button from '../../components/Button';
 import { useRouter } from 'next/navigation';
 import { useWindowSize } from 'react-use';
 import Link from 'next/link';
+import { signIn, useSession } from 'next-auth/react';
 
 const LoginForm = (): JSX.Element => {
+  const { status } = useSession();
   const router = useRouter();
-
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { width } = useWindowSize();
   const [isValidPassword, setIsValidPassword] = useState<boolean | undefined>();
+  const [message, setMessage] = useState('');
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
@@ -23,25 +25,53 @@ const LoginForm = (): JSX.Element => {
   };
 
   // submit logic
-  const handleLoginButton = (e: FormEvent<HTMLFormElement>) => {
-    console.log('fdfdfs');
+  const handleLoginButton = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit.
-    const passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    setMessage('Signing In...');
 
-    let isValid = passwordReg.test(password);
+    try {
+      // Sign in using the credentials provider
+      const signInResponse = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
 
-    setIsValidPassword(isValid);
+      // Check if the sign-in response is successful
+      if (!signInResponse || signInResponse.ok !== true) {
+        setMessage('Invalid Email Or Password');
+      } else {
+        // Refresh the router to reflect the updated authentication status
+        location.reload();
 
-    if (isValid) {
-      router.push('./dashboard');
+        router.refresh();
+      }
+    } catch (err) {
+      // Log any errors that occur during sign-in
+      console.error('Login error:', err);
     }
+
+    // setMessage(message);
   };
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      // If authenticated, redirect to the dashboard
+      router.refresh();
+
+      router.push('/dashboard');
+    }
+  }, [status]);
+
+  console.log(status);
 
   let buttonSize = width < 768 ? 'medium' : 'large';
 
   let buttonWidith = width < 768 ? true : '';
+
+  let messageColor =
+    message === 'Signing In...' ? 'text-black' : 'text-red-600';
 
   return (
     <form
@@ -98,6 +128,7 @@ const LoginForm = (): JSX.Element => {
               />
             </div>
           </div>
+          <div className={`relative top-8 ${messageColor}`}>{message}</div>
         </div>
         <div className='md:flex md:items-center mb-6 flex-col'>
           <span className='flex mt-3'>{/* error would go here  */}</span>
@@ -107,6 +138,7 @@ const LoginForm = (): JSX.Element => {
           <div className=''></div>
           <label className=' block text-gray-500 font-bold '></label>
         </div>
+
         {/* signup submit button */}
         <div className='md:flex md:items-center  md:justify-center mb-6 flex flex-col'>
           {' '}

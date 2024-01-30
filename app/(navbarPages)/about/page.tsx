@@ -5,6 +5,7 @@ import icon1 from '/public/images/about/icon1.png';
 import icon2 from '/public/images/about/icon2.png';
 import icon3 from '/public/images/about/icon3.png';
 import icon4 from '/public/images/about/icon4.png';
+// import icon4 from '../../.././public/images/about/icon4.png'
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

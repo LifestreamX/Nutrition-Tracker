@@ -1,6 +1,12 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import {
+  Fragment,
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  useState,
+} from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import navicon from '../.././public/images/navicon.png';
@@ -8,10 +14,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMyContext } from '@/MyContext';
 
+import { Session as NextAuthSession } from 'next-auth';
+
 interface NavigationItem {
   name: string;
   href: string;
   current: boolean;
+}
+
+interface NavProps {
+  session: NextAuthSession | null;
 }
 
 function classNames(...classes: string[]) {
@@ -24,15 +36,34 @@ const navigation: NavigationItem[] = [
   { name: 'Contact', href: '/contact', current: false },
 ];
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC<NavProps> = ({ session }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(true);
   const { profileAvatar } = useMyContext();
+  let [sessionLog, setSessionLog] = useState();
+
+  console.log('THIS IS SESSSION LOGGINGG', session);
+
+  let userEmail:
+    | string
+    | number
+    | boolean
+    | ReactElement<any, string | JSXElementConstructor<any>>
+    | ReactFragment
+    | null
+    | undefined;
+
+  if (session?.user) {
+    userEmail = session.user?.email;
+  }
+
+  console.log(userEmail);
 
   return (
     <Disclosure as='nav' className='bg-gray-800 '>
       {({ open }) => (
         <>
-          <header className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 '>
+          <header className='mx-auto  px-2 sm:px-6 lg:px-8  relative flex h-16 items-center justify-betwee '>
+            {/* left side  nav */}
             <Link href='/' legacyBehavior>
               <h1
                 className='text-white text-bold text-xl absolute left-10 top-4 hidden md:block z-20
@@ -41,82 +72,82 @@ const NavBar: React.FC = () => {
                 nutritiontracker
               </h1>
             </Link>
-            <div className='relative flex h-16 items-center justify-between'>
-              <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
-                {/* Mobile menu button*/}
-                <Disclosure.Button
-                  data-testid='mobile-menu-button'
-                  id='mobile-menu-button'
-                  className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
-                >
-                  <span className='sr-only'>Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className='block h-6 w-6' aria-hidden='true' />
-                  ) : (
-                    <Bars3Icon className='block h-6 w-6' aria-hidden='true' />
-                  )}
-                </Disclosure.Button>
-              </div>
 
-              {/* middle nav */}
-              <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-star'>
-                <div className='flex flex-shrink-0 items-center'>
-                  {/* <img
+            <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
+              {/* Mobile menu button*/}
+              <Disclosure.Button
+                data-testid='mobile-menu-button'
+                id='mobile-menu-button'
+                className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+              >
+                <span className='sr-only'>Open main menu</span>
+                {open ? (
+                  <XMarkIcon className='block h-6 w-6' aria-hidden='true' />
+                ) : (
+                  <Bars3Icon className='block h-6 w-6' aria-hidden='true' />
+                )}
+              </Disclosure.Button>
+            </div>
+
+            {/* middle nav */}
+            <div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-star'>
+              <div className='flex flex-shrink-0 items-center'>
+                {/* <img
                     className='block h-8 w-auto lg:hidden'
                     src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
                     alt='Your Company'
                   /> */}
-                  <Link href='/' legacyBehavior>
-                    <>
-                      <Image
-                        className='block h-8 w-auto lg:hidden '
-                        src={navicon}
-                        alt='Nutrition Image'
-                      />
-                      <Image
-                        className='hidden h-8 w-auto lg:block'
-                        src={navicon}
-                        alt='Nutrition Image'
-                      />
-                    </>
-                  </Link>
-                </div>
-
-                <div className='hidden sm:ml-6 sm:block'>
-                  <div className='flex space-x-4 text-white'>
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                        legacyBehavior
-                      >
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                <Link href='/' legacyBehavior>
+                  <>
+                    <Image
+                      className='block h-8 w-auto lg:hidden '
+                      src={navicon}
+                      alt='Nutrition Image'
+                    />
+                    <Image
+                      className='hidden h-8 w-auto lg:block'
+                      src={navicon}
+                      alt='Nutrition Image'
+                    />
+                  </>
+                </Link>
               </div>
 
-              {/* right side of nav bar */}
-              <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-                {
-                  isLoggedIn ? (
-                    <>
-                      <button
-                        type='button'
-                        className='rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
-                      >
-                        <span className='sr-only'>View notifications</span>
-                      </button>
+              <div className='hidden sm:ml-6 sm:block'>
+                <div className='flex space-x-4 text-white '>
+                  {navigation.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        'relative px-3 py-2 rounded-md  ',
+                        item.current
+                          ? 'bg-gray-900 text-white'
+                          : ' hover:text-white group'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      <span className='relative z-10'>{item.name}</span>
+                      <span className='absolute left-0 w-full h-1 bg-white bottom-0 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform'></span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-                      {/* Profile dropdown */}
+            {/* right side of nav bar */}
+            <div className=' flex justify-center items-center '>
+              {
+                <>
+                  <button
+                    type='button'
+                    className='rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+                  >
+                    <span className='sr-only'>View notifications</span>
+                  </button>
+
+                  {session && session.user?.email ? (
+                    <>
                       <Menu as='div' className='relative ml-3'>
                         <div>
                           <Menu.Button
@@ -164,6 +195,15 @@ const NavBar: React.FC = () => {
                           leaveTo='transform opacity-0 scale-95'
                         >
                           <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+                            <div className='p-4'>
+                              <p>
+                                Account:{' '}
+                                <span className='font-medium'>
+                                  {userEmail}
+                                </span>
+                              </p>
+                              <p></p>
+                            </div>
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
@@ -195,7 +235,7 @@ const NavBar: React.FC = () => {
                             <Menu.Item>
                               {({ active }) => (
                                 <Link
-                                  href='./login'
+                                  href='./signout'
                                   className={classNames(
                                     active ? 'bg-gray-100' : '',
                                     'block px-4 py-2 text-sm text-gray-700'
@@ -224,15 +264,20 @@ const NavBar: React.FC = () => {
                         </Transition>
                       </Menu>
                     </>
-                  ) : // sign in button
-                  null
-                  // <Link href='/login' legacyBehavior>
-                  //   <button className='mr-6 bg-transparent text-1xl hover:bg-white text-white font-semibold hover:text-gray-800 py-1 px-2 border-2 border-white hover:border-transparent rounded'>
-                  //     <p className='font-bolder text-md'>LOG IN</p>
-                  //   </button>
-                  // </Link>
-                }
-              </div>
+                  ) : (
+                    <>
+                      <div className='group relative'>
+                        <Link href='/login'>
+                          <p className='text-white font-semi-bold text-xl cursor-pointer relative'>
+                            Sign In
+                          </p>
+                          <span className='absolute left-0 w-full h-1 bg-white transition-transform origin-left transform scale-x-0 group-hover:scale-x-100'></span>
+                        </Link>
+                      </div>
+                    </>
+                  )}
+                </>
+              }
             </div>
           </header>
 

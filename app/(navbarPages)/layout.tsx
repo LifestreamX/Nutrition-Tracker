@@ -8,6 +8,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AuthProvider from '../components/backendcomponents/AuthProvider';
+import NavBarWrapper from '../components/NavBarWrapper';
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +42,8 @@ export default function RootLayout({
           <body className={`${kanit.className} dark:bg-gray-900`}>
             <>
               <div className='fixed top-0 w-full z-50'>
-                <NavBar />
+                {/* @ts-expect-error Async Server Component */}
+                <NavBarWrapper />
               </div>
 
               <Providers>

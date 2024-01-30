@@ -16,6 +16,8 @@ const Button: React.FC<ButtonProps> = ({
         return 'bg-purple-800 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded';
       case 'red':
         return 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded';
+      case 'white':
+        return 'bg-white hover:bg-gray-100 text-black font-bold rounded';
       default:
         return 'bg-gray-500 hover:bg-gray-700 text-white';
     }

@@ -44,34 +44,37 @@ export const authOptions: AuthOptions = {
 
         const { email, password } = credentials;
 
-        // Finding a unique user in the Prisma database based on the provided email
-        const user = await prisma.user.findUnique({
-          where: {
-            email,
-          },
-        });
+        try {
+          // Finding a unique user in the Prisma database based on the provided email
+          const user = await prisma.user.findUnique({
+            where: {
+              email,
+            },
+          });
 
-        if (!user) {
-          return null;
+          if (!user) {
+            return null;
+          }
+
+          // Comparing the provided password with the hashed password stored in the database
+          const userPassword = user.passwordHash;
+          const isValidPassword = bcrypt.compareSync(password, userPassword);
+
+          if (!isValidPassword) {
+            return null;
+          }
+
+          // Returning the user if the credentials are valid
+          return user;
+        } catch (error: any) {
+          throw new Error(`Error authorizing user: ${error.message}`);
         }
-
-        // Comparing the provided password with the hashed password stored in the database
-        const userPassword = user.passwordHash;
-        const isValidPassword = bcrypt.compareSync(password, userPassword);
-
-        if (!isValidPassword) {
-          return null;
-        }
-
-        // Returning the user if the credentials are valid
-        return user;
       },
     }),
   ],
   pages: {
     // Configuring the sign-in and sign-out pages
-    
-    signIn: '/signin',
+    signIn: '/login',
     signOut: '/signout',
   },
   // Configuring the secret for JWT encoding/decoding
@@ -82,20 +85,30 @@ export const authOptions: AuthOptions = {
       if (!token) {
         throw new Error('No token to encode');
       }
-      // Encoding the token using the provided secret
-      return jwt.sign(token, secret);
+
+      try {
+        // Encoding the token using the provided secret
+        return jwt.sign(token, secret);
+      } catch (error: any) {
+        throw new Error(`Error encoding JWT: ${error.message}`);
+      }
     },
     // Configuring JWT decoding function
     async decode({ secret, token }) {
       if (!token) {
         throw new Error('No token to decode');
       }
-      // Decoding the token using the provided secret
-      const decodedToken = jwt.verify(token, secret);
-      if (typeof decodedToken === 'string') {
-        return JSON.parse(decodedToken);
-      } else {
-        return decodedToken;
+
+      try {
+        // Decoding the token using the provided secret
+        const decodedToken = jwt.verify(token, secret);
+        if (typeof decodedToken === 'string') {
+          return JSON.parse(decodedToken);
+        } else {
+          return decodedToken;
+        }
+      } catch (error: any) {
+        throw new Error(`Error decoding JWT: ${error.message}`);
       }
     },
   },
@@ -110,13 +123,16 @@ export const authOptions: AuthOptions = {
   callbacks: {
     // Configuring the session callback to update the user's email in the session
     async session(params: { session: Session; token: JWT; user: User }) {
-      if (params.session.user) {
-        params.session.user.email = params.token.email;
+      try {
+        if (params.session.user) {
+          params.session.user.email = params.token.email;
+        }
+        return params.session;
+      } catch (error: any) {
+        throw new Error(`Error handling session callback: ${error.message}`);
       }
-
-      return params.session;
     },
-    // Configuring the JWT callback to update the token with user's email
+    // Configuring the JWT callback to update the token with the user's email
     async jwt(params: {
       token: JWT;
       user?: User | undefined;
@@ -124,11 +140,14 @@ export const authOptions: AuthOptions = {
       profile?: Profile | undefined;
       isNewUser?: boolean | undefined;
     }) {
-      if (params.user) {
-        params.token.email = params.user.email;
+      try {
+        if (params.user) {
+          params.token.email = params.user.email;
+        }
+        return params.token;
+      } catch (error: any) {
+        throw new Error(`Error handling JWT callback: ${error.message}`);
       }
-
-      return params.token;
     },
   },
 };
