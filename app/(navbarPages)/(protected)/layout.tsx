@@ -1,5 +1,5 @@
 // Import necessary modules and types
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextAuth]/route';
 import Button from '@/app/components/Button';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';

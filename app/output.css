@@ -957,10 +957,6 @@ video {
   margin-top: 2rem;
 }
 
-.mr-6 {
-  margin-right: 1.5rem;
-}
-
 .box-border {
   box-sizing: border-box;
 }
@@ -1148,10 +1144,6 @@ video {
 
 .max-w-xl {
   max-width: 36rem;
-}
-
-.max-w-7xl {
-  max-width: 80rem;
 }
 
 .flex-1 {
@@ -1409,11 +1401,6 @@ video {
   border-color: rgb(253 224 71 / var(--tw-border-opacity));
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
-}
-
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
@@ -1512,10 +1499,6 @@ video {
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity));
-}
-
-.bg-transparent {
-  background-color: transparent;
 }
 
 .bg-opacity-75 {
@@ -1659,10 +1642,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .text-left {
@@ -2169,10 +2148,6 @@ a {
   cursor: pointer;
 }
 
-.hover\:border-transparent:hover {
-  border-color: transparent;
-}
-
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
@@ -2218,11 +2193,6 @@ a {
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-white:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .hover\:text-gray-700:hover {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
@@ -2256,11 +2226,6 @@ a {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-gray-800:hover {
-  --tw-text-opacity: 1;
-  color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover {
@@ -2543,14 +2508,6 @@ a {
 }
 
 @media (min-width: 640px) {
-  .sm\:static {
-    position: static;
-  }
-
-  .sm\:inset-auto {
-    inset: auto;
-  }
-
   .sm\:right-3 {
     right: 0.75rem;
   }
@@ -2725,10 +2682,6 @@ a {
 
   .sm\:pb-4 {
     padding-bottom: 1rem;
-  }
-
-  .sm\:pr-0 {
-    padding-right: 0px;
   }
 
   .sm\:text-left {

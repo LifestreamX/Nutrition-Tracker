@@ -1,3 +1,4 @@
+import { authOptions } from '../api/auth/[...nextAuth]/route';
 import React from 'react';
 import Image from 'next/image';
 import heroimg from '../.././public/images/heroimg.png';
@@ -5,7 +6,6 @@ import heroimg2 from '../.././public/images/heroimg2.png';
 import Link from 'next/link';
 import Button from './Button';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 
 const HomeHero = async () => {
   const session = await getServerSession(authOptions);
