@@ -69,8 +69,8 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
               </h1>
             </Link>
 
-            <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
               {/* Mobile menu button*/}
+            <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
               <Disclosure.Button
                 data-testid='mobile-menu-button'
                 id='mobile-menu-button'
