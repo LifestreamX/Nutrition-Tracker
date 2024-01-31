@@ -13,7 +13,7 @@ describe('Navbar component', () => {
     render(
       <MemoryRouter>
         <MyProvider>
-          <NavBar />
+          <NavBar session={null} />
         </MyProvider>
       </MemoryRouter>
     );
@@ -31,7 +31,7 @@ describe('Navbar component', () => {
     render(
       <MemoryRouter>
         <MyProvider>
-          <NavBar />
+          <NavBar session={null} />
         </MyProvider>
       </MemoryRouter>
     );
@@ -63,7 +63,7 @@ it('displays avatar when rendered', () => {
   render(
     <MemoryRouter>
       <MyProvider>
-        <NavBar />
+        <NavBar session={null} />
       </MyProvider>
     </MemoryRouter>
   );
@@ -77,7 +77,7 @@ it('toggles mobile menu when button clicked', () => {
   render(
     <MemoryRouter>
       <MyProvider>
-        <NavBar />
+        <NavBar session={null} />
       </MyProvider>
     </MemoryRouter>
   );
