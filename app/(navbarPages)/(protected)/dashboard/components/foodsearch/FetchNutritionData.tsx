@@ -1,3 +1,6 @@
+
+
+
 import { ApiResponse, NutritionSearchDataType } from '@/types/Food.types';
 
 const options = {

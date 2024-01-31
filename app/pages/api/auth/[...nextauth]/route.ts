@@ -1,7 +1,6 @@
 // Importing the NextAuth function from next-auth/next
+import { authOptions } from '@/app/lib/authOptions';
 import NextAuth from 'next-auth/next';
-
-import { authOptions } from '@/app/api/auth/authOptions';
 
 // Creating the authentication handler using NextAuth with the provided options
 const handler = NextAuth(authOptions);

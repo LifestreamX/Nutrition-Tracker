@@ -1,6 +1,6 @@
 // Import necessary modules and types
 import Button from '@/app/components/Button';
-import { authOptions } from '@/app/api/auth/authOptions';
+import { authOptions } from '@/app/lib/authOptions';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import React from 'react';

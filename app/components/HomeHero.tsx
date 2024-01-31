@@ -5,7 +5,7 @@ import heroimg2 from '../.././public/images/heroimg2.png';
 import Link from 'next/link';
 import Button from './Button';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../api/auth/authOptions';
+import { authOptions } from '../lib/authOptions';
 
 const HomeHero = async () => {
   const session = await getServerSession(authOptions);

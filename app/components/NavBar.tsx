@@ -41,7 +41,6 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
   const { profileAvatar } = useMyContext();
   let [sessionLog, setSessionLog] = useState();
 
-
   let userEmail:
     | string
     | number
@@ -54,7 +53,6 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
   if (session?.user) {
     userEmail = session.user?.email;
   }
-
 
   return (
     <Disclosure as='nav' className='bg-gray-800 '>
@@ -196,9 +194,7 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
                             <div className='p-4'>
                               <p>
                                 Account:{' '}
-                                <span className='font-medium'>
-                                  {userEmail}
-                                </span>
+                                <span className='font-medium'>{userEmail}</span>
                               </p>
                               <p></p>
                             </div>
