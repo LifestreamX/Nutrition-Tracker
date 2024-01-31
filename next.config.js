@@ -5,6 +5,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
     serverComponents: true, // Enable serverComponents for Server Actions
+    serverActions: true,
   },
 
   test: /\\.(png|jp(e*)g|svg|gif)$/,
