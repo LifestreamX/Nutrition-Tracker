@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from './NavBar';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../lib/authOptions';
+import { authOptions } from '../api/auth/authOptions';
 
 const NavBarWrapper = async () => {
   const session = await getServerSession(authOptions);
