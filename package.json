@@ -10,7 +10,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "postinstall": "prisma generate"
-
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
