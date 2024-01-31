@@ -4,8 +4,14 @@ import heroimg from '../.././public/images/heroimg.png';
 import heroimg2 from '../.././public/images/heroimg2.png';
 import Link from 'next/link';
 import Button from './Button';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
-const HomeHero: React.FC = () => {
+const HomeHero = async () => {
+  const session = await getServerSession(authOptions);
+
+  console.log(session?.user?.email);
+
   return (
     <section className='flex-col sm:flex-row  w-100 flex relative bottom-24 justify-evenly items-center  '>
       {/* Left side hero */}
@@ -17,10 +23,12 @@ const HomeHero: React.FC = () => {
         </h3>
         <Link href='/signup'>
           {' '}
-          <Button color='purple' size='large'>
-            {' '}
-            Sign Up Now!
-          </Button>
+          {!session?.user?.email && (
+            <Button color='purple' size='large'>
+              {' '}
+              Sign Up Now!
+            </Button>
+          )}
         </Link>
       </div>
 

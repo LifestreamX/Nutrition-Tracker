@@ -4,9 +4,10 @@ import { useMyContext } from '@/MyContext';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-import UploadAvatar from '../../components/AvatarProfile';
+import UploadAvatar from '../../../components/AvatarProfile';
+// import UploadAvatar from '../../../components/AvatarProfile';
 import Image from 'next/image';
-import NoAvatar from '../../../public/images/NoAvatar.png';
+import NoAvatar from '/public/images/NoAvatar.png';
 
 const UserSettings: React.FC = () => {
   const [mounted, setMounted] = useState(false);

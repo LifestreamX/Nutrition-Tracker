@@ -41,7 +41,6 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
   const { profileAvatar } = useMyContext();
   let [sessionLog, setSessionLog] = useState();
 
-  console.log('THIS IS SESSSION LOGGINGG', session);
 
   let userEmail:
     | string
@@ -56,7 +55,6 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
     userEmail = session.user?.email;
   }
 
-  console.log(userEmail);
 
   return (
     <Disclosure as='nav' className='bg-gray-800 '>

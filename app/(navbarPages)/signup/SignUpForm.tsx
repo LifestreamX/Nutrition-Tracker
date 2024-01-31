@@ -61,7 +61,6 @@ const SignUpForm = (): JSX.Element => {
       isValidPass = false;
     }
 
-    console.log(isValidPassword);
 
     if (password !== confirmPassword) {
       console.log('PASSWORDS MUST MATCH');

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useMyContext } from '../../../../../MyContext';
+import { useMyContext } from '@/MyContext';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import MyDatePicker from './DatePicker';

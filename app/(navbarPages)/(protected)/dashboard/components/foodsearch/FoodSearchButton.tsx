@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useEffect, useState, ReactNode } from 'react';
-import grapes from '../../../../../public/images/dashboard/grapes.png';
+import grapes from '../../../../../../public/images/dashboard/grapes.png';
 import Image from 'next/image';
 import Modal from 'react-modal';
 import { useDebounce } from 'react-use';
 import { useWindowSize } from 'react-use';
 import fetchNutritionData from './FetchNutritionData';
 import {
-  FoodTypeData,
   NutritionSearchDataType,
   NutritonSearchDataServinvgSizes,
   ServingsType,
