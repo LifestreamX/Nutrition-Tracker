@@ -96,7 +96,7 @@ export const authOptions: AuthOptions = {
       if (!token) {
         throw new Error('No token to decode');
       }
-
+      //
       try {
         // Decoding the token using the provided secret
         const decodedToken = jwt.verify(token, secret);
