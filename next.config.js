@@ -21,6 +21,8 @@ const nextConfig = {
     ],
   },
 
+  reactStrictMode: false,
+
   publicRuntimeConfig: {
     staticFolder: 'public',
   },
