@@ -8,6 +8,7 @@ import { Metadata } from 'next';
 import { signUp } from '@/app/actions/users/signUp';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 import { isValid } from 'js-base64';
+import { Session } from 'inspector';
 
 const SignUpForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
@@ -60,7 +61,6 @@ const SignUpForm = (): JSX.Element => {
     } else {
       isValidPass = false;
     }
-
 
     if (password !== confirmPassword) {
       console.log('PASSWORDS MUST MATCH');
@@ -129,7 +129,10 @@ const SignUpForm = (): JSX.Element => {
     <>
       <h1 className='sm:text-2xl md:text-3xl relative top-20 sm:top-24 md:top-28  font-bold p-10'>
         {successfullyRegistered ? (
-          <p>Successfully Registered</p>
+          <div className='flex flex-col justify-center items-center'>
+            <p>Successfully Registered with</p>
+            <p>{email}</p>
+          </div>
         ) : (
           <p>Create Your Account </p>
         )}
@@ -292,13 +295,16 @@ const SignUpForm = (): JSX.Element => {
       </form>
       <div className='absolute bottom-1 '>
         {successfullyRegistered ? (
-          <Link href='./dashboard'>
+          <div>
             Go to
-            <span className='text-purple-600 font-medium hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-500'>
+            <Link
+              href='./login'
+              className='text-purple-600 font-medium hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-500'
+            >
               {' '}
-              Dashboard
-            </span>
-          </Link>
+              Sign In 
+            </Link>
+          </div>
         ) : (
           <Link
             href='./login'
