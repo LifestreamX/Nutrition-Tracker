@@ -14,6 +14,7 @@ export default function Home(): JSX.Element {
   return (
     <main className='flex flex-col h-full mt-12 '>
       <section className='mt-40 sm:mt-80   '>
+        {/* @ts-expect-error Server Component */}
         <HomeHero />
       </section>
       <section className='mt-32 sm:mt-48'>
