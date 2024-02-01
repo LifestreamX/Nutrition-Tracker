@@ -1,9 +1,4 @@
 // Import necessary modules and types
-<<<<<<< HEAD
-=======
-// import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { authOptions } from '../../api/auth/[...nextAuth]/route';
->>>>>>> backend
 import Button from '@/app/components/Button';
 import { authOptions } from '@/app/lib/authOptions';
 import { getServerSession } from 'next-auth';
