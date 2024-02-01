@@ -33,7 +33,7 @@ const ProtectedLayout = async ({ children }: ProtectedLayoutProps) => {
     );
   }
 
-  // If the user is authenticated, render the provided children
+  // If the user is authenticated, render the provided children.
   return <>{children}</>;
 };
 
