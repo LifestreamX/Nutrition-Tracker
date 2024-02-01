@@ -9,88 +9,107 @@ export const metadata: Metadata = {
 const Terms = () => {
   return (
     <Providers>
-      <section className='flex flex-col justify-center items-center  dark:bg-gray-900    '>
-        <div className='rounded-2xl  dark:bg-gray-800 relative p-6 lg:p-20 lg:m-20  '>
-          <h1 className='relative text-2xl underline font-bold  text-center'>
-            nutritiontracker Terms and Confitions of Use
+      <section className='flex flex-col justify-center items-center dark:bg-gray-900'>
+        <div className='rounded-2xl dark:bg-gray-800 relative p-6 lg:p-20 lg:m-20'>
+          <h1 className='relative text-3xl underline font-bold text-center'>
+            Terms and Conditions of Use
           </h1>
 
-          <div className='max-w-xl mt-10 p-5'>
-            <h2 className='mb-5 text-lg'>1. Lorem ipsum dolor sit amet.</h2>
+          <div className='max-w-2xl mt-10 p-5'>
+            <h2 className='mb-5 text-lg'>1. Acceptance of Terms</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-              nisi accusantium porro, recusandae cum, praesentium amet beatae
-              dicta sit pariatur inventore labore possimus reprehenderit velit
-              repudiandae consequatur reiciendis asperiores. Ex adipisci ea
-              sequi laboriosam voluptates fugit velit consequuntur dignissimos
-              hic aliquam quidem libero magni minus obcaecati rerum tempora
-              magnam cupiditate optio amet, laudantium accusamus distinctio
-              inventore iusto! Molestias, labore? Sapiente distinctio
-              repudiandae rerum quibusdam qui ab suscipit ipsa quas cumque!
+              By accessing or using Nutrition Tracker, you agree to comply with
+              and be bound by these Terms of Service. If you do not agree with
+              these terms, please refrain from using our Site and Service.
             </p>
           </div>
 
-          <div className='max-w-xl mt-10 p-5'>
-            <h2 className='mb-5 text-lg'>2. Lorem, ipsum dolor</h2>
+          <div className='max-w-2xl mt-10 p-5'>
+            <h2 className='mb-5 text-lg'>2. Use of the Service</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque,
-              asperiores nemo tempore rerum hic sequi ab eos accusantium
-              expedita velit fuga inventore aut obcaecati necessitatibus maxime
-              consectetur minus ad corrupti repudiandae error consequatur. Omnis
-              repellendus ducimus, commodi expedita iure rem deleniti nisi
-              dolore error deserunt, tempora suscipit, modi inventore in.
+              Nutrition Tracker is a nutrition tracking platform designed for
+              personal use. You agree to use the Service only for lawful
+              purposes and in compliance with all applicable laws and
+              regulations. You are responsible for maintaining the security of
+              your account and password. Nutrition Tracker cannot and will not
+              be liable for any loss or damage from your failure to comply with
+              this security obligation.
             </p>
           </div>
 
-          <div className='max-w-xl mt-10 p-5'>
-            <h2 className='mb-5 text-lg'>
-              3. Lorem ipsum dolor sit amet consectetur.
-            </h2>
+          <div className='max-w-2xl mt-10 p-5'>
+            <h2 className='mb-5 text-lg'>3. User Content</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-              laborum facilis quia. Tempora dolores voluptates quisquam odio cum
-              hic, totam quo error quod aliquid quas ipsam eaque reprehenderit
-              minima assumenda nulla voluptatum exercitationem unde pariatur
-              accusamus ut, quam soluta iusto! Maxime exercitationem tempora
-              alias quae reprehenderit. Sit veritatis assumenda cupiditate at,
-              natus excepturi, veniam iure, rem officiis debitis recusandae
-              iste.
+              You retain ownership of the content you submit to Nutrition
+              Tracker, and you grant Nutrition Tracker a non-exclusive,
+              worldwide, royalty-free license to use, copy, reproduce, process,
+              adapt, modify, publish, transmit, display, and distribute your
+              content for the purpose of providing and improving the Service.
+              You agree not to submit content that is unlawful, defamatory,
+              threatening, harassing, abusive, invasive of another's privacy, or
+              otherwise objectionable.
             </p>
           </div>
-          <div className='max-w-xl mt-10 p-5'>
-            <h2 className='mb-5 text-lg'>
-              4. Lorem ipsum dolor sit amet consectetur.
-            </h2>
+
+          <div className='max-w-2xl mt-10 p-5'>
+            <h2 className='mb-5 text-lg'>4. Privacy</h2>
             <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
-              eum commodi ipsum consequuntur facilis voluptate. Excepturi, ut
-              animi perspiciatis maxime ducimus voluptate voluptatibus enim et
-              dolor nam explicabo non assumenda modi consequuntur pariatur
-              provident cupiditate illo numquam? Sit odit est explicabo delectus
-              maxime. Quibusdam sunt incidunt exercitationem repellendus
-              assumenda magni cupiditate deleniti ipsam deserunt culpa fuga
-              facere fugit, laudantium optio hic quae distinctio delectus
-              repudiandae beatae reprehenderit recusandae molestiae magnam!
-              Aspernatur dolorem accusantium minima voluptates dicta autem sit
-              praesentium nobis, velit, iure necessitatibus, fuga non obcaecati
-              ab itaque sequi quisquam inventore? Non eos enim temporibus nam
-              blanditiis reprehenderit quos unde?
+              Nutrition Tracker values your privacy. Our Privacy Policy, which
+              will outline how we collect, use, and disclose information about
+              you, is currently under development. Once completed, the Privacy
+              Policy will be available at [Privacy Policy Link]. By using the
+              Service, you consent to the practices described in the Privacy
+              Policy.
             </p>
           </div>
-          <div className='max-w-xl my-10 p-5'>
-            <h2 className='mb-5 text-lg'>5. Lorem, ipsum.</h2>
+
+          <div className='max-w-2xl my-10 p-5'>
+            <h2 className='mb-5 text-lg'>5. Termination</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum,
-              tempore, modi distinctio cum nobis hic quis pariatur perferendis
-              qui recusandae praesentium aut rerum ipsam unde ipsum! Ipsa
-              debitis modi facere, quaerat animi ducimus optio distinctio eius,
-              harum reiciendis assumenda, doloremque vero pariatur atque labore.
-              Maiores facere eligendi recusandae, eveniet optio aliquam
-              voluptates nostrum id, libero molestias quasi aliquid inventore
-              incidunt minus adipisci quo quidem tempora distinctio numquam
-              suscipit ea? Reprehenderit asperiores enim maxime voluptatibus,
-              amet officia. Dolores repudiandae qui vitae accusamus placeat ex
-              laborum, at modi consectetur, culpa provident suscipit?
+              Nutrition Tracker reserves the right to terminate or suspend your
+              account and access to the Service at any time, without notice, for
+              any reason, including if you violate these Terms of Service.
+            </p>
+          </div>
+
+          <div className='max-w-2xl my-10 p-5'>
+            <h2 className='mb-5 text-lg'>6. Changes to Terms</h2>
+            <p>
+              Nutrition Tracker may update these Terms of Service from time to
+              time. It is your responsibility to check for updates. Continued
+              use of the Service after any modifications to the Terms of Service
+              constitutes your acceptance of such changes.
+            </p>
+          </div>
+
+          <div className='max-w-2xl my-10 p-5'>
+            <h2 className='mb-5 text-lg'>7. Contact Information</h2>
+            <p>
+              For any questions about these Terms of Service, please contact us
+              at tylerallen@live.com.
+            </p>
+          </div>
+
+          <div className='max-w-2xl mt-10 p-5'>
+            <h2 className='mb-5 text-lg'>8. User Responsibilities</h2>
+            <p>
+              You are responsible for the accuracy and completeness of the
+              information you provide to Nutrition Tracker. You acknowledge that
+              the nutrition information provided by the Service is for general
+              informational purposes only and should not be considered medical
+              advice. It is recommended to consult with a healthcare
+              professional or a registered dietitian for personalized advice.
+            </p>
+          </div>
+
+          <div className='max-w-2xl mt-10 p-5'>
+            <h2 className='mb-5 text-lg'>9. Prohibited Activities</h2>
+            <p>
+              You agree not to engage in any activity that may disrupt the
+              functionality of Nutrition Tracker, including but not limited to
+              hacking, data scraping, or attempting to gain unauthorized access
+              to the Service. Any violation of these terms may result in the
+              termination of your account and legal action.
             </p>
           </div>
         </div>
