@@ -9,6 +9,7 @@ import React from 'react';
 interface ProtectedLayoutProps {
   children: React.ReactNode | React.ReactNode[];
 }
+// 
 
 // Define the ProtectedLayout component
 const ProtectedLayout = async ({ children }: ProtectedLayoutProps) => {
