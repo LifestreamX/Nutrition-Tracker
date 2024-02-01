@@ -15,14 +15,13 @@ const SignUpForm = (): JSX.Element => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [passwordMatch, setPasswordMatch] = useState<boolean>(true);
-  const [isValidPassword, setIsValidPassword] = useState<boolean | undefined>();
+  const [isValidPassword, setIsValidPassword] = useState<boolean | null>(null);
   const [isTermsLinkedClicked, setIsTermsLinkedClicked] = useState<
     boolean | undefined
   >();
   const [termsDisabled, setTermsDisabled] = useState<boolean>(true);
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [message, setMessage] = useState<string>();
-
   const [termsPending, setTermsPending] = useState<boolean>();
 
   const [termsCheckBoxClicked, setTermsCheckBoxClicked] = useState<
@@ -63,10 +62,12 @@ const SignUpForm = (): JSX.Element => {
     }
 
     if (password !== confirmPassword) {
+      setIsValidPassword(true);
       console.log('PASSWORDS MUST MATCH');
       setPasswordMatch(false);
       return;
     } else if (!isValid) {
+      setIsValidPassword(false);
       console.log(
         'At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit '
       );
@@ -105,7 +106,12 @@ const SignUpForm = (): JSX.Element => {
         }
       }
     }
+
+    if (isValid && passwordMatch) {
+      setIsValidPassword(true);
+    }
   };
+
   // terms logic
   const handleLinkClick = (): void => {
     setIsTermsLinkedClicked(true);
@@ -226,15 +232,23 @@ const SignUpForm = (): JSX.Element => {
                 {!passwordMatch && (
                   <p className='text-red-500 '>Passwords do not match</p>
                 )}
-                {!isValidPassword &&
-                  isValidPassword !== undefined &&
+                {/* {!isValidPassword &&
+                  isValidPassword === undefined &&
                   passwordMatch && (
                     <p className='text-red-500 '>
                       Your password must contain atleast 8 characters, at least
                       one uppercase letter, at least one lowercase letter, and
                       at least one digit{' '}
                     </p>
-                  )}
+                  )} */}
+
+                {!isValidPassword && isValidPassword !== null && (
+                  <p className='text-red-500 '>
+                    Your password must contain atleast 8 characters, at least
+                    one uppercase letter, at least one lowercase letter, and at
+                    least one digit{' '}
+                  </p>
+                )}
 
                 {/* if terms isnt clicked yet */}
                 {termsPending && (
@@ -302,7 +316,7 @@ const SignUpForm = (): JSX.Element => {
               className='text-purple-600 font-medium hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-500'
             >
               {' '}
-              Sign In 
+              Sign In
             </Link>
           </div>
         ) : (
