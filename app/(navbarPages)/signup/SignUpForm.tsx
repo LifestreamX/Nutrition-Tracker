@@ -6,9 +6,7 @@ import Button from '../../components/Button';
 import { useWindowSize } from 'react-use';
 import { Metadata } from 'next';
 import { signUp } from '@/app/actions/users/signUp';
-import { faL } from '@fortawesome/free-solid-svg-icons';
-import { isValid } from 'js-base64';
-import { Session } from 'inspector';
+
 
 const SignUpForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');

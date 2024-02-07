@@ -26,6 +26,7 @@ export const signUp = async (email: string, password: string) => {
     data: {
       email,
       passwordHash,
+      loginAttempts: 0, // Set an initial value for loginAttempts
     },
   });
 

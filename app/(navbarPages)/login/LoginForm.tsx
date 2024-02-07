@@ -13,8 +13,8 @@ const LoginForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { width } = useWindowSize();
-  const [isValidPassword, setIsValidPassword] = useState<boolean | undefined>();
   const [message, setMessage] = useState('');
+  const [loginTimeOutMessage, setLogInTimeOutMessage] = useState<string>('');
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
@@ -41,18 +41,44 @@ const LoginForm = (): JSX.Element => {
       // Check if the sign-in response is successful
       if (!signInResponse || signInResponse.ok !== true) {
         setMessage('Invalid Email Or Password');
+
+        try {
+          // Make a request to your custom login API route
+          const res = await fetch('/api/loginfailed', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+          });
+
+          // Handle the response based on your server logic
+          const data = await res.json();
+
+          let message = data.message;
+
+          console.log(data);
+
+          if (message.startsWith('Too many login attempts.')) {
+            setLogInTimeOutMessage(message);
+          } else {
+            setLogInTimeOutMessage('');
+          }
+
+          console.log(message);
+        } catch (err) {
+          console.log('FAILED REQUEST ', err);
+        }
       } else {
         // Refresh the router to reflect the updated authentication status
-        location.reload();
-
         router.refresh();
+
+        location.reload();
       }
     } catch (err) {
       // Log any errors that occur during sign-in
       console.error('Login error:', err);
     }
-
-    // setMessage(message);
   };
 
   useEffect(() => {
@@ -64,11 +90,11 @@ const LoginForm = (): JSX.Element => {
     }
   }, [status]);
 
-  console.log(status);
-
   let buttonSize = width < 768 ? 'medium' : 'large';
 
   let buttonWidith = width < 768 ? true : '';
+
+  let isButtonHidden = message === 'Signing In...' ? 'hidden' : 'flex';
 
   let messageColor =
     message === 'Signing In...' ? 'text-black' : 'text-red-600';
@@ -128,7 +154,16 @@ const LoginForm = (): JSX.Element => {
               />
             </div>
           </div>
-          <div className={`relative top-8 ${messageColor}`}>{message}</div>
+          <div
+            className={`relative top-8 ${messageColor} flex justify-center flex-col items-center`}
+          >
+            <p className=' md:top-4 relative text:lg md:text-xl font-semibold'>
+              {message}
+            </p>
+            <p className='md:top-10 text-red-600 relative text:lg md:text-xl font-semibold text-center'>
+              {loginTimeOutMessage}
+            </p>
+          </div>
         </div>
         <div className='md:flex md:items-center mb-6 flex-col'>
           <span className='flex mt-3'>{/* error would go here  */}</span>
@@ -136,25 +171,53 @@ const LoginForm = (): JSX.Element => {
         {/* terms */}
         <div className='md:flex md:items-center mb-6 md:justify-center'>
           <div className=''></div>
-          <label className=' block text-gray-500 font-bold '></label>
+          <label className=' block text-gray-500 font-bold'></label>
         </div>
 
-        {/* signup submit button */}
-        <div className='md:flex md:items-center  md:justify-center mb-6 flex flex-col'>
-          {' '}
-          <Button
-            color='purple'
-            size={buttonSize}
-            responsiveWidth={buttonWidith}
-            type='submit'
+        <div className='flex flex-col justify-center items-center w-full'>
+          <div
+            className={` md:items-center  md:justify-center mb-6  flex-col  relative   `}
           >
-            Login
-          </Button>
-          {!isValidPassword && isValidPassword !== undefined && (
-            <p className='text-red-500 mt-5 text-center'>Invalid Password</p>
-          )}
+            <Button
+              color='purple'
+              size={buttonSize}
+              // responsiveWidth={buttonWidith}
+              type='submit'
+              responsiveWidth='true'
+            >
+              <div
+                role='status'
+                className='h-8 flex flex-col justify-center items-center'
+              >
+                {message === 'Signing In...' ? (
+                  <>
+                    <svg
+                      aria-hidden='true'
+                      className='inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600'
+                      viewBox='0 0 100 101'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
+                        fill='currentColor'
+                      />
+                      <path
+                        d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
+                        fill='currentFill'
+                      />
+                    </svg>
+                    <span className='sr-only'>Loading...</span>
+                  </>
+                ) : (
+                  <p className=''>Login</p>
+                )}
+              </div>
+            </Button>
+          </div>
         </div>
-        <div className=' absolute text-sm md:text-lg md:bottom-2'>
+
+        <div className=' absolute text-sm md:text-lg bottom-0 md:bottom-2'>
           <Link href='./signup'>
             Don't have a account? Create one{' '}
             <span className='text-purple-400 hover:text-purple-800'>Here</span>

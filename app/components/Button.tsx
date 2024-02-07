@@ -7,6 +7,7 @@ const Button: React.FC<ButtonProps> = ({
   size,
   onClick,
   responsiveWidth,
+  responsiveWidth2,
   children,
   type = 'button',
 }) => {
