@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import { useState, useRef, ChangeEvent } from 'react';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import Button from './Button';
 import { useMyContext } from '@/MyContext';
 import DeleteAvatarProfileModal from './DeleteAvatarProfileModal';
 import { useWindowSize } from 'react-use';
+import { useSession } from 'next-auth/react';
 
 const UploadAvatar = (): JSX.Element => {
   const [image, setImage] = useState<string | null>(null);
@@ -18,6 +19,19 @@ const UploadAvatar = (): JSX.Element => {
   const [showCropButton, setShowCropButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
+
+  const { data: session, status } = useSession<any>();
+
+  let isGoogleImage = session?.user?.image || '';
+
+  let googleAvatar = '';
+
+  if (isGoogleImage) {
+    googleAvatar = isGoogleImage;
+    setProfileAvatar(googleAvatar);
+  }
+
+  console.log(googleAvatar);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

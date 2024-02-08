@@ -16,6 +16,8 @@ import jwt from 'jsonwebtoken';
 // Importing the JWT type from next-auth
 import { JWT } from 'next-auth/jwt';
 
+import GoogleProvider from 'next-auth/providers/google';
+
 // Configuration options for authentication
 export const authOptions: AuthOptions = {
   providers: [
@@ -68,6 +70,12 @@ export const authOptions: AuthOptions = {
         }
       },
     }),
+
+    // google
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
   ],
 
   pages: {
@@ -119,6 +127,41 @@ export const authOptions: AuthOptions = {
     updateAge: 24 * 60 * 60,
   },
   callbacks: {
+    // GOOGLE
+    // Custom callback executed after successful sign-in
+    async signIn({ user, account }) {
+      // If user is available, save user data to the database
+      if (account?.provider === 'google' && user.email) {
+        try {
+          // Check if the user already exists in the database
+          const existingUser = await prisma.user.findUnique({
+            where: {
+              email: user.email,
+            },
+          });
+
+          if (!existingUser) {
+            console.log('google email user does not exiost in database yet ');
+
+            await prisma.user.create({
+              data: {
+                email: user.email,
+                passwordHash: user.id,
+                loginAttempts: 0, // Set an initial value for loginAttempts
+              },
+            });
+          } else {
+            console.log('gmail user already exist');
+            // return 'gmail user already exist in database';
+          }
+        } catch (error) {
+          console.error('Error saving user to the database:', error);
+          // return false; // Return false if an error occurs
+        }
+      }
+      return true; // Return true if the sign-in is successful
+    },
+
     // Configuring the session callback to update the user's email in the session
     async session(params: { session: Session; token: JWT; user: User }) {
       try {

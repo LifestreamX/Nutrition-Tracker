@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useWindowSize } from 'react-use';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
+import { GoogleSignInButton } from '@/app/components/backendcomponents/GoogleSignIn';
 
 const LoginForm = (): JSX.Element => {
   const { status } = useSession();
@@ -99,6 +100,9 @@ const LoginForm = (): JSX.Element => {
   let messageColor =
     message === 'Signing In...' ? 'text-black' : 'text-red-600';
 
+  // Google auth logic
+  // const { data } = useSession;
+
   return (
     <form
       onSubmit={handleLoginButton}
@@ -173,7 +177,6 @@ const LoginForm = (): JSX.Element => {
           <div className=''></div>
           <label className=' block text-gray-500 font-bold'></label>
         </div>
-
         <div className='flex flex-col justify-center items-center w-full'>
           <div
             className={` md:items-center  md:justify-center mb-6  flex-col  relative   `}
@@ -215,8 +218,16 @@ const LoginForm = (): JSX.Element => {
               </div>
             </Button>
           </div>
-        </div>
 
+          <h1>Or</h1>
+
+          <div>
+            {/* Google Auth Login */}
+            <div className='w-full'>
+              <GoogleSignInButton />
+            </div>
+          </div>
+        </div>
         <div className=' absolute text-sm md:text-lg bottom-0 md:bottom-2'>
           <Link href='./signup'>
             Don't have a account? Create one{' '}
