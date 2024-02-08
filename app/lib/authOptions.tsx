@@ -57,10 +57,11 @@ export const authOptions: AuthOptions = {
 
           // Comparing the provided password with the hashed password stored in the database
           const userPassword = user.passwordHash;
-          const isValidPassword = bcrypt.compareSync(
-            password,
-            userPassword as string
-          );
+          if (userPassword === null) {
+            return null; // Or handle it based on your application logic
+          }
+
+          const isValidPassword = bcrypt.compareSync(password, userPassword);
 
           if (!isValidPassword) {
             return null;
