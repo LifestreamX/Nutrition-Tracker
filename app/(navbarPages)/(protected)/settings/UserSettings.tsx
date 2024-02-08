@@ -37,6 +37,7 @@ const UserSettings: React.FC = () => {
 
   let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
 
+
   return (
     <>
       {/* dark mode setting */}
@@ -86,6 +87,7 @@ const UserSettings: React.FC = () => {
               alt='Rounded avatar'
               width={50}
               height={50}
+              priority={true} // or priority={1}
             />
           </div>
 

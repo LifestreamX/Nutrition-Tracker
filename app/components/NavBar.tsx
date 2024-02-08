@@ -5,6 +5,7 @@ import {
   JSXElementConstructor,
   ReactElement,
   ReactFragment,
+  useEffect,
   useState,
 } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -15,6 +16,7 @@ import Link from 'next/link';
 import { useMyContext } from '@/MyContext';
 
 import { Session as NextAuthSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
 
 interface NavigationItem {
   name: string;
@@ -38,8 +40,16 @@ const navigation: NavigationItem[] = [
 
 const NavBar: React.FC<NavProps> = ({ session }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(true);
-  const { profileAvatar } = useMyContext();
-  let [sessionLog, setSessionLog] = useState();
+  const { profileAvatar, setProfileAvatar } = useMyContext();
+  const [googleAvatar, setGoogleAvatar] = useState<string | null>();
+
+  const { data: userSession, status } = useSession<any>();
+
+  useEffect(() => {
+    if (status === 'authenticated' && userSession?.user?.image) {
+      setProfileAvatar(userSession?.user.image);
+    }
+  }, [setGoogleAvatar, status]);
 
   let userEmail:
     | string
@@ -69,7 +79,7 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
               </h1>
             </Link>
 
-              {/* Mobile menu button*/}
+            {/* Mobile menu button*/}
             <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
               <Disclosure.Button
                 data-testid='mobile-menu-button'
@@ -154,11 +164,14 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
 
                             {profileAvatar ? (
                               <div className='container'>
-                                <img
+                                <Image
                                   className='w-10 h-10 rounded-full'
                                   src={profileAvatar}
                                   alt='Default avatar'
                                   data-testid='avatar'
+                                  width={50}
+                                  height={50}
+                                  priority={true} // or priority={1}
                                 />
                               </div>
                             ) : (
@@ -191,10 +204,12 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
                           leaveTo='transform opacity-0 scale-95'
                         >
                           <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                            <div className='p-4'>
-                              <p>
+                            <div className='p-2'>
+                              <p className='dark:text-black'>
                                 Account:{' '}
-                                <span className='font-medium'>{userEmail}</span>
+                                <span className='font-medium '>
+                                  {userEmail}
+                                </span>
                               </p>
                               <p></p>
                             </div>

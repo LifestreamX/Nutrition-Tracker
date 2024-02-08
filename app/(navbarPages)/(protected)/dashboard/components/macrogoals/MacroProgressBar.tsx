@@ -249,7 +249,7 @@ export const CaloriesProgress = () => {
         <h1 className='relative md:bottom-6 text-center mt-6 md:mt-0 mb-4 md:mb-0 '>
           Calories Consumed
         </h1>
-        <div className='w-30 overflow-auto h-16 rounded-full p-2  bg-orange-500 flex items-center justify-center text-white text-2xl'>
+        <div className='w-28 overflow-auto h-16 rounded-full p-2  bg-orange-500 flex items-center justify-center text-white text-2xl'>
           <p className='m-1'>{totalCalories.toFixed(0)}</p>
         </div>
       </div>

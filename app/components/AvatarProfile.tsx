@@ -19,18 +19,15 @@ const UploadAvatar = (): JSX.Element => {
   const [showCropButton, setShowCropButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
+  const [googleAvatar, setGoogleAvatar] = useState<string | null>();
 
-  const { data: session, status } = useSession<any>();
+  // const { data: session, status } = useSession<any>();
 
-  let isGoogleImage = session?.user?.image || '';
-
-  let googleAvatar = '';
-
-  if (isGoogleImage) {
-    googleAvatar = isGoogleImage;
-    setProfileAvatar(googleAvatar);
-  }
-
+  // if (status === 'authenticated' && userSession?.user?.image) {
+  //   setGoogleAvatar(userSession?.user.image);
+  //   // setProfileAvatar(userSession?.user?.image);
+    
+  // }
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

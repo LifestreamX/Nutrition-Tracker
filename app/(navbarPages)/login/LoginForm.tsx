@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useWindowSize } from 'react-use';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
-import { GoogleSignInButton } from '@/app/components/backendcomponents/GoogleSignIn';
+import { GoogleSignInButton } from '@/app/(navbarPages)/login/GoogleSignIn';
 
 const LoginForm = (): JSX.Element => {
   const { status } = useSession();
@@ -16,6 +16,7 @@ const LoginForm = (): JSX.Element => {
   const { width } = useWindowSize();
   const [message, setMessage] = useState('');
   const [loginTimeOutMessage, setLogInTimeOutMessage] = useState<string>('');
+  const [googleClicked, setGoogleClicked] = useState(true);
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
@@ -93,22 +94,15 @@ const LoginForm = (): JSX.Element => {
 
   let buttonSize = width < 768 ? 'medium' : 'large';
 
-  let buttonWidith = width < 768 ? true : '';
-
-  let isButtonHidden = message === 'Signing In...' ? 'hidden' : 'flex';
-
   let messageColor =
-    message === 'Signing In...' ? 'text-black' : 'text-red-600';
-
-  // Google auth logic
-  // const { data } = useSession;
+    message === 'Signing In...' ? 'text-black dark:text-white' : 'text-red-600';
 
   return (
     <form
       onSubmit={handleLoginButton}
       className='max-w-xl shadow-2xl  ml-20 mr-20 p-10 sm:p-36 dark:bg-gray-800 flex justify-center'
     >
-      <h1 className='sm:text-2xl md:text-3xl absolute top-6 font-bold '>
+      <h1 className='text-xl  sm:text-2xl md:text-3xl absolute top-6 font-bold  '>
         Sign In
       </h1>
 
@@ -127,7 +121,7 @@ const LoginForm = (): JSX.Element => {
               <input
                 className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-800'
                 id='inline-full-name'
-                required
+                required={googleClicked}
                 value={email}
                 type='email'
                 onChange={handleEmailChange}
@@ -152,14 +146,14 @@ const LoginForm = (): JSX.Element => {
                 id='inline-password'
                 type='password'
                 placeholder='********'
-                required
+                required={googleClicked}
                 value={password}
                 onChange={handlePasswordChange}
               />
             </div>
           </div>
           <div
-            className={`relative top-8 ${messageColor} flex justify-center flex-col items-center`}
+            className={`relative top-8 ${messageColor} flex justify-center flex-col items-center `}
           >
             <p className=' md:top-4 relative text:lg md:text-xl font-semibold'>
               {message}
@@ -219,16 +213,16 @@ const LoginForm = (): JSX.Element => {
             </Button>
           </div>
 
-          <h1>Or</h1>
+          <h1 className='font-bold'>Or</h1>
 
           <div>
             {/* Google Auth Login */}
             <div className='w-full'>
-              <GoogleSignInButton />
+              <GoogleSignInButton setGoogleClicked={setGoogleClicked} />
             </div>
           </div>
         </div>
-        <div className=' absolute text-sm md:text-lg bottom-0 md:bottom-2'>
+        <div className=' absolute text-sm md:text-lg bottom-2 md:bottom-2'>
           <Link href='./signup'>
             Don't have a account? Create one{' '}
             <span className='text-purple-400 hover:text-purple-800'>Here</span>
