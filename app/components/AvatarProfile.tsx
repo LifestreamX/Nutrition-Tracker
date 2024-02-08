@@ -31,7 +31,6 @@ const UploadAvatar = (): JSX.Element => {
     setProfileAvatar(googleAvatar);
   }
 
-  console.log(googleAvatar);
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
