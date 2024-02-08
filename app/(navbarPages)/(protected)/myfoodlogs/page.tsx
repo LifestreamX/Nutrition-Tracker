@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'My Food Logs',
   description: 'users food logs',
 };
+// 
 
 const MyFoodLogs: React.FC = () => {
   return (
