@@ -186,6 +186,7 @@ const MacroGoals = () => {
                   className='border border-gray-300 focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-700'
                 />
               </div>
+              
               <div className='flex w-full justify-around relative py-4 '>
                 <Button
                   color='purple'

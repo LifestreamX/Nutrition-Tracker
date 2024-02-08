@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const FoodLogDetails: React.FC<MyFoodLogProps> = ({ params }) => {
   return (
     <>
-      <FoodDetailsLogic params={params} />;
+      <FoodDetailsLogic params={params} />
     </>
   );
 };

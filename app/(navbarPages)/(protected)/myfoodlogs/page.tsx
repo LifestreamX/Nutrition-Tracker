@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const MyFoodLogs: React.FC = () => {
   return (
-    <section className='w-full flex justify-center items-middle relative top-10 md:top-40'>
+    <section className='w-full flex justify-center items-middle relative top-16 md:top-40'>
       <div className=' w-full  flex flex-col justify-center items-center p-10 '>
         <MyFoodLogsData />
       </div>

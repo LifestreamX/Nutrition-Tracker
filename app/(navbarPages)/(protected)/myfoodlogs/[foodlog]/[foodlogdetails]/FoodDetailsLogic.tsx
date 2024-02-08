@@ -92,7 +92,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   return (
     <main className='w-full flex justify-center items-middle relative top-20 md:top-40 p-5'>
-      <div className='bg-white dark:bg-gray-800 m-5   w-full rounded-lg shadow-2xl  flex flex-col justify-center items-center sm:p-20 relative md:max-w-5xl'>
+      <div className='bg-white dark:bg-gray-800 m-5 p-4  w-full rounded-lg shadow-2xl  flex flex-col justify-center items-center sm:p-20 relative md:max-w-5xl'>
         {/* back arrow */}
 
         <svg
@@ -101,7 +101,7 @@ const FoodDetailsLogic: React.FC<MyFoodLogProps> = ({ params }) => {
           viewBox='0 0 24 24'
           strokeWidth={1.5}
           stroke='currentColor'
-          className='   mr-5 w-6 h-6 lg:w-8 lg:h-8 absolute cursor-pointer left-4 top-1 sm:top-4 hover:text-purple-600 '
+          className='   mr-5 w-6 h-6 lg:w-8 lg:h-8 absolute cursor-pointer left-4 top-3 sm:top-4 hover:text-purple-600 '
           onClick={() => router.back()}
         >
           <path
