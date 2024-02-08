@@ -123,7 +123,6 @@ export const authOptions: AuthOptions = {
     },
   },
 
-  // 
   session: {
     // Configuring the session strategy as 'jwt'
     strategy: 'jwt',
