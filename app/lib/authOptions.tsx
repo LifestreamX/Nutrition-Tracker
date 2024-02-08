@@ -57,13 +57,11 @@ export const authOptions: AuthOptions = {
 
           // Comparing the provided password with the hashed password stored in the database
           const userPassword = user.passwordHash;
-
-
           if (userPassword === null) {
             return null; // Or handle it based on your application logic
           }
 
-          const isValidPassword = bcrypt.compare(password, userPassword);
+          const isValidPassword = bcrypt.compareSync(password, userPassword);
 
           if (!isValidPassword) {
             return null;
@@ -152,7 +150,7 @@ export const authOptions: AuthOptions = {
             await prisma.user.create({
               data: {
                 email: user.email,
-                passwordHash: user.id,
+                // passwordHash: user.id,
                 loginAttempts: 0, // Set an initial value for loginAttempts
               },
             });

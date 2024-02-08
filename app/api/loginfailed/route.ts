@@ -25,7 +25,7 @@ export async function POST(request: Request, response: Response) {
     // ).toFixed(0)} seconds.
 
     // Check if the user is currently in timeout due to multiple failed login attempts
-    if (user.loginAttempts >= 3) {
+    if (user.loginAttempts && user.loginAttempts >= 3) {
       const currentTime = new Date();
       const lastAttemptTime = user.lastLoginAttempt || new Date(0); // If lastAttemptTime is null, default to epoch
       const cooldownPeriod = 30 * 1000; // 30 seconds in milliseconds
@@ -63,29 +63,32 @@ export async function POST(request: Request, response: Response) {
     }
 
     // Compare the provided password with the stored password hash
-    const passWordMatch = await compare(password, user.passwordHash);
 
-    // If the passwords do not match
-    if (!passWordMatch) {
-      // Increment the login attempts
-      const newAttemptCount = user.loginAttempts + 1;
+    if (user.passwordHash) {
+      const passWordMatch = await compare(password, user.passwordHash);
 
-      // Update the login attempts and timeout in case of unsuccessful login
-      await prisma.user.update({
-        where: { email },
-        data: {
-          loginAttempts: newAttemptCount,
-          lastLoginAttempt: new Date(), // Set the last login attempt time
-        },
-      });
+      // If the passwords do not match
+      if (!passWordMatch && user.loginAttempts) {
+        // Increment the login attempts
+        const newAttemptCount = user.loginAttempts + 1;
 
-      // Return an unauthorized response for unsuccessful login
-      if (user.loginAttempts < 3) {
-        return NextResponse.json({
-          message: 'Login Unsuccessful',
-
-          attemptsLeft: 3 - newAttemptCount,
+        // Update the login attempts and timeout in case of unsuccessful login
+        await prisma.user.update({
+          where: { email },
+          data: {
+            loginAttempts: newAttemptCount,
+            lastLoginAttempt: new Date(), // Set the last login attempt time
+          },
         });
+
+        // Return an unauthorized response for unsuccessful login
+        if (user.loginAttempts < 3) {
+          return NextResponse.json({
+            message: 'Login Unsuccessful',
+
+            attemptsLeft: 3 - newAttemptCount,
+          });
+        }
       }
     }
   } catch (error) {
