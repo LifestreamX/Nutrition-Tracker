@@ -75,7 +75,7 @@ const FoodLog = () => {
     return value === '';
   };
 
-  const handleFoodLogSubmit = (): void => {
+  const handleFoodLogSubmit = async () => {
     if (selectedDate === null) {
       dispatchState({ type: 'SET_IS_DATE_NOT_SELECTED', payload: true });
       setTimeout(() => {
@@ -83,7 +83,10 @@ const FoodLog = () => {
       }, 3000);
     } else if (
       isMacroTargetsEmpty(macroTargets.calories) ||
-      macroTargets.calories === undefined
+      macroTargets.calories === 0 ||
+      macroTargets.carbs === 0 ||
+      macroTargets.fats === 0 ||
+      macroTargets.protein === 0
     ) {
       dispatchState({ type: 'SET_IS_MACRO_TARGETS_SET', payload: true });
       setTimeout(() => {
@@ -103,7 +106,6 @@ const FoodLog = () => {
       setFoodLog([]);
       dispatchState({ type: 'SET_MACROS_SET', payload: false });
       setSelectedDate(null);
-      setMacroTargets({});
       setSelectedDate(null);
 
       setTimeout(() => {
@@ -114,6 +116,30 @@ const FoodLog = () => {
           fats: 0,
         });
       });
+
+      // Constructing the request body with updated macro targets
+      const updateMacroTargets = {
+        calories: 0,
+        protein: 0,
+        carbs: 0,
+        fats: 0,
+      };
+
+      setMacroTargets(updateMacroTargets);
+
+      try {
+        const res = await fetch('/api/macrotargets', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application.json',
+          },
+          body: JSON.stringify({ updateMacroTargets }),
+        });
+
+        await res.json();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

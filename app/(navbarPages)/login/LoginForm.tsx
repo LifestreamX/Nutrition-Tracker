@@ -59,7 +59,6 @@ const LoginForm = (): JSX.Element => {
 
           let message = data.message;
 
-          console.log(data);
 
           if (message.startsWith('Too many login attempts.')) {
             setLogInTimeOutMessage(message);

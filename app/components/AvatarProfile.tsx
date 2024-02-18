@@ -26,7 +26,7 @@ const UploadAvatar = (): JSX.Element => {
   // if (status === 'authenticated' && userSession?.user?.image) {
   //   setGoogleAvatar(userSession?.user.image);
   //   // setProfileAvatar(userSession?.user?.image);
-    
+
   // }
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {

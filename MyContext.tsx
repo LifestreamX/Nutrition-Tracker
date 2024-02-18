@@ -21,9 +21,7 @@ type MyContextType = {
   // incrementCount: () => void;
 
   macroTargets: MacroTargetTypes;
-  setMacroTargets: React.Dispatch<
-    React.SetStateAction<MacroTargetTypes | object>
-  >;
+  setMacroTargets: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
   macroTargetInputs: MacroTargetTypes;
 
   setMacroTargesInputs: React.Dispatch<React.SetStateAction<MacroTargetTypes>>;
@@ -64,22 +62,49 @@ type MyProviderProps = {
 };
 
 export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
-  const [macroTargets, setMacroTargets] = useState(() => {
-    let savedMacroTargets;
+  // const [macroTargets, setMacroTargets] = useState(() => {
+  //   let savedMacroTargets;
 
-    if (typeof window !== 'undefined') {
-      savedMacroTargets = localStorage.getItem('macroTargets');
-    }
+  //   if (typeof window !== 'undefined') {
+  //     savedMacroTargets = localStorage.getItem('macroTargets');
+  //   }
 
-    return savedMacroTargets
-      ? JSON.parse(savedMacroTargets)
-      : {
-          calories: 0,
-          protein: 0,
-          carbs: 0,
-          fats: 0,
-        };
+  //   return savedMacroTargets
+  //     ? JSON.parse(savedMacroTargets)
+  //     : {
+  //         calories: 0,
+  //         protein: 0,
+  //         carbs: 0,
+  //         fats: 0,
+  //       };
+  // });
+
+  const [macroTargets, setMacroTargets] = useState({
+    calories: 0,
+    protein: 0,
+    carbs: 0,
+    fats: 0,
   });
+
+  useEffect(() => {
+    const fetchMacroTargets = async () => {
+      try {
+        const res = await fetch('/api/macrotargets', {
+          method: 'GET', // specifying GET method explicitly
+        });
+        if (res) {
+          const data = await res.json();
+          setMacroTargets(data);
+        } else {
+          console.error('Failed to fetch macro targets:', res);
+        }
+      } catch (error) {
+        console.error('Failed to fetch macro targets:', error);
+      }
+    };
+
+    fetchMacroTargets();
+  }, []); // Empty dependency array ensures the effect runs only once when the component mounts
 
   const [macroTargetInputs, setMacroTargesInputs] = useState({
     calories: macroTargets.calories || 0,
