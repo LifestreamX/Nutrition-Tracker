@@ -15,19 +15,51 @@ const UserSettings: React.FC = () => {
 
   const { profileAvatar } = useMyContext();
 
-  const toggleTheme = (newTheme: string) => {
+  const toggleTheme = async (newTheme: string) => {
     setTheme(newTheme);
+
+    try {
+      const res = await fetch('/api/theme', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify({ themePreference: newTheme }),
+      });
+
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    const userSelectedTheme = localStorage.getItem('theme');
+    // const userSelectedTheme = localStorage.getItem('theme');
 
-    if (userSelectedTheme) {
-      setTheme(userSelectedTheme);
-    }
+    // if (userSelectedTheme) {
+    //   setTheme(userSelectedTheme);
+    // }
+
+    const fetchTheme = async () => {
+      try {
+        const res = await fetch('/api/theme', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'text/plain',
+          },
+        });
+
+        const themePreference = await res.text();
+        setTheme(themePreference);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchTheme();
 
     setMounted(true);
-  }, [theme]);
+  }, []);
 
   if (!mounted) {
     return null;
@@ -36,7 +68,6 @@ const UserSettings: React.FC = () => {
   const currentTheme = resolvedTheme || theme;
 
   let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
-
 
   return (
     <>

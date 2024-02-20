@@ -14,7 +14,8 @@ model User {
   passwordHash     String?
   loginAttempts    Int           @default(0)
   lastLoginAttempt DateTime?
-  macroTargets     MacroTargets? // Optional macro targets for the user
+  macroTargets     MacroTargets?
+  themePreference  String?       @default("light")
 }
 
 model MacroTargets {

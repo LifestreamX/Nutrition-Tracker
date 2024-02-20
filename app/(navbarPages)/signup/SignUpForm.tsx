@@ -7,7 +7,6 @@ import { useWindowSize } from 'react-use';
 import { Metadata } from 'next';
 import { signUp } from '@/app/actions/users/signUp';
 
-
 const SignUpForm = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -58,6 +57,8 @@ const SignUpForm = (): JSX.Element => {
     } else {
       isValidPass = false;
     }
+
+    console.log(isValid);
 
     if (password !== confirmPassword) {
       setIsValidPassword(true);

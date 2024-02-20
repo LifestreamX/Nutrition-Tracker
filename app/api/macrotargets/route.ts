@@ -19,7 +19,6 @@ export async function POST(request: Request) {
     // Parsing JSON data from the request body
     const data = await request.json();
 
-
     // Extracting macro targets data from the received JSON data
     const { updateMacroTargets } = data;
     const { calories, protein, carbs, fats } = updateMacroTargets;
