@@ -3,7 +3,7 @@ import prisma from '@/app/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/lib/authOptions';
 
-export async function GET(response: Response) {
+export async function GET(request: Request, response: Response) {
   try {
     const session = await getServerSession(authOptions);
     const userEmail = session?.user?.email;
@@ -51,13 +51,12 @@ export async function POST(request: Request) {
 
     const { themePreference } = await request.json(); // Extract theme preference from request body
 
-    console.log(themePreference)
+    console.log(themePreference);
 
     const updatedUser = await prisma.user.update({
       where: { email: userEmail },
       data: { themePreference },
     });
-
 
     return new Response('Theme updated successfully', {
       status: 200,
