@@ -13,7 +13,6 @@ export const signUp = async (email: string, password: string) => {
     },
   });
 
-  console.log(user);
 
   // If a user with the given email already exists, return an error message
   if (user) {

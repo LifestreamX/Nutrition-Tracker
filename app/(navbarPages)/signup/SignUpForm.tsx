@@ -58,7 +58,6 @@ const SignUpForm = (): JSX.Element => {
       isValidPass = false;
     }
 
-    console.log(isValid);
 
     if (password !== confirmPassword) {
       setIsValidPassword(true);
@@ -92,7 +91,6 @@ const SignUpForm = (): JSX.Element => {
         return;
       } else {
         const resMessage = await signUp(email, password);
-        console.log(resMessage);
         setMessage(resMessage);
 
         if (

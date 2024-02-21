@@ -41,15 +41,29 @@ const navigation: NavigationItem[] = [
 const NavBar: React.FC<NavProps> = ({ session }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(true);
   const { profileAvatar, setProfileAvatar } = useMyContext();
-  const [googleAvatar, setGoogleAvatar] = useState<string | null>();
 
-  const { data: userSession, status } = useSession<any>();
 
-  useEffect(() => {
-    if (status === 'authenticated' && userSession?.user?.image) {
-      setProfileAvatar(userSession?.user.image);
-    }
-  }, [setGoogleAvatar, status]);
+  // useEffect(() => {
+  //   const grabGoogleAvatar = async () => {
+  //     if (status === 'authenticated' && userSession?.user?.image) {
+  //       try {
+  //         const res = await fetch('/api/profileAvatar', {
+  //           method: 'POST',
+  //           headers: {
+  //             'Content-Type': 'text/plain',
+  //           },
+  //           body: JSON.stringify({ profileAvatar: session?.user?.image }),
+  //         });
+
+  //         console.log(res);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
+
+  //     grabGoogleAvatar();
+  //   };
+  // }, [status]);
 
   let userEmail:
     | string
@@ -162,7 +176,7 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
                           >
                             <span className='sr-only'>Open user menu</span>
 
-                            {profileAvatar ? (
+                            {profileAvatar && profileAvatar !== 'null' ? (
                               <div className='container'>
                                 <Image
                                   className='w-10 h-10 rounded-full'

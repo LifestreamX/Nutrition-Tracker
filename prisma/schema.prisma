@@ -16,6 +16,7 @@ model User {
   lastLoginAttempt DateTime?
   macroTargets     MacroTargets?
   themePreference  String?       @default("light")
+  profileAvatar    String?       @db.LongText
 }
 
 model MacroTargets {

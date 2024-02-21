@@ -7,9 +7,10 @@ import { useWindowSize } from 'react-use';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import { GoogleSignInButton } from '@/app/(navbarPages)/login/GoogleSignIn';
+import { useMyContext } from '@/MyContext';
 
 const LoginForm = (): JSX.Element => {
-  const { status } = useSession();
+  const { data: userSession, status } = useSession();
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -17,6 +18,7 @@ const LoginForm = (): JSX.Element => {
   const [message, setMessage] = useState('');
   const [loginTimeOutMessage, setLogInTimeOutMessage] = useState<string>('');
   const [googleClicked, setGoogleClicked] = useState(true);
+  const { profileAvatar, setProfileAvatar } = useMyContext();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setEmail(e.target.value);
@@ -59,7 +61,6 @@ const LoginForm = (): JSX.Element => {
 
           let message = data.message;
 
-
           if (message.startsWith('Too many login attempts.')) {
             setLogInTimeOutMessage(message);
           } else {
@@ -83,12 +84,36 @@ const LoginForm = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (status === 'authenticated') {
-      // If authenticated, redirect to the dashboard
-      router.refresh();
+    const grabGoogleAvatar = async () => {
+      if (status === 'authenticated') {
+        if (profileAvatar === null && profileAvatar === undefined) {
+          if (userSession.user?.image) {
+            try {
+              const res = await fetch('/api/profileAvatar', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'text/plain',
+                },
+                body: JSON.stringify({
+                  profileAvatar: userSession?.user?.image,
+                }),
+              });
 
-      router.push('/dashboard');
-    }
+              console.log(res);
+
+              setProfileAvatar(userSession?.user?.image);
+            } catch (error) {
+              console.log(error);
+            }
+          }
+        }
+        // If authenticated, redirect to the dashboard
+        router.refresh();
+
+        router.push('/dashboard');
+      }
+    };
+    grabGoogleAvatar();
   }, [status]);
 
   let buttonSize = width < 768 ? 'medium' : 'large';

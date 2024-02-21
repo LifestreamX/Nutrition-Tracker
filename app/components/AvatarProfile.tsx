@@ -21,6 +21,8 @@ const UploadAvatar = (): JSX.Element => {
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
 
+  // console.log(typeof profileAvatar);
+
   // const { data: session, status } = useSession<any>();
 
   // if (status === 'authenticated' && userSession?.user?.image) {
@@ -53,10 +55,24 @@ const UploadAvatar = (): JSX.Element => {
     }
   };
 
-  const handleSaveProfileImage = () => {
+  const handleSaveProfileImage = async () => {
     setProfileAvatar(croppedImage);
 
-    localStorage.setItem('profileAvatar', croppedImage);
+    try {
+      const res = await fetch('/api/profileAvatar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify({ profileAvatar: croppedImage }),
+      });
+
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // localStorage.setItem('profileAvatar', croppedImage);
 
     setCroppedImage('');
     setImage(null);

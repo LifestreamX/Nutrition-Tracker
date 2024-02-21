@@ -26,8 +26,6 @@ const UserSettings: React.FC = () => {
         },
         body: JSON.stringify({ themePreference: newTheme }),
       });
-
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +65,9 @@ const UserSettings: React.FC = () => {
 
   const currentTheme = resolvedTheme || theme;
 
-  let Avatar = profileAvatar === undefined ? NoAvatar : profileAvatar;
+  let Avatar =
+    !profileAvatar || profileAvatar === 'null' ? NoAvatar : profileAvatar;
+
 
   return (
     <>

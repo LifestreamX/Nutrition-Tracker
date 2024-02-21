@@ -4,6 +4,8 @@ import MacroGoals from './components/macrogoals/MacroGoals';
 import FoodSearch from './components/foodsearch/FoodSearchButton';
 import FoodLog from './components/foodlog/FoodLog';
 import { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/lib/authOptions';
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -11,7 +13,7 @@ export const metadata: Metadata = {
     'user dashboard with food search and macronutrients goals with detailed logs',
 };
 
-const Dashboard = () => {
+const Dashboard = async () => {
   return (
     <main className='relative top-28'>
       <section className='flex justify-center items-middle '>

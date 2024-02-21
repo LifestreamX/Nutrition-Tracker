@@ -13,10 +13,22 @@ const DeleteAvatarProfileModal = ({ showModal, setShowModal }: modalProps) => {
 
   const cancelButtonRef = useRef(null);
 
-  const handleDeleteProfileImage = () => {
-    setProfileAvatar(undefined);
+  const handleDeleteProfileImage = async () => {
     setShowModal(false);
-    localStorage.removeItem('profileAvatar');
+    // localStorage.removeItem('profileAvatar');
+
+    try {
+      const res = await fetch('/api/profileAvatar', {
+        method: 'DELETE',
+      });
+
+      if (res) {
+        const data = await res.text();
+        setProfileAvatar(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

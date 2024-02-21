@@ -43,8 +43,10 @@ type MyContextType = {
   setSelectedDate: React.Dispatch<React.SetStateAction<null | string>>;
   dispatch: Dispatch<SubmitAndDeleteActionType>;
   submittedFoodLogs: SubmittedFoodLogsType[];
-  profileAvatar: undefined | string;
-  setProfileAvatar: React.Dispatch<React.SetStateAction<string | undefined>>;
+  profileAvatar: string | null | undefined;
+  setProfileAvatar: React.Dispatch<
+    React.SetStateAction<string | null | undefined>
+  >;
 };
 
 const MyContext = createContext<MyContextType | undefined>(undefined);
@@ -103,8 +105,38 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       }
     };
 
+    const fetchProfileAvatar = async () => {
+      try {
+        const res = await fetch('/api/profileAvatar', {
+          method: 'GET',
+        });
+
+        if (res) {
+          const data = await res.text();
+          setProfileAvatar(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch profile avatar');
+      }
+    };
+
     fetchMacroTargets();
+    fetchProfileAvatar();
   }, []); // Empty dependency array ensures the effect runs only once when the component mounts
+
+  let [profileAvatar, setProfileAvatar] = useState<string | null>();
+
+  // let [profileAvatar, setProfileAvatar] = useState(() => {
+  //   let savedProfileAvatar;
+
+  //   if (typeof window !== 'undefined') {
+  //     savedProfileAvatar = localStorage.getItem('profileAvatar');
+  //   }
+
+  //   if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
+  //     return savedProfileAvatar;
+  //   } else return;
+  // });
 
   const [macroTargetInputs, setMacroTargesInputs] = useState({
     calories: macroTargets.calories || 0,
@@ -133,18 +165,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
 
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
-  });
-
-  let [profileAvatar, setProfileAvatar] = useState(() => {
-    let savedProfileAvatar;
-
-    if (typeof window !== 'undefined') {
-      savedProfileAvatar = localStorage.getItem('profileAvatar');
-    }
-
-    if (savedProfileAvatar !== undefined && savedProfileAvatar !== null) {
-      return savedProfileAvatar;
-    } else return;
   });
 
   const [selectedDate, setSelectedDate] = useState(() => {

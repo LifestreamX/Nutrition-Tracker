@@ -3,13 +3,17 @@
 import Image from 'next/image';
 import googleLogo from '@/public/google.png';
 import { signIn } from 'next-auth/react';
+import { Session as NextAuthSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 interface Props {
   setGoogleClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function GoogleSignInButton({ setGoogleClicked }: Props) {
-  const handleClick = () => {
+
+  const handleClick = async () => {
     signIn('google');
     setGoogleClicked(false);
   };
