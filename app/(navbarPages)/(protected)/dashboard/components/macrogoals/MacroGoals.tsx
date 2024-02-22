@@ -17,7 +17,6 @@ const MacroGoals = () => {
   } = useMyContext();
   const [showMacroForm, setShowMacroForm] = useState(false);
   const [showDateForm, setShowDateForm] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [fillOutInputWarning, setFillOutInputWarning] = useState(false);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -78,11 +77,6 @@ const MacroGoals = () => {
     setMacroTargesInputs({
       ...macroTargetInputs,
     });
-  };
-
-  const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
-    setShowDateForm(false);
   };
 
   const macroSetButtonMessage =

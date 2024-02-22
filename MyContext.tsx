@@ -39,8 +39,8 @@ type MyContextType = {
   setClikedEditId: React.Dispatch<React.SetStateAction<string>>;
   foodItem: FoodItemType;
   setFoodItem: React.Dispatch<React.SetStateAction<FoodItemType>>;
-  selectedDate: Date | null;
-  setSelectedDate: React.Dispatch<React.SetStateAction<null | string>>;
+  selectedDate: Date | null | string;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null | string>>;
   dispatch: Dispatch<SubmitAndDeleteActionType>;
   submittedFoodLogs: SubmittedFoodLogsType[];
   profileAvatar: string | null | undefined;
@@ -167,17 +167,18 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     return savedFoodLog ? JSON.parse(savedFoodLog) : [];
   });
 
-  const [selectedDate, setSelectedDate] = useState(() => {
-    let savedSelectedDate;
+  // const [selectedDate, setSelectedDate] = useState(() => {
+  //   let savedSelectedDate;
 
-    if (typeof window !== 'undefined') {
-      savedSelectedDate = localStorage.getItem('selectedDate');
-    }
+  //   if (typeof window !== 'undefined') {
+  //     savedSelectedDate = localStorage.getItem('selectedDate');
+  //   }
 
-    return savedSelectedDate && savedSelectedDate !== undefined
-      ? JSON.parse(savedSelectedDate)?.toString()
-      : null;
-  });
+  //   return savedSelectedDate && savedSelectedDate !== undefined
+  //     ? JSON.parse(savedSelectedDate)?.toString()
+  //     : null;
+  // });
+  const [selectedDate, setSelectedDate] = useState<Date | null | string>(null);
 
   // console.log(typeof selectedDate);
 

@@ -95,7 +95,11 @@ const FoodLog = () => {
     } else {
       dispatch({
         type: 'SUBMIT_FOOD_LOGS',
-        payload: { foodLogId: uniqid(), selectedDate, foodLog },
+        payload: {
+          foodLogId: uniqid(),
+          selectedDate: selectedDate as Date,
+          foodLog,
+        },
       });
 
       dispatchState({
