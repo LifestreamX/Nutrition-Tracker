@@ -179,6 +179,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       : null;
   });
 
+  // console.log(typeof selectedDate);
+
   const reducer = (
     state: FoodTypeData[],
     action: SubmitAndDeleteActionType

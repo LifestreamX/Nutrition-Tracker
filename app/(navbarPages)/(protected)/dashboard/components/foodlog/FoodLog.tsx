@@ -131,14 +131,30 @@ const FoodLog = () => {
         const res = await fetch('/api/macrotargets', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application.json',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ updateMacroTargets }),
         });
 
         await res.json();
       } catch (error) {
-        console.log(error);
+        console.log('error for macrotargets reset ', error);
+      }
+
+      setSelectedDate(null);
+
+      try {
+        const res = await fetch('/api/selectedDate', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ selectedDate: null }),
+        });
+
+        await res.json();
+      } catch (error) {
+        console.log('error for select date reset', error);
       }
     }
   };

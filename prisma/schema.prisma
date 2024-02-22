@@ -17,6 +17,7 @@ model User {
   macroTargets     MacroTargets?
   themePreference  String?       @default("light")
   profileAvatar    String?       @db.LongText
+  selectedDate     String?
 }
 
 model MacroTargets {

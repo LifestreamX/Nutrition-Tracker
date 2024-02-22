@@ -8,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const MyDatePicker: React.FC = () => {
   const { selectedDate, setSelectedDate } = useMyContext();
 
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = async (date: Date | null) => {
     let currentDate;
 
     if (date) {
@@ -22,7 +22,24 @@ const MyDatePicker: React.FC = () => {
       currentDate = [formattedDate];
       setSelectedDate(currentDate[0]);
 
-      localStorage.setItem('selectedDate', JSON.stringify(currentDate));
+      let newDate = currentDate[0];
+
+      // localStorage.setItem('selectedDate', JSON.stringify(currentDate));
+      try {
+        const res = await fetch('/api/selectedDate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', // Change content type to JSON
+          },
+          body: JSON.stringify({ selectedDate: newDate }),
+        });
+
+        let data = await res.json();
+
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setSelectedDate(null);
     }

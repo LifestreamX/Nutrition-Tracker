@@ -1,44 +1,6 @@
-import { NextResponse } from 'next/server';
 import prisma from '@/app/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/lib/authOptions';
-
-export async function GET(request: Request, response: Response) {
-  try {
-    const session = await getServerSession(authOptions);
-    const userEmail = session?.user?.email;
-
-    if (!userEmail) {
-      throw new Error('User email not found in session');
-    }
-
-    const user = await prisma.user.findUnique({
-      where: { email: userEmail },
-      select: { profileAvatar: true }, // Select only the profileAvatar field
-    });
-
-    console.log(user);
-
-    // Return the theme preference in the response body
-    return new Response(user?.profileAvatar || JSON.stringify(null), {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-  } catch (error) {
-    // If an error occurs, return an error response
-    console.error('Error retrieving theme preference:', error);
-    return new Response(`Error: ${error}`, {
-      status: 500,
-    });
-  }
-}
-
-
-
-
-
 
 export async function POST(request: Request) {
   try {
@@ -49,15 +11,17 @@ export async function POST(request: Request) {
       throw new Error('User email not found in session');
     }
 
-    const requestBody = await request.json();
-    const { profileAvatar } = requestBody;
+    const requestBody = await request.text();
+    const parsedBody = JSON.parse(requestBody); // Parse the JSON string
 
-    const updatedUser = await prisma.user.update({
+    console.log(parsedBody);
+
+    const dateUpdate = await prisma.user.update({
       where: { email: userEmail },
-      data: { profileAvatar },
+      data: parsedBody,
     });
 
-    return new Response('profile updated successfully', {
+    return new Response('date updated successfully', {
       status: 200,
       headers: {
         'Content-Type': 'text/plain',
@@ -81,9 +45,9 @@ export async function DELETE(request: Request, response: Response) {
     }
 
     // Delete the profile avatar from the user
-    const deleteUser = await prisma.user.update({
+    await prisma.user.update({
       where: { email: userEmail },
-      data: { profileAvatar: null },
+      data: { selectedDate: null },
     });
 
     return new Response('Profile avatar deleted successfully', {
