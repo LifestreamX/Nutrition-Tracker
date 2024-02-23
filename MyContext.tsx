@@ -31,7 +31,7 @@ type MyContextType = {
   >;
   foodLog: FoodLogTypes[];
   setFoodLog: React.Dispatch<
-    React.SetStateAction<FoodLogTypes | object[] | ReactNode>
+    React.SetStateAction<FoodLogTypes | object[] | ReactNode | any>
   >;
   successAdded: boolean;
   setSuccessAdded: React.Dispatch<React.SetStateAction<boolean>>;
@@ -120,8 +120,25 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       }
     };
 
+    const fetchFoodLog = async () => {
+      try {
+        const res = await fetch('/api/foodLog', {
+          method: 'GET',
+        });
+        console.log(res);
+
+        if (res) {
+          const data = await res.json();
+          setFoodLog(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch food log');
+      }
+    };
+
     fetchMacroTargets();
     fetchProfileAvatar();
+    fetchFoodLog();
   }, []); // Empty dependency array ensures the effect runs only once when the component mounts
 
   let [profileAvatar, setProfileAvatar] = useState<string | null>();
@@ -157,15 +174,16 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   // const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const [foodLog, setFoodLog] = useState(() => {
-    let savedFoodLog = null;
+  // const [foodLog, setFoodLog] = useState(() => {
+  //   let savedFoodLog = null;
 
-    if (typeof window !== 'undefined') {
-      savedFoodLog = localStorage.getItem('foodLog');
-    }
+  //   if (typeof window !== 'undefined') {
+  //     savedFoodLog = localStorage.getItem('foodLog');
+  //   }
 
-    return savedFoodLog ? JSON.parse(savedFoodLog) : [];
-  });
+  //   return savedFoodLog ? JSON.parse(savedFoodLog) : [];
+  // });
+  const [foodLog, setFoodLog] = useState([]);
 
   // const [selectedDate, setSelectedDate] = useState(() => {
   //   let savedSelectedDate;
@@ -244,8 +262,33 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setProfileAvatar,
   };
 
+  const sendFoodLogToServer = async (foodLog: FoodLogTypes) => {
+    try {
+      const res = await fetch('/api/foodLog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ foodLog }),
+      });
+
+      // console.log(res)
+
+      if (!res) {
+        throw new Error('Failed to save food logs to the server ');
+      }
+
+      const data = await res.json();
+
+      // console.log(data);
+    } catch (error) {
+      console.error('Error saving food logs to the server', error);
+    }
+  };
+
   useEffect(() => {
-    localStorage.setItem('foodLog', JSON.stringify(foodLog));
+    // localStorage.setItem('foodLog', JSON.stringify(foodLog));
+    sendFoodLogToServer(foodLog as any);
   }, [foodLog]);
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;

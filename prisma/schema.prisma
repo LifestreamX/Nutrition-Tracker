@@ -18,6 +18,7 @@ model User {
   themePreference  String?       @default("light")
   profileAvatar    String?       @db.LongText
   selectedDate     String?
+  foodLogs         FoodLog[] // Define a one-to-many relation between User and FoodLog
 }
 
 model MacroTargets {
@@ -30,4 +31,30 @@ model MacroTargets {
   fats     Float?
 
   @@index([userId], name: "MacroTargets_userId_index")
+}
+
+model FoodLog {
+  id            String  @id @default(cuid())
+  user          User?   @relation(fields: [userId], references: [id])
+  userId        String?
+  calories      Float?
+  carbs         Float?
+  category      String?
+  categoryLabel String?
+  fats          Float?
+  foodId        String?
+  image         String?
+  knownAs       String?
+  label         String?
+  CHOCDF        Float?
+  ENERC_KCAL    Float?
+  FAT           Float?
+  FIBTG         Float?
+  PROCNT        Float?
+  protein       Float?
+  quantity      Int?
+  servingSizes  Json? // Adjust the type as needed
+  nutrients     Json? // Adjust the type as needed
+
+  @@index([userId], name: "userId_index") // Add an index to the userId field
 }

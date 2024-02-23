@@ -237,7 +237,7 @@ const FoodLog = () => {
             )}
           </div>
           <div className='mt-5'>
-            {foodLog.length > 0 && (
+            {foodLog && foodLog.length > 0 && (
               <Button
                 color='purple'
                 size='medium'

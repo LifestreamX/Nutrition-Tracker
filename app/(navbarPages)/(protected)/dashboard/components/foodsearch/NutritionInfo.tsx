@@ -5,6 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { useWindowSize } from 'react-use';
 import Button from '@/app/components/Button';
 import { useMyContext } from '@/MyContext';
+import { FoodLogTypes } from '@/types/FoodLog.types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -19,7 +20,6 @@ const NutritionInfo = () => {
   } = useMyContext();
 
   const { width } = useWindowSize();
-
 
   if (nutritionSearchData) {
     useEffect(() => {
@@ -122,30 +122,45 @@ const NutritionInfo = () => {
     ],
   };
 
-  const handleAddToFoodLog = (id: string) => {
-    const alreadyHaveFood = foodLog?.map((food) => {
-      if (food.foodId === id && food.quantity !== undefined) {
-        return {
-          ...food,
-          quantity: food.quantity + 1,
-        };
+  const handleAddToFoodLog = async (id: string) => {
+    try {
+      const alreadyHaveFood = foodLog?.map((food) => {
+        if (food.foodId === id && food.quantity !== undefined) {
+          return {
+            ...food,
+            quantity: food.quantity + 1,
+          };
+        }
+        return food;
+      });
+
+      const doesFoodExist = foodLog?.find((food) => food.foodId === id);
+
+      if (doesFoodExist) {
+        setFoodLog(alreadyHaveFood);
+      } else {
+        setFoodLog([...foodLog, { ...nutritionSearchData }]);
       }
-      return food;
-    });
 
-    const doesFoodExist = foodLog?.find((food) => food.foodId === id);
+      // Construct fetch request body with updated foodLog
+      const requestBody = { foodLog };
 
-    if (doesFoodExist) {
-      setFoodLog(alreadyHaveFood);
-    } else {
-      setFoodLog([...foodLog, { ...nutritionSearchData }]);
+      const res = await fetch('/api/foodLog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to save food logs to the server');
+      }
+
+      const data = await res.json();
+    } catch (error) {
+      console.error('Error saving food logs to the server:', error);
     }
-
-    setSuccessAdded(true);
-
-    setTimeout(() => {
-      setSuccessAdded(false);
-    }, 1000);
   };
 
   const donutSize = width < 400 ? 150 : 200;

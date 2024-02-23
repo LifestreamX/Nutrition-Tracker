@@ -50,7 +50,7 @@ export const MacroProgressBar: React.FC = () => {
   let totalCarbs: number = 0;
   let totalFats: number = 0;
 
-  if (foodLog.length > 0) {
+  if (foodLog && foodLog.length > 0) {
     totalCalories = foodLog?.reduce(
       (acc: number, cur: FoodLogTypes): number => {
         const quantity = cur.quantity !== undefined ? cur.quantity : 0;
@@ -85,7 +85,9 @@ export const MacroProgressBar: React.FC = () => {
   const totalFatsPercentage = (totalFats / goals.fatsGoal) * 100;
 
   const isMacroTargetsEmpty =
-    (foodLog.length === 0 && Object.keys(macroTargets).length === 0) ||
+    (foodLog &&
+      foodLog.length === 0 &&
+      Object.keys(macroTargets).length === 0) ||
     macroTargets.calories === 0;
 
   return (
