@@ -19,7 +19,8 @@ export type SubmitAndDeleteActionType =
         foodLog: FoodLogTypes[];
       };
     }
-  | { type: 'DELETE_FOOD_LOG'; payload: SubmittedFoodLogsType[] };
+  | { type: 'DELETE_FOOD_LOG'; payload: SubmittedFoodLogsType[] }
+  | { type: 'SET_SUBMITTED_FOOD_LOGS'; payload: SubmittedFoodLogsType[] };
 
 // export type Action = {
 //   type: 'SUBMIT_FOOD_LOGS' | 'DELETE_FOOD_LOG';

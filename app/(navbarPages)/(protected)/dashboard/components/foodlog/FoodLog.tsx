@@ -156,12 +156,76 @@ const FoodLog = () => {
           body: JSON.stringify({ selectedDate: null }),
         });
 
-        await res.json();
+        let data = await res.json();
       } catch (error) {
         console.log('error for select date reset', error);
       }
+
+      try {
+        const res = await fetch('/api/foodLog', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!res.ok) {
+          throw new Error('Failed to save food logs to the server');
+        }
+
+        let result = await res.json();
+        console.log(result);
+      } catch (error) {
+        console.log('error deleting food logs', error);
+      }
+
+      try {
+        const res = await fetch('/api/submittedFoodLogs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(submittedFoodLogs),
+        });
+        if (!res) {
+          throw new Error('Failed to save submitted food logs');
+        }
+
+        console.log(res);
+      } catch (error) {
+        console.error('Error saving submitted food logs:', error);
+      }
     }
   };
+
+  // useEffect(() => {
+  //   const saveSubmittedFoodLogs = async () => {
+  //     try {
+  //       // const requestBody = { submittedFoodLogs };
+
+  //       // console.log(requestBody);
+
+  //       console.log(submittedFoodLogs);
+
+  //       const res = await fetch('/api/submittedFoodLogs', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(submittedFoodLogs),
+  //       });
+  //       if (!res) {
+  //         throw new Error('Failed to save submitted food logs');
+  //       }
+
+  //       console.log(res);
+  //     } catch (error) {
+  //       console.error('Error saving submitted food logs:', error);
+  //     }
+  //   };
+
+  //   saveSubmittedFoodLogs();
+  // }, [handleFoodLogSubmit]);
 
   return (
     <div className='bg-white  md:mt-0 rounded-lg shadow-lg w-5/6 p-10 dark:bg-gray-800 '>

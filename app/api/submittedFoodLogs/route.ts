@@ -18,27 +18,26 @@ export async function POST(request: Request) {
     }
 
     // Parsing JSON data from the request body
-    const { foodLog } = await request.json();
+    const submittedFoodLogs = await request.json();
 
-    // Add userId to each food log
-    const processedFoodLogs = foodLog.map((log: any) => ({
-      ...log,
-      userId: userEmail,
-    }));
-
-    // Delete existing food logs associated with the user
-    let deletedLogs = await prisma.foodLog.deleteMany({
+    let deletedLogs = await prisma.submittedFoodLog.deleteMany({
       where: {
         userId: userEmail,
       },
     });
 
+    // const { submittedFoodLogs } = await request.json();
+
+    if (!Array.isArray(submittedFoodLogs)) {
+      throw new Error('Invalid submittedFoodLogs format');
+    }
+
     // Create food logs in the database
-    const createdFoodLogs = await prisma.foodLog.createMany({
-      data: processedFoodLogs,
+    const createdSubmittedFoodLogs = await prisma.submittedFoodLog.createMany({
+      data: submittedFoodLogs.map((log) => ({ ...log, userId: userEmail })),
     });
 
-    return NextResponse.json(createdFoodLogs);
+    return NextResponse.json(createdSubmittedFoodLogs);
   } catch (error) {
     console.error('Error adding food logs:', error);
     return new Response(`Error adding food logs: ${error}`, {
@@ -61,14 +60,15 @@ export async function GET(request: Request) {
     }
 
     // Fetching food logs from the database for the current user
-    const foodLogs = await prisma.foodLog.findMany({
+    const submittedFoodLogs = await prisma.submittedFoodLog.findMany({
       where: {
         userId: userEmail,
       },
     });
 
+
     // Returning the fetched food logs
-    return new Response(JSON.stringify(foodLogs), {
+    return new Response(JSON.stringify(submittedFoodLogs), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
@@ -77,40 +77,6 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error('Error fetching food logs:', error);
     return new Response(`Error fetching food logs: ${error}`, {
-      status: 500,
-    });
-  }
-}
-
-export async function DELETE(request: Request) {
-  try {
-    // Retrieving the user's session
-    const session = await getServerSession(authOptions);
-
-    // Retrieving the user's email from the session
-    const userEmail = session?.user?.email;
-
-    // Check if the session contains the user's email
-    if (!userEmail) {
-      throw new Error('User email not found in session');
-    }
-
-    // Delete existing food logs associated with the user
-    let deletedLogs = await prisma.foodLog.deleteMany({
-      where: {
-        userId: userEmail,
-      },
-    });
-
-    return new Response('Food logs deleted successfully', {
-      status: 200,
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-  } catch (error) {
-    console.error('Error adding food logs:', error);
-    return new Response(`Error adding food logs: ${error}`, {
       status: 500,
     });
   }

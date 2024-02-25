@@ -96,6 +96,8 @@ export async function GET(request: Request) {
       throw new Error('Macro targets not found for the user');
     }
 
+    console.log(macroTargets);
+
     // Returning the fetched macro targets
     return new Response(JSON.stringify(macroTargets), {
       status: 200,

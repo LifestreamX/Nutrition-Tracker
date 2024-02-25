@@ -79,6 +79,7 @@ const MacroGoals = () => {
     });
   };
 
+
   const macroSetButtonMessage =
     Object.keys(macroTargets).length === 0
       ? 'Set Macro Targets'

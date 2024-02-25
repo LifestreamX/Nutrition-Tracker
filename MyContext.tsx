@@ -94,14 +94,40 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
         const res = await fetch('/api/macrotargets', {
           method: 'GET', // specifying GET method explicitly
         });
-        if (res) {
+
+        if (res.ok) {
           const data = await res.json();
           setMacroTargets(data);
+          setMacroTargesInputs({
+            calories: data.calories || 0,
+            protein: data.protein || 0,
+            carbs: data.carbs || 0,
+            fats: data.fats || 0,
+          });
+
+          console.log(macroTargetInputs);
         } else {
           console.error('Failed to fetch macro targets:', res);
         }
       } catch (error) {
         console.error('Failed to fetch macro targets:', error);
+      }
+    };
+
+    const fetchSelectedDate = async () => {
+      try {
+        const res = await fetch('/api/selectedDate', {
+          method: 'GET', // specifying GET method explicitly
+        });
+        if (res.ok) {
+          const data = await res.text();
+
+          setSelectedDate(data);
+        } else {
+          console.error('Failed to fetch selected date:', res);
+        }
+      } catch (error) {
+        console.error('Failed to fetch selected date:', error);
       }
     };
 
@@ -111,7 +137,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
           method: 'GET',
         });
 
-        if (res) {
+        if (res.ok) {
           const data = await res.text();
           setProfileAvatar(data);
         }
@@ -125,9 +151,9 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
         const res = await fetch('/api/foodLog', {
           method: 'GET',
         });
-        console.log(res);
+        // console.log(res);
 
-        if (res) {
+        if (res.ok) {
           const data = await res.json();
           setFoodLog(data);
         }
@@ -136,6 +162,24 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       }
     };
 
+    const fetchSubmittedFoodLogs = async () => {
+      try {
+        const res = await fetch('/api/submittedFoodLogs', {
+          method: 'GET',
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          dispatch({ type: 'SET_SUBMITTED_FOOD_LOGS', payload: data }); // Dispatch action to update state
+          console.log(submittedFoodLogs);
+        }
+      } catch (error) {
+        console.error('Failed to fetch food log');
+      }
+    };
+
+    fetchSubmittedFoodLogs();
+    fetchSelectedDate();
     fetchMacroTargets();
     fetchProfileAvatar();
     fetchFoodLog();
@@ -196,20 +240,20 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   //     ? JSON.parse(savedSelectedDate)?.toString()
   //     : null;
   // });
-  const [selectedDate, setSelectedDate] = useState<Date | null | string>(null);
 
-  // console.log(typeof selectedDate);
+  const [selectedDate, setSelectedDate] = useState<Date | null | string>(null);
 
   const reducer = (
     state: FoodTypeData[],
     action: SubmitAndDeleteActionType
   ) => {
     switch (action.type) {
+      case 'SET_SUBMITTED_FOOD_LOGS': // New action type to set submitted food logs
+        return action.payload; // Set state to the fetched data
       case 'SUBMIT_FOOD_LOGS':
         const newLogs = Array.isArray(action.payload)
           ? action.payload
           : [action.payload];
-
         return [...state, ...newLogs];
       case 'DELETE_FOOD_LOG':
         return action.payload;
@@ -218,26 +262,20 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     }
   };
 
-  let storedSubmittedFoodLogData;
+  const [submittedFoodLogs, dispatch] = useReducer(reducer, []);
 
-  if (typeof window !== 'undefined') {
-    storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
-  }
 
-  const initialFoodLogData = storedSubmittedFoodLogData
-    ? JSON.parse(storedSubmittedFoodLogData)
-    : [];
+  // let storedSubmittedFoodLogData;
 
-  const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
+  // if (typeof window !== 'undefined') {
+  //   storedSubmittedFoodLogData = localStorage.getItem('submittedFoodLogs');
+  // }
 
-  useEffect(() => {
-    localStorage.setItem(
-      'submittedFoodLogs',
-      JSON.stringify(submittedFoodLogs)
-    );
-  }, [submittedFoodLogs]);
+  // const initialFoodLogData = storedSubmittedFoodLogData
+  //   ? JSON.parse(storedSubmittedFoodLogData)
+  //   : [];
 
-  // profile avatar
+  // const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
 
   const value: MyContextType = {
     macroTargetInputs,
@@ -262,34 +300,34 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setProfileAvatar,
   };
 
-  const sendFoodLogToServer = async (foodLog: FoodLogTypes) => {
-    try {
-      const res = await fetch('/api/foodLog', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ foodLog }),
-      });
+  // const sendFoodLogToServer = async (foodLog: FoodLogTypes) => {
+  //   try {
+  //     const res = await fetch('/api/foodLog', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ foodLog }),
+  //     });
 
-      // console.log(res)
+  //     // console.log(res)
 
-      if (!res) {
-        throw new Error('Failed to save food logs to the server ');
-      }
+  //     if (!res) {
+  //       throw new Error('Failed to save food logs to the server ');
+  //     }
 
-      const data = await res.json();
+  //     const data = await res.json();
 
-      // console.log(data);
-    } catch (error) {
-      console.error('Error saving food logs to the server', error);
-    }
-  };
+  //     // console.log(data);
+  //   } catch (error) {
+  //     console.error('Error saving food logs to the server', error);
+  //   }
+  // };
 
-  useEffect(() => {
-    // localStorage.setItem('foodLog', JSON.stringify(foodLog));
-    sendFoodLogToServer(foodLog as any);
-  }, [foodLog]);
+  // useEffect(() => {
+  //   // localStorage.setItem('foodLog', JSON.stringify(foodLog));
+  //   sendFoodLogToServer(foodLog as any);
+  // }, [foodLog]);
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 };

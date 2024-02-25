@@ -123,45 +123,55 @@ const NutritionInfo = () => {
   };
 
   const handleAddToFoodLog = async (id: string) => {
-    try {
-      const alreadyHaveFood = foodLog?.map((food) => {
-        if (food.foodId === id && food.quantity !== undefined) {
-          return {
-            ...food,
-            quantity: food.quantity + 1,
-          };
-        }
-        return food;
-      });
-
-      const doesFoodExist = foodLog?.find((food) => food.foodId === id);
-
-      if (doesFoodExist) {
-        setFoodLog(alreadyHaveFood);
-      } else {
-        setFoodLog([...foodLog, { ...nutritionSearchData }]);
+    const alreadyHaveFood = foodLog?.map((food) => {
+      if (food.foodId === id && food.quantity !== undefined) {
+        return {
+          ...food,
+          quantity: food.quantity + 1,
+        };
       }
+      return food;
+    });
 
-      // Construct fetch request body with updated foodLog
-      const requestBody = { foodLog };
+    const doesFoodExist = foodLog?.find((food) => food.foodId === id);
 
-      const res = await fetch('/api/foodLog', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!res.ok) {
-        throw new Error('Failed to save food logs to the server');
-      }
-
-      const data = await res.json();
-    } catch (error) {
-      console.error('Error saving food logs to the server:', error);
+    if (doesFoodExist) {
+      setFoodLog(alreadyHaveFood);
+    } else {
+      setFoodLog([...foodLog, { ...nutritionSearchData }]);
     }
   };
+
+  useEffect(() => {
+    const updateFoodLog = async () => {
+      try {
+        // Construct fetch request body with updated foodLog
+        const requestBody = { foodLog };
+
+        console.log(requestBody);
+
+        const res = await fetch('/api/foodLog', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        });
+
+        if (!res.ok) {
+          throw new Error('Failed to save food logs to the server');
+        }
+
+        const data = await res.json();
+      } catch (error) {
+        console.error('Error saving food logs to the server:', error);
+      }
+    };
+
+    // Call the updateFoodLog function whenever foodLog changes
+
+    updateFoodLog();
+  }, [foodLog]); // Dependency on foodLog ensures this useEffect runs whenever foodLog changes
 
   const donutSize = width < 400 ? 150 : 200;
   const buttonSize = width < 400 ? 'small' : 'medium';
