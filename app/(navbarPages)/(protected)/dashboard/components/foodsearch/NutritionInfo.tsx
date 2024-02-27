@@ -183,7 +183,7 @@ const NutritionInfo = () => {
 
   return (
     <>
-      <section className='border pb-2 xs:p-5 flex flex-col  items-center  md:flex-row md:justify-evenly dark:bg-gray-800   '>
+      <section className='border pb-2 xs:p-5 flex flex-col items-center  md:flex-row md:justify-evenly dark:bg-gray-800   '>
         <div className='mb-5 justify-center items-center h-full'>
           {nutritionSearchData?.calories === 0 ? (
             <Doughnut data={data2} width={donutSize} />

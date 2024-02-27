@@ -36,7 +36,7 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       height: '75%',
-      width: '50%',
+      width: '70%',
       background: modalBackGroundColor,
     },
 
@@ -47,14 +47,14 @@ const FoodSearch: React.FC<FoodSearchProps> = ({ children }) => {
 
   const mobileCustomStyles = {
     content: {
-      top: '50%',
+      top: '55%',
       left: '50%',
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       height: '88%',
-      width: '95%',
+      width: '99%',
       background: modalBackGroundColor,
     },
   };

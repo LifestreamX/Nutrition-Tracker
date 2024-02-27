@@ -68,7 +68,6 @@ const UserSettings: React.FC = () => {
   let Avatar =
     !profileAvatar || profileAvatar === 'null' ? NoAvatar : profileAvatar;
 
-
   return (
     <>
       {/* dark mode setting */}
