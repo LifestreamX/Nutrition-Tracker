@@ -140,6 +140,12 @@ const NutritionInfo = () => {
     } else {
       setFoodLog([...foodLog, { ...nutritionSearchData }]);
     }
+
+    setSuccessAdded(true);
+
+    setTimeout(() => {
+      setSuccessAdded(false);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -174,7 +180,6 @@ const NutritionInfo = () => {
   }, [foodLog]); // Dependency on foodLog ensures this useEffect runs whenever foodLog changes
 
   const donutSize = width < 400 ? 150 : 200;
-  const buttonSize = width < 400 ? 'small' : 'medium';
 
   return (
     <>
