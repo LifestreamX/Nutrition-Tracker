@@ -58,7 +58,6 @@ const SignUpForm = (): JSX.Element => {
       isValidPass = false;
     }
 
-
     if (password !== confirmPassword) {
       setIsValidPassword(true);
       console.log('PASSWORDS MUST MATCH');
@@ -130,9 +129,9 @@ const SignUpForm = (): JSX.Element => {
 
   return (
     <>
-      <h1 className='sm:text-2xl md:text-3xl relative top-20 sm:top-24 md:top-28  font-bold p-10'>
+      <h1 className='sm:text-2xl md:text-3xl relative top-20 sm:top-24 md:top-28  font-bold p-8 sm:p-10 rouded'>
         {successfullyRegistered ? (
-          <div className='flex flex-col justify-center items-center'>
+          <div className='flex relative sm:top-6 flex-col justify-center items-center  text-sm sm:text-lg md:text-2xl  p2'>
             <p>Successfully Registered with</p>
             <p>{email}</p>
           </div>
@@ -142,13 +141,13 @@ const SignUpForm = (): JSX.Element => {
       </h1>
       <form
         onSubmit={handleSignUpSubmit}
-        className='max-w-xl shadow-2xl  ml-20 mr-20 p-12 sm:p-36 dark:bg-gray-800'
+        className='max-w-xl shadow-2xl   ml-10 mr-10 p-12 sm:p-36 dark:bg-gray-800'
         role='form'
       >
         {successfullyRegistered ? (
-          <div>
+          <div className='w-full'>
             {/* <p className='text-center'>{message && message}</p> */}
-            <p className='text-left'>
+            <p className='text-left w-full p-4 md:p-0'>
               {' '}
               Your account is now active, and you can start tracking your
               nutrition journey. If you have any questions or need assistance,
