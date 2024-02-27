@@ -59,7 +59,7 @@ const Food = ({ food }: FoodDataProps) => {
   };
 
   const handleFoodItemDelete = (id: string): void => {
-    setFoodLog((prevFood) => {
+    setFoodLog((prevFood: any) => {
       if (Array.isArray(prevFood)) {
         return (prevFood as { foodId: string }[]).filter(
           (food) => food?.foodId !== id
