@@ -37,6 +37,8 @@ const MacroGoals = () => {
     (value) => value === 0
   );
 
+  console.log(isMacroTargetsZero);
+
   const handleSubmit = async () => {
     if (isAnyMacroInputsEmpty) {
       setFillOutInputWarning(true);
@@ -79,11 +81,9 @@ const MacroGoals = () => {
     });
   };
 
-
-  const macroSetButtonMessage =
-    Object.keys(macroTargets).length === 0
-      ? 'Set Macro Targets'
-      : 'Change Macro Targets';
+  const macroSetButtonMessage = isMacroTargetsZero
+    ? 'Set Macro Targets'
+    : 'Change Macro Targets';
 
   return (
     <section>
