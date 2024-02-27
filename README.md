@@ -8,8 +8,12 @@ Access my site at https://nutrition-tracker-psi.vercel.app
 
 ## About The App
 
-[nutritiontracker] is a nutrition tracker app for the user and their nutrition information. The user can set macronutrient goals and keep track of them with charts on the user dashboard. The user can use a nutrition API to search for specific foods that they can view with the option of charts to display the data and add the food item to their dashboard to compare to their goals they have set. The user can submit the log for that day to their food logs which they have access to in their food log page to keep track of every food item for that day sorted by date with pagination as the logs grow in size. The site has form validation for account creation along with settings for changing the users avatar and dark mode theme. Charts are updated dynamically comparing the goals the user sets and the nutritional information from the foods that are added to the log.
 
+"[nutritiontracker] is a nutrition tracker app that allows users to create their accounts and manage their nutrition information. Upon signing up, users can set macronutrient goals and monitor their progress with interactive charts available on their personalized dashboard. Utilizing a nutrition API, users can search for specific foods, view detailed nutritional information, and visualize data with charts before adding selected items to their dashboard for goal comparison.
+
+Each day, users can submit their food log entries, which are accessible on their dedicated food log page. Entries are sorted by date, with pagination implemented to accommodate growing logs. The site ensures form validation during account creation and provides options for users to customize their experience by changing their avatar and selecting a dark mode theme.
+
+Dynamic chart updates enable users to compare their set goals with the nutritional content of the foods they've added to their log, providing real-time insights into their dietary habits and progress."
 
 ![](screenshots/screenshot10.png)
 ![](screenshots/screenshot11.png)
@@ -33,12 +37,14 @@ Access my site at https://nutrition-tracker-psi.vercel.app
   <img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="javascript" alt="javascript" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original.svg" title="React" alt="React" width="40" height="40"/>&nbsp;
   <img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-original-wordmark.svg" title="tailwind" alt="tailwind" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="mysql" alt="mysql" width="40" height="40"/>&nbsp;
+  <img src="https://github.com/devicons/devicon/blob/master/icons/prisma/prisma-original-wordmark.svg" title="prisma" alt="prisma" width="40" height="40"/>&nbsp;
+
 
 
 ## Approach
 
-Built with Next.js for utilizing server side rendering for server components. Typescript for type checking. Styled with tailwind for responsive design. Using Nutrition API for fetching data. 
-
+Developed using Next.js with server-side rendering for efficient server components. Utilizes Typescript for comprehensive type checking, ensuring code integrity and scalability. Styled with Tailwind CSS for a visually appealing and responsive design across devices. Integrated with Prisma and MySQL for reliable database management and seamless data storage. Implements authentication with NextAuth.js for secure user authentication and authorization, enhancing user privacy and data security. Additionally, leverages the Nutrition API for fetching nutritional data, enriching the user experience with accurate and up-to-date information.
 
 
 
