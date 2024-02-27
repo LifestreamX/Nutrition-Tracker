@@ -46,7 +46,8 @@ const SignUpForm = (): JSX.Element => {
     e.preventDefault();
 
     // At least 8 characters, at least one uppercase letter, at least one lowercase letter, and at least one digit.
-    const passwordReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const passwordReg =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()\-_=+{};:,<.>]{8,}$/;
 
     let isValid = passwordReg.test(password);
 
