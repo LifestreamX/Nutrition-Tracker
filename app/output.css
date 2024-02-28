@@ -1248,10 +1248,6 @@ video {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
-.flex-row {
-  flex-direction: row;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -1328,6 +1324,10 @@ video {
 
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.break-all {
+  word-break: break-all;
 }
 
 .rounded {
@@ -2516,10 +2516,6 @@ a {
 }
 
 @media (min-width: 300px) {
-  .xxs\:flex-row {
-    flex-direction: row;
-  }
-
   .xxs\:items-center {
     align-items: center;
   }

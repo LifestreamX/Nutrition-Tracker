@@ -23,6 +23,10 @@ const MacroGoals = () => {
     setFillOutInputWarning(false);
     const { name, value } = event.target;
 
+    if (value.startsWith('0')) {
+      return;
+    }
+
     setMacroTargesInputs((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -36,8 +40,6 @@ const MacroGoals = () => {
   const isMacroTargetsZero = Object.values(macroTargetInputs).some(
     (value) => value === 0
   );
-
-  console.log(isMacroTargetsZero);
 
   const handleSubmit = async () => {
     if (isAnyMacroInputsEmpty) {
@@ -80,6 +82,8 @@ const MacroGoals = () => {
       ...macroTargetInputs,
     });
   };
+
+  console.log(macroTargets);
 
   const macroSetButtonMessage = isMacroTargetsZero
     ? 'Set Macro Targets'
@@ -150,6 +154,7 @@ const MacroGoals = () => {
                   name='calories'
                   id='macroCalories'
                   value={macroTargetInputs.calories}
+                  placeholder={macroTargets.calories}
                   onChange={handleInputChange}
                   className='border border-gray-300  focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500  dark:bg-gray-700'
                 />

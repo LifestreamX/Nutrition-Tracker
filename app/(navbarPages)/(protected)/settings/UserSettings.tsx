@@ -32,12 +32,6 @@ const UserSettings: React.FC = () => {
   };
 
   useEffect(() => {
-    // const userSelectedTheme = localStorage.getItem('theme');
-
-    // if (userSelectedTheme) {
-    //   setTheme(userSelectedTheme);
-    // }
-
     const fetchTheme = async () => {
       try {
         const res = await fetch('/api/theme', {
