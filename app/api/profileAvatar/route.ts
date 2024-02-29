@@ -40,11 +40,15 @@ export async function GET(request: Request, response: Response) {
 
 
 
+
+
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
+
+    
     const userEmail = session?.user?.email;
-    // Check if the session contains the user's email
+
     if (!userEmail) {
       throw new Error('User email not found in session');
     }

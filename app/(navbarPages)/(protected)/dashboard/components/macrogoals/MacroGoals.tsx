@@ -154,7 +154,6 @@ const MacroGoals = () => {
                   name='calories'
                   id='macroCalories'
                   value={macroTargetInputs.calories}
-                  placeholder={macroTargets.calories}
                   onChange={handleInputChange}
                   className='border border-gray-300  focus:border-0 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500  dark:bg-gray-700'
                 />

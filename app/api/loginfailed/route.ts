@@ -1,97 +1,116 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { NextResponse } from 'next/server';
 import prisma from '@/app/lib/prisma';
 import { compare } from 'bcryptjs';
 
+// Store the lockout status in memory for quick access
+const lockedUsers = new Map<string, NodeJS.Timeout>();
+
 export async function POST(request: Request, response: Response) {
-  const data = await request.json();
-
-  const { email, password } = data;
-
   try {
-    // Retrieve user information from the database based on the provided email
-    const user = await prisma.user.findUnique({ where: { email } });
+    const requestData = await request.json();
 
-    // If user does not exist, return an unauthorized response
+    // Find the user based on their email
+    const user = await prisma.user.findFirst({
+      where: {
+        email: requestData.email,
+      },
+    });
+
     if (!user) {
+      // If the user doesn't exist, return an error response
       return NextResponse.json(
-        { message: 'Invalid Email or Password' },
+        {
+          message: 'Invalid email or password',
+        },
         { status: 401 }
       );
     }
 
-    // ${(
-    //   remainingCooldown / 1000
-    // ).toFixed(0)} seconds.
-
-    // Check if the user is currently in timeout due to multiple failed login attempts
+    // Check if the user is locked due to too many login attempts
     if (user.loginAttempts && user.loginAttempts >= 3) {
       const currentTime = new Date();
-      const lastAttemptTime = user.lastLoginAttempt || new Date(0); // If lastAttemptTime is null, default to epoch
+      const lastAttemptTime = user.lastLoginAttempt || new Date(0);
       const cooldownPeriod = 30 * 1000; // 30 seconds in milliseconds
       const timeDifference = currentTime.getTime() - lastAttemptTime.getTime();
-      const remainingCooldown = cooldownPeriod - timeDifference;
 
-      if (
-        user.loginAttempts >= 3 &&
-        timeDifference < cooldownPeriod &&
-        remainingCooldown > 0
-      ) {
-        // User is still within the cooldown period
+      if (timeDifference < cooldownPeriod) {
+        // Account is still in cooldown period, return an error response
         return NextResponse.json({
           message: `Too many login attempts. Account is temporarily locked for 30 seconds`,
         });
       } else {
-        // User is either not in cooldown period or cooldown period has elapsed
-        // Reset login attempts if cooldown period has elapsed
-        try {
-          await prisma.user.update({
-            where: { email },
-            data: {
-              loginAttempts: 0,
-              lastLoginAttempt: null, // Reset last login attempt time
-            },
-          });
-          // Return a response to indicate successful reset
-          return NextResponse.json({
-            message: 'Login attempts reset successfully.',
-          });
-        } catch (error) {
-          console.error('Error resetting login attempts:', error);
-        }
-      }
-    }
-
-    // Compare the provided password with the stored password hash
-
-    if (user.passwordHash) {
-      const passWordMatch = await compare(password, user.passwordHash);
-
-      // If the passwords do not match
-      if (!passWordMatch && user.loginAttempts) {
-        // Increment the login attempts
-        const newAttemptCount = user.loginAttempts + 1;
-
-        // Update the login attempts and timeout in case of unsuccessful login
+        // Reset login attempts and last attempt time
         await prisma.user.update({
-          where: { email },
+          where: { email: requestData.email },
           data: {
-            loginAttempts: newAttemptCount,
-            lastLoginAttempt: new Date(), // Set the last login attempt time
+            loginAttempts: 0,
+            lastLoginAttempt: null,
           },
         });
-
-        // Return an unauthorized response for unsuccessful login
-        if (user.loginAttempts < 3) {
-          return NextResponse.json({
-            message: 'Login Unsuccessful',
-
-            attemptsLeft: 3 - newAttemptCount,
-          });
-        }
       }
     }
+
+    // Comparing Password from login form to database
+    const passwordMatch = await compare(
+      requestData.password,
+      user.passwordHash || ''
+    );
+
+    // If the passwords do not match
+    if (!passwordMatch) {
+      // Increment login attempts and update last attempt time
+      const newAttemptCount = (user.loginAttempts || 0) + 1;
+      await prisma.user.update({
+        where: { email: requestData.email },
+        data: {
+          loginAttempts: newAttemptCount,
+          lastLoginAttempt: new Date(),
+        },
+      });
+
+      if (newAttemptCount >= 3) {
+        // Account is locked due to multiple failed attempts
+        // Set a timeout to reset the login attempts after 30 seconds
+        const resetTimeout = setTimeout(async () => {
+          await prisma.user.update({
+            where: { email: requestData.email },
+            data: {
+              loginAttempts: 0,
+              lastLoginAttempt: null,
+            },
+          });
+          // Remove the user from the lockedUsers map
+          lockedUsers.delete(requestData.email);
+        }, 30 * 1000); // 30 seconds in milliseconds
+
+        // Store the timeout in the lockedUsers map for future reference
+        lockedUsers.set(requestData.email, resetTimeout);
+
+        return NextResponse.json({
+          message: `Too many login attempts. Account is temporarily locked for 30 seconds`,
+        });
+      } else {
+        // Return unsuccessful login message with remaining attempts
+        return NextResponse.json({
+          message: 'Login Unsuccessful',
+          attemptsLeft: 3 - newAttemptCount,
+        });
+      }
+    }
+
+    // Successful login
+    // Reset login attempts and last attempt time
+    await prisma.user.update({
+      where: { email: requestData.email },
+      data: {
+        loginAttempts: 0,
+        lastLoginAttempt: null,
+      },
+    });
+
+    // Add code to handle successful login
   } catch (error) {
+    // Handle any errors that occur during login process
     console.error('Error during login:', error);
     return NextResponse.json({ message: 'Internal Server Error' });
   }
