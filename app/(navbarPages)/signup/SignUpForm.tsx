@@ -295,7 +295,7 @@ const SignUpForm = (): JSX.Element => {
               <Button
                 color='purple'
                 size={buttonSize}
-                responsiveWidth={buttonWidith}
+                responsiveWidth={true}
                 type='submit'
               >
                 Sign up

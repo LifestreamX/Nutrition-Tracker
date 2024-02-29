@@ -93,7 +93,7 @@ const UploadAvatar = (): JSX.Element => {
                     <button className='flex w-full'>
                       <label
                         htmlFor='fileInput'
-                        className=' text-center font-bold px-4 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
+                        className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
                       >
                         {profileAvatar ? 'Change Image' : 'Upload Image'}
                         {/* Upload Image */}

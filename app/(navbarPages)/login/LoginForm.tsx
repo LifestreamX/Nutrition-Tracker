@@ -195,9 +195,9 @@ const LoginForm = (): JSX.Element => {
           <div className=''></div>
           <label className=' block text-gray-500 font-bold'></label>
         </div>
-        <div className='flex flex-col justify-center items-center w-full'>
+        <div className='flex  flex-col justify-center items-center w-full'>
           <div
-            className={` md:items-center  md:justify-center mb-6  flex-col  relative   `}
+            className={` md:items-center  md:justify-center mb-6  flex-col  relative  w-full `}
           >
             <Button
               color='purple'
@@ -239,11 +239,9 @@ const LoginForm = (): JSX.Element => {
 
           <h1 className='font-bold'>Or</h1>
 
-          <div>
-            {/* Google Auth Login */}
-            <div className='w-full'>
-              <GoogleSignInButton setGoogleClicked={setGoogleClicked} />
-            </div>
+          {/* Google Auth Login */}
+          <div className='w-full'>
+            <GoogleSignInButton setGoogleClicked={setGoogleClicked} />
           </div>
         </div>
         <div className=' absolute text-sm md:text-lg bottom-2 md:bottom-2'>

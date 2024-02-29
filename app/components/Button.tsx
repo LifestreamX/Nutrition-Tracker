@@ -7,7 +7,6 @@ const Button: React.FC<ButtonProps> = ({
   size,
   onClick,
   responsiveWidth,
-  responsiveWidth2,
   children,
   type = 'button',
 }) => {
@@ -33,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
       case 'medium':
         return 'py-2 px-2 text-xl';
       case 'large':
-        return 'py-4 px-4 text-2xl';
+        return 'py-3 px-4 text-2xl';
       default:
         return 'py-2 px-4 text-base';
     }
@@ -41,7 +40,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const widthClass = (): string => {
     if (responsiveWidth) {
-      return 'w-full md:w-52 ';
+      return 'w-full';
     }
 
     return '';
