@@ -22,6 +22,8 @@ const CustomBotAvatar = (props) => {
   );
 };
 
+
+
 const MyUserAvatar = (props) => {
   const { data: userSession, status } = useSession();
 
