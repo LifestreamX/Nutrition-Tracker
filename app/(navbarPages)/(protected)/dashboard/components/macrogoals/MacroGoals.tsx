@@ -83,7 +83,6 @@ const MacroGoals = () => {
     });
   };
 
-  console.log(macroTargets);
 
   const macroSetButtonMessage = isMacroTargetsZero
     ? 'Set Macro Targets'

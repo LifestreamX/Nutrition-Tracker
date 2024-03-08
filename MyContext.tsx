@@ -105,7 +105,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
             fats: data.fats || 0,
           });
 
-          console.log(macroTargetInputs);
         } else {
           console.error('Failed to fetch macro targets:', res);
         }
