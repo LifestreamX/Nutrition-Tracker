@@ -77,7 +77,6 @@ export async function GET(request: Request, response: Response) {
       select: { selectedDate: true }, // Select only the profileAvatar field
     });
 
-    console.log('this is user afsdfsdfsdf', user);
     // Return the theme preference in the response body
     return new Response(user?.selectedDate, {
       status: 200,

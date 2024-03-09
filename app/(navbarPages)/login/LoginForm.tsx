@@ -86,25 +86,36 @@ const LoginForm = (): JSX.Element => {
   useEffect(() => {
     const grabGoogleAvatar = async () => {
       if (status === 'authenticated') {
-        if (profileAvatar === null && profileAvatar === undefined) {
-          if (userSession.user?.image) {
-            try {
-              const res = await fetch('/api/profileAvatar', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'text/plain',
-                },
-                body: JSON.stringify({
-                  profileAvatar: userSession?.user?.image,
-                }),
-              });
+        if (userSession.user?.image) {
+          try {
+            const res = await fetch('/api/googleProfileAvatar', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'text/plain',
+              },
+              body: JSON.stringify({
+                profileAvatar: userSession?.user?.image,
+              }),
+            });
 
-              console.log(res);
+            if (res.ok) {
+              const data = await res.text();
 
-              setProfileAvatar(userSession?.user?.image);
-            } catch (error) {
-              console.log(error);
+              console.log(data);
+
+              if (data === 'empty') {
+                setProfileAvatar(null);
+                // router.refresh();
+              } else {
+                setProfileAvatar(data);
+
+                // router.refresh();
+              }
             }
+
+            // setProfileAvatar(userSession?.user?.image);
+          } catch (error) {
+            console.log(error);
           }
         }
         // If authenticated, redirect to the dashboard

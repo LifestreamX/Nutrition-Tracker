@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import AuthProvider from '../components/backendcomponents/AuthProvider';
 import NavBarWrapper from '../components/NavBarWrapper';
+import ChatBot from '../components/ChatBot';
 
 export const metadata: Metadata = {
   title: {
@@ -49,6 +50,10 @@ export default function RootLayout({
               <Providers>
                 <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
               </Providers>
+
+              <div className='fixed bottom-4 right-8'>
+                <ChatBot />
+              </div>
             </>
           </body>
         </MyProvider>

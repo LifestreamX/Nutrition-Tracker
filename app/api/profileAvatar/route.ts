@@ -17,8 +17,6 @@ export async function GET(request: Request, response: Response) {
       select: { profileAvatar: true }, // Select only the profileAvatar field
     });
 
-    console.log(user);
-
     // Return the theme preference in the response body
     return new Response(user?.profileAvatar || JSON.stringify(null), {
       status: 200,
@@ -35,19 +33,13 @@ export async function GET(request: Request, response: Response) {
   }
 }
 
-
-
-
-
-
-
-
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
 
-    
     const userEmail = session?.user?.email;
+
+    console.log(userEmail);
 
     if (!userEmail) {
       throw new Error('User email not found in session');
@@ -75,6 +67,8 @@ export async function POST(request: Request) {
   }
 }
 
+
+
 export async function DELETE(request: Request, response: Response) {
   try {
     const session = await getServerSession(authOptions);
@@ -87,7 +81,7 @@ export async function DELETE(request: Request, response: Response) {
     // Delete the profile avatar from the user
     const deleteUser = await prisma.user.update({
       where: { email: userEmail },
-      data: { profileAvatar: null },
+      data: { profileAvatar: 'empty' },
     });
 
     return new Response('Profile avatar deleted successfully', {

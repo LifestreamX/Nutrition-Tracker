@@ -104,7 +104,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
             carbs: data.carbs || 0,
             fats: data.fats || 0,
           });
-
         } else {
           console.error('Failed to fetch macro targets:', res);
         }
@@ -138,12 +137,19 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
         if (res.ok) {
           const data = await res.text();
-          setProfileAvatar(data);
+          console.log(data);
+
+          if (data === 'empty') {
+            setProfileAvatar(null);
+          } else {
+            setProfileAvatar(data);
+          }
         }
       } catch (error) {
         console.error('Failed to fetch profile avatar');
       }
     };
+
 
     const fetchFoodLog = async () => {
       try {
@@ -262,7 +268,6 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
   };
 
   const [submittedFoodLogs, dispatch] = useReducer(reducer, []);
-
 
   // let storedSubmittedFoodLogData;
 
