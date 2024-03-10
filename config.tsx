@@ -1,9 +1,13 @@
+'use client';
+
 // in config.js
 import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from './app/components/ChatBotWidget';
 import Sushi from './public/images/sushi.png';
 import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
+import { useMyContext } from '@/MyContext';
+import { LoginPillButton } from './app/components/ChatBotPillButtons';
 
 const botName = 'Sussy Sushi';
 
@@ -22,17 +26,14 @@ const CustomBotAvatar = (props) => {
   );
 };
 
+const MyUserAvatar = () => {
+  const { profileAvatar } = useMyContext();
 
-
-const MyUserAvatar = (props) => {
-  const { data: userSession, status } = useSession();
-
-
-  let chatUserAvatar = useSession !== null ? userSession?.user?.image : null;
+  // let chatUserAvatar = useSession !== null ? userSession?.user?.image : null;
 
   return (
     <Image
-      src={chatUserAvatar} // Use the imported PNG image as the source
+      src={profileAvatar} // Use the imported PNG image as the source
       alt='Bot Avatar'
       width={45}
       height={45}
@@ -48,7 +49,10 @@ const MyUserAvatar = (props) => {
 
 const config = {
   initialMessages: [
-    createChatBotMessage(`Hi! I'm ${botName}! How can I help you`),
+    createChatBotMessage(`Hi! I'm ${botName}! How can I help you`, {
+      widget: 'LoginPillButton',
+      widget: 'SignupPillButton',
+    }),
   ],
   botName: botName,
   customStyles: {
@@ -71,6 +75,11 @@ const config = {
     {
       widgetName: 'dogPicture',
       widgetFunc: (props) => <DogPicture {...props} />,
+    },
+
+    {
+      widgetName: 'LoginPillButton',
+      widgetFunc: (props) => <LoginPillButton {...props} />,
     },
   ],
 };

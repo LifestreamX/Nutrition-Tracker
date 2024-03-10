@@ -23,6 +23,25 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
     setState((prev) => ({
       ...prev,
+      messages: [...prev.messages, prev],
+    }));
+  };
+
+  const handleLoginPill = () => {
+    const botMessage = createChatBotMessage(
+      <div>
+        <p> 'To signin, please visit the sigin page</p>
+        <a
+          className='underline'
+          href='https://nutritiontracker.vercel.app/login'
+        >
+          Here{' '}
+        </a>
+      </div>
+    );
+
+    setState((prev) => ({
+      ...prev,
       messages: [...prev.messages, botMessage],
     }));
   };
@@ -35,6 +54,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           actions: {
             handleHello,
             handleDog,
+            handleLoginPill,
           },
         });
       })}
