@@ -106,7 +106,7 @@ const config = {
           <p className='p-1'>
             <LoginPillButton {...props} />
           </p>
-          <p className='px-1'>
+          <p className='p-1'>
             <AboutPillButton {...props} />
           </p>
           <p className='p-1'>

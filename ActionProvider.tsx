@@ -98,6 +98,17 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleNoMatch = () => {
+    const botMessage = createChatBotMessage(
+      "Sorry I don't understand, please try rephrasing the question."
+    );
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
   const handleDog = () => {
     const botMessage = createChatBotMessage(
       "Here's a nice dog picture for you!",
@@ -301,6 +312,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleNutritionFactPill,
             handleDashPill,
             MyFoodLogPillButton,
+            handleNoMatch,
           },
         });
       })}

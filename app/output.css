@@ -2887,6 +2887,10 @@ a {
     height: 1.5rem;
   }
 
+  .md\:h-16 {
+    height: 4rem;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -2921,6 +2925,10 @@ a {
 
   .md\:w-full {
     width: 100%;
+  }
+
+  .md\:w-16 {
+    width: 4rem;
   }
 
   .md\:max-w-5xl {
