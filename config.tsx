@@ -7,7 +7,16 @@ import Sushi from './public/images/sushi.png';
 import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
 import { useMyContext } from '@/MyContext';
-import { LoginPillButton } from './app/components/ChatBotPillButtons';
+import {
+  AboutPillButton,
+  ContactPillButton,
+  DashPillButton,
+  LoginPillButton,
+  MyFoodLogPillButton,
+  NutritionFactPillButton,
+  SettingsPillButton,
+  SignupPillButton,
+} from './app/components/ChatBotPillButtons';
 
 const botName = 'Sussy Sushi';
 
@@ -29,11 +38,23 @@ const CustomBotAvatar = (props) => {
 const MyUserAvatar = () => {
   const { profileAvatar } = useMyContext();
 
-  // let chatUserAvatar = useSession !== null ? userSession?.user?.image : null;
+  const defaultAvatar = `data:image/svg+xml;utf8,<svg
+  className='absolute w-10 h-10 text-gray-400 -left-1'
+  fill='currentColor'
+  viewBox='0 0 20 20'
+  xmlns='http://www.w3.org/2000/svg'
+  data-testid='avatar'
+>
+  <path
+    fillRule='evenodd'
+    d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z'
+    clipRule='evenodd'
+  ></path>
+</svg>`;
 
   return (
     <Image
-      src={profileAvatar} // Use the imported PNG image as the source
+      src={profileAvatar ? profileAvatar : defaultAvatar} // Use the imported PNG image as the source
       alt='Bot Avatar'
       width={45}
       height={45}
@@ -50,10 +71,11 @@ const MyUserAvatar = () => {
 const config = {
   initialMessages: [
     createChatBotMessage(`Hi! I'm ${botName}! How can I help you`, {
-      widget: 'LoginPillButton',
-      widget: 'SignupPillButton',
+      widget: 'pillButtons',
+      // widget: 'SignupPillButton',
     }),
   ],
+
   botName: botName,
   customStyles: {
     botMessageBox: {
@@ -78,9 +100,42 @@ const config = {
     },
 
     {
-      widgetName: 'LoginPillButton',
-      widgetFunc: (props) => <LoginPillButton {...props} />,
+      widgetName: 'pillButtons',
+      widgetFunc: (props) => (
+        <div className='flex flex-wrap '>
+          <p className='p-1'>
+            <LoginPillButton {...props} />
+          </p>
+          <p className='px-1'>
+            <AboutPillButton {...props} />
+          </p>
+          <p className='p-1'>
+            <SignupPillButton {...props} />
+          </p>
+          <p className='p-1'>
+            <SettingsPillButton {...props} />
+          </p>
+          <p className='p-1'>
+            <ContactPillButton {...props} />
+          </p>
+
+          <p className='p-1'>
+            <NutritionFactPillButton {...props} />
+          </p>
+          <p className='p-1'>
+            <DashPillButton {...props} />
+          </p>
+          <p className='p-1'>
+            <MyFoodLogPillButton {...props} />
+          </p>
+        </div>
+      ),
     },
+
+    // {
+    //   widgetName: 'LoginPillButton',
+    //   widgetFunc: (props) => <LoginPillButton {...props} />,
+    // },
   ],
 };
 
