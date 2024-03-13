@@ -3,7 +3,22 @@
 // in ActionProvider.jsx
 import React from 'react';
 
-const ActionProvider = ({ createChatBotMessage, setState, children }) => {
+interface CreateChatBotMessageFunction {
+  (message: string | JSX.Element, options?: any): {
+    message: string | JSX.Element;
+    options?: any;
+  };
+}
+
+const ActionProvider = ({
+  createChatBotMessage,
+  setState,
+  children,
+}: {
+  createChatBotMessage: CreateChatBotMessageFunction;
+  setState: Function;
+  children: React.ReactNode;
+}) => {
   const nutritionFacts = [
     'Did you know? Broccoli is a great source of vitamin C, fiber, and antioxidants.',
     'Eating carrots can improve your eyesight due to their high vitamin A content.',
@@ -70,7 +85,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -81,7 +96,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       'Have a good rest of your day or night! Sussy Out!'
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -92,7 +107,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       "It doesn't seem you have typed anything"
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -103,7 +118,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       "Sorry I don't understand, please try rephrasing the question."
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -117,7 +132,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       }
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, prev],
     }));
@@ -136,7 +151,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -162,7 +177,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -185,7 +200,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -208,7 +223,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -230,7 +245,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -243,7 +258,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -266,7 +281,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -288,7 +303,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       </div>
     );
 
-    setState((prev) => ({
+    setState((prev: { messages: string }) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
@@ -298,7 +313,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   return (
     <div>
       {React.Children.map(children, (child) => {
-        return React.cloneElement(child, {
+        return React.cloneElement(child as React.ReactElement<any>, {
           actions: {
             handleHello,
             handleGoodbye,

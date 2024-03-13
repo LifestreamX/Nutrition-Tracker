@@ -20,7 +20,7 @@ import {
 
 const botName = 'Sussy Sushi';
 
-const CustomBotAvatar = (props) => {
+const CustomBotAvatar = (props: any) => {
   return (
     <Image
       src={Sushi} // Use the imported PNG image as the source
@@ -88,20 +88,20 @@ const config = {
 
   customComponents: {
     // Replace the default bot avatar component with the custom one
-    botAvatar: (props) => <CustomBotAvatar {...props} />,
+    botAvatar: (props: any) => <CustomBotAvatar {...props} />,
 
-    userAvatar: (props) => <MyUserAvatar {...props} />,
+    userAvatar: (props: JSX.IntrinsicAttributes) => <MyUserAvatar {...props} />,
   },
 
   widgets: [
     {
       widgetName: 'dogPicture',
-      widgetFunc: (props) => <DogPicture {...props} />,
+      widgetFunc: (props: JSX.IntrinsicAttributes) => <DogPicture {...props} />,
     },
 
     {
       widgetName: 'pillButtons',
-      widgetFunc: (props) => (
+      widgetFunc: (props: any) => (
         <div className='flex flex-wrap '>
           <p className='p-1 text-sm'>
             <LoginPillButton {...props} />

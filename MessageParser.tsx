@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-const MessageParser = ({ children, actions }) => {
-  const parse = async (message) => {
+interface MessageParserProps {
+  children: ReactNode;
+  actions: any; // You might want to define a specific type for `actions`
+}
+
+const MessageParser = ({ children, actions }: MessageParserProps) => {
+  console.log(children);
+  const parse = async (message: string) => {
     const lowercaseMessage = message.toLowerCase();
 
     if (
@@ -94,7 +100,8 @@ const MessageParser = ({ children, actions }) => {
   return (
     <div>
       {React.Children.map(children, (child) => {
-        return React.cloneElement(child, {
+        return React.cloneElement(child as React.ReactElement<any>, {
+          // Type assertion is used here
           parse: parse,
           actions,
         });

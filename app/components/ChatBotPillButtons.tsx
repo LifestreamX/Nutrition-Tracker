@@ -1,7 +1,7 @@
 import React from 'react';
 import '../globals.css';
 
-export function LoginPillButton(props) {
+export function LoginPillButton(props: { actions: { handleLoginPill: () => void; }; }) {
   const handleLoginPill = () => {
     props.actions.handleLoginPill();
   };
@@ -18,7 +18,7 @@ export function LoginPillButton(props) {
   );
 }
 
-export function SignupPillButton(props) {
+export function SignupPillButton(props: { actions: { handleSignupPill: () => void; }; }) {
   const handleSignupPill = () => {
     props.actions.handleSignupPill();
   };
@@ -35,7 +35,7 @@ export function SignupPillButton(props) {
   );
 }
 
-export function ContactPillButton(props) {
+export function ContactPillButton(props: { actions: { handleContactPill: () => void; }; }) {
   const handleContactPill = () => {
     props.actions.handleContactPill();
   };
@@ -52,7 +52,7 @@ export function ContactPillButton(props) {
   );
 }
 
-export function AboutPillButton(props) {
+export function AboutPillButton(props: { actions: { handleABoutPill: () => void; }; }) {
   const handleABoutPill = () => {
     props.actions.handleABoutPill();
   };
@@ -69,7 +69,7 @@ export function AboutPillButton(props) {
   );
 }
 
-export function SettingsPillButton(props) {
+export function SettingsPillButton(props: { actions: { handleSettingsPill: () => void; }; }) {
   const handleSettingsPill = () => {
     props.actions.handleSettingsPill();
   };
@@ -86,7 +86,7 @@ export function SettingsPillButton(props) {
   );
 }
 
-export function NutritionFactPillButton(props) {
+export function NutritionFactPillButton(props: { actions: { handleNutritionFactPill: () => void; }; }) {
   const handleNutritionFactPill = () => {
     props.actions.handleNutritionFactPill();
   };
@@ -103,7 +103,7 @@ export function NutritionFactPillButton(props) {
   );
 }
 
-export function DashPillButton(props) {
+export function DashPillButton(props: { actions: { handleDashPill: () => void; }; }) {
   const handleDashPill = () => {
     props.actions.handleDashPill();
   };
@@ -120,7 +120,7 @@ export function DashPillButton(props) {
   );
 }
 
-export function MyFoodLogPillButton(props) {
+export function MyFoodLogPillButton(props: { actions: { MyFoodLogPillButton: () => void; }; }) {
   const MyFoodLogPillButton = () => {
     props.actions.MyFoodLogPillButton();
   };

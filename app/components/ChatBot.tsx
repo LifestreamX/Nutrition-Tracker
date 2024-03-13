@@ -6,9 +6,6 @@ import MessageParser from '@/MessageParser';
 import ActionProvider from '@/ActionProvider';
 import config from '@/config';
 import { useState } from 'react';
-import ChatIcon from '../.././public/images/chatIcon.png';
-import Image from 'next/image';
-import Button from './Button';
 
 const ChatBot = () => {
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
@@ -17,12 +14,14 @@ const ChatBot = () => {
     setIsChatbotVisible(!isChatbotVisible);
   };
 
+  const ConfigType = {};
+
   return (
     <div className='flex flex-col justify-end items-end'>
       {isChatbotVisible && (
         <>
           <Chatbot
-            config={config}
+            config={config as any}
             messageParser={MessageParser}
             actionProvider={ActionProvider}
           />
