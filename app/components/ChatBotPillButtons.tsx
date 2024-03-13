@@ -1,4 +1,5 @@
 import React from 'react';
+import '../globals.css';
 
 export function LoginPillButton(props) {
   const handleLoginPill = () => {

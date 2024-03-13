@@ -2079,6 +2079,15 @@ video {
   background-color: #ffffff;
 }
 
+.react-chatbot-kit-chat-container {
+  border: 3px solid #EFEFEF;
+  border-radius: 10px;
+}
+
+.react-chatbot-kit-chat-inner-container {
+  box-sizing: border-box;
+}
+
 /* .wrapper {
   display: flex;
   justify-content: center;
@@ -2887,10 +2896,6 @@ a {
     height: 1.5rem;
   }
 
-  .md\:h-16 {
-    height: 4rem;
-  }
-
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -2925,10 +2930,6 @@ a {
 
   .md\:w-full {
     width: 100%;
-  }
-
-  .md\:w-16 {
-    width: 4rem;
   }
 
   .md\:max-w-5xl {

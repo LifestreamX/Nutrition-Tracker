@@ -103,29 +103,29 @@ const config = {
       widgetName: 'pillButtons',
       widgetFunc: (props) => (
         <div className='flex flex-wrap '>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <LoginPillButton {...props} />
           </p>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <AboutPillButton {...props} />
           </p>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <SignupPillButton {...props} />
           </p>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <SettingsPillButton {...props} />
           </p>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <ContactPillButton {...props} />
           </p>
 
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <NutritionFactPillButton {...props} />
           </p>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <DashPillButton {...props} />
           </p>
-          <p className='p-1'>
+          <p className='p-1 text-sm'>
             <MyFoodLogPillButton {...props} />
           </p>
         </div>

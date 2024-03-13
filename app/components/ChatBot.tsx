@@ -36,7 +36,7 @@ const ChatBot = () => {
           viewBox='0 0 24 24'
           stroke-width='1.5'
           stroke='currentColor'
-          className='w-16 h-16 text-white transform hover:scale-110 transition-transform'
+          className='w-12 h-12 chatbot-svg relative left-7 md:left-0  text-white transform hover:scale-110 transition-transform'
         >
           <path
             stroke-linecap='round'
