@@ -72,7 +72,7 @@ const MacroGoals = () => {
 
         await res.json();
       } catch (error) {
-        console.log(error);
+        console.log('client side', error);
       }
     }
   };
@@ -82,7 +82,6 @@ const MacroGoals = () => {
       ...macroTargetInputs,
     });
   };
-
 
   const macroSetButtonMessage = isMacroTargetsZero
     ? 'Set Macro Targets'

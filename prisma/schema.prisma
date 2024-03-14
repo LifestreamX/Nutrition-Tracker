@@ -7,11 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
-
-
-
 model User {
   id                String             @id @default(cuid())
   email             String             @unique
@@ -20,7 +15,7 @@ model User {
   lastLoginAttempt  DateTime?
   macroTargets      MacroTargets?
   themePreference   String?            @default("light")
-  profileAvatar     String?            
+  profileAvatar     String?
   selectedDate      String?
   foodLogs          FoodLog[] // Define a one-to-many relation between User and FoodLog
   submittedFoodLogs SubmittedFoodLog[]
@@ -34,8 +29,6 @@ model MacroTargets {
   protein  Float?
   carbs    Float?
   fats     Float?
-
-  @@index([userId], name: "MacroTargets_userId_index")
 }
 
 model FoodLog {
@@ -60,8 +53,6 @@ model FoodLog {
   quantity      Int?
   servingSizes  Json? // Adjust the type as needed
   nutrients     Json? // Adjust the type as needed
-
-  @@index([userId], name: "userId_index") // Add an index to the userId field
 }
 
 model SubmittedFoodLog {
@@ -74,6 +65,4 @@ model SubmittedFoodLog {
   // Define a relationship with the User model if needed
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
-
-  @@index([userId], name: "submitted_food_logs_user_id_index")
 }

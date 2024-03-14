@@ -23,6 +23,8 @@ export async function POST(request: Request) {
     const { updateMacroTargets } = data;
     const { calories, protein, carbs, fats } = updateMacroTargets;
 
+    console.log(userEmail);
+
     // Check if a record for the user already exists in the MacroTargets table
     let existingRecord = await prisma.macroTargets.findFirst({
       where: {
@@ -59,9 +61,13 @@ export async function POST(request: Request) {
     // Process the webhook payload
     // You can add additional processing logic here if needed
   } catch (error) {
+    console.log(error);
     // Handling errors
-    return new Response(`Webhook error: ${error}`, {
+    return new Response(`Error posting: ${error}`, {
       status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   }
 
@@ -95,8 +101,6 @@ export async function GET(request: Request) {
     if (!macroTargets) {
       throw new Error('Macro targets not found for the user');
     }
-
-    console.log(macroTargets);
 
     // Returning the fetched macro targets
     return new Response(JSON.stringify(macroTargets), {
