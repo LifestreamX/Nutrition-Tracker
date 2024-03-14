@@ -667,6 +667,10 @@ video {
   left: 1rem;
 }
 
+.left-7 {
+  left: 1.75rem;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -2079,6 +2083,16 @@ video {
   background-color: #ffffff;
 }
 
+.chatbot-svg{
+}
+
+@media screen and (min-width: 768px) {
+  .chatbot-svg{
+    height: 4rem !important;
+    width: 4rem !important;
+  }
+}
+
 .react-chatbot-kit-chat-container {
   border: 3px solid #EFEFEF;
   border-radius: 10px;
@@ -2810,6 +2824,10 @@ a {
 
   .md\:bottom-6 {
     bottom: 1.5rem;
+  }
+
+  .md\:left-0 {
+    left: 0px;
   }
 
   .md\:left-5 {
