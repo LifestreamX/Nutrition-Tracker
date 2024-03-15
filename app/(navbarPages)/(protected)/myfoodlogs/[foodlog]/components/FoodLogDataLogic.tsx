@@ -71,6 +71,8 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   const handleConfirm: ConfirmDeleteHandler = async () => {
     const deleteLog = submittedFoodLogs?.filter((e: { foodLogId: string }) => {
+      console.log(deleteLog);
+
       return e.foodLogId !== params.foodlog;
     });
 
@@ -78,6 +80,27 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
       type: 'DELETE_FOOD_LOG',
       payload: deleteLog,
     });
+
+    try {
+      // Construct fetch request body with updated foodLog
+
+      const res = await fetch('/api/submittedFoodLogs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(deleteLog),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to save food logs to the server');
+      }
+
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error saving food logs to the server:', error);
+    }
 
     router.back();
   };

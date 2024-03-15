@@ -66,7 +66,6 @@ export async function GET(request: Request) {
       },
     });
 
-
     // Returning the fetched food logs
     return new Response(JSON.stringify(submittedFoodLogs), {
       status: 200,

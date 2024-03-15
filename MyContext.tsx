@@ -281,6 +281,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   // const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
 
+  console.log(submittedFoodLogs)
+
   const value: MyContextType = {
     macroTargetInputs,
     setMacroTargesInputs,
