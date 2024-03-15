@@ -3,8 +3,10 @@ import prisma from '@/app/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/lib/authOptions';
 import Email from 'next-auth/providers/email';
+import _ from 'lodash';
 
-export async function POST(request: Request) {
+// Throttle the handler function to one call per second
+const throttledHandler = _.throttle(async (request: Request) => {
   try {
     // Retrieving the user's session
     const session = await getServerSession(authOptions);
@@ -45,6 +47,11 @@ export async function POST(request: Request) {
       status: 500,
     });
   }
+}, 1000); // Throttle to one call per second
+
+export async function POST(request: Request) {
+  // Call the throttled handler
+  return await throttledHandler(request);
 }
 
 export async function GET(request: Request) {

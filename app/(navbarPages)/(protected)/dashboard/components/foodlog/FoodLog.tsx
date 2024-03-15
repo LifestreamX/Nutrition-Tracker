@@ -164,9 +164,6 @@ const FoodLog = () => {
       try {
         const res = await fetch('/api/foodLog', {
           method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
         });
 
         if (!res.ok) {

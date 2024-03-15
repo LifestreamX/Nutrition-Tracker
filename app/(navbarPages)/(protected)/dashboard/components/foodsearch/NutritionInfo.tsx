@@ -19,6 +19,8 @@ const NutritionInfo = () => {
     setSuccessAdded,
   } = useMyContext();
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const { width } = useWindowSize();
 
   if (nutritionSearchData) {
@@ -123,6 +125,10 @@ const NutritionInfo = () => {
   };
 
   const handleAddToFoodLog = async (id: string) => {
+    if (isSaving) return; // Exit function if a request is already in progress
+
+    setIsSaving(true); // Set isSaving to true to indicate a request is starting
+
     const alreadyHaveFood = foodLog?.map((food) => {
       if (food.foodId === id && food.quantity !== undefined) {
         return {
@@ -150,11 +156,11 @@ const NutritionInfo = () => {
 
   useEffect(() => {
     const updateFoodLog = async () => {
+      setIsSaving(true); // Set isSaving to true before sending the request
+
       try {
         // Construct fetch request body with updated foodLog
         const requestBody = { foodLog };
-
-        console.log(requestBody);
 
         const res = await fetch('/api/foodLog', {
           method: 'POST',
@@ -169,7 +175,11 @@ const NutritionInfo = () => {
         }
 
         const data = await res.json();
+
+        setIsSaving(false); // Set isSaving to false after the request is completed
       } catch (error) {
+        setIsSaving(false); // Ensure isSaving is reset to false in case of an error
+
         console.error('Error saving food logs to the server:', error);
       }
     };
