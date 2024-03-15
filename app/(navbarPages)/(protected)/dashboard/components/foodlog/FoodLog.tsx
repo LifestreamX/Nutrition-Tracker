@@ -132,6 +132,25 @@ const FoodLog = () => {
       setMacroTargets(updateMacroTargets);
 
       try {
+        const res = await fetch('/api/submittedFoodLogs', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(submittedFoodLogs),
+        });
+
+        console.log(res);
+        if (!res) {
+          throw new Error('Failed to save submitted food logs');
+        }
+
+        console.log(res);
+      } catch (error) {
+        console.error('Error saving submitted food logs:', error);
+      }
+
+      try {
         const res = await fetch('/api/macrotargets', {
           method: 'POST',
           headers: {
@@ -174,23 +193,6 @@ const FoodLog = () => {
         console.log(result);
       } catch (error) {
         console.log('error deleting food logs', error);
-      }
-
-      try {
-        const res = await fetch('/api/submittedFoodLogs', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(submittedFoodLogs),
-        });
-        if (!res) {
-          throw new Error('Failed to save submitted food logs');
-        }
-
-        console.log(res);
-      } catch (error) {
-        console.error('Error saving submitted food logs:', error);
       }
     }
   };
