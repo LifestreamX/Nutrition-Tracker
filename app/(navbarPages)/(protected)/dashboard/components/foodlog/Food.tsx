@@ -61,21 +61,19 @@ const Food = ({ food }: FoodDataProps) => {
   const handleFoodItemDelete = (id: string): void => {
     setFoodLog((prevFood: any) => {
       if (Array.isArray(prevFood)) {
-        return (prevFood as { foodId: string }[]).filter(
-          (food) => food?.foodId !== id
-        );
+        const updatedFoodLog = prevFood.filter((food) => food?.foodId !== id);
+        // Call updateFoodLog after setting the state
+        updateFoodLog(updatedFoodLog);
+        return updatedFoodLog;
       }
       // For example, you might want to return prevFood unchanged or handle it differently
       return prevFood;
     });
-  };
 
-  useEffect(() => {
-    const updateFoodLog = async () => {
-      console.log(foodLog);
+    const updateFoodLog = async (updatedFoodLog: any) => {
       try {
         // Construct fetch request body with updated foodLog
-        const requestBody = { foodLog };
+        const requestBody = { foodLog: updatedFoodLog };
 
         const res = await fetch('/api/foodLog', {
           method: 'POST',
@@ -95,10 +93,35 @@ const Food = ({ food }: FoodDataProps) => {
         console.error('Error saving food logs to the server:', error);
       }
     };
+  };
 
-    // Call the updateFoodLog function whenever foodLog changes
-    updateFoodLog();
-  }, [handleFoodItemDelete]); // Empty dependency array ensures that this effect runs only once, after the initial render
+  // useEffect(() => {
+  //   const updateFoodLog = async () => {
+  //     try {
+  //       // Construct fetch request body with updated foodLog
+  //       const requestBody = { foodLog };
+
+  //       const res = await fetch('/api/foodLog', {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify(requestBody),
+  //       });
+
+  //       if (!res.ok) {
+  //         throw new Error('Failed to save food logs to the server');
+  //       }
+
+  //       const data = await res.json();
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error('Error saving food logs to the server:', error);
+  //     }
+  //   };
+
+  //   updateFoodLog();
+  // }, [handleFoodItemDelete]); // Empty dependency array ensures that this effect runs only once, after the initial render
 
   const handleQuantity = (id: string): void => {
     setNewQuantity(Number(food.quantity));
