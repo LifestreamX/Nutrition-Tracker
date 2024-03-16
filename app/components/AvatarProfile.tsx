@@ -33,10 +33,15 @@ const UploadAvatar = (): JSX.Element => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log(file)
     if (file) {
-      // setImage(URL.createObjectURL(file));
-      setShowCropButton(true);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target && typeof event.target.result === 'string') {
+          setImage(event.target.result);
+          setShowCropButton(true);
+        }
+      };
+      reader.readAsDataURL(file);
     }
   };
 
