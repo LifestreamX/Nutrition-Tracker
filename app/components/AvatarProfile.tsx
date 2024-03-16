@@ -20,7 +20,6 @@ const UploadAvatar = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
-  const [curImage, setCurImage] = useState<any>('');
 
   // console.log(typeof profileAvatar);
 
@@ -35,23 +34,10 @@ const UploadAvatar = (): JSX.Element => {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      try {
-        const blobUrl = URL.createObjectURL(file);
-        setImage(blobUrl);
-        setShowCropButton(true);
-        console.log(image);
-      } catch (error) {
-        console.error('Error creating blob URL:', error);
-      }
+      setImage(URL.createObjectURL(file));
+      setShowCropButton(true);
     }
   };
-
-  useEffect(() => {
-    console.log(image);
-    if (image) {
-      setCurImage(image);
-    }
-  }, [image]);
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
@@ -61,10 +47,7 @@ const UploadAvatar = (): JSX.Element => {
   const handleCrop = () => {
     if (editorRef.current) {
       const canvas = editorRef.current.getImageScaledToCanvas();
-      // You can now use the canvas to get the cropped image data
-
       const croppedImage = canvas.toDataURL();
-
       setCroppedImage(croppedImage);
     }
   };
@@ -85,8 +68,6 @@ const UploadAvatar = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
-
-    // localStorage.setItem('profileAvatar', croppedImage);
 
     setCroppedImage('');
     setImage(null);
@@ -160,7 +141,7 @@ const UploadAvatar = (): JSX.Element => {
                     {image && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={curImage}
+                        image={image}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
