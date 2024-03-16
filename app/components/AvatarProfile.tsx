@@ -32,12 +32,14 @@ const UploadAvatar = (): JSX.Element => {
   // }
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     const file = e.target.files?.[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-      setShowCropButton(true);
-    }
+
+
+    console.log(file)
+    // if (file) {
+    //   setImage(URL.createObjectURL(file));
+    //   setShowCropButton(true);
+    // }
   };
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
