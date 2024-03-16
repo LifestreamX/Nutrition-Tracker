@@ -140,7 +140,53 @@ const UploadAvatar = (): JSX.Element => {
                   )}
                 </div>
 
-               
+                <div className=' flex container justify-center items-center flex-wrap'>
+                  {/* crop */}
+                  <div className='flex flex-col justify-evenly items-center m-5'>
+                    {image && (
+                      <AvatarEditor
+                        ref={editorRef}
+                        image={image}
+                        width={cropPreview}
+                        height={cropPreview}
+                        border={50}
+                        color={[255, 255, 255, 0.6]} // RGBA
+                        scale={scale}
+                        rotate={0}
+                      />
+                    )}
+
+                    <div className='relative right-3'>
+                      {showCropButton && (
+                        <div className='relative  '>
+                          <Button color='purple' onClick={handleCrop}>
+                            Crop
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* save */}
+                  <div className='m-5 right-2 relative'>
+                    {/* displaying crop avatar demo */}
+                    {croppedImage && (
+                      <div className='flex flex-col '>
+                        <Image
+                          className=' rounded-full relative  border-gray border-2 mb-5'
+                          src={croppedImage}
+                          alt='Rounded avatar'
+                          width={100}
+                          height={100}
+                        />
+
+                        <Button onClick={handleSaveProfileImage} color='purple'>
+                          Save
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
 
                 {/* crop photo button */}
               </div>
