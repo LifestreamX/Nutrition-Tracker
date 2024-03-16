@@ -84,21 +84,69 @@ const UploadAvatar = (): JSX.Element => {
   return (
     <main>
       <div>
-        <button className='flex w-full'>
-          <label
-            htmlFor='fileInput'
-            className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
-          >
-            {profileAvatar ? 'Change Image' : 'Upload Image'}
-            {/* Upload Image */}
-          </label>
-          <input
-            type='file'
-            id='fileInput'
-            onChange={handleImageChange}
-            className='hidden'
-          />
-        </button>
+        <div>
+          <div className='flex'>
+            <div className='flex flex-col'>
+              <div className='container'>
+                <div className='flex flex-col  '>
+                  <div className='flex flex-col  md:grid md:grid-cols-2  '>
+                    <button className='flex w-full'>
+                      <label
+                        htmlFor='fileInput'
+                        className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
+                      >
+                        {profileAvatar ? 'Change Image' : 'Upload Image'}
+                        {/* Upload Image */}
+                      </label>
+                      <input
+                        type='file'
+                        id='fileInput'
+                        onChange={handleImageChange}
+                        className='hidden'
+                      />
+                    </button>
+
+                    <div className='mt-3 md:mt-0 md:ml-4 w-full  '>
+                      {profileAvatar && (
+                        <Button
+                          onClick={() => {
+                            setShowModal(true);
+                          }}
+                          color='red'
+                        >
+                          Delete Image
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+
+                  <DeleteAvatarProfileModal
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                  />
+
+                  {/* example ending */}
+
+                  {showCropButton && (
+                    <input
+                      type='range'
+                      min='1'
+                      max='3'
+                      step='0.01'
+                      value={scale}
+                      className='bg-purple-600 mb-5 mt-5 accent-purple-700  w-32 md:w-full '
+                      onChange={handleScaleChange}
+                    />
+                  )}
+                </div>
+
+               
+
+                {/* crop photo button */}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
