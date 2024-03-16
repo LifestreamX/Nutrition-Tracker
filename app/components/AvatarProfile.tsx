@@ -39,8 +39,21 @@ const UploadAvatar = (): JSX.Element => {
     }
   };
 
+  const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newScale = parseFloat(e.target.value);
+    setScale(newScale);
+  };
 
+  const handleCrop = () => {
+    if (editorRef.current) {
+      const canvas = editorRef.current.getImageScaledToCanvas();
+      // You can now use the canvas to get the cropped image data
 
+      const croppedImage = canvas.toDataURL();
+
+      setCroppedImage(croppedImage);
+    }
+  };
 
   const handleSaveProfileImage = async () => {
     setProfileAvatar(croppedImage);
@@ -61,6 +74,9 @@ const UploadAvatar = (): JSX.Element => {
 
     // localStorage.setItem('profileAvatar', croppedImage);
 
+    setCroppedImage('');
+    setImage(null);
+    setShowCropButton(false);
   };
 
   const cropPreview = width < 480 ? 100 : width < 768 ? 150 : 200;
@@ -68,32 +84,21 @@ const UploadAvatar = (): JSX.Element => {
   return (
     <main>
       <div>
-                    <button className='flex w-full'>
-                      <label
-                        htmlFor='fileInput'
-                        className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
-                      >
-                        {profileAvatar ? 'Change Image' : 'Upload Image'}
-                        {/* Upload Image */}
-                      </label>
-                      <input
-                        type='file'
-                        id='fileInput'
-                        onChange={handleImageChange}
-                        className='hidden'
-                      />
-                    </button>
-
-                 
-
-               
-
-              
-
-               
-
-   
-
+        <button className='flex w-full'>
+          <label
+            htmlFor='fileInput'
+            className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
+          >
+            {profileAvatar ? 'Change Image' : 'Upload Image'}
+            {/* Upload Image */}
+          </label>
+          <input
+            type='file'
+            id='fileInput'
+            onChange={handleImageChange}
+            className='hidden'
+          />
+        </button>
       </div>
     </main>
   );
