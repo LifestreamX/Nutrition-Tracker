@@ -119,9 +119,6 @@ const UploadAvatar = (): JSX.Element => {
                       )}
                     </div>
                   </div>
-                  <button>
-                    FILE <input type='file' onChange={handleImageChange} />
-                  </button>
 
                   <DeleteAvatarProfileModal
                     showModal={showModal}
