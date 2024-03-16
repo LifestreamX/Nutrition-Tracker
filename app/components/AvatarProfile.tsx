@@ -39,7 +39,8 @@ const UploadAvatar = (): JSX.Element => {
 
     try {
       let res = URL.createObjectURL(file as any);
-      console.log('RESSSSS', res);
+      setImage(res);
+      setShowCropButton(true);
     } catch (error) {
       console.error('Error creating object URL:', error);
     }
