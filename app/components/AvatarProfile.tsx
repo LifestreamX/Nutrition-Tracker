@@ -31,7 +31,7 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: any) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(URL.createObjectURL(file));
@@ -39,21 +39,21 @@ const UploadAvatar = (): JSX.Element => {
     }
   };
 
-  // const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const newScale = parseFloat(e.target.value);
-  //   setScale(newScale);
-  // };
+  const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newScale = parseFloat(e.target.value);
+    setScale(newScale);
+  };
 
-  // const handleCrop = () => {
-  //   if (editorRef.current) {
-  //     const canvas = editorRef.current.getImageScaledToCanvas();
-  //     // You can now use the canvas to get the cropped image data
+  const handleCrop = () => {
+    if (editorRef.current) {
+      const canvas = editorRef.current.getImageScaledToCanvas();
+      // You can now use the canvas to get the cropped image data
 
-  //     const croppedImage = canvas.toDataURL();
+      const croppedImage = canvas.toDataURL();
 
-  //     setCroppedImage(croppedImage);
-  //   }
-  // };
+      setCroppedImage(croppedImage);
+    }
+  };
 
   const handleSaveProfileImage = async () => {
     setProfileAvatar(croppedImage);
