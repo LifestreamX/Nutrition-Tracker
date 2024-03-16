@@ -34,12 +34,14 @@ const UploadAvatar = (): JSX.Element => {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log(image); // Log current state before updating
       setImage(URL.createObjectURL(file));
-      console.log(image); // Log state after updating
       setShowCropButton(true);
     }
   };
+
+  useEffect(() => {
+    console.log(image); // Log state after updating
+  }, [image]);
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
