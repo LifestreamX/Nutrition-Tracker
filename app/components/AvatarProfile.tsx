@@ -119,6 +119,9 @@ const UploadAvatar = (): JSX.Element => {
                       )}
                     </div>
                   </div>
+                  <button>
+                    FILE <input type='file' />
+                  </button>
 
                   <DeleteAvatarProfileModal
                     showModal={showModal}
