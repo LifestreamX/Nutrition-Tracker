@@ -39,21 +39,8 @@ const UploadAvatar = (): JSX.Element => {
     }
   };
 
-  const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newScale = parseFloat(e.target.value);
-    setScale(newScale);
-  };
 
-  const handleCrop = () => {
-    if (editorRef.current) {
-      const canvas = editorRef.current.getImageScaledToCanvas();
-      // You can now use the canvas to get the cropped image data
 
-      const croppedImage = canvas.toDataURL();
-
-      setCroppedImage(croppedImage);
-    }
-  };
 
   const handleSaveProfileImage = async () => {
     setProfileAvatar(croppedImage);
@@ -74,9 +61,6 @@ const UploadAvatar = (): JSX.Element => {
 
     // localStorage.setItem('profileAvatar', croppedImage);
 
-    setCroppedImage('');
-    setImage(null);
-    setShowCropButton(false);
   };
 
   const cropPreview = width < 480 ? 100 : width < 768 ? 150 : 200;
@@ -84,12 +68,6 @@ const UploadAvatar = (): JSX.Element => {
   return (
     <main>
       <div>
-        <div>
-          <div className='flex'>
-            <div className='flex flex-col'>
-              <div className='container'>
-                <div className='flex flex-col  '>
-                  <div className='flex flex-col  md:grid md:grid-cols-2  '>
                     <button className='flex w-full'>
                       <label
                         htmlFor='fileInput'
@@ -106,93 +84,16 @@ const UploadAvatar = (): JSX.Element => {
                       />
                     </button>
 
-                    <div className='mt-3 md:mt-0 md:ml-4 w-full  '>
-                      {profileAvatar && (
-                        <Button
-                          onClick={() => {
-                            setShowModal(true);
-                          }}
-                          color='red'
-                        >
-                          Delete Image
-                        </Button>
-                      )}
-                    </div>
-                  </div>
+                 
 
-                  <DeleteAvatarProfileModal
-                    showModal={showModal}
-                    setShowModal={setShowModal}
-                  />
+               
 
-                  {/* example ending */}
+              
 
-                  {showCropButton && (
-                    <input
-                      type='range'
-                      min='1'
-                      max='3'
-                      step='0.01'
-                      value={scale}
-                      className='bg-purple-600 mb-5 mt-5 accent-purple-700  w-32 md:w-full '
-                      onChange={handleScaleChange}
-                    />
-                  )}
-                </div>
+               
 
-                <div className=' flex container justify-center items-center flex-wrap'>
-                  {/* crop */}
-                  <div className='flex flex-col justify-evenly items-center m-5'>
-                    {image && (
-                      <AvatarEditor
-                        ref={editorRef}
-                        image={image}
-                        width={cropPreview}
-                        height={cropPreview}
-                        border={50}
-                        color={[255, 255, 255, 0.6]} // RGBA
-                        scale={scale}
-                        rotate={0}
-                      />
-                    )}
+   
 
-                    <div className='relative right-3'>
-                      {showCropButton && (
-                        <div className='relative  '>
-                          <Button color='purple' onClick={handleCrop}>
-                            Crop
-                          </Button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* save */}
-                  <div className='m-5 right-2 relative'>
-                    {/* displaying crop avatar demo */}
-                    {croppedImage && (
-                      <div className='flex flex-col '>
-                        <Image
-                          className=' rounded-full relative  border-gray border-2 mb-5'
-                          src={croppedImage}
-                          alt='Rounded avatar'
-                          width={100}
-                          height={100}
-                        />
-
-                        <Button onClick={handleSaveProfileImage} color='purple'>
-                          Save
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* crop photo button */}
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </main>
   );

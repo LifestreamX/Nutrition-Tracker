@@ -10,6 +10,10 @@ import Image from 'next/image';
 import NoAvatar from '/public/images/NoAvatar.png';
 
 const UserSettings: React.FC = () => {
+
+  
+
+
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
