@@ -8,7 +8,7 @@ import Button from './Button';
 import { useMyContext } from '@/MyContext';
 import DeleteAvatarProfileModal from './DeleteAvatarProfileModal';
 import { useWindowSize } from 'react-use';
-import { useSession } from 'next-auth/react';
+import { useDropzone } from 'react-dropzone';
 
 const UploadAvatar = (): JSX.Element => {
   const [image, setImage] = useState<string | null>(null);
@@ -31,13 +31,17 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-      setShowCropButton(true);
-    }
-  };
+  // useDropzone hook
+  const { getRootProps, getInputProps } = useDropzone({
+    accept: 'image/*' as any,
+    onDrop: (acceptedFiles: File[]) => {
+      if (acceptedFiles && acceptedFiles.length > 0) {
+        const file = acceptedFiles[0];
+        setImage(URL.createObjectURL(file));
+        setShowCropButton(true);
+      }
+    },
+  });
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
@@ -47,7 +51,10 @@ const UploadAvatar = (): JSX.Element => {
   const handleCrop = () => {
     if (editorRef.current) {
       const canvas = editorRef.current.getImageScaledToCanvas();
+      // You can now use the canvas to get the cropped image data
+
       const croppedImage = canvas.toDataURL();
+
       setCroppedImage(croppedImage);
     }
   };
@@ -69,6 +76,8 @@ const UploadAvatar = (): JSX.Element => {
       console.log(error);
     }
 
+    // localStorage.setItem('profileAvatar', croppedImage);
+
     setCroppedImage('');
     setImage(null);
     setShowCropButton(false);
@@ -85,7 +94,7 @@ const UploadAvatar = (): JSX.Element => {
               <div className='container'>
                 <div className='flex flex-col  '>
                   <div className='flex flex-col  md:grid md:grid-cols-2  '>
-                    <button className='flex w-full'>
+                    <div className='flex w-full' {...getRootProps()}>
                       <label
                         htmlFor='fileInput'
                         className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
@@ -93,13 +102,8 @@ const UploadAvatar = (): JSX.Element => {
                         {profileAvatar ? 'Change Image' : 'Upload Image'}
                         {/* Upload Image */}
                       </label>
-                      <input
-                        type='file'
-                        id='fileInput'
-                        onChange={handleImageChange}
-                        className='hidden'
-                      />
-                    </button>
+                      <input {...getInputProps()} className='hidden' />
+                    </div>
 
                     <div className='mt-3 md:mt-0 md:ml-4 w-full  '>
                       {profileAvatar && (
