@@ -33,12 +33,22 @@ const UploadAvatar = (): JSX.Element => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    console.log('File:', typeof file); // Check the value of file
 
     try {
-      let res = URL.createObjectURL(file as any);
+      if (file instanceof Blob) {
+        // Check if file is an instance of Blob
+        let res = URL.createObjectURL(file);
+        setImage(res);
+        setShowCropButton(true);
+      } else {
+        throw new Error('Invalid file type'); // Throw an error if file is not a Blob
+      }
+
+      let res = URL.createObjectURL(file);
       setImage(res);
       setShowCropButton(true);
-      console.log(image);
+      // console.log(image);
     } catch (error) {
       console.error('Error creating object URL:', error);
     }
@@ -147,7 +157,7 @@ const UploadAvatar = (): JSX.Element => {
 
                 <div className=' flex container justify-center items-center flex-wrap'>
                   {/* crop */}
-                  {/* <div className='flex flex-col justify-evenly items-center m-5'>
+                  <div className='flex flex-col justify-evenly items-center m-5'>
                     {image && (
                       <AvatarEditor
                         ref={editorRef}
@@ -170,7 +180,7 @@ const UploadAvatar = (): JSX.Element => {
                         </div>
                       )}
                     </div>
-                  </div> */}
+                  </div>
 
                   {/* save */}
                   <div className='m-5 right-2 relative'>
