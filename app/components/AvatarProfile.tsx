@@ -33,15 +33,11 @@ const UploadAvatar = (): JSX.Element => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target && typeof event.target.result === 'string') {
-          setImage(event.target.result);
-          setShowCropButton(true);
-        }
-      };
-      reader.readAsDataURL(file);
+      setImage(URL.createObjectURL(file));
+      console.log(image);
+      setShowCropButton(true);
     }
   };
 
@@ -56,8 +52,6 @@ const UploadAvatar = (): JSX.Element => {
       // You can now use the canvas to get the cropped image data
 
       const croppedImage = canvas.toDataURL();
-
-      console.log(croppedImage);
 
       setCroppedImage(croppedImage);
     }
@@ -154,7 +148,8 @@ const UploadAvatar = (): JSX.Element => {
                     {image && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={image}
+                        // image={image}
+                        image={''}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
