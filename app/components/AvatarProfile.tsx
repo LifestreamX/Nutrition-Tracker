@@ -143,7 +143,7 @@ const UploadAvatar = (): JSX.Element => {
                 <div className=' flex container justify-center items-center flex-wrap'>
                   {/* crop */}
                   <div className='flex flex-col justify-evenly items-center m-5'>
-                    {image && (
+                    {/* {image && (
                       <AvatarEditor
                         ref={editorRef}
                         image={image}
@@ -154,9 +154,9 @@ const UploadAvatar = (): JSX.Element => {
                         scale={scale}
                         rotate={0}
                       />
-                    )}
+                    )} */}
 
-                    {/* <div className='relative right-3'>
+                    <div className='relative right-3'>
                       {showCropButton && (
                         <div className='relative  '>
                           <Button color='purple' onClick={handleCrop}>
@@ -164,7 +164,7 @@ const UploadAvatar = (): JSX.Element => {
                           </Button>
                         </div>
                       )}
-                    </div> */}
+                    </div>
                   </div>
 
                   {/* save */}
