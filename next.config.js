@@ -4,9 +4,12 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    serverComponents: true,
+    serverComponents: true, // Enable serverComponents for Server Actions
     serverActions: true,
   },
+
+  test: /\\.(png|jp(e*)g|svg|gif)$/,
+  use: ['file-loader'],
 
   images: {
     domains: ['www.edamam.com'],
@@ -27,19 +30,12 @@ const nextConfig = {
   },
 
   eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
     ignoreDuringBuilds: true,
-  },
-
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.module.rules.push({
-        test: /\.(png|jp(e*)g|svg|gif)$/,
-        use: ['file-loader'],
-      });
-    }
-
-    return config;
   },
 };
 
 module.exports = nextConfig;
+
+// export default withPlaiceholder(nextConfig);
