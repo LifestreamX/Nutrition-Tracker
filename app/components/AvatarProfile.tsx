@@ -8,7 +8,7 @@ import Button from './Button';
 import { useMyContext } from '@/MyContext';
 import DeleteAvatarProfileModal from './DeleteAvatarProfileModal';
 import { useWindowSize } from 'react-use';
-import { useDropzone } from 'react-dropzone';
+import { useSession } from 'next-auth/react';
 
 const UploadAvatar = (): JSX.Element => {
   const [image, setImage] = useState<string | null>(null);
@@ -31,33 +31,29 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
-  // useDropzone hook
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*' as any,
-    onDrop: (acceptedFiles: File[]) => {
-      if (acceptedFiles && acceptedFiles.length > 0) {
-        const file = acceptedFiles[0];
-        setImage(URL.createObjectURL(file));
-        setShowCropButton(true);
-      }
-    },
-  });
-
-  const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const newScale = parseFloat(e.target.value);
-    setScale(newScale);
-  };
-
-  const handleCrop = () => {
-    if (editorRef.current) {
-      const canvas = editorRef.current.getImageScaledToCanvas();
-      // You can now use the canvas to get the cropped image data
-
-      const croppedImage = canvas.toDataURL();
-
-      setCroppedImage(croppedImage);
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+      setShowCropButton(true);
     }
   };
+
+  // const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const newScale = parseFloat(e.target.value);
+  //   setScale(newScale);
+  // };
+
+  // const handleCrop = () => {
+  //   if (editorRef.current) {
+  //     const canvas = editorRef.current.getImageScaledToCanvas();
+  //     // You can now use the canvas to get the cropped image data
+
+  //     const croppedImage = canvas.toDataURL();
+
+  //     setCroppedImage(croppedImage);
+  //   }
+  // };
 
   const handleSaveProfileImage = async () => {
     setProfileAvatar(croppedImage);
@@ -94,7 +90,7 @@ const UploadAvatar = (): JSX.Element => {
               <div className='container'>
                 <div className='flex flex-col  '>
                   <div className='flex flex-col  md:grid md:grid-cols-2  '>
-                    <div className='flex w-full' {...getRootProps()}>
+                    <button className='flex w-full'>
                       <label
                         htmlFor='fileInput'
                         className=' text-center font-bold px-3 py-2 text-white bg-purple-500 rounded-md cursor-pointer hover:bg-purple-600 '
@@ -102,8 +98,13 @@ const UploadAvatar = (): JSX.Element => {
                         {profileAvatar ? 'Change Image' : 'Upload Image'}
                         {/* Upload Image */}
                       </label>
-                      <input {...getInputProps()} className='hidden' />
-                    </div>
+                      <input
+                        type='file'
+                        id='fileInput'
+                        onChange={handleImageChange}
+                        className='hidden'
+                      />
+                    </button>
 
                     <div className='mt-3 md:mt-0 md:ml-4 w-full  '>
                       {profileAvatar && (
