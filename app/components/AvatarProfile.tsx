@@ -20,6 +20,7 @@ const UploadAvatar = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
+  const [curImage, setCurImage] = useState<any>('');
 
   // console.log(typeof profileAvatar);
 
@@ -44,6 +45,13 @@ const UploadAvatar = (): JSX.Element => {
       }
     }
   };
+
+  useEffect(() => {
+    console.log(image);
+    if (image) {
+      setCurImage(image);
+    }
+  }, [image]);
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
@@ -152,7 +160,7 @@ const UploadAvatar = (): JSX.Element => {
                     {image && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={image}
+                        image={curImage}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
