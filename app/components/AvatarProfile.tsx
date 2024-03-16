@@ -70,6 +70,7 @@ const UploadAvatar = (): JSX.Element => {
       console.log(res);
     } catch (error) {
       console.log(error);
+      //
     }
 
     // localStorage.setItem('profileAvatar', croppedImage);
