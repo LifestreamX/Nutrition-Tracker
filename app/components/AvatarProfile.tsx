@@ -20,7 +20,6 @@ const UploadAvatar = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
-  const [file, setFile] = useState(null);
 
   // console.log(typeof profileAvatar);
 
@@ -31,21 +30,17 @@ const UploadAvatar = (): JSX.Element => {
   //   // setProfileAvatar(userSession?.user?.image);
 
   // }
-
-  useEffect(() => {
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
-      let url = URL.createObjectURL(file);
-      setImage(url);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+        setShowCropButton(true);
+      };
+      reader.readAsDataURL(file);
     }
-  }, [file]);
-
-  // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   // const file = e.target.files?.[0];
-  //   if (file) {
-  //     setImage(URL.createObjectURL(file));
-  //     setShowCropButton(true);
-  //   }
-  // };
+  };
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
@@ -109,7 +104,7 @@ const UploadAvatar = (): JSX.Element => {
                       <input
                         type='file'
                         id='fileInput'
-                        onChange={(e) => setFile(e.target.files?.[0] as any)}
+                        onChange={handleImageChange}
                         className='hidden'
                       />
                     </button>
@@ -165,7 +160,7 @@ const UploadAvatar = (): JSX.Element => {
                     )}
 
                     <div className='relative right-3'>
-                      {image && (
+                      {showCropButton && (
                         <div className='relative  '>
                           <Button color='purple' onClick={handleCrop}>
                             Crop
