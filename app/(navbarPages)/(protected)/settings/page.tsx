@@ -1,12 +1,10 @@
-'use client';
-
 import { Metadata } from 'next';
 import UserSettings from './UserSettings';
 
-// export const metadata: Metadata = {
-//   title: 'Settings',
-//   description: 'setting for user to adjust dark theme and profile picture',
-// };
+export const metadata: Metadata = {
+  title: 'Settings',
+  description: 'setting for user to adjust dark theme and profile picture',
+};
 
 const Settings: React.FC = () => {
   return (
