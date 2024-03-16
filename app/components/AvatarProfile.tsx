@@ -32,11 +32,12 @@ const UploadAvatar = (): JSX.Element => {
   // }
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-      setShowCropButton(true);
-    }
+    // const file = e.target.files?.[0];
+    // if (file) {
+    //   setImage(URL.createObjectURL(file));
+    //   console.log(image);
+    //   setShowCropButton(true);
+    // }
   };
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +51,8 @@ const UploadAvatar = (): JSX.Element => {
       // You can now use the canvas to get the cropped image data
 
       const croppedImage = canvas.toDataURL();
+
+      console.log(croppedImage);
 
       setCroppedImage(croppedImage);
     }
