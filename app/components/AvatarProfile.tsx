@@ -31,15 +31,19 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
+  let img = null;
+
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
-
-    console.log(file)
-    // if (file) {
-    //   setImage(URL.createObjectURL(file));
-    //   setShowCropButton(true);
-    // }
+    if (file) {
+      const reader = new FileReader();
+      console.log(reader);
+      reader.onloadend = () => {
+        setImage(reader.result);
+        setShowCropButton(true);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
