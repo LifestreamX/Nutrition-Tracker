@@ -36,10 +36,13 @@ const UploadAvatar = (): JSX.Element => {
     console.log(file);
     let res = URL.createObjectURL(file as any);
     console.log('RESSSSS', res);
-    // if (file) {
-    //   setImage(URL.createObjectURL(file));
-    //   setShowCropButton(true);
-    // }
+
+    try {
+      let res = URL.createObjectURL(file as any);
+      console.log('RESSSSS', res);
+    } catch (error) {
+      console.error('Error creating object URL:', error);
+    }
   };
 
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
