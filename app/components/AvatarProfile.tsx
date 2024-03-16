@@ -11,7 +11,7 @@ import { useWindowSize } from 'react-use';
 import { useSession } from 'next-auth/react';
 
 const UploadAvatar = (): JSX.Element => {
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string | null | any>(null);
   const [scale, setScale] = useState<number>(1);
   const editorRef = useRef<AvatarEditor | null>(null);
   const [croppedImage, setCroppedImage] = useState<string>('');
