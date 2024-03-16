@@ -20,6 +20,7 @@ const UploadAvatar = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
+  const [myImg, setMyImg] = useState<any>()
 
   // console.log(typeof profileAvatar);
 
@@ -46,13 +47,12 @@ const UploadAvatar = (): JSX.Element => {
 
         let res = URL.createObjectURL(file);
         setShowCropButton(true);
-        setImage(res);
+        setMyImg(res);
       } else {
         throw new Error('Invalid file type'); // Throw an error if file is not a Blob
       }
 
       setShowCropButton(true);
-      // console.log(image);
     } catch (error) {
       console.error('Error creating object URL:', error);
     }
