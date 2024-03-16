@@ -33,9 +33,10 @@ const UploadAvatar = (): JSX.Element => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e);
-    const file = e.target.files?.[0];
-    setImage(file as any);
-    if (file) {
+    setImage(e as any);
+    // const file = e.target.files?.[0];
+    console.log(e);
+    if (e) {
       // setImage(URL.createObjectURL(file));
       setShowCropButton(true);
     }
