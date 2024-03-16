@@ -11,7 +11,7 @@ import { useWindowSize } from 'react-use';
 import { useSession } from 'next-auth/react';
 
 const UploadAvatar = (): JSX.Element => {
-  const [image, setImage] = useState<string | null | any>(null);
+  const [image, setImage] = useState<string | null>(null);
   const [scale, setScale] = useState<number>(1);
   const editorRef = useRef<AvatarEditor | null>(null);
   const [croppedImage, setCroppedImage] = useState<string>('');
@@ -31,18 +31,11 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
-  let img = null;
-
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      console.log(reader);
-      reader.onloadend = () => {
-        setImage(reader.result);
-        setShowCropButton(true);
-      };
-      reader.readAsDataURL(file);
+      setImage(URL.createObjectURL(file));
+      setShowCropButton(true);
     }
   };
 
