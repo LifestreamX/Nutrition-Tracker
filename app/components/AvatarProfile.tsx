@@ -30,15 +30,14 @@ const UploadAvatar = (): JSX.Element => {
   //   // setProfileAvatar(userSession?.user?.image);
 
   // }
-  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e);
     const file = e.target.files?.[0];
+    setImage(file as any);
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result as string);
-        setShowCropButton(true);
-      };
-      reader.readAsDataURL(file);
+      // setImage(URL.createObjectURL(file));
+      setShowCropButton(true);
     }
   };
 
