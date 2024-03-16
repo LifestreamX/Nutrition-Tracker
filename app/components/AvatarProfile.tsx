@@ -39,14 +39,14 @@ const UploadAvatar = (): JSX.Element => {
       if (file instanceof Blob) {
         // Check if file is an instance of Blob
         let res = URL.createObjectURL(file);
+
         setImage(res);
         setShowCropButton(true);
+        setImage(res);
       } else {
         throw new Error('Invalid file type'); // Throw an error if file is not a Blob
       }
 
-      let res = URL.createObjectURL(file);
-      setImage(res);
       setShowCropButton(true);
       // console.log(image);
     } catch (error) {
