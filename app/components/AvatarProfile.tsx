@@ -38,6 +38,7 @@ const UploadAvatar = (): JSX.Element => {
         const blobUrl = URL.createObjectURL(file);
         setImage(blobUrl);
         setShowCropButton(true);
+        console.log(image);
       } catch (error) {
         console.error('Error creating blob URL:', error);
       }
