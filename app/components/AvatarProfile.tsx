@@ -39,10 +39,6 @@ const UploadAvatar = (): JSX.Element => {
     }
   };
 
-  useEffect(() => {
-    console.log(image); // Log state after updating
-  }, [image]);
-
   const handleScaleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newScale = parseFloat(e.target.value);
     setScale(newScale);
@@ -150,7 +146,7 @@ const UploadAvatar = (): JSX.Element => {
                     {image && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={image}
+                        image={''}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
