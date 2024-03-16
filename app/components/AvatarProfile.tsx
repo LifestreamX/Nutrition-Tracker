@@ -33,14 +33,18 @@ const UploadAvatar = (): JSX.Element => {
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    console.log('File:', typeof file); // Check the value of file
 
     try {
       if (file instanceof Blob) {
-        // Check if file is an instance of Blob
-        let res = URL.createObjectURL(file);
+        if (!file) {
+          throw new Error('No file selected');
+        }
 
-        setImage(res);
+        if (!(file instanceof Blob)) {
+          throw new Error('Invalid file type');
+        }
+
+        let res = URL.createObjectURL(file);
         setShowCropButton(true);
         setImage(res);
       } else {
