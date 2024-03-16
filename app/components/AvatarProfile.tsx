@@ -31,17 +31,10 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
-  let img: any = null;
-
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
-    console.log(file);
-
     if (file) {
-      img = URL.createObjectURL(file);
-      // setImage(URL.createObjectURL(file));
-      console.log(image);
+      setImage(URL.createObjectURL(file));
       setShowCropButton(true);
     }
   };
@@ -153,7 +146,7 @@ const UploadAvatar = (): JSX.Element => {
                     {image && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={img}
+                        image={image}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
