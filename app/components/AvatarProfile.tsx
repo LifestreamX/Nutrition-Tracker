@@ -20,7 +20,6 @@ const UploadAvatar = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
-  const [myImg, setMyImg] = useState<any>();
 
   // console.log(typeof profileAvatar);
 
@@ -32,28 +31,11 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
-  const imgRef = useRef<any>(null);
-
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-
-    try {
-      if (!file) {
-        throw new Error('No file selected');
-      }
-
-      if (!(file instanceof Blob)) {
-        throw new Error('Invalid file type');
-      }
-
-      const res = URL.createObjectURL(file);
-      console.log(typeof res);
+    if (file) {
+      setImage(URL.createObjectURL(file));
       setShowCropButton(true);
-      // Instead of using state, assign the value to the ref
-      imgRef.current = res;
-    } catch (error) {
-      console.error('Error creating object URL:', error);
-      // Handle the error state appropriately here
     }
   };
 
@@ -93,12 +75,9 @@ const UploadAvatar = (): JSX.Element => {
     // localStorage.setItem('profileAvatar', croppedImage);
 
     setCroppedImage('');
-    imgRef.current = null;
     setImage(null);
     setShowCropButton(false);
   };
-
-  console.log(imgRef);
 
   const cropPreview = width < 480 ? 100 : width < 768 ? 150 : 200;
 
@@ -124,6 +103,8 @@ const UploadAvatar = (): JSX.Element => {
                         id='fileInput'
                         onChange={handleImageChange}
                         className='hidden'
+                        accept="image/*"
+
                       />
                     </button>
 
@@ -164,10 +145,10 @@ const UploadAvatar = (): JSX.Element => {
                 <div className=' flex container justify-center items-center flex-wrap'>
                   {/* crop */}
                   <div className='flex flex-col justify-evenly items-center m-5'>
-                    {imgRef.current !== null && (
+                    {image && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={imgRef.current}
+                        image={image}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
