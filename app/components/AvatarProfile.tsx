@@ -93,9 +93,12 @@ const UploadAvatar = (): JSX.Element => {
     // localStorage.setItem('profileAvatar', croppedImage);
 
     setCroppedImage('');
+    imgRef.current = null;
     setImage(null);
     setShowCropButton(false);
   };
+
+  console.log(imgRef);
 
   const cropPreview = width < 480 ? 100 : width < 768 ? 150 : 200;
 
@@ -161,7 +164,7 @@ const UploadAvatar = (): JSX.Element => {
                 <div className=' flex container justify-center items-center flex-wrap'>
                   {/* crop */}
                   <div className='flex flex-col justify-evenly items-center m-5'>
-                    {imgRef.current && (
+                    {imgRef.current !== null && (
                       <AvatarEditor
                         ref={editorRef}
                         image={imgRef.current}
