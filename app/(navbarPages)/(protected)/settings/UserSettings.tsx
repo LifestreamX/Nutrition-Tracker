@@ -8,15 +8,10 @@ import UploadAvatar from '../../../components/AvatarProfile';
 // import UploadAvatar from '../../../components/AvatarProfile';
 import Image from 'next/image';
 import NoAvatar from '/public/images/NoAvatar.png';
-import dynamic from 'next/dynamic';
 
 const UserSettings: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
-
-  const DynamicAvatarProfile = dynamic(
-    () => import('../../../components/AvatarProfile')
-  );
 
   const { profileAvatar } = useMyContext();
 
@@ -121,7 +116,7 @@ const UserSettings: React.FC = () => {
           </div>
 
           <div className='mt-5'>
-            <DynamicAvatarProfile />
+            <UploadAvatar />
           </div>
         </div>
       </div>

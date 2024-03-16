@@ -144,15 +144,12 @@ const UploadAvatar = (): JSX.Element => {
                   {/* crop */}
                   <div className='flex flex-col justify-evenly items-center m-5'>
                     {image && (
-                      <AvatarEditor
-                        ref={editorRef}
-                        image={image}
-                        width={cropPreview}
-                        height={cropPreview}
-                        border={50}
-                        color={[255, 255, 255, 0.6]} // RGBA
-                        scale={scale}
-                        rotate={0}
+                      <Image
+                        className=' rounded-full relative  border-gray border-2 mb-5'
+                        src={image}
+                        alt='Rounded avatar'
+                        width={100}
+                        height={100}
                       />
                     )}
 
