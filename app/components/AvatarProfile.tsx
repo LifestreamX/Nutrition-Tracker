@@ -9,6 +9,7 @@ import { useMyContext } from '@/MyContext';
 import DeleteAvatarProfileModal from './DeleteAvatarProfileModal';
 import { useWindowSize } from 'react-use';
 import { useSession } from 'next-auth/react';
+import { url } from 'inspector';
 
 const UploadAvatar = (): JSX.Element => {
   const [image, setImage] = useState<string | null>(null);
@@ -34,7 +35,11 @@ const UploadAvatar = (): JSX.Element => {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(URL.createObjectURL(file));
+      let img = URL.createObjectURL(file);
+      if (img) {
+        console.log(img);
+        setImage(URL.createObjectURL(file));
+      }
       setShowCropButton(true);
     }
   };
