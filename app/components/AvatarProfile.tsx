@@ -103,8 +103,6 @@ const UploadAvatar = (): JSX.Element => {
                         id='fileInput'
                         onChange={handleImageChange}
                         className='hidden'
-                        accept="image/*"
-
                       />
                     </button>
 
