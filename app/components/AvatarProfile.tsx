@@ -20,7 +20,7 @@ const UploadAvatar = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
   const [googleAvatar, setGoogleAvatar] = useState<string | null>();
-  const [myImg, setMyImg] = useState<any>()
+  const [myImg, setMyImg] = useState<any>();
 
   // console.log(typeof profileAvatar);
 
@@ -32,29 +32,28 @@ const UploadAvatar = (): JSX.Element => {
 
   // }
 
+  const imgRef = useRef<any>(null);
+
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     try {
-      if (file instanceof Blob) {
-        if (!file) {
-          throw new Error('No file selected');
-        }
-
-        if (!(file instanceof Blob)) {
-          throw new Error('Invalid file type');
-        }
-
-        let res = URL.createObjectURL(file);
-        setShowCropButton(true);
-        setMyImg(res);
-      } else {
-        throw new Error('Invalid file type'); // Throw an error if file is not a Blob
+      if (!file) {
+        throw new Error('No file selected');
       }
 
+      if (!(file instanceof Blob)) {
+        throw new Error('Invalid file type');
+      }
+
+      const res = URL.createObjectURL(file);
+      console.log(typeof res);
       setShowCropButton(true);
+      // Instead of using state, assign the value to the ref
+      imgRef.current = res;
     } catch (error) {
       console.error('Error creating object URL:', error);
+      // Handle the error state appropriately here
     }
   };
 
@@ -162,10 +161,10 @@ const UploadAvatar = (): JSX.Element => {
                 <div className=' flex container justify-center items-center flex-wrap'>
                   {/* crop */}
                   <div className='flex flex-col justify-evenly items-center m-5'>
-                    {image && (
+                    {imgRef.current && (
                       <AvatarEditor
                         ref={editorRef}
-                        image={image}
+                        image={imgRef.current}
                         width={cropPreview}
                         height={cropPreview}
                         border={50}
