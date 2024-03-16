@@ -11,7 +11,7 @@ import { useWindowSize } from 'react-use';
 import { useSession } from 'next-auth/react';
 
 const UploadAvatar = (): JSX.Element => {
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<any>(null);
   const [scale, setScale] = useState<number>(1);
   const editorRef = useRef<AvatarEditor | null>(null);
   const [croppedImage, setCroppedImage] = useState<string>('');
@@ -19,22 +19,16 @@ const UploadAvatar = (): JSX.Element => {
   const [showCropButton, setShowCropButton] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { width } = useWindowSize();
-  const [googleAvatar, setGoogleAvatar] = useState<string | null>();
 
-  // console.log(typeof profileAvatar);
 
-  // const { data: session, status } = useSession<any>();
 
-  // if (status === 'authenticated' && userSession?.user?.image) {
-  //   setGoogleAvatar(userSession?.user.image);
-  //   // setProfileAvatar(userSession?.user?.image);
+ 
 
-  // }
-
-  const handleImageChange = (e: any) => {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+
       setShowCropButton(true);
     }
   };
