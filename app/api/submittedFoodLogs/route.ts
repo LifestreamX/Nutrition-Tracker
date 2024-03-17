@@ -6,6 +6,11 @@ import Email from 'next-auth/providers/email';
 
 export async function POST(request: Request) {
   try {
+    // Parsing JSON data from the request body
+    const submittedFoodLogs = await request.json();
+
+    console.log(submittedFoodLogs);
+
     // Retrieving the user's session
     const session = await getServerSession(authOptions);
 
@@ -17,16 +22,12 @@ export async function POST(request: Request) {
       throw new Error('User email not found in session');
     }
 
-    let deletedLogs = await prisma.submittedFoodLog.deleteMany({
+    // Delete existing food logs associated with the user
+    await prisma.submittedFoodLog.deleteMany({
       where: {
         userId: userEmail,
       },
     });
-
-    // Parsing JSON data from the request body
-    const submittedFoodLogs = await request.json();
-
-    console.log('FGOOODODDO LOGS', submittedFoodLogs);
 
     if (!Array.isArray(submittedFoodLogs)) {
       throw new Error('Invalid submittedFoodLogs format');
