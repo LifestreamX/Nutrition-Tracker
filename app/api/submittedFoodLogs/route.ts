@@ -17,16 +17,16 @@ export async function POST(request: Request) {
       throw new Error('User email not found in session');
     }
 
-    // Parsing JSON data from the request body
-    const submittedFoodLogs = await request.json();
-
     let deletedLogs = await prisma.submittedFoodLog.deleteMany({
       where: {
         userId: userEmail,
       },
     });
 
-    // const { submittedFoodLogs } = await request.json();
+    // Parsing JSON data from the request body
+    const submittedFoodLogs = await request.json();
+
+    console.log('FGOOODODDO LOGS', submittedFoodLogs);
 
     if (!Array.isArray(submittedFoodLogs)) {
       throw new Error('Invalid submittedFoodLogs format');
