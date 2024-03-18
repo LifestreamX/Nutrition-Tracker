@@ -218,7 +218,7 @@ const NavBar: React.FC<NavProps> = ({ session }) => {
                         >
                           <Menu.Items className='absolute  right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
                             <div className='p-2 '>
-                              <p className='dark:text-black '>
+                              <p className='dark:text-black flex flex-col '>
                                 Account:{' '}
                                 <span className='font-medium break-all  '>
                                   {userEmail}

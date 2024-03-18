@@ -38,6 +38,8 @@ export async function POST(request: Request) {
       data: submittedFoodLogs.map((log) => ({ ...log, userId: userEmail })),
     });
 
+    console.log('Food logs saved successfully:', createdSubmittedFoodLogs);
+
     return NextResponse.json(createdSubmittedFoodLogs);
   } catch (error) {
     console.error('Error adding food logs:', error);

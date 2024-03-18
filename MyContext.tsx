@@ -150,17 +150,16 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
       }
     };
 
-
     const fetchFoodLog = async () => {
       try {
         const res = await fetch('/api/foodLog', {
           method: 'GET',
         });
-        // console.log(res);
 
         if (res.ok) {
           const data = await res.json();
           setFoodLog(data);
+          console.log(foodLog);
         }
       } catch (error) {
         console.error('Failed to fetch food log');
@@ -281,7 +280,8 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
 
   // const [submittedFoodLogs, dispatch] = useReducer(reducer, initialFoodLogData);
 
-  console.log(submittedFoodLogs)
+  console.log(submittedFoodLogs);
+  // console.log(foodLog);
 
   const value: MyContextType = {
     macroTargetInputs,
