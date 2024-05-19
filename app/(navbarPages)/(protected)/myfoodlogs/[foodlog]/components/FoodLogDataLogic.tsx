@@ -71,8 +71,6 @@ const FoodLogDataLogic: React.FC<MyFoodLogProps> = ({ params }) => {
 
   const handleConfirm: ConfirmDeleteHandler = async () => {
     const deleteLog = submittedFoodLogs?.filter((e: { foodLogId: string }) => {
-      console.log(deleteLog);
-
       return e.foodLogId !== params.foodlog;
     });
 
