@@ -174,6 +174,13 @@ const FoodLog = () => {
         console.log('error deleting food logs', error);
       }
     }
+
+    setMacroTargets({
+      calories: 0,
+      protein: 0,
+      carbs: 0,
+      fats: 0,
+    });
   };
 
   useEffect(() => {

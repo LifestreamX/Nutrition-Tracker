@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProgressBar from '@ramonak/react-progress-bar';
 import { useMyContext } from '@/MyContext';
 import { Goals } from '@/types/MacroTarget.types';
@@ -178,6 +178,8 @@ export const CaloriesProgress = () => {
 
   let caloriesRemain = macroTargets.calories - totalCalories;
 
+  console.log(macroTargets.calories);
+
   let totalCaloriesFixed = totalCalories.toFixed(0);
   let caloriesRemainFixed = caloriesRemain.toFixed(0);
 
@@ -215,6 +217,10 @@ export const CaloriesProgress = () => {
       },
     ],
   };
+
+  useEffect(() => {
+    console.log(caloriesRemain);
+  }, [caloriesRemain]);
 
   return (
     <section className='flex flex-col justify-around w-full p-5 items-center rounded-md  md:flex-row   dark:bg-gray-800 '>
