@@ -36,6 +36,7 @@ const navigation: NavigationItem[] = [
   { name: 'Home', href: '/', current: false },
   { name: 'About', href: '/about', current: false },
   { name: 'Contact', href: '/contact', current: false },
+  { name: 'News', href: '/news', current: false },
 ];
 
 const NavBar: React.FC<NavProps> = ({ session }) => {
