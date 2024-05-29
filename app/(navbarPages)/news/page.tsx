@@ -1,9 +1,27 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'News',
 };
+
+interface NewsItem {
+  title: string;
+  top_image: string;
+  images: string[];
+  videos: string[];
+  url: string;
+  date: string;
+  short_description: string;
+  text: string;
+  publisher: Publisher;
+}
+
+interface Publisher {
+  href: string;
+  title: string;
+}
 
 async function getNewsData() {
   const url = 'https://newsnow.p.rapidapi.com/newsv2_top_news_cat';
@@ -33,74 +51,49 @@ async function getNewsData() {
   }
 }
 
-const News: React.FC = async () => {
+const News = async () => {
   const data = await getNewsData();
-  console.log(data);
-
-  const articles = [
-    {
-      id: 1,
-      title: 'Breaking News: Market Hits All-Time High',
-      description:
-        'The stock market reached an all-time high today, driven by strong earnings reports and positive economic data.',
-      url: 'https://example.com/article-1',
-    },
-    {
-      id: 2,
-      title: 'Tech Giant Announces New Product Line',
-      description:
-        'A leading tech company has announced a new line of innovative products set to launch next month.',
-      url: 'https://example.com/article-2',
-    },
-    {
-      id: 3,
-      title: 'Local Community Event Draws Hundreds',
-      description:
-        'A local community event over the weekend drew hundreds of attendees, showcasing various local talents and businesses.',
-      url: 'https://example.com/article-3',
-    },
-    {
-      id: 4,
-      title: 'Health Tips: How to Stay Fit During Winter',
-      description:
-        'Experts share their tips on how to maintain fitness and stay healthy during the colder months.',
-      url: 'https://example.com/article-4',
-    },
-    {
-      id: 5,
-      title: 'New Study Reveals Climate Change Impact',
-      description:
-        'A recent study has revealed significant impacts of climate change on global weather patterns and ecosystems.',
-      url: 'https://example.com/article-5',
-    },
-    {
-      id: 6,
-      title: 'Sports Update: Local Team Wins Championship',
-      description:
-        'The local sports team has won the championship, celebrating a hard-fought victory in the finals.',
-      url: 'https://example.com/article-6',
-    },
-  ];
 
   return (
-    <div className='container mx-auto px-4'>
-      <h1 className='text-4xl font-bold text-center my-8'>Latest News</h1>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-        {articles.map((article) => (
+    <div className='sm:container mx-auto px-4'>
+      <h1 className='text-4xl font-bold text-center my-24'>
+        Latest Health News
+      </h1>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'>
+        {data.news.map((article: NewsItem) => (
           <article
-            key={article.id}
-            className='bg-white rounded-lg shadow-lg p-8'
+            // key={article.id}
+            className='bg-white rounded-lg shadow-xl p-8 relative flex flex-col justify-between '
           >
-            <h2 className='text-3xl font-semibold mb-4'>{article.title}</h2>
-            <p className='text-gray-700 mb-4'>{article.description}</p>
-            <a
-              href={article.url}
-              className='text-blue-500 hover:underline text-lg'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Read more
-            </a>
+            <h2 className='text-3xl font-semibold mb-4 '>{article.title}</h2>
+            {article.top_image.endsWith('.ico') === false && (
+              // Image
+              <div className='mb-8'>
+                <Image
+                  src={article.top_image}
+                  width={300}
+                  height={300}
+                  alt='Picture of the image'
+                  className='rounded-xl'
+                />
+              </div>
+            )}{' '}
+            {/* Description */}
+            <p className='text-gray-700 mb-12 text-lg'>
+              {article.short_description}
+            </p>
+            {/* Date & LInk */}
+            <div className=' '>
+              <p className='text-gray-'>{article.date}</p>
+              <a
+                href={article.url}
+                className='text-purple-900 hover:underline text-lg '
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                Read more
+              </a>
+            </div>
           </article>
         ))}
       </div>
