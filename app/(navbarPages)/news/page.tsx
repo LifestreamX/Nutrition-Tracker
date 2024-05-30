@@ -61,6 +61,53 @@ interface NewsItem {
 //   }
 // }
 
+function formatDate(isoDateString: string): string {
+  const date = new Date(isoDateString);
+
+  // Days of the week and months arrays
+  const daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  // Get components of the date
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  let hours = date.getHours();
+  const minutes = ('0' + date.getMinutes()).slice(-2);
+  const period = hours >= 12 ? 'PM' : 'AM';
+
+  // Convert hours from 24-hour to 12-hour format
+  hours = hours % 12;
+  hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+  // Construct the formatted date string
+  const formattedDate = `${dayOfWeek}, ${month} ${day}, ${year} ${hours}:${minutes}${period}`;
+
+  return formattedDate;
+}
+
 async function getNewsData() {
   const newsapi = new NewsAPI('a1ff8b8af6db41ea83f41bc015655d5c'); // Replace 'YOUR_API_KEY' with your actual NewsAPI key
 
@@ -82,7 +129,7 @@ async function getNewsData() {
         title: article.title,
         top_image: article.urlToImage,
         url: article.url,
-        date: article.publishedAt,
+        date: formatDate(article.publishedAt),
         short_description: article.description,
       })
     );
