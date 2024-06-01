@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Button from '@/app/components/Button';
+import ScrollToTop from 'react-scroll-to-top';
+import BackToTopArrow from './BackToTopArrow';
+import { useWindowSize } from 'react-use';
 
 interface NewsItem {
   title: string;
@@ -21,6 +24,13 @@ const Articles: React.FC<ArticlesProps> = ({ filteredArticles }) => {
     setVisibleArticles((prevVisibleArticles) => prevVisibleArticles + 16);
   };
 
+  const { width } = useWindowSize();
+
+  const arrowBottom = width > 768 ? '26px' : '21px';
+
+  const arrowRight = width > 768 ? '120px' : '70px';
+
+  const widthAndHeight = width > 768 ? '40px' : '35px';
 
   return (
     <>
@@ -64,9 +74,7 @@ const Articles: React.FC<ArticlesProps> = ({ filteredArticles }) => {
             </article>
           ))}
       </div>
-
       {/* load more  button */}
-
       {visibleArticles < 60 && (
         <div className='flex justify-center mb-10'>
           <Button color='purple' size='large' onClick={loadMoreArticles}>
@@ -74,6 +82,21 @@ const Articles: React.FC<ArticlesProps> = ({ filteredArticles }) => {
           </Button>
         </div>
       )}
+
+      <ScrollToTop
+        smooth
+        component={<BackToTopArrow />}
+        style={{
+          bottom: arrowBottom,
+          right: arrowRight,
+          background: '#581C87',
+          width: widthAndHeight,
+          height: widthAndHeight,
+          padding: '5px',
+          zIndex: 1000,
+          cursor: 'pointer',
+        }}
+      />
     </>
   );
 };

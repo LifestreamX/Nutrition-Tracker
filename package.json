@@ -56,6 +56,7 @@
     "react-mailto": "^0.4.0",
     "react-modal": "^3.16.1",
     "react-native-email-link": "^1.14.7",
+    "react-scroll-to-top": "^3.0.0",
     "react-use": "^17.4.0",
     "reactv16-mailto": "^0.4.4",
     "ts-jest": "^29.1.1",
