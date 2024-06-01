@@ -98,7 +98,7 @@ async function getNewsData() {
 const News = async () => {
   const data = await getNewsData();
 
-  let filteredArticles = data.filter((article: NewsItem) => {
+  let filteredArticles = data?.filter((article: NewsItem) => {
     return article.title !== '[Removed]';
   });
 
