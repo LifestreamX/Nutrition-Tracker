@@ -95,11 +95,32 @@ async function getNewsData() {
   }
 }
 
+// :
+// date
+// :
+// "Friday, May 31, 2024 2:37AM"
+// short_description
+// :
+// null
+// title
+// :
+// "Covid-19 will make you stupid - Thaiger"
+// top_image
+// :
+// null
+// url
+// :
+// "https://thethaiger.com/coronavirus/covid-19-will-make-you-stupid"
+
 const News = async () => {
   const data = await getNewsData();
 
   let filteredArticles = data?.filter((article: NewsItem) => {
-    return article.title !== '[Removed]';
+    return (
+      article.title !== '[Removed]' &&
+      article.top_image !== null &&
+      article.short_description !== null
+    );
   });
 
   return (
