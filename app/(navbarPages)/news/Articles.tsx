@@ -32,6 +32,8 @@ const Articles: React.FC<ArticlesProps> = ({ filteredArticles }) => {
 
   const widthAndHeight = width > 768 ? '40px' : '35px';
 
+  console.log(filteredArticles);
+
   return (
     <>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'>
